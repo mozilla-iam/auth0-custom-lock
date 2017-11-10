@@ -4,6 +4,8 @@
 
 This project uses Gulp to run a number of automated tasks, including one that grabs our source files (HTML, Sass, JS) and compiles them into one single HTML file that has everything inlined and can be deployed to auth0.
 
+When the project was built succesfully, you should get a `dist` folder, with the generated HTML.
+
 ### Installation
 
 To install all resources for this project, please make sure to have [Node](https://nodejs.org/) installed, then run:

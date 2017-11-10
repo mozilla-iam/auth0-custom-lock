@@ -20,6 +20,8 @@ To view (and develop) locally, this project has a server built in. To compile th
 npm start
 ```
 
+This should start a local server and open it in the browser. It also starts a watch task. If you make any changes in source files (HTML, Sass or JS), the `dist` folder will get rebuilt.
+
 ## Coding standards
 
 This project contains config files for the editor, ESLint and SCSS-Lint.

@@ -2,7 +2,7 @@
 
 ## Build tools
 
-This project uses Gulp to run a number of automated tasks, including one that grabs our sources files (HTML, Sass, JS) and compiles them into one single HTML file that has everything inlined and can be deployed to auth0.
+This project uses Gulp to run a number of automated tasks, including one that grabs our source files (HTML, Sass, JS) and compiles them into one single HTML file that has everything inlined and can be deployed to auth0.
 
 ### Installation
 

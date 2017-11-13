@@ -13,9 +13,14 @@
         <label for="email">Enter your email to log in</label>
         <input type="email" id="email" placeholder="Email address" />
         <button type="button" class="button" data-handler="enter">Enter</button>
+        <div id="password-field" hidden>
+          <label for="password">Enter your password</label>
+          <input type="password" id="password" />
+        </div>
       </form>
       <hr>
       <ul class="login-options">
+        <li id="passwordless" hidden><a href="#" class="button" data-handler="authorise-passwordless">Log in with Passwordless</a></li>
         <li><a href="#" class="button" data-handler="authorise-github"><img inline  class="icon" src="../images/github.svg" role="presentation">Log in with GitHub</a></li>
         <li><a href="#" class="button" data-handler="authorise-google"><img inline  class="icon" src="../images/google.svg" role="presentation">Log in with Google</a></li>
       </ul>

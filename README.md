@@ -2,7 +2,9 @@
 
 ## Build tools
 
-This project uses Gulp to run a number of automated tasks, including one that grabs our sources files (HTML, Sass, JS) and compiles them into one single HTML file that has everything inlined and can be deployed to auth0.
+This project uses Gulp to run a number of automated tasks, including one that grabs our source files (HTML, Sass, JS) and compiles them into one single HTML file that has everything inlined and can be deployed to auth0.
+
+When the project was built succesfully, you should get a `dist` folder, with the generated HTML.
 
 ### Installation
 
@@ -19,6 +21,8 @@ To view (and develop) locally, this project has a server built in. To compile th
 ```bash
 npm start
 ```
+
+This should start a local server and open it in the browser. It also starts a watch task. If you make any changes in source files (HTML, Sass or JS), the `dist` folder will get rebuilt.
 
 ## Coding standards
 

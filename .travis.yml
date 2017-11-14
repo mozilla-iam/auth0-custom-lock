@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - node
+
+before_script:
+  - npm install
+
+script:
+  - npm run build
+
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: dist
+
+env:
+  global:
+    secure: 0Xq2znsJhB09SipWvS9SjzraFvoMzVaGJjNlV+JGDQhHwuex14RdZWdyenNKB5njGE1Jr9P4tzLfEWFpHLjZxxnGVc0/Hpn/HnWsgr/qdrHbcUg8okw6q3bPF3nPTmdPmXFJiHuXo02Xrx5iSjbEaA9MLIQNIfGacWJWHhTAb22+r17jk0TXxcMfaN2GjGY5rLT2uImhdlcoHQcUv5bpiCNwt8FTyS2iAP75YIWZ7Ioku4wpbOWZb20QRE9bhuitzvVfuF4Mu5m5FAuNeBtdOXXyV0h8ZyDoWqEdF+nRrt3/hLlExUsVnLGaQI+1orZWM8817uMmIJ7c/6TREkWxNli74dlySMDL9sB379bnk7GM5578CLXqDK0M4wBiv+23TV1JByhnG+/Gtk+yR+rz81wRB9zz07IFLuYd8b3KDxS7hK8TY5aqRzJEk9BdiPHHDMRcu+uEZxXBdtS5wCz+5Gi37dX5YYVMy1TYiR1Ld0XL4TgZqOj+6RJuFTG2BfeJF5tIALHGRx4EQ27S60GKQfaqRG9G0YVFTJZTa5ik2jySLqFrpQtTU7kcbmGhYAjCckCpwMQJqblfMVbCrRwWLqgEUfdJ14S3AgwwYZu7VShNNaL7n+5BENMh0dMT/lxR2CL57J5T8z7pd5vqvqQIwC1L3bAcAoodaoEr0f/GKdw=

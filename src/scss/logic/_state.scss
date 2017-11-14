@@ -1,0 +1,25 @@
+[data-state="initial"] {
+
+  #password,
+  #passwordless {
+    display: none;
+  }
+}
+
+[data-state="is-ldap"] {
+
+  #email,
+  #passwordless,
+  #social-github,
+  #social-google {
+    display: none;
+  }
+}
+
+[data-state="is-non-ldap"] {
+
+  #email,
+  #password {
+    display: none;
+  }
+}

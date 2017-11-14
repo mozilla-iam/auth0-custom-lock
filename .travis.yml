@@ -13,6 +13,7 @@ deploy:
   provider: pages
   skip_cleanup: true
   local_dir: dist
+  github_token: $github_token
 
 env:
   global:

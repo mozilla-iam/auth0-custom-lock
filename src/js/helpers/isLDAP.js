@@ -1,3 +1,3 @@
 module.exports = function isLDAP( string ) {
-  return false
+  return /mozilla.com$/.test( string );
 }

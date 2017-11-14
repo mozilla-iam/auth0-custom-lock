@@ -1,0 +1,16 @@
+label {
+  margin: 2em 0;
+  display: block;
+}
+
+input[type="text"],
+input[type="email"] {
+  font-size: 100%;
+  background-color: $lightGrey;
+  border: none;
+  border-bottom: 1px solid $black;
+  padding: .5em;
+  display: block;
+  width: 100%;
+  margin-bottom: .5em;
+}

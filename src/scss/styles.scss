@@ -8,101 +8,13 @@ $backgroundColor: $lightGrey;
   box-sizing: border-box;
 }
 
-body {
-  background: $backgroundColor;
-  display: flex;
-  height: 100vh;
-  font-family: "Open Sans", sans-serif;
-}
+@import 'generic/forms';
+@import 'generic/typography';
 
-h1 {
-  margin: 0;
-}
-
-hr {
-  border: none;
-  height: 2px;
-  background-color: $lightGrey;
-  margin: 1em 0;
-}
-
-.screen {
-  background-color: $white;
-  padding: 2em;
-  max-width: 22em;
-  width: 100%;
-  margin: auto;
-  position: relative;
-}
-
-.logo {
-  max-width: 4em;
-}
-
-label {
-  margin: 2em 0;
-  display: block;
-}
-
-input[type="text"],
-input[type="email"] {
-  font-size: 100%;
-  background-color: $lightGrey;
-  border: none;
-  border-bottom: 1px solid $black;
-  padding: .5em;
-  display: block;
-  width: 100%;
-  margin-bottom: .5em;
-}
-
-.button {
-  border: 1px solid $black;
-  background-color: transparent;
-  text-align: center;
-  color: $black;
-  font-weight: bold;
-  text-decoration: none;
-  padding: .5em;
-  display: block;
-  font-size: 1em;
-}
-
-.login-options,
-.legal-links {
-  margin: 0;
-  padding: 0;
-
-  li {
-    list-style: none;
-  }
-}
-
-.login-options {
-
-  li {
-    margin-bottom: .5em;
-  }
-}
-
-.legal-links {
-  position: absolute;
-  bottom: -4em;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-
-  a {
-    text-decoration: none;
-    color: $darkerGrey;
-  }
-}
-
-.icon {
-  display: inline-block;
-  vertical-align: middle;
-  width: 1em;
-  height: 1em;
-  margin-right: .5em;
-}
+@import 'components/button';
+@import 'components/card';
+@import 'components/icon';
+@import 'components/legal-links';
+@import 'components/list';
+@import 'components/login-options';
+@import 'components/logo';

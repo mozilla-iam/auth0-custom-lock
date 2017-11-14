@@ -6,7 +6,7 @@
   }
 }
 
-[data-state="is-ldap"] {
+[data-state="ldap"] {
 
   #email,
   #passwordless,
@@ -16,7 +16,7 @@
   }
 }
 
-[data-state="is-non-ldap"] {
+[data-state="non-ldap"] {
 
   #email,
   #password {

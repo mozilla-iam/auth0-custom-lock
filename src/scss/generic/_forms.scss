@@ -4,7 +4,8 @@ label {
 }
 
 input[type="text"],
-input[type="email"] {
+input[type="email"],
+input[type="password"] {
   font-size: 100%;
   background-color: $lightGrey;
   border: none;

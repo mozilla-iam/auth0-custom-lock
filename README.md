@@ -14,6 +14,14 @@ To install all resources for this project, please make sure to have [Node](https
 npm install
 ```
 
+### Building the page
+
+If you want to build the page just once, for example to deploy it, run:
+
+```bash
+npm run build
+```
+
 ### Viewing/developing locally
 
 To view (and develop) locally, this project has a server built in. To compile the sources and serve them, run:

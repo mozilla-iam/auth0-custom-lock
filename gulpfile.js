@@ -119,3 +119,4 @@ gulp.task( 'default', gulp.series( gulp.parallel( 'css', 'js' ), [ 'inlinesource
 gulp.task( 'watch', gulp.series( gulp.parallel( 'lint:watch', 'css:watch', 'js:watch', 'html:watch' ) ) );
 gulp.task( 'clean', gulp.parallel( 'css:clean', 'js:clean' ) );
 gulp.task( 'dev', gulp.parallel( gulp.series( 'default', 'browserSync' ), 'watch' ) );
+gulp.task( 'build', gulp.parallel( gulp.series( 'default' ) ) );

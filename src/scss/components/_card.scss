@@ -15,5 +15,11 @@
     transform: translateY( 0 ) scale( 1 );
     opacity: 1;
   }
+
+  &__back {
+    position: absolute;
+    top: 2em;
+    right: 2em;
+  }
 }
 

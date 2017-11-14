@@ -8,6 +8,7 @@
 
 module.exports = {
   'enter': require( 'handlers/enter' ),
+  'go-to-initial-page': require( 'handlers/go-to-initial-page' ),
   'authorise-ldap': require( 'handlers/authorise-ldap' ),
   'authorise-github': require( 'handlers/authorise-github' ),
   'authorise-google': require( 'handlers/authorise-google' )

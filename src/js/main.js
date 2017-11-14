@@ -5,6 +5,10 @@ var decorators = require( 'decorators' );
 
 document.documentElement.className = 'has-js';
 
+window.setTimeout( function() {
+  document.documentElement.className = 'card-delay';
+}, 100 );
+
 // run all decorators on page load
 decorate( decorators );
 

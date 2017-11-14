@@ -48,6 +48,12 @@ var ui = {
         }
       }
     }
-  }};
+  },
+  setLockState: function( element, state ) {
+    var form = element.form;
+
+    form.setAttribute( 'data-state', state );
+  }
+};
 
 module.exports = ui;

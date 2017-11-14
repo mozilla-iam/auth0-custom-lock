@@ -9,10 +9,10 @@ module.exports = function enter( element ) {
 
   if ( isLDAP( emailField.value ) ) {
     // show password field
-    ui.show( passwordField );
+    ui.setLockState( element, 'ldap' );
   }
   else {
     // show social logins + passwordless
-    ui.show( passwordLess );
+    ui.setLockState( element, 'non-ldap' );
   }
 }

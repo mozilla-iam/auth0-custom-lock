@@ -7,28 +7,31 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet">
   </head>
   <body>
-    <div class="screen">
+    <div class="card">
       <h1><img class="logo" alt="Mozilla" src="../images/mozilla.svg" inline /></h1>
-      <form data-decorator="init-auth">
-        <label for="email">Enter your email to log in</label>
-        <input type="email" id="email" placeholder="Email address" />
-        <button type="button" class="button" data-handler="enter">Enter</button>
-        <div id="password-field" hidden>
-          <label for="password">Enter your password</label>
-          <input type="password" id="password" />
+      <form data-decorator="init-auth" data-state="initial">
+        <div id="email">
+          <label for="field-email">Enter your email to log in</label>
+          <input type="email" id="field-email" placeholder="Email address" />
+          <button type="button" class="button" data-handler="enter">Enter</button>
         </div>
+        <div id="password">
+          <label for="field-password">Enter your password</label>
+          <input type="password" id="field-password" />
+          <button type="button" class="button" data-handler="authorise-ldap">Log in</button>
+        </div>
+        <hr>
+        <ul class="login-options list list--plain">
+          <li id="passwordless"><a href="#" class="button" data-handler="authorise-passwordless">Log in with Passwordless</a></li>
+          <li id="social-github"><a href="#" class="button" data-handler="authorise-github"><img inline  class="icon" src="../images/github.svg" role="presentation">Log in with GitHub</a></li>
+          <li id="social-google"><a href="#" class="button" data-handler="authorise-google"><img inline  class="icon" src="../images/google.svg" role="presentation">Log in with Google</a></li>
+        </ul>
       </form>
-      <hr>
-      <ul class="login-options">
-        <li id="passwordless" hidden><a href="#" class="button" data-handler="authorise-passwordless">Log in with Passwordless</a></li>
-        <li><a href="#" class="button" data-handler="authorise-github"><img inline  class="icon" src="../images/github.svg" role="presentation">Log in with GitHub</a></li>
-        <li><a href="#" class="button" data-handler="authorise-google"><img inline  class="icon" src="../images/google.svg" role="presentation">Log in with Google</a></li>
-      </ul>
-      <ul class="legal-links">
+      <ul class="legal-links list list--plain">
         <li><a href="#"><img inline class="icon" src="../images/legal.svg" role="presentation">Legal</a></li>
         <li><a href="#"><img inline class="icon" src="../images/privacy.svg" role="presentation">Privacy</a></li>
       </ul>
     </div>
-    <script src="../../dist/js/main.js" inline></script>
+    <script src="../../js/main.js"></script>
   </body>
 </html>

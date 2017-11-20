@@ -11,7 +11,6 @@
     <div class="card">
       <img class="logo" alt="Mozilla" src="../images/mozilla.svg" inline />
       <form data-decorator="init-auth" data-state="initial">
-        <button id="back" type="button" class="button card__back" data-handler="go-to-initial-page">Back</button>
         <div id="email">
           <label for="field-email">Enter your email to log in</label>
           <input type="email" id="field-email" placeholder="Email address" />
@@ -23,10 +22,16 @@
           <button type="button" class="button" data-handler="authorise-ldap">Log in</button>
         </div>
         <hr>
+        <div id="passwordless">
+          <ul class="login-options list list--plain">
+            <li>
+              <button class="button button--full-width button--secondary" type="button" data-handler="authorise-passwordless">Send me an email</button>
+            </li>
+          </ul>
+          <a href="faq">Why an email?</a>
+          <hr>
+        </div>
         <ul class="login-options list list--plain">
-          <li id="passwordless">
-            <button class="button button--full-width button--secondary" type="button" data-handler="authorise-passwordless">Log in with Passwordless</button>
-          </li>
           <li id="social-github">
             <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-github">
               <img inline class="icon" src="../images/github.svg" role="presentation">
@@ -40,6 +45,10 @@
             </button>
           </li>
         </ul>
+        <div id="back-non-ldap">
+          <hr>
+          <button id="back" type="button" class="button button--text-only card__back" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+        </div>
       </form>
       <ul class="legal-links list list--plain">
         <li><a href="#"><img inline class="icon" src="../images/legal.svg" role="presentation">Legal</a></li>

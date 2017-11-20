@@ -16,3 +16,8 @@ hr {
   background-color: $lightGrey;
   margin: 2em 0;
 }
+
+.visually-hidden {
+  position: absolute;
+  left: -9999em;
+}

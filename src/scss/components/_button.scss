@@ -50,4 +50,16 @@
       align-self: center;
     }
   }
+
+  &--text-only {
+    background-color: transparent;
+    text-transform: none;
+    border: none;
+    color: $orange;
+
+    &:hover {
+      background-color: transparent;
+      color: $darkerGrey;
+    }
+  }
 }

@@ -1,8 +1,5 @@
 .button {
-  border: 1px solid $black;
-  background-color: transparent;
   text-align: center;
-  color: $black;
   font-weight: bold;
   text-decoration: none;
   padding: .5em;
@@ -10,9 +7,18 @@
   font-size: 1em;
   font-family: inherit;
   border-radius: 20px;
+  background-color: $black;
+  color: $white;
+  border: 1px solid transparent;
 
   &--full-width {
     width: 100%;
+  }
+
+  &--secondary {
+    border-color: $black;
+    background-color: transparent;
+    color: $black;
   }
 
   &--social {

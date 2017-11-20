@@ -11,6 +11,13 @@
   color: $white;
   border: 1px solid transparent;
   text-transform: uppercase;
+  transition: all .1s ease-in-out;
+
+  &:hover {
+    background-color: $white;
+    color: $black;
+    border-color: currentColor;
+  }
 
   &--full-width {
     width: 100%;
@@ -20,6 +27,17 @@
     border-color: $black;
     background-color: transparent;
     color: $black;
+    text-transform: none;
+
+    &:hover {
+      background-color: $black;
+      color: $white;
+      border-color: transparent;
+
+      svg > path {
+        fill: $white;
+      }
+    }
   }
 
   &--social {

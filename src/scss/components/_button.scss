@@ -13,4 +13,14 @@
   &--full-width {
     width: 100%;
   }
+
+  &--social {
+    display: flex;
+
+    .icon,
+    span {
+      margin-right: auto;
+      align-self: center;
+    }
+  }
 }

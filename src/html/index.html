@@ -23,9 +23,21 @@
         </div>
         <hr>
         <ul class="login-options list list--plain">
-          <li id="passwordless"><button class="button button--full-width" type="button" data-handler="authorise-passwordless">Log in with Passwordless</button></li>
-          <li id="social-github"><button class="button button--full-width" type="button" data-handler="authorise-github"><img inline  class="icon" src="../images/github.svg" role="presentation">Log in with GitHub</button></li>
-          <li id="social-google"><button class="button button--full-width" type="button" data-handler="authorise-google"><img inline  class="icon" src="../images/google.svg" role="presentation">Log in with Google</button></li>
+          <li id="passwordless">
+            <button class="button button--full-width" type="button" data-handler="authorise-passwordless">Log in with Passwordless</button>
+          </li>
+          <li id="social-github">
+            <button class="button button--full-width button--social" type="button" data-handler="authorise-github">
+              <img inline class="icon" src="../images/github.svg" role="presentation">
+              <span>Log in with GitHub</span>
+            </button>
+          </li>
+          <li id="social-google">
+            <button class="button button--full-width button--social" type="button" data-handler="authorise-google">
+              <img inline  class="icon" src="../images/google.svg" role="presentation">
+              <span>Log in with Google</span>
+            </button>
+          </li>
         </ul>
       </form>
       <ul class="legal-links list list--plain">

@@ -10,6 +10,15 @@ h1 {
   margin: 0;
 }
 
+a {
+  color: $orange;
+  text-decoration: none;
+
+  &:hover {
+    color: $darkerGrey;
+  }
+}
+
 hr {
   border: none;
   height: 2px;

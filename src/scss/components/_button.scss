@@ -57,6 +57,9 @@
     text-transform: none;
     border: none;
     color: $orange;
+    padding: 0;
+    text-align: left;
+    font-weight: normal;
 
     &:hover {
       background-color: transparent;

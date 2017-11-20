@@ -13,7 +13,7 @@
   #passwordless,
   #social-github,
   #social-google,
-  hr {
+  #back-non-ldap {
     display: none;
   }
 }
@@ -21,8 +21,7 @@
 [data-state="non-ldap"] {
 
   #email,
-  #password,
-  hr {
+  #password {
     display: none;
   }
 }

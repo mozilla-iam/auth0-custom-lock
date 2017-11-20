@@ -4,7 +4,11 @@
   left: 0;
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+
+  li {
+    margin: 0 1.5em;
+  }
 
   a {
     text-decoration: none;

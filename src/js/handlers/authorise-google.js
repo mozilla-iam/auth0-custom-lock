@@ -1,3 +1,9 @@
 module.exports = function authorise( element ) {
-  // send user to Google
+  var form = element.closest( 'form' );
+
+  form.webAuth.authorize({
+    responseType: 'token',
+    redirectUri: 'http://localhost:3000/callback',
+    connection: 'google-oauth2'
+  });
 }

@@ -13,6 +13,6 @@ module.exports = {
   'authorise-github': require( 'handlers/authorise-github' ),
   'authorise-google': require( 'handlers/authorise-google' ),
   'authorise-passwordless': require( 'handlers/authorise-passwordless' ),
-  'passwordless-start': require( 'handlers/passwordless-start' )
+  'send-passwordless-link': require( 'handlers/send-passwordless-link' )
 };
 

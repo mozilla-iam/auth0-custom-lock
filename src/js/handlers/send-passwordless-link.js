@@ -8,7 +8,5 @@ module.exports = function authorise( element ) {
     connection: 'email',
     send: 'link',
     email: emailField.value
-  }, function( err, res ) {
-    ui.setLockState( element, 'passwordless-step-2' );
   });
 }

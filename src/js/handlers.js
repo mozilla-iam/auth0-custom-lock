@@ -12,7 +12,6 @@ module.exports = {
   'authorise-ldap': require( 'handlers/authorise-ldap' ),
   'authorise-github': require( 'handlers/authorise-github' ),
   'authorise-google': require( 'handlers/authorise-google' ),
-  'authorise-passwordless': require( 'handlers/authorise-passwordless' ),
   'send-passwordless-link': require( 'handlers/send-passwordless-link' )
 };
 

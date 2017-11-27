@@ -2,6 +2,7 @@
 
   #password,
   #passwordless,
+  #passwordless-code,
   #back {
     display: none;
   }
@@ -11,9 +12,10 @@
 
   #email,
   #passwordless,
+  #passwordless-code,
   #social-github,
   #social-google,
-  #back-non-ldap {
+  #back-non-ldap, {
     display: none;
   }
 }
@@ -21,7 +23,20 @@
 [data-state="non-ldap"] {
 
   #email,
-  #password {
+  #password,
+  #passwordless-code {
+    display: none;
+  }
+}
+
+[data-state="passwordless-step-2"] {
+
+  #email,
+  #password,
+  #passwordless,
+  #social-github,
+  #social-google,
+  #back-non-ldap {
     display: none;
   }
 }

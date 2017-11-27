@@ -11,7 +11,8 @@ module.exports = {
   'go-to-initial-page': require( 'handlers/go-to-initial-page' ),
   'authorise-ldap': require( 'handlers/authorise-ldap' ),
   'authorise-github': require( 'handlers/authorise-github' ),
-  'authorise-google': require( 'handlers/authorise-google' )
+  'authorise-google': require( 'handlers/authorise-google' ),
+  'authorise-passwordless': require( 'handlers/authorise-passwordless' ),
   'passwordless-start': require( 'handlers/passwordless-start' )
 };
 

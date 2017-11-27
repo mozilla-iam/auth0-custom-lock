@@ -6,7 +6,7 @@ module.exports = function authorise( element ) {
 
   form.webAuth.passwordlessStart({
     connection: 'email',
-    send: 'code',
+    send: 'link',
     email: emailField.value
   }, function( err, res ) {
     ui.setLockState( element, 'passwordless-step-2' );

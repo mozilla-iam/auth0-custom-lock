@@ -14,14 +14,14 @@
         <div id="email">
           <p>Log in with email or social</p>
           <label for="field-email" class="visually-hidden">E-mail address</label>
-          <input type="email" id="field-email" placeholder="Email address" data-decorator="enter-with-keyboard" data-enter-action="enter-initial" />
+          <input type="email" id="field-email" placeholder="Email address" data-decorator="continue-with-keyboard" data-continue-with="enter-initial" />
           <button type="button" class="button" data-handler="enter" id="enter-initial">Enter</button>
         </div>
         <div id="password">
           <p>Welcome</p>
           <button id="back" type="button" class="button button--text-only card__back" data-handler="go-to-initial-page">Need to log in with a different account?</button>
           <label for="field-password" class="visually-hidden">Password</label>
-          <input type="password" id="field-password" placeholder="Password" data-decorator="enter-with-keyboard" data-enter-action="authorise-ldap-credentials" />
+          <input type="password" id="field-password" placeholder="Password" data-decorator="continue-with-keyboard" data-continue-with="authorise-ldap-credentials" />
           <button type="button" class="button" data-handler="authorise-ldap" id="authorise-ldap-credentials">Enter</button>
         </div>
         <hr>

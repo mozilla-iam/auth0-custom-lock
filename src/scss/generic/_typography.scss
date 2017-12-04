@@ -1,9 +1,9 @@
 body {
   background: $backgroundColor;
   display: flex;
-  height: 100vh;
+  height: calc( 100vh - 6em );
   font-family: "Open Sans", sans-serif;
-  padding: 4em 1em;
+  padding: 3em 1em;
 }
 
 h1 {
@@ -17,10 +17,6 @@ a {
   &:hover {
     color: $darkerGrey;
   }
-}
-
-:focus {
-  outline: 2px solid $darkYellow;
 }
 
 hr {

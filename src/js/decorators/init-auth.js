@@ -4,6 +4,8 @@ function getConfig( string ) {
 
   if ( isHostedLock )  {
     config = JSON.parse(decodeURIComponent(escape(window.atob(string))));
+    config.domain = config.auth0Domain;
+    config.responseType = config.internalOptions.response_type;
   } else {
     config = {
       'domain': 'auth-dev.mozilla.auth0.com',

@@ -1,13 +1,19 @@
 .legal-links {
   position: absolute;
-  bottom: -4em;
+  bottom: -3em;
   left: 0;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 
   li {
-    margin: 0 1.5em;
+    margin: 0 1em 0 0;
+    font-size: .75em;
+
+    &:last-child {
+      margin-left: auto;
+      margin-right: 0;
+    }
   }
 
   a {

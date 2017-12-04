@@ -1,4 +1,4 @@
-  var isLDAP = require( 'helpers/isLDAP' );
+var isLDAP = require( 'helpers/isLDAP' );
 var ui = require( 'helpers/ui' );
 
 module.exports = function enter( element ) {

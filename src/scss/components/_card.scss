@@ -6,14 +6,6 @@
   margin: auto;
   position: relative;
   box-shadow: .5em .5em 0 0 $midGrey;
-  transform: scale( 1.6 );
-  opacity: 0;
-  transition: transform 0.4s ease-in-out, opacity 0.3s ease-in;
-
-  .card-delay & {
-    transform: scale( 1 );
-    opacity: 1;
-  }
 
   &__back {
     margin-bottom: 1em;

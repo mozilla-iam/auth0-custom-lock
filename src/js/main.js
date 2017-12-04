@@ -3,11 +3,8 @@ var setupHandlers = require( 'init/setupHandlers' );
 var handlers = require( 'handlers' );
 var decorators = require( 'decorators' );
 
-document.documentElement.className = 'has-js';
 
-window.setTimeout( function() {
-  document.documentElement.className = 'card-delay';
-}, 100 );
+document.documentElement.className = 'has-js';
 
 // run all decorators on page load
 decorate( decorators );

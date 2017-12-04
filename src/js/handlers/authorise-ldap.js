@@ -1,16 +1,23 @@
+var ui = require( 'helpers/ui' );
+
 module.exports = function authorise( element ) {
   var form = element.closest( 'form' );
   var emailField = document.getElementById( 'field-email' );
   var passwordField = document.getElementById( 'field-password' );
-  var button = document.getElementById( 'authorise-ldap-credentials' );
+
+  ui.setLockState( element, 'loading' );
 
   form.webAuth.redirect.loginWithCredentials({
-    connection: 'Username-Password-Authentication',
+    connection: 'Mozilla-LDAP-Dev',
     username: emailField.value,
     password: passwordField.value,
-    redirectUri: 'http://localhost:3000',
+    callbackURL: 'https://social-ldap-pwless.testrp.security.allizom.org/redirect_uri',
     scope: 'openid'
-  }, function(err, authResult) {
-    button.classList.add( 'button--loading' );
+  }, function( error, result ) {
+    ui.setLockState( element, 'ldap' );
+
+    if ( error ) {
+      console.log( error.description );
+    }
   });
 }

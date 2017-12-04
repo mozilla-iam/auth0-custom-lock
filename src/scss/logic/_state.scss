@@ -3,7 +3,9 @@
   #password,
   #passwordless,
   #back,
-  #back-non-ldap {
+  #back-non-ldap,
+  #passwordless-success,
+  #loading {
     display: none;
   }
 }
@@ -14,7 +16,9 @@
   #passwordless,
   #social-github,
   #social-google,
-  #back-non-ldap, {
+  #back-non-ldap,
+  #passwordless-success,
+  #loading {
     display: none;
   }
 }
@@ -22,7 +26,35 @@
 [data-state="non-ldap"] {
 
   #email,
-  #password {
+  #password,
+  #passwordless-success,
+  #loading {
+    display: none;
+  }
+}
+
+[data-state="passwordless-success"] {
+
+  #email,
+  #password,
+  #passwordless,
+  #social-github,
+  #social-google,
+  #back-non-ldap,
+  #loading {
+    display: none;
+  }
+}
+
+[data-state="loading"] {
+
+  #email,
+  #password,
+  #passwordless,
+  #social-github,
+  #social-google,
+  #back-non-ldap,
+  #passwordless-success {
     display: none;
   }
 }

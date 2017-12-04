@@ -9,19 +9,9 @@ function getConfig( string ) {
   } else {
     config = {
       'domain': 'auth-dev.mozilla.auth0.com',
-      'clientID': 'redacted',
-      'clientSecret': 'redacted',
       'auth0Domain': 'auth-dev.mozilla.auth0.com',
-      // 'callbackOnLocationHash': false,
-      // 'callbackURL': 'http://localhost:3000/callback',
-      // 'cdn': 'https://rta-dev.mozilla.auth0.com/',
-      // 'clientID': 'IxJG9EkWRwW9Zo2a7VoLwndTqrpN7Aln', // Default App
-      // 'dict': { 'signin': { 'title' : 'Default App' } },
+      'callbackURL': 'http://localhost:3000/callback',
       'responseType': 'token',
-      // 'extraParams': {},
-      // 'internalOptions': {},
-      // 'prompt': false,
-      // 'widgetUrl': 'https://cdn.auth0.com/w2/auth0-widget-5.2.min.js'
     }
   }
   return config;
@@ -33,4 +23,5 @@ module.exports = function initAuth( element ) {
   var webAuth = new auth0.WebAuth( config );
 
   element.webAuth = webAuth;
+  element.webAuthConfig = config;
 }

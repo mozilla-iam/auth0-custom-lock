@@ -28,8 +28,6 @@ function getConfig( string ) {
 module.exports = function initAuth( element ) {
   var auth0 = require( 'auth0-js' );
   var config = getConfig( '@@config@@' );
-
-  console.log( config );
   var webAuth = new auth0.WebAuth( config );
 
   element.webAuth = webAuth;

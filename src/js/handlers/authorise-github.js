@@ -3,7 +3,7 @@ module.exports = function authorise( element ) {
 
   form.webAuth.authorize({
     responseType: 'token',
-    redirectUri: 'http://localhost:3000',
+    callbackURL: form.webAuthConfig.callbackURL,
     connection: 'github'
   });
 }

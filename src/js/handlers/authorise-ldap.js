@@ -11,7 +11,7 @@ module.exports = function authorise( element ) {
     connection: 'Mozilla-LDAP-Dev',
     username: emailField.value,
     password: passwordField.value,
-    callbackURL: 'https://social-ldap-pwless.testrp.security.allizom.org/redirect_uri',
+    callbackURL: form.webAuthConfig.callbackURL,
     scope: 'openid'
   }, function( error, result ) {
     ui.setLockState( element, 'ldap' );

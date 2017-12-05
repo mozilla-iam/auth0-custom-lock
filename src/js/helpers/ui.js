@@ -49,10 +49,26 @@ var ui = {
       }
     }
   },
+  // set lock state, where all screens are all divs
+  // with the 'data-screen' attribute and the new state
+  // name identifies one specific div (by corresponding
+  // with its 'id' attribute)
   setLockState: function( element, state ) {
+    var dom = require( 'helpers/dom' );
     var form = element.form;
+    var screens = dom.$( '[data-screen]', form );
+    var screenToShow = document.getElementById( state );
 
-    form.setAttribute( 'data-state', state );
+    if ( screenToShow ) {
+
+      // hide all screens
+      screens.forEach( function( screen ) {
+        ui.hide( screen );
+      });
+
+      // show and focus screenToShow
+      ui.show( screenToShow, screenToShow );
+    }
   }
 };
 

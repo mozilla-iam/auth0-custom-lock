@@ -11,21 +11,36 @@
     <div class="card">
       <img class="logo" alt="Mozilla" src="../images/mozilla.svg" inline />
       <form data-decorator="init-auth" data-state="initial">
-        <div id="email">
+        <div id="initial" data-screen>
           <p>Log in with email or social</p>
           <label for="field-email" class="visually-hidden">E-mail address</label>
           <input type="email" id="field-email" placeholder="Email address" data-decorator="continue-with-keyboard" data-continue-with="enter-initial" />
           <button type="button" class="button" data-handler="enter" id="enter-initial">Enter</button>
+          <hr>
+          <ul class="login-options list list--plain">
+            <li>
+              <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-github">
+                <img inline class="icon" src="../images/github.svg" role="presentation">
+                <span>Log in with GitHub</span>
+              </button>
+            </li>
+            <li>
+              <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-google">
+                <img inline  class="icon" src="../images/google.svg" role="presentation">
+                <span>Log in with Google</span>
+              </button>
+            </li>
+          </ul>
         </div>
-        <div id="password">
+        <div id="ldap" data-screen hidden>
           <p>Welcome</p>
-          <button id="back" type="button" class="button button--text-only card__back" data-handler="go-to-initial-page">Need to log in with a different account?</button>
           <label for="field-password" class="visually-hidden">Password</label>
           <input type="password" id="field-password" placeholder="Password" data-decorator="continue-with-keyboard" data-continue-with="authorise-ldap-credentials" />
           <button type="button" class="button" data-handler="authorise-ldap" id="authorise-ldap-credentials">Enter</button>
+          <hr>
+          <button type="button" class="button button--text-only card__back" data-handler="go-to-initial-page">Need to log in with a different account?</button>
         </div>
-        <hr>
-        <div id="passwordless">
+        <div id="non-ldap" data-screen hidden>
           <ul class="login-options list list--plain">
             <li>
               <button class="button button--full-width button--secondary" type="button" data-handler="send-passwordless-link">Send me an email</button>
@@ -33,32 +48,30 @@
           </ul>
           <a href="faq">Why an email?</a>
           <hr>
-        </div>
-        <ul class="login-options list list--plain">
-          <li id="social-github">
-            <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-github">
-              <img inline class="icon" src="../images/github.svg" role="presentation">
-              <span>Log in with GitHub</span>
-            </button>
-          </li>
-          <li id="social-google">
-            <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-google">
-              <img inline  class="icon" src="../images/google.svg" role="presentation">
-              <span>Log in with Google</span>
-            </button>
-          </li>
-        </ul>
-        <div id="back-non-ldap">
+          <ul class="login-options list list--plain">
+            <li>
+              <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-github">
+                <img inline class="icon" src="../images/github.svg" role="presentation">
+                <span>Log in with GitHub</span>
+              </button>
+            </li>
+            <li>
+              <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-google">
+                <img inline  class="icon" src="../images/google.svg" role="presentation">
+                <span>Log in with Google</span>
+              </button>
+            </li>
+          </ul>
           <hr>
-          <button id="back" type="button" class="button button--text-only card__back" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+          <button type="button" class="button button--text-only card__back" data-handler="go-to-initial-page">Need to log in with a different account?</button>
         </div>
-        <div id="passwordless-success">
+        <div id="passwordless-success" data-screen hidden>
           <h2>Success</h2>
           <p>Email sent to <span id="passwordless-success-email-address"></span>, your login link will expire in 15 minutes.</p>
           <hr>
-          <button id="back" type="button" class="button button--text-only card__back" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+          <button id="back" type="button" class="button button--text-only card__back" data-handler="go-to-initial-page">Need to send that to a different email?</button>
         </div>
-        <div id="loading" class="loading">
+        <div id="loading" class="loading" data-screen hidden>
           <p class="visually-hidden ">Loading…</p>
           <img src="../images/loading.svg" class="loading__spinner" inline />
         </div>

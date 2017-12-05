@@ -11,6 +11,20 @@
     margin-bottom: 1em;
   }
 
+  &__heading {
+    font-size: 1.4em;
+    font-weight: 400;
+    text-transform: capitalize;
+
+    &--success {
+      color: $green;
+    }
+
+    &--error {
+      color: $red;
+    }
+  }
+
   [data-screen]:focus {
     outline: none; // @TODO remove me
   }

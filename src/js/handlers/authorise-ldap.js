@@ -18,7 +18,6 @@ module.exports = function authorise( element ) {
     redirect_uri: form.webAuthConfig.callbackURL,
     scope: 'openid'
   }, function( error, result ) {
-    ui.setLockState( element, 'ldap' );
 
     if ( error && error.code === 'invalid_user_password' ) {
       ui.setLockState( element, 'error-password' );

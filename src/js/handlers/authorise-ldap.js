@@ -5,7 +5,7 @@ module.exports = function authorise( element ) {
   var emailField = document.getElementById( 'field-email' );
   var passwordField = document.getElementById( 'field-password' );
 
-  if ( element.id = 'authorise-ldap-credentials-try-2' ) {
+  if ( element.id === 'authorise-ldap-credentials-try-2' ) {
     passwordField = document.getElementById( 'field-password-try-2' );
   }
 

@@ -64,7 +64,6 @@ var ui = {
     var form = element.form;
     var screens = dom.$( '[data-screen]', form );
     var screenToShow = document.getElementById( state );
-    var elementToFocus = ui.getFocusableElements( screenToShow )[0] || screenToShow;
 
     if ( screenToShow ) {
 
@@ -74,7 +73,7 @@ var ui = {
       });
 
       // show and focus screenToShow
-      ui.show( screenToShow, elementToFocus );
+      ui.show( screenToShow, screenToShow );
     }
   }
 };

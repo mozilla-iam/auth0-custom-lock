@@ -10,5 +10,9 @@
   &__back {
     margin-bottom: 1em;
   }
+
+  [data-screen]:focus {
+    outline: none; // @TODO remove me
+  }
 }
 

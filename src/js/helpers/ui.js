@@ -49,6 +49,12 @@ var ui = {
       }
     }
   },
+  // basic way of getting focusable elements in `baseElement`
+  getFocusableElements: function( baseElement ) {
+    var dom = require( 'helpers/dom' )
+
+    return dom.$( 'a[href], button, input[type="text"], input[type="email"], input[type="password"], input[type="radio"], input[type="checkbox"], select', baseElement );
+  },
   // set lock state, where all screens are all divs
   // with the 'data-screen' attribute and the new state
   // name identifies one specific div (by corresponding
@@ -58,6 +64,7 @@ var ui = {
     var form = element.form;
     var screens = dom.$( '[data-screen]', form );
     var screenToShow = document.getElementById( state );
+    var elementToFocus = ui.getFocusableElements( screenToShow )[0] || screenToShow;
 
     if ( screenToShow ) {
 
@@ -67,7 +74,7 @@ var ui = {
       });
 
       // show and focus screenToShow
-      ui.show( screenToShow, screenToShow );
+      ui.show( screenToShow, elementToFocus );
     }
   }
 };

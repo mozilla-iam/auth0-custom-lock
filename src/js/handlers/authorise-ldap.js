@@ -5,6 +5,10 @@ module.exports = function authorise( element ) {
   var emailField = document.getElementById( 'field-email' );
   var passwordField = document.getElementById( 'field-password' );
 
+  if ( element.id = 'authorise-ldap-credentials-try-2' ) {
+    passwordField = document.getElementById( 'field-password-try-2' );
+  }
+
   ui.setLockState( element, 'loading' );
 
   form.webAuth.redirect.loginWithCredentials({
@@ -16,8 +20,8 @@ module.exports = function authorise( element ) {
   }, function( error, result ) {
     ui.setLockState( element, 'ldap' );
 
-    if ( error ) {
-      console.log( error.description );
+    if ( error && error.code === 'invalid_user_password' ) {
+      ui.setLockState( element, 'error-password' );
     }
   });
 }

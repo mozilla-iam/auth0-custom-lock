@@ -14,8 +14,12 @@ module.exports = function authorise( element ) {
     email: emailField.value
   }, function( error, response ) {
     if ( error ) {
-      console.log( error );
-      ui.setLockState( element, 'non-ldap' );
+      if ( error.code === 'bad.email' ) {
+        ui.setLockState( element, 'error-passwordless' );
+      }
+      else {
+        ui.setLockState( element, 'initial' );
+      }
     }
     if ( response ) {
       emailPlaceholder.textContent = emailField.value;

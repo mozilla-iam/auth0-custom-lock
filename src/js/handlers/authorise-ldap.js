@@ -15,7 +15,6 @@ module.exports = function authorise( element ) {
     connection: 'Mozilla-LDAP-Dev',
     username: emailField.value,
     password: passwordField.value,
-    redirect_uri: form.webAuthConfig.callbackURL,
     scope: 'openid'
   }, function( error, result ) {
 

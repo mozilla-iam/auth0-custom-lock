@@ -6,11 +6,12 @@ function getConfig( string ) {
     config = JSON.parse(decodeURIComponent(escape(window.atob(string))));
     config.domain = config.auth0Domain;
     config.responseType = config.internalOptions.response_type;
+    config.redirectUri = config.callbackURL;
   } else {
     config = {
       'domain': 'auth-dev.mozilla.auth0.com',
       'auth0Domain': 'auth-dev.mozilla.auth0.com',
-      'callbackURL': 'http://localhost:3000/callback',
+      'redirectUri': 'http://localhost:3000/callback',
       'responseType': 'token',
     }
   }

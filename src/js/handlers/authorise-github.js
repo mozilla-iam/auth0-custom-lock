@@ -4,6 +4,7 @@ module.exports = function authorise( element ) {
   form.webAuth.authorize({
     responseType: 'token',
     redirectUri: form.webAuthConfig.callbackURL,
+    callbackURL: form.webAuthConfig.callbackURL,
     connection: 'github'
   });
 }

@@ -4,6 +4,7 @@ module.exports = function authorise( element ) {
   var emailField = document.getElementById( 'field-email' );
   var form = element.form;
   var emailPlaceholder = document.getElementById( 'passwordless-success-email-address' );
+  var errorText = document.getElementById( 'error-message-passwordless' );
 
   ui.setLockState( element, 'loading' );
 
@@ -15,6 +16,7 @@ module.exports = function authorise( element ) {
   }, function( error, response ) {
     if ( error ) {
       if ( error.code === 'bad.email' || error.code === 'invalid_parameter' ) {
+        errorText.textContent = error.description;
         ui.setLockState( element, 'error-passwordless' );
       }
       else {

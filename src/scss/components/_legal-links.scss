@@ -19,9 +19,23 @@
   a {
     text-decoration: none;
     color: $darkerGrey;
+    border-radius: 1.25em;
+    padding: .5em 1em;
 
     &:hover {
       color: $blue;
+      text-decoration: underline;
+      text-decoration-skip: ink;
+    }
+
+    &:focus {
+      outline: none;
+      text-decoration: none;
+      box-shadow: 0 0 0 1px $blue;
+    }
+
+    &:active {
+      box-shadow: none;
     }
   }
 }

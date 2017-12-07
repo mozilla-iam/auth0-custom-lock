@@ -84,6 +84,9 @@
     &:hover {
       background-color: transparent;
       color: $darkerGrey;
+      border-color: transparent;
+      text-decoration: underline;
+      text-decoration-skip: ink;
     }
 
     &:focus {

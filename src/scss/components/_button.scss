@@ -103,4 +103,8 @@
       border-color: $black;
     }
   }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }

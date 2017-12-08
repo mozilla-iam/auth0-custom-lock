@@ -15,13 +15,33 @@
     font-size: 1.4em;
     font-weight: 400;
     text-transform: capitalize;
+    padding-left: 2.125em;
+    position: relative;
+
+    svg {
+      width: 1.5em;
+      height: 1.5em;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
 
     &--success {
       color: $green;
+
+      svg use,
+      svg path {
+        fill: $green;
+      }
     }
 
     &--error {
       color: $red;
+
+      svg use,
+      svg path {
+        fill: $red;
+      }
     }
   }
 

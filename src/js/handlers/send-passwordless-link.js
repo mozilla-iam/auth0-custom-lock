@@ -16,7 +16,7 @@ module.exports = function authorise( element ) {
   }, function( error, response ) {
     if ( error ) {
       if ( error.code === 'bad.email' || error.code === 'invalid_parameter' ) {
-        errorText.textContent = error.description;
+        errorText.lastChildElement.textContent = error.description;
         ui.setLockState( element, 'error-passwordless' );
       }
       else {

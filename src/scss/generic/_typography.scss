@@ -1,9 +1,11 @@
 body {
   background: $backgroundColor;
+  color: $darkerGrey;
   display: flex;
   height: calc( 100vh - 6em );
   font-family: "Open Sans", sans-serif;
   padding: 3em 1em;
+  letter-spacing: 0.03em;
 }
 
 h1 {

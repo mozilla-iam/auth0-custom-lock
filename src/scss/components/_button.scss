@@ -23,9 +23,9 @@
   &:focus {
     outline: none;
     outline: 0;
-    background-color: $white;
-    color: $black;
-    border-color: $blue;
+    background-color: $lightGrey;
+    border-color: $lightGrey;
+    color: $blue;
   }
 
   &:active {
@@ -92,9 +92,9 @@
     &:focus {
       outline: none;
       outline: 0;
-      background-color: $white;
-      color: $black;
-      border-color: $blue;
+      background-color: $lightGrey;
+      border-color: $lightGrey;
+      color: $blue;
     }
 
     &:active {
@@ -102,6 +102,10 @@
       color: $white;
       border-color: $black;
     }
+  }
+
+  &--unpadded {
+    margin-left: -1em; // compensate for padding we need for its focus state
   }
 
   &:last-child {

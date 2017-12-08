@@ -15,8 +15,6 @@ h1 {
 a {
   color: $blue;
   text-decoration: none;
-  padding: .5em 1em;
-  border-radius: 1.25em;
 
   &:hover {
     color: $black;
@@ -24,16 +22,6 @@ a {
     text-decoration-skip: ink;
   }
 
-  &:focus {
-    outline: none;
-    text-decoration: none;
-    color: $black;
-    box-shadow: 0 0 0 1px $blue;
-  }
-
-  &:active {
-    box-shadow: none;
-  }
 }
 
 p:first-child {

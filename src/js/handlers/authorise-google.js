@@ -3,7 +3,6 @@ module.exports = function authorise( element ) {
 
   form.webAuth.authorize({
     responseType: 'token',
-    callbackURL: form.webAuthConfig.callbackURL,
     connection: 'google-oauth2'
   });
 }

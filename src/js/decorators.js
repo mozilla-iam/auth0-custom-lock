@@ -4,7 +4,8 @@
 
 var decorators = {
   'init-auth': require( 'decorators/init-auth' ),
-  'continue-with-keyboard': require( 'decorators/continue-with-keyboard' )
+  'continue-with-keyboard': require( 'decorators/continue-with-keyboard' ),
+  'auto-login': require( 'decorators/auto-login' )
 };
 
 module.exports = decorators;

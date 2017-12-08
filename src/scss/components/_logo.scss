@@ -1,4 +1,12 @@
 .logo {
-  max-width: 6.5em;
+  display: inline-block;
   margin-bottom: 2em;
+  padding: 0;
+  border-radius: 0;
+
+  svg {
+    width: 100%;
+    max-width: 6.5em;
+    display: block;
+  }
 }

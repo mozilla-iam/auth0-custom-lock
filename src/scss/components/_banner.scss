@@ -1,0 +1,51 @@
+.banner {
+  background: $black;
+  color: $white;
+  border-bottom: 1px solid $white;
+  padding: 1.5em;
+  text-align: center;
+  margin-bottom: 2em;
+
+  @media ( min-height: 50em ) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+
+  &__button {
+    background-color: rgba( $white, .2 );
+    color: $white;
+    text-decoration: none;
+    border-radius: 1.25em;
+    font-weight: bold;
+    padding: .25em 1em;
+    margin: 1em 0 0 1em;
+    display: inline-block;
+    vertical-align: middle;
+    text-transform: uppercase;
+
+    @media ( min-width: 50em ) {
+      margin: 0 0 0 1em;
+    }
+
+    &:hover {
+      color: $white;
+      text-decoration: none;
+    }
+
+    &:focus {
+      outline: none;
+      outline: 0;
+      background-color: $lightGrey;
+      border-color: $lightGrey;
+      color: $blue;
+    }
+  }
+}

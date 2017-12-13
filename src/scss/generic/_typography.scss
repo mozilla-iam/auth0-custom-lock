@@ -1,11 +1,15 @@
 body {
   background: $backgroundColor;
   color: $darkerGrey;
-  display: flex;
-  height: calc( 100vh - 6em );
   font-family: "Open Sans", sans-serif;
-  padding: 3em 1em;
   letter-spacing: 0.03em;
+  margin: 0;
+
+  @media ( min-height: 50em ) and ( min-width: 50em ) {
+    display: flex;
+    padding: 3em 1em;
+    height: calc( 100vh - 6em );
+  }
 }
 
 h1 {

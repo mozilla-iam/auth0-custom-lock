@@ -1,11 +1,15 @@
 .card {
   background-color: $white;
   padding: 2.5em;
-  max-width: 26em;
-  width: 100%;
-  margin: auto;
   position: relative;
+  margin: 0 1em;
   box-shadow: .5em .5em 0 0 $midGrey;
+
+  @media ( min-width: 30em ) {
+    margin: auto;
+    width: 100%;
+    max-width: 26em;
+  }
 
   &__back {
     margin-bottom: 1em;

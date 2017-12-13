@@ -7,6 +7,14 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
   </head>
   <body>
+    <script>
+      /* Ugly hack to auto log you in. Only works with LDAP in this case       var w = window.location.toString();
+      if ( w.indexOf('tried_silent_auth=true') === -1 ) {
+        document.body.hidden = true ;
+        window.location = w.replace('/login?', '/authorize?').replace('?client=', '?client_id=') + '&sso=true&connection=Mozilla-LDAP-Dev&tried_silent_auth=true'
+      }*/
+
+    </script>
     <div class="banner">
       <p>Yay, we are piloting the new login experience. Things might break from time to time. <a href="https://discourse.mozilla.org/t/piloting-the-new-lock/23199" class="banner__button">Read more</a></p>
     </div>

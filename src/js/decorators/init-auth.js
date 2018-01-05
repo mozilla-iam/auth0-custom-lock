@@ -9,11 +9,7 @@ function getConfig( string ) {
     config.redirectUri = config.callbackURL;
   }
   else {
-    config = {
-      'domain': 'auth-dev.mozilla.auth0.com',
-      'redirectUri': 'http://localhost:3000/callback',
-      'responseType': 'token',
-    }
+    config = require( 'config/local-config' );
   }
   return config;
 }

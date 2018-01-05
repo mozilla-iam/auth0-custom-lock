@@ -9,7 +9,7 @@ function getConfig( string ) {
     config.redirectUri = config.callbackURL;
   }
   else {
-    config = require( 'config/local-config' );
+    config = require( 'config/local-config-sample' );
   }
   return config;
 }

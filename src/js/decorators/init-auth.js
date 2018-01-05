@@ -3,14 +3,14 @@ function getConfig( string ) {
   var isHostedLock = string !== '@@' + 'config@@'; // if the string isn't this, we're not in the hosted Lock
 
   if ( isHostedLock )  {
-    config = JSON.parse(decodeURIComponent(escape(window.atob(string))));
+    config = JSON.parse( decodeURIComponent( escape( window.atob( string ) ) ) );
     config.domain = config.auth0Domain;
     config.responseType = config.internalOptions.response_type;
     config.redirectUri = config.callbackURL;
-  } else {
+  }
+  else {
     config = {
       'domain': 'auth-dev.mozilla.auth0.com',
-      'auth0Domain': 'auth-dev.mozilla.auth0.com',
       'redirectUri': 'http://localhost:3000/callback',
       'responseType': 'token',
     }

@@ -1,5 +1,7 @@
 # Auth0 Custom Lock
 
+[![Build Status](https://travis-ci.org/mozilla-iam/auth0-custom-lock.svg?branch=master)](https://travis-ci.org/mozilla-iam/auth0-custom-lock)
+
 ## Build tools
 
 This project uses Gulp to run a number of automated tasks, including one that grabs our source files (HTML, Sass, JS) and compiles them into one single HTML file that has everything inlined and can be deployed to auth0.

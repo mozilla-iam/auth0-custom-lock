@@ -21,7 +21,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
-    "auth0-js": "^8.11.2",
+    "auth0-js": "^8.12.1",
     "promise-polyfill": "^6.0.2",
     "whatwg-fetch": "^2.0.3"
   }

@@ -25,7 +25,7 @@
         <div id="initial" data-screen>
           <p>Log in with email or third-party</p>
           <label for="field-email" class="visually-hidden">E-mail address</label>
-          <input type="email" id="field-email" placeholder="Email address" data-decorator="continue-with-keyboard" data-continue-with="enter-initial" />
+          <input type="email" id="field-email" placeholder="Email address" data-decorator="continue-with-keyboard" data-continue-with="enter-initial" autocomplete="username" />
           <button type="button" class="button button--full-width" data-handler="enter" id="enter-initial">Enter</button>
           <hr>
           <ul class="login-options list list--plain">
@@ -46,7 +46,7 @@
         <div id="ldap" data-screen hidden>
           <p>Welcome</p>
           <label for="field-password" class="visually-hidden">Password</label>
-          <input type="password" id="field-password" placeholder="Password" data-decorator="continue-with-keyboard" data-continue-with="authorise-ldap-credentials" />
+          <input type="password" id="field-password" placeholder="Password" data-decorator="continue-with-keyboard" data-continue-with="authorise-ldap-credentials" autocomplete="current-password" />
           <button type="button" class="button button--full-width" data-handler="authorise-ldap" id="authorise-ldap-credentials">Enter</button>
           <hr>
           <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>

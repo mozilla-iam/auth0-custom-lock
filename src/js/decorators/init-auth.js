@@ -1,12 +1,15 @@
 function getConfig( string ) {
   var config;
+  var hostedConfig;
   var isHostedLock = string !== '@@' + 'config@@'; // if the string isn't this, we're not in the hosted Lock
 
   if ( isHostedLock )  {
-    config = JSON.parse( decodeURIComponent( escape( window.atob( string ) ) ) );
-    config.domain = config.auth0Domain;
-    config.responseType = config.internalOptions.response_type;
-    config.redirectUri = config.callbackURL;
+    hostedConfig = JSON.parse( decodeURIComponent( escape( window.atob( string ) ) ) );
+    config.domain = hostedConfig.auth0Domain;
+    config.clientID = hostedConfig.clientID;
+    config.redirectUri = hostedConfig.callbackURL;
+    config.responseType = 'code';
+    config = Object.assign( config, hostedConfig.internalOptions );
   }
   else {
     config = require( 'config/local-config-sample' );
@@ -17,13 +20,7 @@ function getConfig( string ) {
 module.exports = function initAuth( element ) {
   var auth0 = require( 'auth0-js' );
   var config = getConfig( '@@config@@' );
-  var params = Object.assign( {
-    domain: config.auth0Domain,
-    clientID: config.clientID,
-    redirectUri: config.callbackURL,
-    responseType: 'code'
-  }, config.internalOptions );
-  var webAuth = new auth0.WebAuth( params );
+  var webAuth = new auth0.WebAuth( config );
 
   element.webAuth = webAuth;
   element.webAuthConfig = config;

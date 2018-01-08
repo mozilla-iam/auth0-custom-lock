@@ -1,5 +1,5 @@
 function getConfig( string ) {
-  var config;
+  var config = {};
   var hostedConfig;
   var isHostedLock = string !== '@@' + 'config@@'; // if the string isn't this, we're not in the hosted Lock
 

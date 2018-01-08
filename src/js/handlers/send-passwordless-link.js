@@ -1,3 +1,4 @@
+var fireGTMEvent = require( 'helpers/fireGTMEvent' );
 var ui = require( 'helpers/ui' );
 
 module.exports = function authorise( element ) {
@@ -7,6 +8,8 @@ module.exports = function authorise( element ) {
   var errorText = document.getElementById( 'error-message-passwordless' );
 
   ui.setLockState( element, 'loading' );
+
+  fireGTMEvent( 'Requested passwordless link' );
 
   form.webAuth.passwordlessStart({
     connection: 'email',

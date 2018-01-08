@@ -1,5 +1,6 @@
 var isLDAP = require( 'helpers/isLDAP' );
 var ui = require( 'helpers/ui' );
+var fireGTMEvent = require( 'helpers/fireGTMEvent' );
 
 module.exports = function enter( element ) {
   var form = element.form;
@@ -18,9 +19,12 @@ module.exports = function enter( element ) {
     setTimeout( function() {
       passwordField.focus();
     }, 400 );
+
+    fireGTMEvent( 'Continued as LDAP' );
   }
   else {
     // show social logins + passwordless
     ui.setLockState( element, 'non-ldap' );
+    fireGTMEvent( 'Continued as non-LDAP' );
   }
 }

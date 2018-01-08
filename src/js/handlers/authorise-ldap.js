@@ -1,4 +1,5 @@
 var ui = require( 'helpers/ui' );
+var fireGTMEvent = require( 'helpers/fireGTMEvent' );
 
 module.exports = function authorise( element ) {
   var form = element.closest( 'form' );
@@ -11,6 +12,8 @@ module.exports = function authorise( element ) {
   }
 
   ui.setLockState( element, 'loading' );
+
+  fireGTMEvent( 'Authorised with LDAP' );
 
   form.webAuth.redirect.loginWithCredentials({
     connection: 'Mozilla-LDAP-Dev',

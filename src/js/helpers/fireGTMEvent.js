@@ -1,5 +1,5 @@
 module.exports = function( eventName ) {
-  if ( window.dataLayer.length > 0 ) {
+  if ( window.dataLayer ) {
     dataLayer.push({
       'event': event
     });

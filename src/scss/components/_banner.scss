@@ -6,7 +6,7 @@
   text-align: center;
   margin-bottom: 2em;
 
-  @media ( min-height: 50em ) {
+  @media ( min-height: 50em ) and ( min-width: 20em ) {
     position: absolute;
     top: 0;
     left: 0;

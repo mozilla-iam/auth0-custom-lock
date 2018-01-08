@@ -5,9 +5,9 @@ body {
   letter-spacing: 0.03em;
   margin: 0;
 
-  @media ( min-height: 50em ) {
+  @media ( min-height: 50em ) and ( min-width: 20em ) {
     display: flex;
-    padding: 3em 1em;
+    padding: 8em 1em;
     height: calc( 100vh - 6em );
   }
 }

@@ -4,4 +4,4 @@ module.exports = function( eventName ) {
       'event': eventName
     });
   }
-}
+};

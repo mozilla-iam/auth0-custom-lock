@@ -2,11 +2,14 @@ var checkDntEnabled = require( 'helpers/dntEnabled' );
 var dntEnabled = checkDntEnabled();
 
 module.exports = function() {
+  var firstScriptTag;
+  var scriptTag;
+  var ID;
 
   if ( dntEnabled === false ) {
-    var firstScriptTag = document.getElementsByTagName( 'script' )[0];
-    var scriptTag = document.createElement( 'script' );
-    var ID = 'GTM-T2N2BRW';
+    firstScriptTag = document.getElementsByTagName( 'script' )[0];
+    scriptTag = document.createElement( 'script' );
+    ID = 'GTM-T2N2BRW';
 
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
@@ -19,4 +22,4 @@ module.exports = function() {
 
     firstScriptTag.parentNode.insertBefore( scriptTag, firstScriptTag );
   }
-}
+};

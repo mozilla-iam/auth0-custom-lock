@@ -31,4 +31,4 @@ module.exports = function authorise( element ) {
       ui.setLockState( element, 'passwordless-success' );
     }
   });
-}
+};

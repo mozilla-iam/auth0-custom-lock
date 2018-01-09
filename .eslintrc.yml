@@ -6,6 +6,7 @@ env:
 globals:
   module: true
   require: true
+  dataLayer: true
 extends: eslint:recommended
 rules:
   array-bracket-spacing:
@@ -69,9 +70,6 @@ rules:
   radix:
     - error
     - always
-  quote-props:
-    - error
-    - as-needed
   quotes:
     - error
     - single

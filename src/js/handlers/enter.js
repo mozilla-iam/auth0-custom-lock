@@ -3,13 +3,12 @@ var ui = require( 'helpers/ui' );
 var fireGTMEvent = require( 'helpers/fireGTMEvent' );
 
 module.exports = function enter( element ) {
-  var form = element.form;
   var emailField = document.getElementById( 'field-email' );
   var passwordField = document.getElementById( 'field-password' );
 
   if ( emailField.value === '' || emailField.validity.valid === false ) {
     emailField.focus();
-    return
+    return;
   }
 
   if ( isLDAP( emailField.value ) ) {
@@ -27,4 +26,4 @@ module.exports = function enter( element ) {
     ui.setLockState( element, 'non-ldap' );
     fireGTMEvent( 'Continued as non-LDAP' );
   }
-}
+};

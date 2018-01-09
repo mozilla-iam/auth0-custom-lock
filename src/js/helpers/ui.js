@@ -51,7 +51,7 @@ var ui = {
   },
   // basic way of getting focusable elements in `baseElement`
   getFocusableElements: function( baseElement ) {
-    var dom = require( 'helpers/dom' )
+    var dom = require( 'helpers/dom' );
 
     return dom.$( 'a[href], button, input[type="text"], input[type="email"], input[type="password"], input[type="radio"], input[type="checkbox"], select', baseElement );
   },

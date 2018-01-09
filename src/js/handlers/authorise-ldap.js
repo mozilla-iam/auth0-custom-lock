@@ -20,11 +20,11 @@ module.exports = function authorise( element ) {
     username: emailField.value,
     password: passwordField.value,
     scope: 'openid'
-  }, function( error, result ) {
+  }, function( error ) {
 
     if ( error && error.code === 'invalid_user_password' ) {
       errorText.lastElementChild.textContent = error.description;
       ui.setLockState( element, 'error-password' );
     }
   });
-}
+};

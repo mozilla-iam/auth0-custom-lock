@@ -3,7 +3,7 @@ function getConfig( string ) {
   var hostedConfig;
   var isHostedLock = string !== '@@' + 'config@@'; // if the string isn't this, we're not in the hosted Lock
 
-  if ( isHostedLock )  {
+  if ( isHostedLock ) {
     hostedConfig = JSON.parse( decodeURIComponent( escape( window.atob( string ) ) ) );
     config.domain = hostedConfig.auth0Domain;
     config.clientID = hostedConfig.clientID;
@@ -24,4 +24,4 @@ module.exports = function initAuth( element ) {
 
   element.webAuth = webAuth;
   element.webAuthConfig = config;
-}
+};

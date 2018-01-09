@@ -9,4 +9,4 @@ module.exports = function authorise( element ) {
     responseType: 'token',
     connection: 'github'
   });
-}
+};

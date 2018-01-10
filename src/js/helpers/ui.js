@@ -61,7 +61,7 @@ var ui = {
   // with its 'id' attribute)
   setLockState: function( element, state ) {
     var dom = require( 'helpers/dom' );
-    var form = element.form;
+    var form = element.tagName === 'FORM' ? element : element.form;
     var screens = dom.$( '[data-screen]', form );
     var screenToShow = document.getElementById( state );
 
@@ -74,6 +74,7 @@ var ui = {
 
       // show and focus screenToShow
       ui.show( screenToShow, screenToShow );
+      form.setAttribute( 'lock-state', state );
     }
   }
 };

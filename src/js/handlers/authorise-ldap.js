@@ -2,7 +2,7 @@ var ui = require( 'helpers/ui' );
 var fireGTMEvent = require( 'helpers/fireGTMEvent' );
 
 module.exports = function authorise( element ) {
-  var form = element.closest( 'form' );
+  var form = element.tagName === 'FORM' ? element : element.form;;
   var emailField = document.getElementById( 'field-email' );
   var passwordField = document.getElementById( 'field-password' );
   var errorText = document.getElementById( 'error-message-ldap' );

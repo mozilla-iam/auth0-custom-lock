@@ -19,11 +19,13 @@ module.exports = function enter( element ) {
       passwordField.focus();
     }, 400 );
 
-    fireGTMEvent( 'Continued as LDAP' );
+    fireGTMEvent( 'Screen change', 'Continued as LDAP' );
   }
   else {
     // show social logins + passwordless
     ui.setLockState( element, 'non-ldap' );
-    fireGTMEvent( 'Continued as non-LDAP' );
+    fireGTMEvent( 'Screen change', 'Continued as non-LDAP' );
   }
 };
+
+

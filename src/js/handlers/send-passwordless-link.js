@@ -9,7 +9,7 @@ module.exports = function authorise( element ) {
 
   ui.setLockState( element, 'loading' );
 
-  fireGTMEvent( 'Requested passwordless link' );
+  fireGTMEvent( 'Authorisation', 'Requested passwordless link' );
 
   form.webAuth.passwordlessStart({
     connection: 'email',
@@ -21,6 +21,7 @@ module.exports = function authorise( element ) {
       if ( error.code === 'bad.email' || error.code === 'invalid_parameter' ) {
         errorText.lastElementChild.textContent = error.description;
         ui.setLockState( element, 'error-passwordless' );
+        fireGTMEvent( 'Error', 'Passwordless: email address invalid' );
       }
       else {
         ui.setLockState( element, 'initial' );

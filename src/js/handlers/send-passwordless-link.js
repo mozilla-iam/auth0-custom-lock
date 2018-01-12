@@ -1,4 +1,4 @@
-var fireGTMEvent = require( 'helpers/fireGTMEvent' );
+var fireGAEvent = require( 'helpers/fireGAEvent' );
 var ui = require( 'helpers/ui' );
 
 module.exports = function authorise( element ) {
@@ -9,7 +9,7 @@ module.exports = function authorise( element ) {
 
   ui.setLockState( element, 'loading' );
 
-  fireGTMEvent( 'Authorisation', 'Requested passwordless link' );
+  fireGAEvent( 'Authorisation', 'Requested passwordless link' );
 
   form.webAuth.passwordlessStart({
     connection: 'email',
@@ -21,7 +21,7 @@ module.exports = function authorise( element ) {
       if ( error.code === 'bad.email' || error.code === 'invalid_parameter' ) {
         errorText.lastElementChild.textContent = error.description;
         ui.setLockState( element, 'error-passwordless' );
-        fireGTMEvent( 'Error', 'Passwordless: email address invalid' );
+        fireGAEvent( 'Error', 'Passwordless: email address invalid' );
       }
       else {
         ui.setLockState( element, 'initial' );

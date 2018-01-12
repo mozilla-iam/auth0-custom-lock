@@ -1,5 +1,5 @@
 var ui = require( 'helpers/ui' );
-var fireGTMEvent = require( 'helpers/fireGTMEvent' );
+var fireGAEvent = require( 'helpers/fireGAEvent' );
 
 module.exports = function authorise( element ) {
   var form = element.tagName === 'FORM' ? element : element.form;;
@@ -13,7 +13,7 @@ module.exports = function authorise( element ) {
 
   ui.setLockState( element, 'loading' );
 
-  fireGTMEvent( 'Authorisation', 'Authorising with LDAP' );
+  fireGAEvent( 'Authorisation', 'Authorising with LDAP' );
 
   form.webAuth.redirect.loginWithCredentials({
     connection: 'Mozilla-LDAP-Dev',
@@ -25,7 +25,7 @@ module.exports = function authorise( element ) {
     if ( error && error.code === 'invalid_user_password' ) {
       errorText.lastElementChild.textContent = error.description;
       ui.setLockState( element, 'error-password' );
-      fireGTMEvent( 'Error', 'LDAP: invalid username or password' );
+      fireGAEvent( 'Error', 'LDAP: invalid username or password' );
     }
   });
 };

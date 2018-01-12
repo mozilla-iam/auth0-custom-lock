@@ -1,6 +1,6 @@
 var isLDAP = require( 'helpers/isLDAP' );
 var ui = require( 'helpers/ui' );
-var fireGTMEvent = require( 'helpers/fireGTMEvent' );
+var fireGAEvent = require( 'helpers/fireGAEvent' );
 
 module.exports = function enter( element ) {
   var emailField = document.getElementById( 'field-email' );
@@ -19,12 +19,12 @@ module.exports = function enter( element ) {
       passwordField.focus();
     }, 400 );
 
-    fireGTMEvent( 'Screen change', 'Continued as LDAP' );
+    fireGAEvent( 'Screen change', 'Continued as LDAP' );
   }
   else {
     // show social logins + passwordless
     ui.setLockState( element, 'non-ldap' );
-    fireGTMEvent( 'Screen change', 'Continued as non-LDAP' );
+    fireGAEvent( 'Screen change', 'Continued as non-LDAP' );
   }
 };
 

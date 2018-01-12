@@ -1,9 +1,9 @@
-var fireGTMEvent = require( 'helpers/fireGTMEvent' );
+var fireGAEvent = require( 'helpers/fireGAEvent' );
 
 module.exports = function authorise( element ) {
   var form = element.closest( 'form' );
 
-  fireGTMEvent( 'Authorisation', 'Authorising with GitHub' );
+  fireGAEvent( 'Authorisation', 'Authorising with GitHub' );
 
   form.webAuth.authorize({
     responseType: 'token',

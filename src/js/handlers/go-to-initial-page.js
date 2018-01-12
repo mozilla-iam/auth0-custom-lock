@@ -1,7 +1,7 @@
 var ui = require( 'helpers/ui' );
-var fireGTMEvent = require( 'helpers/fireGTMEvent' );
+var fireGAEvent = require( 'helpers/fireGAEvent' );
 
 module.exports = function goToInitialPage( element ) {
   ui.setLockState( element, 'initial' );
-  fireGTMEvent( 'Screen change', 'Back to initial screen' );
+  fireGAEvent( 'Screen change', 'Back to initial screen' );
 };

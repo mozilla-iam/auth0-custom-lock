@@ -6,7 +6,7 @@ env:
 globals:
   module: true
   require: true
-  dataLayer: true
+  ga: true
 extends: eslint:recommended
 rules:
   array-bracket-spacing:

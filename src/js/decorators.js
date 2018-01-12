@@ -7,7 +7,8 @@ var decorators = {
   'continue-with-keyboard': require( 'decorators/continue-with-keyboard' ),
   'auto-login': require( 'decorators/auto-login' ),
   'load-ga': require( 'decorators/load-ga' ),
-  'handle-submit': require( 'decorators/handle-submit' )
+  'handle-submit': require( 'decorators/handle-submit' ),
+  'display-rp-name': require( 'decorators/display-rp-name' )
 };
 
 module.exports = decorators;

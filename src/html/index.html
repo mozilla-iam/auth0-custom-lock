@@ -22,12 +22,12 @@
     </div>
     <div class="card">
       <a href="https://mozilla.org" class="logo"><img alt="Mozilla" src="../images/mozilla.svg" inline /></a>
-      <form data-decorator="init-auth set-focus-to-input handle-submit" method="post" action="/" lock-state="initial">
+      <form data-decorator="init-auth handle-submit" method="post" action="/" lock-state="initial">
         <legend class="visually-hidden">Log in</legend>
         <div id="initial" data-screen>
           <p>Log in with email or third-party</p>
           <label for="field-email" class="visually-hidden">E-mail address</label>
-          <input type="email" name="username" id="field-email" placeholder="Email address" autocomplete="username" />
+          <input type="email" name="username" id="field-email" placeholder="Email address" autofocus />
           <button type="button" class="button button--full-width" data-handler="enter" id="enter-initial">Enter</button>
           <hr>
           <ul class="login-options list list--plain">

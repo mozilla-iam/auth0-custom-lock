@@ -28,7 +28,7 @@
           <div id="initial" data-screen>
             <p>Log in with email or third-party</p>
             <label for="field-email" class="visually-hidden">E-mail address</label>
-            <input type="email" name="username" id="field-email" placeholder="Email address" autofocus />
+            <input type="email" name="username" id="field-email" placeholder="Email address" autocomplete="username email" autofocus />
             <button type="button" class="button button--full-width" data-handler="enter" id="enter-initial">Enter</button>
             <hr>
             <ul class="login-options list list--plain">
@@ -49,7 +49,7 @@
           <div id="ldap" data-screen hidden>
             <p>Welcome</p>
             <label for="field-password" class="visually-hidden">Password</label>
-            <input type="password" id="field-password" name="password" placeholder="Password" data-decorator="continue-with-keyboard" data-continue-with="authorise-ldap-credentials"  />
+            <input type="password" id="field-password" autocomplete="current-password" name="password" placeholder="Password" data-decorator="continue-with-keyboard" data-continue-with="authorise-ldap-credentials"  />
             <input type="submit" class="button button--full-width" id="authorise-ldap-credentials" value="Enter"/>
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
@@ -89,7 +89,7 @@
             <h2 class="card__heading card__heading--error" id="error-message-ldap"><img src="../images/circled-x.svg" class="card__heading-icon" inline /> <span>Error</span></h2>
             <p>Please attempt again or contact the Help Desk for assistance.</p>
             <label for="field-password-try-2" class="visually-hidden">Password</label>
-            <input type="password" name="password" id="field-password-try-2" placeholder="Password" data-decorator="continue-with-keyboard" data-continue-with="authorise-ldap-credentials-try-2" />
+            <input type="password" name="password" id="field-password-try-2" autocomplete="current-password" placeholder="Password" data-decorator="continue-with-keyboard" data-continue-with="authorise-ldap-credentials-try-2" />
             <input type="submit" class="button button--full-width" id="authorise-ldap-credentials-try-2" value="Enter" />
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>

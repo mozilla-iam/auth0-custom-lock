@@ -12,6 +12,15 @@ body {
   }
 }
 
+[hidden] {
+  display: none;
+}
+
+[data-hidden] {
+  position: absolute;
+  opacity: 0;
+}
+
 h1 {
   margin: 0;
 }

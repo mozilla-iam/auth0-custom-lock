@@ -24,7 +24,7 @@
       <a href="https://mozilla.org" class="logo"><img alt="Mozilla" src="../images/mozilla.svg" inline /></a>
       <form data-decorator="init-auth handle-submit" method="post" action="/" lock-state="initial">
         <fieldset>
-          <legend class="visually-hidden">Log in</legend>
+          <legend class="rp-name"><span class="visually-hidden">Log in to </span><span id="rp-name-placeholder" class="rp-name__text"></span></legend>
           <div id="initial" data-screen>
             <p>Log in with email or third-party</p>
             <label for="field-email" class="visually-hidden">E-mail address</label>
@@ -46,7 +46,7 @@
               </li>
             </ul>
           </div>
-          <div id="ldap" data-screen hidden>
+          <div id="ldap" data-screen data-hidden>
             <p>Welcome</p>
             <label for="field-password" class="visually-hidden">Password</label>
             <input type="password" id="field-password" autocomplete="current-password" name="password" placeholder="Password" data-decorator="continue-with-keyboard" data-continue-with="authorise-ldap-credentials"  />
@@ -54,7 +54,7 @@
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
           </div>
-          <div id="non-ldap" data-screen hidden>
+          <div id="non-ldap" data-screen data-hidden>
             <ul class="login-options list list--plain">
               <li>
                 <button class="button button--full-width button--secondary" type="button" data-handler="send-passwordless-link">Send me an email</button>
@@ -79,13 +79,13 @@
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
           </div>
-          <div id="passwordless-success" data-screen hidden>
+          <div id="passwordless-success" data-screen data-hidden>
             <h2 class="card__heading card__heading--success"><img src="../images/envelope.svg" class="card__heading-icon" inline /> <span>Success</span></h2>
             <p>Email sent to <span id="passwordless-success-email-address"></span>, your login link will expire in 15 minutes.</p>
             <hr>
             <button id="back" type="button" class="button button--text-only card__back  button--unpadded" data-handler="go-to-initial-page">Need to send that to a different email?</button>
           </div>
-          <div id="error-password" data-screen hidden>
+          <div id="error-password" data-screen data-hidden>
             <h2 class="card__heading card__heading--error" id="error-message-ldap"><img src="../images/circled-x.svg" class="card__heading-icon" inline /> <span>Error</span></h2>
             <p>Please attempt again or contact the Help Desk for assistance.</p>
             <label for="field-password-try-2" class="visually-hidden">Password</label>
@@ -94,14 +94,14 @@
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
           </div>
-          <div id="error-passwordless" data-screen hidden>
+          <div id="error-passwordless" data-screen data-hidden>
             <h2 class="card__heading card__heading--error" id="error-message-passwordless"><img src="../images/circled-x.svg" class="card__heading-icon" inline /> <span>Error</span></h2>
             <p>We cannot send an email to this address</p>
             <button type="button" class="button button--text-only card__back  button--unpadded" data-handler="go-to-initial-page">Try again</button>
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
           </div>
-          <div id="loading" class="loading" data-screen hidden>
+          <div id="loading" class="loading" data-screen data-hidden>
             <p class="visually-hidden ">Loading…</p>
             <img src="../images/loading.svg" class="loading__spinner" inline />
           </div>

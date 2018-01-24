@@ -1,6 +1,9 @@
 module.exports = function() {
   var getRPName = require( 'helpers/getRPName' );
   var rp = getRPName();
+  var rpLocation = document.getElementById( 'rp-name-placeholder' );
 
-  document.title = rp + ' - ' + document.title;
+  if ( rp && rpLocation ) {
+    rpLocation.textContent = rp;
+  }
 };

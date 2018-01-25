@@ -13,6 +13,7 @@ module.exports = function( element ) {
         enter( element );
         break;
       case 'ldap':
+      case 'error-password':
         authoriseLDAP( element );
         break;
     }

@@ -8,8 +8,7 @@ var decorators = {
   'auto-login': require( 'decorators/auto-login' ),
   'load-ga': require( 'decorators/load-ga' ),
   'handle-submit': require( 'decorators/handle-submit' ),
-  'display-rp-name': require( 'decorators/display-rp-name' ),
-  'swap-hidden': require( 'decorators/swap-hidden' )
+  'display-rp-name': require( 'decorators/display-rp-name' )
 };
 
 module.exports = decorators;

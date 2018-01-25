@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+     <script>
+      /* Auto-login hacks XXX: this should be done in a prettier way whenever possible.
+       * It is currently done this way for loading speed reasons, so that the user is not interrupted.
+       */
+      if ( window.location.hostname !== 'localhost' ) {
+        var w = window.location.toString();
+        if ( w.indexOf('tried_silent_auth=true') === -1 ) {
+          /* Only works with LDAP at this time */
+          window.location = w.replace('/login?', '/authorize?').replace('?client=', '?client_id=') + '&sso=true&connection=Mozilla-LDAP-Dev&tried_silent_auth=true'
+        }
+      }
+     </script>
+    <title>Mozilla Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mozilla NLX - Log in</title>
     <link href="../../dist/css/styles.css" type="text/css" inline />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
   </head>
   <body data-decorator="load-ga display-rp-name swap-hidden">
-    <script>
-      /* Ugly hack to auto log you in. Only works with LDAP in this case */
-      if ( window.location.hostname !== 'localhost' ) {
-        var w = window.location.toString();
-        if ( w.indexOf('tried_silent_auth=true') === -1 ) {
-          document.body.hidden = true ;
-          window.location = w.replace('/login?', '/authorize?').replace('?client=', '?client_id=') + '&sso=true&connection=Mozilla-LDAP-Dev&tried_silent_auth=true'
-        }
-      }
-    </script>
     <div class="banner">
       <p>Yay, we are piloting the new login experience. Things might break from time to time. <a href="https://discourse.mozilla.org/t/piloting-the-new-lock/23199" class="banner__button">Read more</a></p>
     </div>

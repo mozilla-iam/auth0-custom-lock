@@ -5,6 +5,7 @@ module.exports = function( element ) {
 
   element.addEventListener( 'submit', function( event ) {
     var currentState = element.getAttribute( 'lock-state' );
+    var secondTry = false;
 
     event.preventDefault();
 
@@ -13,8 +14,11 @@ module.exports = function( element ) {
         enter( element );
         break;
       case 'ldap':
+        authoriseLDAP( element, secondTry );
+        break;
       case 'error-password':
-        authoriseLDAP( element );
+        secondTry = true;
+        authoriseLDAP( element, secondTry );
         break;
     }
   });

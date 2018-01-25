@@ -2,23 +2,23 @@ var ui = {
   // toggle visibility of `element`
   toggle: function( element ) {
     if ( !ui.isHidden( element ) ) {
-      element.setAttribute( 'hidden', true );
+      element.setAttribute( 'data-hidden', true );
     }
     else {
-      element.removeAttribute( 'hidden' );
+      element.removeAttribute( 'data-hidden' );
     }
   },
   // hide `element`
   hide: function( element, focusElement ) {
     if ( !ui.isHidden( element ) ) {
-      element.setAttribute( 'hidden', true );
+      element.setAttribute( 'data-hidden', true );
     }
     ui.focus( focusElement );
   },
   // show `element`
   show: function( element, focusElement ) {
     if ( ui.isHidden( element ) ) {
-      element.removeAttribute( 'hidden' );
+      element.removeAttribute( 'data-hidden' );
     }
     ui.focus( focusElement );
   },
@@ -27,11 +27,23 @@ var ui = {
     var hasHiddenParents = false;
 
     if ( checkForHiddenParents ) {
-      hasHiddenParents = !!element.closest( '[hidden]' );
+      hasHiddenParents = !!element.closest( '[data-hidden]' );
     }
-    return element.hasAttribute( 'hidden' ) || checkForHiddenParents && hasHiddenParents;
+    return element.hasAttribute( 'data-hidden' ) || checkForHiddenParents && hasHiddenParents;
   },
-  // focus `element`
+  // make `element` inert (unavailable for anything, including keyboard users, AT users, in page search)
+  makeInert: function( element ) {
+    if ( ! element.hasAttribute( 'inert' ) ) {
+      element.setAttribute( 'inert', true );
+    }
+  },
+  // undo making `element` inert
+  undoInert: function( element ) {
+    if ( element.hasAttribute( 'inert' ) ) {
+      element.removeAttribute( 'inert' );
+    }
+  },
+    // focus `element`
   focus: function( element ) {
     if ( element ) {
       if ( element.nodeName === 'DIV' && !element.hasAttribute( 'tabindex' ) ) {
@@ -70,10 +82,12 @@ var ui = {
       // hide all screens
       screens.forEach( function( screen ) {
         ui.hide( screen );
+        ui.makeInert( screen );
       });
 
       // show and focus screenToShow
       ui.show( screenToShow, screenToShow );
+      ui.undoInert( screenToShow );
       form.setAttribute( 'lock-state', state );
     }
   }

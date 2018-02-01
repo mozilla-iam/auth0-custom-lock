@@ -24,7 +24,7 @@
     </div>
     <div class="card">
       <a href="https://mozilla.org" class="logo"><img alt="Mozilla" src="../images/mozilla.svg" inline /></a>
-      <form data-decorator="init-auth handle-submit" method="post" action="/" lock-state="initial">
+      <form data-decorator="init-auth handle-submit filter-connections" method="post" action="/" lock-state="initial">
         <fieldset>
           <legend class="rp-name"><span class="visually-hidden">Log in to </span><span id="rp-name-placeholder" class="rp-name__text"></span></legend>
           <div id="initial" data-screen>
@@ -34,13 +34,13 @@
             <button type="button" class="button button--full-width" data-handler="enter" id="enter-initial">Enter</button>
             <hr>
             <ul class="login-options list list--plain">
-              <li>
+              <li data-optional-rp="github">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-github">
                   <img inline class="icon" src="../images/github.svg" role="presentation">
                   <span>Log in with GitHub</span>
                 </button>
               </li>
-              <li>
+              <li data-optional-rp="google-oauth2">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-google">
                   <img inline  class="icon" src="../images/google.svg" role="presentation">
                   <span>Log in with Google</span>
@@ -57,7 +57,7 @@
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
           </div>
           <div id="non-ldap" data-screen data-hidden inert>
-            <ul class="login-options list list--plain">
+            <ul class="login-options list list--plain" data-optional-rp="email">
               <li>
                 <button class="button button--full-width button--secondary" type="button" data-handler="send-passwordless-link">Send me an email</button>
               </li>
@@ -65,13 +65,13 @@
             <a href="https://wiki.mozilla.org/IAM/Frequently_asked_questions#Q:_Why_do_you_support_email_login_.28.22passwordless.22.29_if_it.27s_less_safe_than_other_methods.3F" class="button button--text-only button--unpadded">Why an email?</a>
             <hr>
             <ul class="login-options list list--plain">
-              <li>
+              <li data-optional-rp="github">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-github">
                   <img inline class="icon" src="../images/github.svg" role="presentation">
                   <span>Log in with GitHub</span>
                 </button>
               </li>
-              <li>
+              <li data-optional-rp="google-oauth2">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-google">
                   <img inline  class="icon" src="../images/google.svg" role="presentation">
                   <span>Log in with Google</span>

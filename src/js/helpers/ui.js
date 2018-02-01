@@ -33,8 +33,8 @@ var ui = {
   },
   // make `element` inert (unavailable for anything, including keyboard users, AT users, in page search)
   makeInert: function( element ) {
-    if ( ! element.hasAttribute( 'inert' ) ) {
-      element.setAttribute( 'inert', true );
+    if ( !element.hasAttribute( 'inert' ) ) {
+      element.setAttribute( 'inert' );
     }
   },
   // undo making `element` inert

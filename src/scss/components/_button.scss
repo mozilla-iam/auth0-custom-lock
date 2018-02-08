@@ -111,4 +111,9 @@
   &:last-child {
     margin-bottom: 0;
   }
+
+  svg {
+    position: relative;
+    z-index: 0;
+  }
 }

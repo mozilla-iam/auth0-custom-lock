@@ -76,6 +76,7 @@ var ui = {
     var form = element.tagName === 'FORM' ? element : element.form;
     var screens = dom.$( '[data-screen]', form );
     var screenToShow = document.getElementById( state );
+    var autofocusInput = dom.$( '[autofocus]', screenToShow );
 
     if ( screenToShow ) {
 
@@ -89,6 +90,12 @@ var ui = {
       ui.show( screenToShow, screenToShow );
       ui.undoInert( screenToShow );
       form.setAttribute( 'lock-state', state );
+
+      if ( autofocusInput && autofocusInput.length > 0 ) {
+        setTimeout( function() {
+          autofocusInput[0].focus();
+        }, 100 );
+      }
     }
   }
 };

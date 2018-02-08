@@ -112,8 +112,8 @@
     margin-bottom: 0;
   }
 
-  svg {
-    position: relative;
-    z-index: 0;
+  svg,
+  span {
+    pointer-events: none;
   }
 }

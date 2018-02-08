@@ -24,14 +24,14 @@
     </div>
     <div class="card">
       <a href="https://mozilla.org" class="logo"><img alt="Mozilla" src="../images/mozilla.svg" inline /></a>
-      <form data-decorator="init-auth handle-submit filter-connections" method="post" action="/" lock-state="initial">
-        <fieldset>
+      <form data-decorator="init-auth handle-submit" method="post" action="/" lock-state="initial">
+        <fieldset data-decorator="filter-connections">
           <legend class="rp-name"><span class="visually-hidden">Log in to </span><span id="rp-name-placeholder" class="rp-name__text"></span></legend>
           <div id="initial" data-screen>
             <p>Log in with email or third-party</p>
             <label for="field-email" class="visually-hidden">E-mail address</label>
             <input type="email" name="username" id="field-email" placeholder="Email address" autocomplete="username email" autofocus />
-            <button type="button" class="button button--full-width" data-handler="enter" id="enter-initial">Enter</button>
+            <input type="submit" class="button button--full-width" id="enter-initial" value="Enter" />
             <hr>
             <ul class="login-options list list--plain">
               <li data-optional-rp="github">

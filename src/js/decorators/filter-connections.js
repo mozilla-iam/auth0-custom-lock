@@ -1,8 +1,11 @@
 var dom = require( 'helpers/dom' );
 var ui  = require( 'helpers/ui' );
 
-module.exports = function( form ) {
+module.exports = function( element ) {
+  var form = element.form;
   var url = 'https://auth-dev.mozilla.auth0.com/public/api/' + form.webAuthConfig.clientID + '/connections';
+
+  ui.setLockState( element, 'loading' );
 
   fetch( url ).then( function( response ) {
     return response.json()
@@ -21,5 +24,7 @@ module.exports = function( form ) {
         ui.hide( functionality );
       }
     });
+
+    ui.setLockState( element, 'initial' );
   });
 };

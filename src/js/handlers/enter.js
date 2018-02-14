@@ -23,7 +23,7 @@ module.exports = function enter( element ) {
     fireGAEvent( 'Screen change', 'Continued as LDAP' );
   }
   else {
-    ui.setLockState( form, 'loading' );
+    ui.setLockState( element, 'loading' );
 
     fetch( ENDPOINT + emailField.value )
       .then(

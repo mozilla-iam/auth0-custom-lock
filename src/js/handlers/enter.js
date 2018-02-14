@@ -1,17 +1,17 @@
-var isLDAP = require( 'helpers/isLDAP' );
 var ui = require( 'helpers/ui' );
 var fireGAEvent = require( 'helpers/fireGAEvent' );
 
 module.exports = function enter( element ) {
   var emailField = document.getElementById( 'field-email' );
   var passwordField = document.getElementById( 'field-password' );
+  var isDefinitelyLDAP = /mozilla.com|getpocket.com$/.test( emailField.value );
 
   if ( emailField.value === '' || emailField.validity.valid === false ) {
     emailField.focus();
     return;
   }
 
-  if ( isLDAP( emailField.value ) ) {
+  if ( isDefinitelyLDAP ) {
     // show password field
     ui.setLockState( element, 'ldap' );
     // focus password field

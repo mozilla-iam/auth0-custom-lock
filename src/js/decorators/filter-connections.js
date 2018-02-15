@@ -26,5 +26,7 @@ module.exports = function( element ) {
     });
 
     ui.setLockState( element, 'initial' );
+  }, function(){
+    ui.setLockState( element, 'initial' );
   });
 };

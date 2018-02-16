@@ -30,8 +30,9 @@ module.exports = function enter( element ) {
         function(response) {
           response.json().then(function( data ) {
             var userinfo = JSON.parse( data );
+            var isLDAP = userinfo.hasOwnProperty( 'user_email' ) && userinfo.hasOwnProperty( 'connection_method' ) && userinfo[ 'connection_method' ] === 'ad';
 
-            if ( userinfo.hasOwnProperty( 'user_email' ) && userinfo.hasOwnProperty( 'connection_method' ) ) {
+            if ( isLDAP ) {
 
               // show password field
               ui.setLockState( element, 'ldap' );

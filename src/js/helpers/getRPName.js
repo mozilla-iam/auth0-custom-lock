@@ -33,4 +33,4 @@ module.exports = function() {
   var RP = getUrlParameter( 'redirect_uri' ) || '';
 
   return extractHostname( RP );
-}
+};

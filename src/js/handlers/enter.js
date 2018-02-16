@@ -27,8 +27,8 @@ module.exports = function enter( element ) {
 
     fetch( ENDPOINT + emailField.value )
       .then(
-        function(response) {
-          response.json().then(function( data ) {
+        function( response ) {
+          response.json().then( function( data ) {
             var userinfo = JSON.parse( data );
             var isLDAP = userinfo.hasOwnProperty( 'user_email' ) && userinfo.hasOwnProperty( 'connection_method' ) && userinfo[ 'connection_method' ] === 'ad';
 

@@ -2,7 +2,7 @@ var ui = require( 'helpers/ui' );
 var fireGAEvent = require( 'helpers/fireGAEvent' );
 
 module.exports = function authorise( element, secondTry ) {
-  var form = element.tagName === 'FORM' ? element : element.form;;
+  var form = element.tagName === 'FORM' ? element : element.form;
   var emailField = document.getElementById( 'field-email' );
   var passwordField = secondTry ? document.getElementById( 'field-password-try-2' ) : document.getElementById( 'field-password' );
   var errorText = document.getElementById( 'error-message-ldap' );

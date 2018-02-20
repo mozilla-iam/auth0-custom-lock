@@ -2,16 +2,15 @@
 <html lang="en">
   <head>
      <script>
-      /* Auto-login hacks XXX: this should be done in a prettier way whenever possible.
-       * It is currently done this way for loading speed reasons, so that the user is not interrupted.
-       */
-      if ( window.location.hostname !== 'localhost' ) {
-        var w = window.location.toString();
-        if ( w.indexOf('tried_silent_auth=true') === -1 ) {
-          /* Only works with LDAP at this time */
-          window.location = w.replace('/login?', '/authorize?').replace('?client=', '?client_id=') + '&sso=true&connection=Mozilla-LDAP-Dev&tried_silent_auth=true'
-        }
+    /* Before doing anything else, let's try if we can login with the last used connection */
+    if ( window.location.hostname !== 'localhost' && window.localStorage ) {
+      var lastUsedConnection = window.localStorage.getItem( 'nlx-last-used-connection' );
+      var w = window.location.toString();
+
+      if ( lastUsedConnection && w.indexOf('tried_silent_auth=true') === -1 ) {
+        window.location = w.replace('/login?', '/authorize?').replace('?client=', '?client_id=') + '&sso=true&connection=' + lastUsedConnection + '&tried_silent_auth=true'
       }
+    }
      </script>
     <title>Mozilla Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">

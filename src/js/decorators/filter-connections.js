@@ -1,5 +1,5 @@
 var dom = require( 'helpers/dom' );
-var ui  = require( 'helpers/ui' );
+var ui = require( 'helpers/ui' );
 
 module.exports = function( element ) {
   var form = element.form;
@@ -8,12 +8,13 @@ module.exports = function( element ) {
   ui.setLockState( element, 'loading' );
 
   fetch( url ).then( function( response ) {
-    return response.json()
+    return response.json();
   }).then( function( allowed ) {
     var allowedRPs = [];
     var RPfunctionalities = dom.$( '[data-optional-rp]' );
+    var i;
 
-    for ( var i = 0; i < allowed.length; i++) {
+    for ( i = 0; i < allowed.length; i++ ) {
       allowedRPs.push( allowed[i].name );
     }
 

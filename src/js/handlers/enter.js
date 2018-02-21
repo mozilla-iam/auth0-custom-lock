@@ -1,11 +1,12 @@
 var ui = require( 'helpers/ui' );
 var fireGAEvent = require( 'helpers/fireGAEvent' );
+var isDev = require( 'helpers/isDev' );
 
 module.exports = function enter( element ) {
   var emailField = document.getElementById( 'field-email' );
   var passwordField = document.getElementById( 'field-password' );
   var isDefinitelyLDAP = /mozilla.com|getpocket.com$/.test( emailField.value );
-  var ENDPOINT = 'https://person-api.sso.allizom.org/v1/connection/';
+  var ENDPOINT = isDev ? 'https://person-api.sso.allizom.org/v1/connection/' : 'https://person-api.sso.mozilla.com/v1/connection/';
 
   if ( emailField.value === '' || emailField.validity.valid === false ) {
     emailField.focus();

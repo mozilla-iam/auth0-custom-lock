@@ -24,6 +24,17 @@ module.exports = function( element ) {
       }
     });
 
+    if ( window.location.hostname !== 'localhost' && window.localStorage ) {
+      var lastUsedConnection = window.localStorage.getItem( 'nlx-last-used-connection' );
+      var w = window.location.toString();
+      var silentAuthEnabled = w.indexOf('tried_silent_auth=true') === -1;
+
+      if ( silentAuthEnabled && lastUsedConnection && allowedRPs.indexOf( lastUsedConnection ) >= 0 ) {
+        window.location = w.replace('/login?', '/authorize?').replace('?client=', '?client_id=') + '&sso=true&connection=' + lastUsedConnection + '&tried_silent_auth=true'
+        return
+      }
+    }
+
     ui.setLockState( element, 'initial' );
   }, function(){
     ui.setLockState( element, 'initial' );

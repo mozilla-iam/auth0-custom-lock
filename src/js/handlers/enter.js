@@ -5,7 +5,7 @@ var isDev = require( 'helpers/isDev' );
 module.exports = function enter( element ) {
   var emailField = document.getElementById( 'field-email' );
   var passwordField = document.getElementById( 'field-password' );
-  var isDefinitelyLDAP = /mozilla.com|getpocket.com$/.test( emailField.value );
+  var isDefinitelyLDAP = /mozilla.com|getpocket.com|mozillafoundation.org$/.test( emailField.value );
   var ENDPOINT = isDev ? 'https://person-api.sso.allizom.org/v1/connection/' : 'https://person-api.sso.mozilla.com/v1/connection/';
 
   if ( emailField.value === '' || emailField.validity.valid === false ) {

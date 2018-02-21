@@ -6,8 +6,6 @@ module.exports = function( element ) {
   var form = element.form;
   var url = 'https://auth-dev.mozilla.auth0.com/public/api/' + form.webAuthConfig.clientID + '/connections';
 
-  ui.setLockState( element, 'loading' );
-
   fetch( url ).then( function( response ) {
     return response.json();
   }).then( function( allowed ) {
@@ -28,7 +26,19 @@ module.exports = function( element ) {
       }
     });
 
+    if ( window.location.hostname !== 'localhost' && window.localStorage ) {
+      var lastUsedConnection = window.localStorage.getItem( 'nlx-last-used-connection' );
+      var w = window.location.toString();
+      var silentAuthEnabled = w.indexOf('tried_silent_auth=true') === -1;
+
+      if ( silentAuthEnabled && lastUsedConnection && allowedRPs.indexOf( lastUsedConnection ) >= 0 ) {
+        window.location = w.replace('/login?', '/authorize?').replace('?client=', '?client_id=') + '&sso=true&connection=' + lastUsedConnection + '&tried_silent_auth=true'
         fireGAEvent( 'Authorisation', 'Performing auto-login' );
+
+        return
+      }
+    }
+
     ui.setLockState( element, 'initial' );
   }, function(){
     ui.setLockState( element, 'initial' );

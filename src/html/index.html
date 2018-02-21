@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-     <script>
-    /* Before doing anything else, let's try if we can login with the last used connection */
-    if ( window.location.hostname !== 'localhost' && window.localStorage ) {
-      var lastUsedConnection = window.localStorage.getItem( 'nlx-last-used-connection' );
-      var w = window.location.toString();
-
-      if ( lastUsedConnection && w.indexOf('tried_silent_auth=true') === -1 ) {
-        window.location = w.replace('/login?', '/authorize?').replace('?client=', '?client_id=') + '&sso=true&connection=' + lastUsedConnection + '&tried_silent_auth=true'
-      }
-    }
-     </script>
     <title>Mozilla Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../../dist/css/styles.css" type="text/css" inline />

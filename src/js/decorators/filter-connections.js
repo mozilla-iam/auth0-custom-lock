@@ -1,5 +1,6 @@
 var dom = require( 'helpers/dom' );
 var ui = require( 'helpers/ui' );
+var fireGAEvent = require( 'helpers/fireGAEvent' );
 
 module.exports = function( element ) {
   var form = element.form;
@@ -21,6 +22,7 @@ module.exports = function( element ) {
 
       if ( allowedRPs.indexOf( functionalityName ) === -1 ) {
         ui.hide( functionality );
+        fireGAEvent( 'Hiding', 'Hiding login method that isn\'t supported for this RP' );
       }
     });
 
@@ -31,6 +33,8 @@ module.exports = function( element ) {
 
       if ( silentAuthEnabled && lastUsedConnection && allowedRPs.indexOf( lastUsedConnection ) >= 0 ) {
         window.location = w.replace('/login?', '/authorize?').replace('?client=', '?client_id=') + '&sso=true&connection=' + lastUsedConnection + '&tried_silent_auth=true'
+        fireGAEvent( 'Authorisation', 'Performing auto-login' );
+
         return
       }
     }

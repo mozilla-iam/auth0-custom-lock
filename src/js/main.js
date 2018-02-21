@@ -4,6 +4,9 @@ var handlers = require( 'handlers' );
 var decorators = require( 'decorators' );
 var polyfill = require( 'polyfills/polyfill' );
 
+window.Promise = require( 'promise-polyfill' );
+require( 'whatwg-fetch' );
+
 document.documentElement.className = 'has-js';
 
 polyfill();

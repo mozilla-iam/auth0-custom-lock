@@ -1,5 +1,6 @@
 var dom = require( 'helpers/dom' );
 var ui = require( 'helpers/ui' );
+var fireGAEvent = require( 'helpers/fireGAEvent' );
 
 module.exports = function( element ) {
   var form = element.form;
@@ -23,9 +24,11 @@ module.exports = function( element ) {
 
       if ( allowedRPs.indexOf( functionalityName ) === -1 ) {
         ui.hide( functionality );
+        fireGAEvent( 'Hiding', 'Hiding login method that isn\'t supported for this RP' );
       }
     });
 
+        fireGAEvent( 'Authorisation', 'Performing auto-login' );
     ui.setLockState( element, 'initial' );
   }, function(){
     ui.setLockState( element, 'initial' );

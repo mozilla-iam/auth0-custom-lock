@@ -5,8 +5,6 @@ module.exports = function( element ) {
   var form = element.form;
   var url = 'https://auth-dev.mozilla.auth0.com/public/api/' + form.webAuthConfig.clientID + '/connections';
 
-  ui.setLockState( element, 'loading' );
-
   fetch( url ).then( function( response ) {
     return response.json();
   }).then( function( allowed ) {

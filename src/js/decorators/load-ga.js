@@ -9,7 +9,7 @@ module.exports = function() {
   if ( dntEnabled === false ) {
     firstScriptTag = document.getElementsByTagName( 'script' )[0];
     scriptTag = document.createElement( 'script' );
-    ID = '{{{ lock.GTM_ID }}}';
+    ID = '{{{ GTM_ID }}}';
 
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({

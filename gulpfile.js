@@ -24,26 +24,15 @@ const paths = {
   drop : 'dist'
 };
 
-const config = {
-  'local': {
-    'lock' : {
-      'auth0_domain' : 'https://auth-dev.mozilla.auth0.com',
-      'LDAP_connection_name' : 'Mozilla-LDAP-Dev',
-      'person_api_domain' : 'https://person-api.mozilla.com/connection',
-      'GTM_ID': 'GTM-T2N2BRW',
-      'client_id': 'CIynn5wTPyYZQcA1FJx1Io9z4t7QWDaE'
-    }
-  },
-  'production': {
-    'lock' : {
-      'auth0_domain' : 'https://auth.mozilla.auth0.com',
-      'LDAP_connection_name' : 'Mozilla-LDAP',
-      'person_api_domain' : 'https://person-api.allizom.org/connection',
-      'GTM_ID': 'GTM-T2N2BRW'
-    }
-  }
-};
+const environment = process.env.NODE_ENV || 'development'
 
+var fs = require('fs');
+const config = JSON.parse(fs.readFileSync('config/' + environment.toLowerCase() + '.json', 'utf8'));
+
+console.log('Production environment identified.  Building NLX with production config:')
+console.log('---------------------------Begin configuration.---------------------------')
+console.log(config);
+console.log('---------------------------End configuration.---------------------------')
 
 /* -----------------------------------
    Tasks
@@ -67,7 +56,7 @@ gulp.task( 'process-html', function() {
 
   return gulp.src( paths.html + '/*.html' )
     .pipe( inlinesource( options.inlineSource ) )
-    .pipe( mustache( config.local ) )
+    .pipe( mustache( config ) )
     .pipe( gulp.dest( paths.drop ) )
     .pipe( browserSync.reload( { stream: true } ));
 });

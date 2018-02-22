@@ -1,7 +1,6 @@
 var ui = require( 'helpers/ui' );
 var fireGAEvent = require( 'helpers/fireGAEvent' );
 var storeLastUsedConnection = require( 'helpers/storeLastUsedConnection' );
-var isDev = require( 'helpers/isDev' );
 
 module.exports = function authorise( element, secondTry ) {
   var form = element.tagName === 'FORM' ? element : element.form;

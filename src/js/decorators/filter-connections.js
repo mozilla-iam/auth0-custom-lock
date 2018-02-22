@@ -1,7 +1,6 @@
 var dom = require( 'helpers/dom' );
 var ui = require( 'helpers/ui' );
 var fireGAEvent = require( 'helpers/fireGAEvent' );
-var isDev = require( 'helpers/isDev' );
 
 module.exports = function( element ) {
   var form = element.form;

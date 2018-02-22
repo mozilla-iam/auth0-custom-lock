@@ -1,6 +1,5 @@
 var ui = require( 'helpers/ui' );
 var fireGAEvent = require( 'helpers/fireGAEvent' );
-var isDev = require( 'helpers/isDev' );
 
 module.exports = function enter( element ) {
   var emailField = document.getElementById( 'field-email' );

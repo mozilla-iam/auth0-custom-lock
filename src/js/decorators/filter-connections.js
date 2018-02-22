@@ -4,7 +4,7 @@ var fireGAEvent = require( 'helpers/fireGAEvent' );
 
 module.exports = function( element ) {
   var form = element.form;
-  var url = 'https://auth.mozilla.auth0.com/public/api/' + form.webAuthConfig.clientID + '/connections';
+  var url = '{{ lock.auth0domain }}' + '/public/api/' + form.webAuthConfig.clientID + '/connections';
 
   ui.setLockState( element, 'loading' );
 
@@ -21,6 +21,9 @@ module.exports = function( element ) {
 
     RPfunctionalities.forEach( function( functionality ) {
       var functionalityName = functionality.getAttribute( 'data-optional-rp' );
+      var lastUsedConnection;
+      var locationString;
+      var silentAuthEnabled;
 
       if ( allowedRPs.indexOf( functionalityName ) === -1 ) {
         ui.hide( functionality );
@@ -28,12 +31,12 @@ module.exports = function( element ) {
       }
 
       if ( window.location.hostname !== 'localhost' && window.localStorage ) {
-        var lastUsedConnection = window.localStorage.getItem( 'nlx-last-used-connection' );
-        var w = window.location.toString();
-        var silentAuthEnabled = w.indexOf('tried_silent_auth=true') === -1;
+        lastUsedConnection = window.localStorage.getItem( 'nlx-last-used-connection' );
+        locationString = window.location.toString();
+        silentAuthEnabled = locationString.indexOf('tried_silent_auth=true') === -1;
 
         if ( silentAuthEnabled && lastUsedConnection && allowedRPs.indexOf( lastUsedConnection ) >= 0 ) {
-          window.location = w.replace('/login?', '/authorize?').replace('?client=', '?client_id=') + '&sso=true&connection=' + lastUsedConnection + '&tried_silent_auth=true'
+          window.location = locationString.replace('/login?', '/authorize?').replace('?client=', '?client_id=') + '&sso=true&connection=' + lastUsedConnection + '&tried_silent_auth=true';
           fireGAEvent( 'Authorisation', 'Performing auto-login' );
 
           return

@@ -11,6 +11,10 @@ function getConfig( string ) {
     config.responseType = 'code';
     config = Object.assign( config, hostedConfig.internalOptions );
   }
+  else {
+    config.domain = '{{{ lock.auth0_domain }}}';
+    config.clientID = '{{{ lock.client_id }}}';
+  }
   return config;
 }
 

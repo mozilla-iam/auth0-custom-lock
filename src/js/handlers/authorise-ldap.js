@@ -8,7 +8,7 @@ module.exports = function authorise( element, secondTry ) {
   var emailField = document.getElementById( 'field-email' );
   var passwordField = secondTry ? document.getElementById( 'field-password-try-2' ) : document.getElementById( 'field-password' );
   var errorText = document.getElementById( 'error-message-ldap' );
-  var connection = isDev ? 'Mozilla-LDAP-Dev' : 'Mozilla-LDAP';
+  var connection = 'Mozilla-LDAP';
 
   if ( element.id === 'authorise-ldap-credentials-try-2' ) {
     passwordField = document.getElementById( 'field-password-try-2' );

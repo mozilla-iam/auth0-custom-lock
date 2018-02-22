@@ -11,9 +11,6 @@ function getConfig( string ) {
     config.responseType = 'code';
     config = Object.assign( config, hostedConfig.internalOptions );
   }
-  else {
-    config = require( 'config/local-config-sample' );
-  }
   return config;
 }
 

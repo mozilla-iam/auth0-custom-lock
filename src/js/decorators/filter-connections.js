@@ -1,10 +1,11 @@
 var dom = require( 'helpers/dom' );
 var ui = require( 'helpers/ui' );
 var fireGAEvent = require( 'helpers/fireGAEvent' );
+var isDev = require( 'helpers/isDev' );
 
 module.exports = function( element ) {
   var form = element.form;
-  var url = 'https://auth-dev.mozilla.auth0.com/public/api/' + form.webAuthConfig.clientID + '/connections';
+  var url = 'https://auth.mozilla.auth0.com/public/api/' + form.webAuthConfig.clientID + '/connections';
 
   fetch( url ).then( function( response ) {
     return response.json();

@@ -28,12 +28,12 @@ const paths = {
 let environment = process.env.NODE_ENV || 'development';
 environment = environment.toLowerCase();
 
-const config = JSON.parse(fs.readFileSync('config/' + environment.toLowerCase() + '.json', 'utf8'));
+const config = JSON.parse( fs.readFileSync( 'config/' + environment + '.json', 'utf8' ) );
 
-console.log('Production environment identified.  Building NLX with production config:')
-console.log('---------------------------Begin configuration.---------------------------')
-console.log(config);
-console.log('---------------------------End configuration.---------------------------')
+console.log( 'Environment “' + environment + '” identified.  Building NLX with ' + environment + ' config:' );
+console.log( '---------------------------Begin configuration.---------------------------' );
+console.log( config );
+console.log( '---------------------------End configuration.---------------------------' );
 
 /* -----------------------------------
    Tasks

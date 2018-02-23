@@ -17,7 +17,8 @@ window.NLX = {
   'person_api_domain': '{{{ person_api_domain }}}',
   'GTM_ID': '{{{ GTM_ID }}}',
   'features': {
-    'autologin': locationString.indexOf('tried_silent_auth=true') === -1 || {{{ features.autologin }}}
+    'autologin': '{{{ features.autologin }}}',
+    'person_api_lookup': '{{{ features.person_api_lookup }}}'
   }
 };
 

@@ -3,4 +3,8 @@
   "LDAP_connection_name" : "Mozilla-LDAP",
   "person_api_domain" : "https://person-api.allizom.org/connection/",
   "GTM_ID": "GTM-T2N2BRW"
+  "features": {
+    "autologin": false,
+    "person_api_lookup": true
+  }
 }

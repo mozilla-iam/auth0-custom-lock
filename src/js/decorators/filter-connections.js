@@ -4,7 +4,7 @@ var fireGAEvent = require( 'helpers/fireGAEvent' );
 
 module.exports = function( element ) {
   var form = element.form;
-  var url = 'https://' + NLX.auth0domain + '/public/api/' + form.webAuthConfig.clientID + '/connections';
+  var url = 'https://' + NLX.auth0_domain + '/public/api/' + form.webAuthConfig.clientID + '/connections';
   var visualStatusReport = document.getElementById( 'loading__status' );
   var willRedirect = false;
 

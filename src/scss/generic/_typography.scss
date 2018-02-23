@@ -3,11 +3,11 @@ body {
   color: $darkerGrey;
   font-family: "Open Sans", sans-serif;
   letter-spacing: 0.03em;
-  margin: 0;
+  margin: 0 1em;
 
-  @media ( min-height: 50em ) and ( min-width: 20em ) {
+  @media ( min-height: 50em ) and ( min-width: 40em ) {
     display: flex;
-    padding: 8em 1em;
+    padding: 10em 1em;
     height: calc( 100vh - 6em );
   }
 }

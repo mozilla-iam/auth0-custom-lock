@@ -1,6 +1,6 @@
 {
   "auth0_domain" : "auth.mozilla.auth0.com",
   "LDAP_connection_name" : "Mozilla-LDAP",
-  "person_api_domain" : "https://person-api.allizom.org/connection",
+  "person_api_domain" : "https://person-api.allizom.org/connection/",
   "GTM_ID": "GTM-T2N2BRW"
 }

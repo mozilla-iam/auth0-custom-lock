@@ -9,6 +9,15 @@ require( 'whatwg-fetch' );
 
 document.documentElement.className = 'has-js';
 
+// environment variables are replaced in build process
+window.NLX = {
+  'auth0_domain': '{{{ auth0_domain }}}',
+  'client_ID': '{{{ client_id }}}',
+  'LDAP_connection_name': '{{{ LDAP_connection_name }}}',
+  'person_api_domain': '{{{ person_api_domain }}}',
+  'GTM_ID': '{{{ GTM_ID }}}'
+};
+
 polyfill();
 
 // run all decorators on page load

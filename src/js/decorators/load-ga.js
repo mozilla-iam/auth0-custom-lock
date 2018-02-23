@@ -4,7 +4,6 @@ var dntEnabled = checkDntEnabled();
 module.exports = function() {
   var firstScriptTag;
   var scriptTag;
-  var ID;
 
   if ( dntEnabled === false ) {
     firstScriptTag = document.getElementsByTagName( 'script' )[0];

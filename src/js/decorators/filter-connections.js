@@ -24,8 +24,8 @@ module.exports = function( element ) {
     RPfunctionalities.forEach( function( functionality ) {
       var functionalityName = functionality.getAttribute( 'data-optional-rp' );
       var lastUsedConnection;
-      var locationString;
-      var silentAuthEnabled;
+      var locationString = window.location.toString();
+      var silentAuthEnabled = locationString.indexOf( 'tried_silent_auth=true' ) === -1 || NLX.features.autologin === 'true';
       var newLocation;
 
       if ( allowedRPs.indexOf( functionalityName ) === -1 ) {
@@ -33,12 +33,10 @@ module.exports = function( element ) {
         fireGAEvent( 'Hiding', 'Hiding login method that isn\'t supported for this RP' );
       }
 
-      if ( window.location.hostname !== 'localhost' && window.localStorage ) {
+      if ( silentAuthEnabled && window.localStorage ) {
         lastUsedConnection = window.localStorage.getItem( 'nlx-last-used-connection' );
-        locationString = window.location.toString();
-        silentAuthEnabled = locationString.indexOf('tried_silent_auth=true') === -1;
 
-        if ( silentAuthEnabled && lastUsedConnection && allowedRPs.indexOf( lastUsedConnection ) >= 0 ) {
+        if ( lastUsedConnection && allowedRPs.indexOf( lastUsedConnection ) >= 0 ) {
           willRedirect = true;
           visualStatusReport.textContent = 'Autologging in with ' + lastUsedConnection;
 

@@ -5,6 +5,10 @@ var fireGAEvent = require( 'helpers/fireGAEvent' );
 module.exports = function( element ) {
   var form = element.form;
   var url = 'https://auth-dev.mozilla.auth0.com/public/api/' + form.webAuthConfig.clientID + '/connections';
+  var visualStatusReport = document.getElementById( 'loading__status' );
+  var willRedirect = false;
+
+  ui.setLockState( element, 'loading' );
 
   fetch( url ).then( function( response ) {
     return response.json();
@@ -19,28 +23,36 @@ module.exports = function( element ) {
 
     RPfunctionalities.forEach( function( functionality ) {
       var functionalityName = functionality.getAttribute( 'data-optional-rp' );
+      var lastUsedConnection;
+      var locationString;
+      var silentAuthEnabled;
+      var newLocation;
 
       if ( allowedRPs.indexOf( functionalityName ) === -1 ) {
         ui.hide( functionality );
         fireGAEvent( 'Hiding', 'Hiding login method that isn\'t supported for this RP' );
       }
+
+      if ( window.location.hostname !== 'localhost' && window.localStorage ) {
+        lastUsedConnection = window.localStorage.getItem( 'nlx-last-used-connection' );
+        locationString = window.location.toString();
+        silentAuthEnabled = locationString.indexOf('tried_silent_auth=true') === -1;
+
+        if ( silentAuthEnabled && lastUsedConnection && allowedRPs.indexOf( lastUsedConnection ) >= 0 ) {
+          willRedirect = true;
+          visualStatusReport.textContent = 'Autologging in with ' + lastUsedConnection;
+
+          var redirectTimeout = setTimeout(function() {
+            newLocation = locationString.replace('/login?', '/authorize?').replace('?client=', '?client_id=') + '&sso=true&connection=' + lastUsedConnection + '&tried_silent_auth=true';
+            window.location.replace( newLocation );
+            fireGAEvent( 'Authorisation', 'Performing auto-login with ' +lastUsedConnection );
+          }, 1000 );
+        }
+      }
     });
 
-    if ( window.location.hostname !== 'localhost' && window.localStorage ) {
-      var lastUsedConnection = window.localStorage.getItem( 'nlx-last-used-connection' );
-      var w = window.location.toString();
-      var silentAuthEnabled = w.indexOf('tried_silent_auth=true') === -1;
-
-      if ( silentAuthEnabled && lastUsedConnection && allowedRPs.indexOf( lastUsedConnection ) >= 0 ) {
-        window.location = w.replace('/login?', '/authorize?').replace('?client=', '?client_id=') + '&sso=true&connection=' + lastUsedConnection + '&tried_silent_auth=true'
-        fireGAEvent( 'Authorisation', 'Performing auto-login' );
-
-        return
-      }
+    if ( !willRedirect ) {
+      ui.setLockState( element, 'initial' );
     }
-
-    ui.setLockState( element, 'initial' );
-  }, function(){
-    ui.setLockState( element, 'initial' );
   });
 };

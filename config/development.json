@@ -5,7 +5,7 @@
   "GTM_ID": "GTM-T2N2BRW",
   "client_ID": "CIynn5wTPyYZQcA1FJx1Io9z4t7QWDaE",
   "features": {
-    "autologin": false,
-    "person_api_lookup": true
+    "autologin": "true",
+    "person_api_lookup": "true"
   }
 }

@@ -4,7 +4,7 @@
   "person_api_domain" : "https://person-api.allizom.org/connection/",
   "GTM_ID": "GTM-T2N2BRW"
   "features": {
-    "autologin": false,
-    "person_api_lookup": true
+    "autologin": "true",
+    "person_api_lookup": "true"
   }
 }

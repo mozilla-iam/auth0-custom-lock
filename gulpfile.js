@@ -13,6 +13,7 @@ const inlinesource = require('gulp-inline-source'); // automatically inlines CSS
 const sass = require( 'gulp-sass' ); // builds Sass (.scss) into CSS
 const source = require( 'vinyl-source-stream' ); // lets us use Browserify within Gulp
 const mustache = require("gulp-mustache"); // replace variables
+const fs = require( 'fs' );
 
 /* -----------------------------------
    Other constants
@@ -26,7 +27,6 @@ const paths = {
 
 const environment = process.env.NODE_ENV || 'development'
 
-var fs = require('fs');
 const config = JSON.parse(fs.readFileSync('config/' + environment.toLowerCase() + '.json', 'utf8'));
 
 console.log('Production environment identified.  Building NLX with production config:')

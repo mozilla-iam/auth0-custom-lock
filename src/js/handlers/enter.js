@@ -54,6 +54,11 @@ module.exports = function enter( element ) {
           }
       );
     }
+    else {
+      // show social logins + passwordless
+      ui.setLockState( element, 'non-ldap' );
+      fireGAEvent( 'Screen change', 'Continued as non-LDAP' );
+    }
   }
 };
 

@@ -9,7 +9,6 @@ module.exports = function() {
   if ( dntEnabled === false ) {
     firstScriptTag = document.getElementsByTagName( 'script' )[0];
     scriptTag = document.createElement( 'script' );
-    ID = '{{{ GTM_ID }}}';
 
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
@@ -18,7 +17,7 @@ module.exports = function() {
     });
 
     scriptTag.async = true;
-    scriptTag.src = 'https://www.googletagmanager.com/gtm.js?id=' + ID;
+    scriptTag.src = 'https://www.googletagmanager.com/gtm.js?id=' + NLX.GTM_ID;
 
     firstScriptTag.parentNode.insertBefore( scriptTag, firstScriptTag );
   }

@@ -12,8 +12,8 @@ function getConfig( string ) {
     config = Object.assign( config, hostedConfig.internalOptions );
   }
   else {
-    config.domain = '{{{ auth0_domain }}}';
-    config.clientID = '{{{ client_id }}}';
+    config.domain = NLX.auth0_domain;
+    config.clientID = NLX.client_ID;
   }
   return config;
 }

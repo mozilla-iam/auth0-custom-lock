@@ -5,7 +5,7 @@ module.exports = function enter( element ) {
   var emailField = document.getElementById( 'field-email' );
   var passwordField = document.getElementById( 'field-password' );
   var isDefinitelyLDAP = /mozilla.com|getpocket.com|mozillafoundation.org$/.test( emailField.value );
-  var ENDPOINT = 'https://person-api.sso.mozilla.com/v1/connection/';
+  var ENDPOINT = NLX.person_api_domain;
 
   if ( emailField.value === '' || emailField.validity.valid === false ) {
     emailField.focus();

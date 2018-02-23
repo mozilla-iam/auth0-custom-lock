@@ -14,6 +14,7 @@ function getConfig( string ) {
   else {
     config.domain = NLX.auth0_domain;
     config.clientID = NLX.client_ID;
+    config.responseType = 'code';
   }
   return config;
 }

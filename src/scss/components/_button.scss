@@ -13,6 +13,9 @@
   border: 1px solid transparent;
   text-transform: uppercase;
   transition: background-color .1s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 
   &:hover {
     background-color: $white;

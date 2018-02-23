@@ -7,6 +7,7 @@ globals:
   module: true
   require: true
   ga: true
+  NLX: true
 extends: eslint:recommended
 rules:
   array-bracket-spacing:

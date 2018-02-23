@@ -4,7 +4,7 @@ var fireGAEvent = require( 'helpers/fireGAEvent' );
 
 module.exports = function( element ) {
   var form = element.form;
-  var url = '{{ auth0domain }}' + '/public/api/' + form.webAuthConfig.clientID + '/connections';
+  var url = 'https://{{{ auth0domain }}}' + '/public/api/' + form.webAuthConfig.clientID + '/connections';
 
   ui.setLockState( element, 'loading' );
 

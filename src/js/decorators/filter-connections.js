@@ -5,6 +5,8 @@ var fireGAEvent = require( 'helpers/fireGAEvent' );
 module.exports = function( element ) {
   var form = element.form;
   var url = 'https://' + NLX.auth0domain + '/public/api/' + form.webAuthConfig.clientID + '/connections';
+  var visualStatusReport = document.getElementById( 'loading__status' );
+  var willRedirect = false;
 
   ui.setLockState( element, 'loading' );
 
@@ -24,6 +26,7 @@ module.exports = function( element ) {
       var lastUsedConnection;
       var locationString;
       var silentAuthEnabled;
+      var newLocation;
 
       if ( allowedRPs.indexOf( functionalityName ) === -1 ) {
         ui.hide( functionality );
@@ -36,16 +39,20 @@ module.exports = function( element ) {
         silentAuthEnabled = locationString.indexOf('tried_silent_auth=true') === -1;
 
         if ( silentAuthEnabled && lastUsedConnection && allowedRPs.indexOf( lastUsedConnection ) >= 0 ) {
-          window.location = locationString.replace('/login?', '/authorize?').replace('?client=', '?client_id=') + '&sso=true&connection=' + lastUsedConnection + '&tried_silent_auth=true';
-          fireGAEvent( 'Authorisation', 'Performing auto-login' );
+          willRedirect = true;
+          visualStatusReport.textContent = 'Autologging in with ' + lastUsedConnection;
 
-          return
+          var redirectTimeout = setTimeout(function() {
+            newLocation = locationString.replace('/login?', '/authorize?').replace('?client=', '?client_id=') + '&sso=true&connection=' + lastUsedConnection + '&tried_silent_auth=true';
+            window.location.replace( newLocation );
+            fireGAEvent( 'Authorisation', 'Performing auto-login with ' +lastUsedConnection );
+          }, 1000 );
         }
       }
     });
 
-    ui.setLockState( element, 'initial' );
-  }, function(){
-    ui.setLockState( element, 'initial' );
+    if ( !willRedirect ) {
+      ui.setLockState( element, 'initial' );
+    }
   });
 };

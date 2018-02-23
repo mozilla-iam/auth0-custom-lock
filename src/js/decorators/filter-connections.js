@@ -40,11 +40,9 @@ module.exports = function( element ) {
           willRedirect = true;
           visualStatusReport.textContent = 'Autologging in with ' + lastUsedConnection;
 
-          setTimeout( function() {
-            newLocation = locationString.replace( '/login?', '/authorize?' ).replace( '?client=', '?client_id=' ) + '&sso=true&connection=' + lastUsedConnection + '&tried_silent_auth=true';
-            window.location.replace( newLocation );
-            fireGAEvent( 'Authorisation', 'Performing auto-login with ' + lastUsedConnection );
-          }, 1000 );
+          newLocation = locationString.replace( '/login?', '/authorize?' ).replace( '?client=', '?client_id=' ) + '&sso=true&connection=' + lastUsedConnection + '&tried_silent_auth=true';
+          window.location.replace( newLocation );
+          fireGAEvent( 'Authorisation', 'Performing auto-login with ' + lastUsedConnection );
         }
       }
     });

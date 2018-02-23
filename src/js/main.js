@@ -15,7 +15,10 @@ window.NLX = {
   'client_ID': '{{{ client_ID }}}',
   'LDAP_connection_name': '{{{ LDAP_connection_name }}}',
   'person_api_domain': '{{{ person_api_domain }}}',
-  'GTM_ID': '{{{ GTM_ID }}}'
+  'GTM_ID': '{{{ GTM_ID }}}',
+  'features': {
+    'autologin': locationString.indexOf('tried_silent_auth=true') === -1 || {{{ features.autologin }}}
+  }
 };
 
 polyfill();

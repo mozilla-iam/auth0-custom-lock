@@ -3,5 +3,8 @@
   "LDAP_connection_name" : "Mozilla-LDAP-Dev",
   "person_api_domain" : "https://person-api.sso.allizom.org/connection/",
   "GTM_ID": "GTM-T2N2BRW",
-  "client_ID": "CIynn5wTPyYZQcA1FJx1Io9z4t7QWDaE"
+  "client_ID": "CIynn5wTPyYZQcA1FJx1Io9z4t7QWDaE",
+  "features": {
+    "autologin": true
+  }
 }

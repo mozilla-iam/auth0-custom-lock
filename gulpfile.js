@@ -25,7 +25,8 @@ const paths = {
   drop : 'dist'
 };
 
-const environment = process.env.NODE_ENV || 'development'
+let environment = process.env.NODE_ENV || 'development';
+environment = environment.toLowerCase();
 
 const config = JSON.parse(fs.readFileSync('config/' + environment.toLowerCase() + '.json', 'utf8'));
 

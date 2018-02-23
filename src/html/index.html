@@ -45,7 +45,7 @@
           <div id="ldap" data-screen data-hidden inert>
             <p>Welcome</p>
             <label for="field-password" class="visually-hidden">Password</label>
-            <input type="password" id="field-password" autocomplete="current-password" name="password" placeholder="Password" data-decorator="continue-with-keyboard" data-continue-with="authorise-ldap-credentials"  />
+            <input type="password" id="field-password" autocomplete="current-password" name="password" placeholder="Password" data-decorator="submit-with-enter" data-continue-with="authorise-ldap-credentials"  />
             <input type="submit" class="button button--full-width" id="authorise-ldap-credentials" value="Enter"/>
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
@@ -85,7 +85,7 @@
             <h2 class="card__heading card__heading--error" id="error-message-ldap"><img src="../images/circled-x.svg" class="card__heading-icon" inline /> <span>Error</span></h2>
             <p>Please attempt again or contact the Help Desk for assistance.</p>
             <label for="field-password-try-2" class="visually-hidden">Password</label>
-            <input type="password" name="password" id="field-password-try-2" autocomplete="current-password" placeholder="Password" data-decorator="continue-with-keyboard" data-continue-with="authorise-ldap-credentials-try-2" />
+            <input type="password" name="password" id="field-password-try-2" autocomplete="current-password" placeholder="Password" data-decorator="submit-with-enter" data-continue-with="authorise-ldap-credentials-try-2" />
             <input type="submit" class="button button--full-width" id="authorise-ldap-credentials-try-2" value="Enter" />
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>

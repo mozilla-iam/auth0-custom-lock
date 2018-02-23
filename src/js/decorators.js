@@ -4,7 +4,7 @@
 
 var decorators = {
   'init-auth': require( 'decorators/init-auth' ),
-  'continue-with-keyboard': require( 'decorators/continue-with-keyboard' ),
+  'submit-with-enter': require( 'decorators/submit-with-enter' ),
   'load-ga': require( 'decorators/load-ga' ),
   'handle-submit': require( 'decorators/handle-submit' ),
   'display-rp-name': require( 'decorators/display-rp-name' ),

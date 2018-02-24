@@ -4,7 +4,7 @@
   border-bottom: 1px solid $white;
   padding: 1.5em;
   text-align: center;
-  margin: 0 -1em 2em -1em;
+  margin: 0 -1.5em 2em -1.5em;
   display: flex;
   flex-direction: column;
 
@@ -22,7 +22,7 @@
     flex-direction: column;
     align-items: center;
 
-    @media ( min-height: 50em ) and ( min-width: 40em ) {
+    @media ( min-width: 40em ) {
       display: block;
     }
   }

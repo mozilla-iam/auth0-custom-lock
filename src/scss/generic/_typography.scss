@@ -3,7 +3,7 @@ body {
   color: $darkerGrey;
   font-family: "Open Sans", sans-serif;
   letter-spacing: 0.03em;
-  margin: 0 1em;
+  margin: 0 1.5em;
 
   @media ( min-height: 50em ) and ( min-width: 40em ) {
     display: flex;

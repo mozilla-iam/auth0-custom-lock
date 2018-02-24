@@ -39,7 +39,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 
+- Hardcoded URLs have been removed.
+
 ## [1.1.0] - 2017-02-27
+
+_Will likely contain unreleased changes._
 
 ## [1.0] - 2017-02-21
 

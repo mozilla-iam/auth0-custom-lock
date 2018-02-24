@@ -12,7 +12,8 @@ const gulp = require( 'gulp' ); // runs tasks
 const inlinesource = require('gulp-inline-source'); // automatically inlines CSS, JS and images
 const sass = require( 'gulp-sass' ); // builds Sass (.scss) into CSS
 const source = require( 'vinyl-source-stream' ); // lets us use Browserify within Gulp
-
+const mustache = require("gulp-mustache"); // replace variables
+const fs = require( 'fs' );
 
 /* -----------------------------------
    Other constants
@@ -24,6 +25,15 @@ const paths = {
   drop : 'dist'
 };
 
+let environment = process.env.NODE_ENV || 'development';
+environment = environment.toLowerCase();
+
+const config = JSON.parse( fs.readFileSync( 'config/' + environment + '.json', 'utf8' ) );
+
+console.log( 'Environment “' + environment + '” identified.  Building NLX with ' + environment + ' config:' );
+console.log( '---------------------------Begin configuration.---------------------------' );
+console.log( config );
+console.log( '---------------------------End configuration.---------------------------' );
 
 /* -----------------------------------
    Tasks
@@ -37,14 +47,17 @@ gulp.task('browserSync', function() {
   });
 });
 
-gulp.task( 'inlinesource', function() {
+gulp.task( 'process-html', function() {
   var options = {
-    compress: false,
-    pretty: true
+    inlineSource: {
+      compress: false,
+      pretty: true
+    }
   };
 
   return gulp.src( paths.html + '/*.html' )
-    .pipe( inlinesource( options ) )
+    .pipe( inlinesource( options.inlineSource ) )
+    .pipe( mustache( config ) )
     .pipe( gulp.dest( paths.drop ) )
     .pipe( browserSync.reload( { stream: true } ));
 });
@@ -77,7 +90,7 @@ gulp.task( 'css:clean', function() {
 });
 
 gulp.task( 'css:watch', function() {
-  gulp.watch( [ paths.styles + '/**/*.scss' ], gulp.series( 'css', 'inlinesource' ) );
+  gulp.watch( [ paths.styles + '/**/*.scss' ], gulp.series( 'css', 'process-html' ) );
 });
 
 gulp.task( 'css', gulp.series( 'css:clean', 'css:process' ) );
@@ -103,11 +116,11 @@ gulp.task( 'js:browserify', function() {
 gulp.task( 'js', gulp.series( 'js:clean', 'js:browserify' ) );
 
 gulp.task( 'js:watch', function() {
-  gulp.watch( paths.scripts + '/**/*.js', gulp.series( 'js', 'inlinesource' ) );
+  gulp.watch( paths.scripts + '/**/*.js', gulp.series( 'js', 'process-html' ) );
 });
 
 gulp.task( 'html:watch', function() {
-  gulp.watch( paths.html + '/*.html', gulp.series( 'inlinesource' ) );
+  gulp.watch( paths.html + '/*.html', gulp.series( 'process-html' ) );
 })
 
 
@@ -115,7 +128,7 @@ gulp.task( 'html:watch', function() {
    Combined tasks
    ------------------------------------ */
 
-gulp.task( 'default', gulp.series( gulp.parallel( 'css', 'js' ), [ 'inlinesource' ] ) );
+gulp.task( 'default', gulp.series( gulp.parallel( 'css', 'js' ), [ 'process-html' ] ) );
 gulp.task( 'watch', gulp.series( gulp.parallel( 'lint:watch', 'css:watch', 'js:watch', 'html:watch' ) ) );
 gulp.task( 'clean', gulp.parallel( 'css:clean', 'js:clean' ) );
 gulp.task( 'dev', gulp.parallel( gulp.series( 'default', 'browserSync' ), 'watch' ) );

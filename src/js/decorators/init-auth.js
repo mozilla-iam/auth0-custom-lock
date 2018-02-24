@@ -12,7 +12,9 @@ function getConfig( string ) {
     config = Object.assign( config, hostedConfig.internalOptions );
   }
   else {
-    config = require( 'config/local-config-sample' );
+    config.domain = NLX.auth0_domain;
+    config.clientID = NLX.client_ID;
+    config.responseType = 'code';
   }
   return config;
 }

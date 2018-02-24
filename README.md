@@ -24,6 +24,8 @@ If you want to build the page just once, for example to deploy it, run:
 npm run build
 ```
 
+> Note: in order to build the production configuration you should run `export NODE_ENV=production` otherwise this will default to the dev environment.
+
 ### Viewing/developing locally
 
 To view (and develop) locally, this project has a server built in. To compile the sources and serve them, run:

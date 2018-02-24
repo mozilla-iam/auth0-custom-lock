@@ -4,7 +4,7 @@ var fireGAEvent = require( 'helpers/fireGAEvent' );
 
 module.exports = function( element ) {
   var form = element.form;
-  var url = 'https://auth-dev.mozilla.auth0.com/public/api/' + form.webAuthConfig.clientID + '/connections';
+  var url = 'https://' + NLX.auth0_domain + '/public/api/' + form.webAuthConfig.clientID + '/connections';
   var visualStatusReport = document.getElementById( 'loading__status' );
   var willRedirect = false;
   var loginIntro = document.getElementById( 'initial-login-text' );
@@ -26,8 +26,8 @@ module.exports = function( element ) {
     RPfunctionalities.forEach( function( functionality ) {
       var functionalityName = functionality.getAttribute( 'data-optional-rp' );
       var lastUsedConnection;
-      var locationString;
-      var silentAuthEnabled;
+      var locationString = window.location.toString();
+      var silentAuthEnabled = locationString.indexOf( 'tried_silent_auth=true' ) === -1 || NLX.features.autologin === 'true';
       var newLocation;
 
       if ( allowedRPs.indexOf( functionalityName ) === -1 ) {
@@ -37,20 +37,16 @@ module.exports = function( element ) {
         fireGAEvent( 'Hiding', 'Hiding login method that isn\'t supported for this RP' );
       }
 
-      if ( window.location.hostname !== 'localhost' && window.localStorage ) {
+      if ( silentAuthEnabled && window.localStorage ) {
         lastUsedConnection = window.localStorage.getItem( 'nlx-last-used-connection' );
-        locationString = window.location.toString();
-        silentAuthEnabled = locationString.indexOf('tried_silent_auth=true') === -1;
 
-        if ( silentAuthEnabled && lastUsedConnection && allowedRPs.indexOf( lastUsedConnection ) >= 0 ) {
+        if ( lastUsedConnection && allowedRPs.indexOf( lastUsedConnection ) >= 0 ) {
           willRedirect = true;
           visualStatusReport.textContent = 'Autologging in with ' + lastUsedConnection;
 
-          var redirectTimeout = setTimeout(function() {
-            newLocation = locationString.replace('/login?', '/authorize?').replace('?client=', '?client_id=') + '&sso=true&connection=' + lastUsedConnection + '&tried_silent_auth=true';
-            window.location.replace( newLocation );
-            fireGAEvent( 'Authorisation', 'Performing auto-login with ' +lastUsedConnection );
-          }, 1000 );
+          newLocation = locationString.replace( '/login?', '/authorize?' ).replace( '?client=', '?client_id=' ) + '&sso=true&connection=' + lastUsedConnection + '&tried_silent_auth=true';
+          window.location.replace( newLocation );
+          fireGAEvent( 'Authorisation', 'Performing auto-login with ' + lastUsedConnection );
         }
       }
     });

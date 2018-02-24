@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 #### UI/UX
 
 - Form now submits when you press `ENTER` in the password field.
+- We now catch failed requests when checking for LDAP/non-LDAP and available login
+  methods. This can happen for example if one's internet connection fails or if
+  one of the API endpoints is down. In both cases we revert back to the initial state.
 
 #### Build process
 

@@ -50,9 +50,13 @@ module.exports = function enter( element ) {
                 ui.setLockState( element, 'non-ldap' );
                 fireGAEvent( 'Screen change', 'Continued as non-LDAP' );
               }
-            });
+            })
           }
-      );
+      ).catch( function() {
+        // if request fails, show social logins + passwordless
+        ui.setLockState( element, 'non-ldap' );
+        fireGAEvent( 'Screen change', 'Continued as non-LDAP' );
+      });
     }
     else {
       // show social logins + passwordless

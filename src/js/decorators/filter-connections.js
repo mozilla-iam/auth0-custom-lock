@@ -58,5 +58,8 @@ module.exports = function( element ) {
     if ( hiddenFunctionalities.indexOf( 'github' ) > 0 && hiddenFunctionalities.indexOf( 'google-oauth2' ) > 0 ) {
       loginIntro.querySelector( 'span' ).style.display = 'none';
     }
+  }).catch( function() {
+    // Could not check which connections are available for this RP; just show all.
+    ui.setLockState( element, 'initial' );
   });
 };

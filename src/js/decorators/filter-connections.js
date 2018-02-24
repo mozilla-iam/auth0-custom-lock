@@ -7,6 +7,7 @@ module.exports = function( element ) {
   var url = 'https://auth-dev.mozilla.auth0.com/public/api/' + form.webAuthConfig.clientID + '/connections';
   var visualStatusReport = document.getElementById( 'loading__status' );
   var willRedirect = false;
+  var loginIntro = document.getElementById( 'initial-login-text' );
 
   ui.setLockState( element, 'loading' );
 
@@ -15,6 +16,7 @@ module.exports = function( element ) {
   }).then( function( allowed ) {
     var allowedRPs = [];
     var RPfunctionalities = dom.$( '[data-optional-rp]' );
+    var hiddenFunctionalities = [];
     var i;
 
     for ( i = 0; i < allowed.length; i++ ) {
@@ -30,6 +32,8 @@ module.exports = function( element ) {
 
       if ( allowedRPs.indexOf( functionalityName ) === -1 ) {
         ui.hide( functionality );
+        hiddenFunctionalities.push( functionalityName );
+
         fireGAEvent( 'Hiding', 'Hiding login method that isn\'t supported for this RP' );
       }
 
@@ -53,6 +57,10 @@ module.exports = function( element ) {
 
     if ( !willRedirect ) {
       ui.setLockState( element, 'initial' );
+    }
+
+    if ( hiddenFunctionalities.indexOf( 'github' ) > 0 && hiddenFunctionalities.indexOf( 'google-oauth2' ) > 0 ) {
+      loginIntro.querySelector( 'span' ).style.display = 'none';
     }
   });
 };

@@ -56,7 +56,7 @@ module.exports = function( element ) {
       ui.setLockState( element, 'initial' );
     }
 
-    if ( removedFunctionalities.indexOf( 'github' ) > 0 && removedFunctionalities.indexOf( 'google-oauth2' ) > 0 ) {
+    if ( removedFunctionalities.indexOf( 'github' ) >= 0 && removedFunctionalities.indexOf( 'google-oauth2' ) >= 0 ) {
       loginIntro.querySelector( 'span' ).style.display = 'none';
     }
   }).catch( function() {

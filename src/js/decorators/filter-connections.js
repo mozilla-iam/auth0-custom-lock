@@ -16,7 +16,7 @@ module.exports = function( element ) {
   }).then( function( allowed ) {
     var allowedRPs = [];
     var RPfunctionalities = dom.$( '[data-optional-rp]' );
-    var hiddenFunctionalities = [];
+    var removedFunctionalities = [];
     var i;
 
     for ( i = 0; i < allowed.length; i++ ) {
@@ -31,8 +31,8 @@ module.exports = function( element ) {
       var newLocation;
 
       if ( allowedRPs.indexOf( functionalityName ) === -1 ) {
-        ui.hide( functionality );
-        hiddenFunctionalities.push( functionalityName );
+        functionality.remove();
+        removedFunctionalities.push( functionalityName );
 
         fireGAEvent( 'Hiding', 'Hiding login method that isn\'t supported for this RP' );
       }
@@ -55,7 +55,7 @@ module.exports = function( element ) {
       ui.setLockState( element, 'initial' );
     }
 
-    if ( hiddenFunctionalities.indexOf( 'github' ) > 0 && hiddenFunctionalities.indexOf( 'google-oauth2' ) > 0 ) {
+    if ( removedFunctionalities.indexOf( 'github' ) > 0 && removedFunctionalities.indexOf( 'google-oauth2' ) > 0 ) {
       loginIntro.querySelector( 'span' ).style.display = 'none';
     }
   }).catch( function() {

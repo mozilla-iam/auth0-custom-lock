@@ -1,3 +1,36 @@
+<!--
+             _.-~-.
+           7''  Q..\
+        _7         (_
+      _7  _/    _q.  /
+    _7 . ___  /VVvv-'_                                            .
+   7/ / /~- \_\\      '-._     .-'                      /       //
+  ./ ( /-~-/||'=.__  '::. '-~'' {             ___   /  //     ./{
+ V   V-~-~| ||   __''_   ':::.   ''~-~.___.-'' _/  // / {_   /  {  /
+  VV/-~-~-|/ \ .'__'. '.    '::                     _ _ _        ''.
+  / /~~~~||VVV/ /  \ )  \        _ __ ___   ___ ___(_) | | __ _   .::'
+ / (~-~-~\\.-' /    \'   \::::. | '_ ` _ \ / _ \_  / | | |/ _` | :::'
+/..\    /..\__/      '     '::: | | | | | | (_) / /| | | | (_| | ::'
+vVVv    vVVv                 ': |_| |_| |_|\___/___|_|_|_|\__,_| ''
+
+This is the custom Mozilla Login Experience, designed and built by Mozilla's IAM Project.
+
+Version: 1.1.0.
+
+These are the variables we are using:
+
+  Auth0-domain: {{{ auth0_domain }}}
+  Client ID: {{{ client_id }}}
+  LDAP connection name: {{{ LDAP_connection_name }}}
+  Person API domain: {{{ person_api_domain }}}
+  Google Tag Manager ID: {{{ GTM_ID }}}
+  Features:
+   autologin: {{{ features.autologin }}}
+   person_api_lookup: {{{ features.person_api_lookup }}}
+
+The code is the result of a build process, please find the source code
+on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
+-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,14 +52,13 @@
           <div id="loading" class="loading" data-screen>
             <p class="visually-hidden ">Loading…</p>
             <img src="../images/loading.svg" class="loading__spinner" inline />
-            <p role="alert" id="loading__status"></p>
+            <p role="alert" id="loading__status" class="loading__status"></p>
           </div>
           <div id="initial" data-screen data-hidden inert>
             <p id="initial-login-text">Log in with email<span> or third-party</span></p>
             <label for="field-email" class="visually-hidden">E-mail address</label>
             <input type="email" name="username" id="field-email" placeholder="Email address" autocomplete="username email" autofocus />
             <input type="submit" class="button button--full-width" id="enter-initial" value="Enter" />
-            <hr>
             <ul class="login-options list list--plain">
               <li data-optional-rp="github">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-github">
@@ -57,7 +89,6 @@
               </li>
             </ul>
             <a href="https://wiki.mozilla.org/IAM/Frequently_asked_questions#Q:_Why_do_you_support_email_login_.28.22passwordless.22.29_if_it.27s_less_safe_than_other_methods.3F" class="button button--text-only button--unpadded">Why an email?</a>
-            <hr>
             <ul class="login-options list list--plain">
               <li data-optional-rp="github">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-github">

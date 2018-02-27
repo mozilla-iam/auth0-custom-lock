@@ -35,7 +35,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   available as login methods. The text then simply becomes “Login with email”
 - Buttons no longer have platform UI styling (i.e. a gradient on iOS)
 - Autologin redirect no longer causes NLX to be added to a user's browser history.
-  This means that there is the back button does not take them back to NLX if they
+  This means that the back button no longer takes people back to NLX if they
   have been autologged in (this is helpful, because for most RPs, going back to
   NLX will result in errors).
 

@@ -1,10 +1,28 @@
 var ui = require( 'helpers/ui' );
 var fireGAEvent = require( 'helpers/fireGAEvent' );
 
+function showNonLDAP( element ) {
+  // show social logins + passwordless
+  ui.setLockState( element, 'non-ldap' );
+  fireGAEvent( 'Screen change', 'Continued as non-LDAP' );
+}
+
+function showLDAP( element, passwordField ) {
+  // show password field
+  ui.setLockState( element, 'ldap' );
+  // focus password field
+  setTimeout( function() {
+    passwordField.focus();
+  }, 400 );
+
+  fireGAEvent( 'Screen change', 'Continued as LDAP' );
+}
+
 module.exports = function enter( element ) {
   var emailField = document.getElementById( 'field-email' );
   var passwordField = document.getElementById( 'field-password' );
   var isDefinitelyLDAP = /mozilla.com|getpocket.com|mozillafoundation.org$/.test( emailField.value );
+  var forceNonLDAP = window.location.toString().indexOf( 'forceNonLDAP=true' ) >= 0;
   var ENDPOINT = NLX.person_api_domain;
 
   if ( emailField.value === '' || emailField.validity.valid === false ) {
@@ -12,15 +30,11 @@ module.exports = function enter( element ) {
     return;
   }
 
-  if ( isDefinitelyLDAP ) {
-    // show password field
-    ui.setLockState( element, 'ldap' );
-    // focus password field
-    setTimeout( function() {
-      passwordField.focus();
-    }, 400 );
-
-    fireGAEvent( 'Screen change', 'Continued as LDAP' );
+  if ( forceNonLDAP ) {
+    showNonLDAP( element );
+  }
+  else if ( isDefinitelyLDAP ) {
+    showLDAP( element, passwordField );
   }
   else {
     if ( NLX.features.person_api_lookup ) {
@@ -35,33 +49,19 @@ module.exports = function enter( element ) {
               var isLDAP = userinfo.hasOwnProperty( 'user_email' ) && userinfo.hasOwnProperty( 'connection_method' ) && userinfo[ 'connection_method' ] === 'ad';
 
               if ( isLDAP ) {
-
-                // show password field
-                ui.setLockState( element, 'ldap' );
-                // focus password field
-                setTimeout( function() {
-                  passwordField.focus();
-                }, 400 );
-
-                fireGAEvent( 'Screen change', 'Continued as LDAP' );
+                showLDAP( element, passwordField );
               }
               else {
-                // show social logins + passwordless
-                ui.setLockState( element, 'non-ldap' );
-                fireGAEvent( 'Screen change', 'Continued as non-LDAP' );
+                showNonLDAP( element );
               }
             })
           }
       ).catch( function() {
-        // if request fails, show social logins + passwordless
-        ui.setLockState( element, 'non-ldap' );
-        fireGAEvent( 'Screen change', 'Continued as non-LDAP' );
+        showNonLDAP( element );
       });
     }
     else {
-      // show social logins + passwordless
-      ui.setLockState( element, 'non-ldap' );
-      fireGAEvent( 'Screen change', 'Continued as non-LDAP' );
+      showNonLDAP( element );
     }
   }
 };

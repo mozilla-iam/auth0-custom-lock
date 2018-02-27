@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - We now catch failed requests when checking for LDAP/non-LDAP and available login
   methods. This can happen for example if one's internet connection fails or if
   one of the API endpoints is down. In both cases we revert back to first page of NLX.
+- It is now possible to have users go to the non-LDAP screen even if their email is an
+  LDAP account. RPs can utilise this by adding `forceNonLDAP=true` to the URL.
 
 #### Build process
 

@@ -26,8 +26,8 @@ module.exports = function( element ) {
     RPfunctionalities.forEach( function( functionality ) {
       var functionalityName = functionality.getAttribute( 'data-optional-rp' );
       var locationString = window.location.toString();
-      var isAccountLinking = locationString.indexOf( 'account_linking=true' ) === -1;
-      var triedSilentAuth = locationString.indexOf( 'tried_silent_auth=true' ) === -1;
+      var isAccountLinking = locationString.indexOf( 'account_linking=true' ) >= 0;
+      var triedSilentAuth = locationString.indexOf( 'tried_silent_auth=true' ) >= 0;
       var silentAuthEnabled = !isAccountLinking && !triedSilentAuth && NLX.features.autologin === 'true';
       var lastUsedConnection = lastUsedConnection = window.localStorage.getItem( 'nlx-last-used-connection' ) || '';
       var newLocation;

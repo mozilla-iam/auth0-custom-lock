@@ -25,9 +25,11 @@ module.exports = function( element ) {
 
     RPfunctionalities.forEach( function( functionality ) {
       var functionalityName = functionality.getAttribute( 'data-optional-rp' );
-      var lastUsedConnection;
       var locationString = window.location.toString();
-      var silentAuthEnabled = locationString.indexOf( 'tried_silent_auth=true' ) === -1 || NLX.features.autologin === 'true';
+      var isAccountLinking = locationString.indexOf( 'account_linking=true' ) === -1;
+      var triedSilentAuth = locationString.indexOf( 'tried_silent_auth=true' ) === -1;
+      var silentAuthEnabled = !isAccountLinking && !triedSilentAuth && NLX.features.autologin === 'true';
+      var lastUsedConnection = lastUsedConnection = window.localStorage.getItem( 'nlx-last-used-connection' ) || '';
       var newLocation;
 
       if ( allowedRPs.indexOf( functionalityName ) === -1 ) {
@@ -38,7 +40,6 @@ module.exports = function( element ) {
       }
 
       if ( silentAuthEnabled && window.localStorage ) {
-        lastUsedConnection = window.localStorage.getItem( 'nlx-last-used-connection' );
 
         if ( lastUsedConnection && allowedRPs.indexOf( lastUsedConnection ) >= 0 ) {
           willRedirect = true;

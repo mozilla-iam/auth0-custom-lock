@@ -21,8 +21,8 @@ function showLDAP( element, passwordField ) {
 module.exports = function enter( element ) {
   var emailField = document.getElementById( 'field-email' );
   var passwordField = document.getElementById( 'field-password' );
-  var isDefinitelyLDAP = /mozilla.com|getpocket.com|mozillafoundation.org$/.test( emailField.value );
-  var forceNonLDAP = window.location.toString().indexOf( 'forceNonLDAP=true' ) >= 0;
+  var accountLinking = window.location.toString().indexOf( 'account_linking=true' ) >= 0;
+  var qualifiesForLDAPShortcut = /mozilla.com|getpocket.com|mozillafoundation.org$/.test( emailField.value );
   var ENDPOINT = NLX.person_api_domain;
 
   if ( emailField.value === '' || emailField.validity.valid === false ) {
@@ -30,10 +30,7 @@ module.exports = function enter( element ) {
     return;
   }
 
-  if ( forceNonLDAP ) {
-    showNonLDAP( element );
-  }
-  else if ( isDefinitelyLDAP ) {
+  if ( qualifiesForLDAPShortcut && accountLinking === false ) {
     showLDAP( element, passwordField );
   }
   else {

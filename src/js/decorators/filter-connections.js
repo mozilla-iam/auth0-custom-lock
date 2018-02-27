@@ -39,7 +39,7 @@ module.exports = function( element ) {
         fireGAEvent( 'Hiding', 'Hiding login method that isn\'t supported for this RP' );
       }
 
-      if ( silentAuthEnabled && window.localStorage ) {
+      if ( silentAuthEnabled ) {
 
         if ( lastUsedConnection && allowedRPs.indexOf( lastUsedConnection ) >= 0 ) {
           willRedirect = true;

@@ -42,6 +42,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 
 - Hardcoded URLs have been removed.
+- Removed autologin feature for Passwordless logins.
 
 ## [1.1.0] - 2017-02-27
 

@@ -13,8 +13,6 @@ module.exports = function authorise( element ) {
 
   fireGAEvent( 'Authorisation', 'Requested passwordless link' );
 
-  storeLastUsedConnection( connection );
-
   form.webAuth.passwordlessStart({
     connection: 'email',
     send: 'link',

@@ -19,25 +19,25 @@ module.exports = function( element ) {
     var i;
 
     loginMethods = {
-      RP_supported: [],
-      NLX_supported: dom.$( '[data-optional-login-method]' ),
-      removed: []
+      'supportedByRP': [],
+      'supportedByNLX': dom.$( '[data-optional-login-method]' ),
+      'removed': []
     };
 
     for ( i = 0; i < supported.length; i++ ) {
-      loginMethods['RP_supported'].push( supported[i].name );
+      loginMethods['supportedByRP'].push( supported[i].name );
     }
 
-    loginMethods['NLX_supported'].forEach( function( loginMethod ) {
+    loginMethods['supportedByNLX'].forEach( function( loginMethod ) {
       var thisLoginMethod = loginMethod.getAttribute( 'data-optional-login-method' );
       var windowString = window.location.toString();
       var requiresPrompt = windowString.indexOf( 'prompt=login' ) >= 0 || windowString.indexOf( 'prompt=select_account' );
       var autologinEnabled = requiresPrompt === -1 && NLX.features.autologin === 'true';
-      var lastMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
-      var rpSupportsLastMethod = lastMethod && loginMethods['RP_supported'].indexOf( lastMethod ) >= 0;
+      var savedLoginMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
+      var rpSupportsSavedLoginMethod = savedLoginMethod && loginMethods['supportedByRP'].indexOf( savedLoginMethod ) >= 0;
 
       // Remove login options from page if not supported by RP
-      if ( loginMethods['RP_supported'].indexOf( thisLoginMethod ) === -1 ) {
+      if ( loginMethods['supportedByRP'].indexOf( thisLoginMethod ) === -1 ) {
         loginMethod.remove();
         loginMethods['removed'].push( thisLoginMethod );
 
@@ -47,8 +47,8 @@ module.exports = function( element ) {
       // RPs that request autologin to happen with the prompt=none parameter,
       // will not see this page. As a fallback for RPs that don't use prompt=none,
       // we attempt autologin once
-      if ( autologinEnabled && rpSupportsLastMethod ) {
-        autologin( lastMethod, form );
+      if ( autologinEnabled && rpSupportsSavedLoginMethod ) {
+        autologin( savedLoginMethod, form );
       }
     });
 

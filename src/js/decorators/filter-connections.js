@@ -1,12 +1,12 @@
 var dom = require( 'helpers/dom' );
 var ui = require( 'helpers/ui' );
 var fireGAEvent = require( 'helpers/fireGAEvent' );
+var autoLogn = require( 'helpers/autoLogin' );
 
 module.exports = function( element ) {
   var form = element.form;
   var url = 'https://' + NLX.auth0_domain + '/public/api/' + form.webAuthConfig.clientID + '/connections';
-  var visualStatusReport = document.getElementById( 'loading__status' );
-  var willRedirect = false;
+  var form.willRedirect = false;
   var loginIntro = document.getElementById( 'initial-login-text' );
 
   ui.setLockState( element, 'loading' );
@@ -27,8 +27,7 @@ module.exports = function( element ) {
 
     loginMethods['NLX_supported'].forEach( function( loginMethod ) {
       var thisLoginMethod = loginMethod.getAttribute( 'data-optional-login-method' );
-      var locationString = window.location.toString();
-      var isAccountLinking = locationString.indexOf( 'account_linking=true' ) >= 0;
+      var isAccountLinking = window.location.toString().indexOf( 'account_linking=true' ) >= 0;
       var silentAuthEnabled = !isAccountLinking && NLX.features.autologin === 'true';
       var lastUsedLoginMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
       var rpSupportsLastUsedLoginMethod = lastUsedLoginMethod && loginMethods['RP_supported'].indexOf( lastUsedLoginMethod ) >= 0;
@@ -45,17 +44,11 @@ module.exports = function( element ) {
       // will not see this page. As a fallback for RPs that don't use prompt=none,
       // we attempt autologin once
       if ( silentAuthEnabled && rpSupportsLastUsedLoginMethod ) {
-        willRedirect = true;
-        visualStatusReport.textContent = 'Autologging in with ' + lastUsedLoginMethod;
-
-        newLocation = locationString.replace( '/login?', '/authorize?' ).replace( '?client=', '?client_id=' ) + '&sso=true&connection=' + lastUsedLoginMethod + '&prompt=none';
-        window.location.replace( newLocation );
-        fireGAEvent( 'Authorisation', 'Performing auto-login with ' + lastUsedLoginMethod );
-        return;
+        autoLogin( lastUsedLoginMethod );
       }
     });
 
-    if ( !willRedirect ) {
+    if ( !form.willRedirect ) {
       ui.setLockState( element, 'initial' );
     }
 

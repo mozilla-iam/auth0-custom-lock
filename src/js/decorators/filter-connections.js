@@ -32,7 +32,7 @@ module.exports = function( element ) {
       var thisLoginMethod = loginMethod.getAttribute( 'data-optional-login-method' );
       var windowString = window.location.toString();
       var requiresPrompt = windowString.indexOf( 'prompt=login' ) >= 0 || windowString.indexOf( 'prompt=select_account' );
-      var autologinEnabled = !requiresPrompt && NLX.features.autologin === 'true';
+      var autologinEnabled = requiresPrompt === -1 && NLX.features.autologin === 'true';
       var lastMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
       var rpSupportsLastMethod = lastMethod && loginMethods['RP_supported'].indexOf( lastMethod ) >= 0;
 
@@ -48,7 +48,7 @@ module.exports = function( element ) {
       // will not see this page. As a fallback for RPs that don't use prompt=none,
       // we attempt autologin once
       if ( autologinEnabled && rpSupportsLastMethod ) {
-        autologin( lastMethod );
+        autologin( lastMethod, form );
       }
     });
 

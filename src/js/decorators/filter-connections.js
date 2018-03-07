@@ -13,42 +13,45 @@ module.exports = function( element ) {
 
   fetch( url ).then( function( response ) {
     return response.json();
-  }).then( function( allowed ) {
-    var allowedRPs = [];
-    var RPfunctionalities = dom.$( '[data-optional-rp]' );
-    var removedFunctionalities = [];
+  }).then( function( supported ) {
+    var loginMethods = {
+      'RP_supported': [],
+      'NLX_supported': dom.$( '[data-optional-login-method]' ),
+      'removed': []
+    };
     var i;
 
-    for ( i = 0; i < allowed.length; i++ ) {
-      allowedRPs.push( allowed[i].name );
+    for ( i = 0; i < supported.length; i++ ) {
+      loginMethods['RP_supported'].push( supported[i].name );
     }
 
-    RPfunctionalities.forEach( function( functionality ) {
-      var functionalityName = functionality.getAttribute( 'data-optional-rp' );
+    loginMethods['NLX_supported'].forEach( function( loginMethod ) {
+      var thisLoginMethod = loginMethod.getAttribute( 'data-optional-login-method' );
       var locationString = window.location.toString();
       var isAccountLinking = locationString.indexOf( 'account_linking=true' ) >= 0;
-      var triedSilentAuth = locationString.indexOf( 'tried_silent_auth=true' ) >= 0;
-      var silentAuthEnabled = !isAccountLinking && !triedSilentAuth && NLX.features.autologin === 'true';
-      var lastUsedConnection = lastUsedConnection = window.localStorage.getItem( 'nlx-last-used-connection' ) || '';
+      var silentAuthEnabled = !isAccountLinking && NLX.features.autologin === 'true';
+      var lastUsedLoginMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
+      var rpSupportsLastUsedLoginMethod = lastUsedLoginMethod && loginMethods['RP_supported'].indexOf( lastUsedLoginMethod ) >= 0;
       var newLocation;
 
-      if ( allowedRPs.indexOf( functionalityName ) === -1 ) {
-        functionality.remove();
-        removedFunctionalities.push( functionalityName );
+      if ( loginMethods['RP_supported'].indexOf( thisLoginMethod ) === -1 ) {
+        loginMethod.remove();
+        loginMethods['removed'].push( thisLoginMethod );
 
         fireGAEvent( 'Hiding', 'Hiding login method that isn\'t supported for this RP' );
       }
 
-      if ( silentAuthEnabled ) {
+      // RPs that request autologin to happen with the prompt=none parameter,
+      // will not see this page. As a fallback for RPs that don't use prompt=none,
+      // we attempt autologin once
+      if ( silentAuthEnabled && rpSupportsLastUsedLoginMethod ) {
+        willRedirect = true;
+        visualStatusReport.textContent = 'Autologging in with ' + lastUsedLoginMethod;
 
-        if ( lastUsedConnection && allowedRPs.indexOf( lastUsedConnection ) >= 0 ) {
-          willRedirect = true;
-          visualStatusReport.textContent = 'Autologging in with ' + lastUsedConnection;
-
-          newLocation = locationString.replace( '/login?', '/authorize?' ).replace( '?client=', '?client_id=' ) + '&sso=true&connection=' + lastUsedConnection + '&tried_silent_auth=true';
-          window.location.replace( newLocation );
-          fireGAEvent( 'Authorisation', 'Performing auto-login with ' + lastUsedConnection );
-        }
+        newLocation = locationString.replace( '/login?', '/authorize?' ).replace( '?client=', '?client_id=' ) + '&sso=true&connection=' + lastUsedLoginMethod + '&prompt=none';
+        window.location.replace( newLocation );
+        fireGAEvent( 'Authorisation', 'Performing auto-login with ' + lastUsedLoginMethod );
+        return;
       }
     });
 
@@ -56,7 +59,7 @@ module.exports = function( element ) {
       ui.setLockState( element, 'initial' );
     }
 
-    if ( removedFunctionalities.indexOf( 'github' ) > 0 && removedFunctionalities.indexOf( 'google-oauth2' ) > 0 ) {
+    if ( loginMethods['removed'].indexOf( 'github' ) >= 0 && loginMethods['removed'].indexOf( 'google-oauth2' ) >= 0 ) {
       loginIntro.querySelector( 'span' ).style.display = 'none';
     }
   }).catch( function() {

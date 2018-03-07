@@ -6,21 +6,23 @@ var autologin = require( 'helpers/autologin' );
 module.exports = function( element ) {
   var form = element.form;
   var url = 'https://' + NLX.auth0_domain + '/public/api/' + form.webAuthConfig.clientID + '/connections';
-  var form.willRedirect = false;
-  var loginIntro = document.getElementById( 'initial-login-text' );
   var loginIntro;
 
   ui.setLockState( element, 'loading' );
 
+  form.willRedirect = false;
+
   fetch( url ).then( function( response ) {
     return response.json();
   }).then( function( supported ) {
-    var loginMethods = {
+    var loginMethods;
+    var i;
+
+    loginMethods = {
       'RP_supported': [],
       'NLX_supported': dom.$( '[data-optional-login-method]' ),
       'removed': []
     };
-    var i;
 
     for ( i = 0; i < supported.length; i++ ) {
       loginMethods['RP_supported'].push( supported[i].name );
@@ -28,12 +30,13 @@ module.exports = function( element ) {
 
     loginMethods['NLX_supported'].forEach( function( loginMethod ) {
       var thisLoginMethod = loginMethod.getAttribute( 'data-optional-login-method' );
-      var isAccountLinking = window.location.toString().indexOf( 'account_linking=true' ) >= 0;
-      var silentAuthEnabled = !isAccountLinking && NLX.features.autologin === 'true';
-      var lastUsedLoginMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
-      var rpSupportsLastUsedLoginMethod = lastUsedLoginMethod && loginMethods['RP_supported'].indexOf( lastUsedLoginMethod ) >= 0;
-      var newLocation;
+      var windowString = window.location.toString();
+      var requiresPrompt = windowString.indexOf( 'prompt=login' ) >= 0 || windowString.indexOf( 'prompt=select_account' );
+      var autologinEnabled = !requiresPrompt && NLX.features.autologin === 'true';
+      var lastMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
+      var rpSupportsLastMethod = lastMethod && loginMethods['RP_supported'].indexOf( lastMethod ) >= 0;
 
+      // Remove login options from page if not supported by RP
       if ( loginMethods['RP_supported'].indexOf( thisLoginMethod ) === -1 ) {
         loginMethod.remove();
         loginMethods['removed'].push( thisLoginMethod );
@@ -44,8 +47,8 @@ module.exports = function( element ) {
       // RPs that request autologin to happen with the prompt=none parameter,
       // will not see this page. As a fallback for RPs that don't use prompt=none,
       // we attempt autologin once
-      if ( silentAuthEnabled && rpSupportsLastUsedLoginMethod ) {
-        autoLogin( lastUsedLoginMethod );
+      if ( autologinEnabled && rpSupportsLastMethod ) {
+        autologin( lastMethod );
       }
     });
 

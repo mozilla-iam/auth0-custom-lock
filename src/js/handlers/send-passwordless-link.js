@@ -1,6 +1,6 @@
-var fireGAEvent = require( 'helpers/fireGAEvent' );
+var fireGAEvent = require( 'helpers/fire-ga-event' );
 var ui = require( 'helpers/ui' );
-var storeLastUsedConnection = require( 'helpers/storeLastUsedConnection' );
+var storeLastUsedConnection = require( 'helpers/store-last-used-connection' );
 
 module.exports = function authorise( element ) {
   var emailField = document.getElementById( 'field-email' );

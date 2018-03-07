@@ -1,5 +1,5 @@
 var ui = require( 'helpers/ui' );
-var fireGAEvent = require( 'helpers/fireGAEvent' );
+var fireGAEvent = require( 'helpers/fire-ga-event' );
 
 function showNonLDAP( element ) {
   // show social logins + passwordless

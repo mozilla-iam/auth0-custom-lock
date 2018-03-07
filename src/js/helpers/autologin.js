@@ -1,4 +1,4 @@
-var fireGAEvent = require( 'helpers/fireGAEvent' );
+var fireGAEvent = require( 'helpers/fire-ga-event' );
 
 module.exports = function autologin( loginMethod, form ) {
   var visualStatusReport = document.getElementById( 'loading__status' );

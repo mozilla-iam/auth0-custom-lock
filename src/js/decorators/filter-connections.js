@@ -1,6 +1,6 @@
 var dom = require( 'helpers/dom' );
 var ui = require( 'helpers/ui' );
-var fireGAEvent = require( 'helpers/fireGAEvent' );
+var fireGAEvent = require( 'helpers/fire-ga-event' );
 var autologin = require( 'helpers/autologin' );
 
 module.exports = function( element ) {

@@ -30,8 +30,7 @@ module.exports = function( element ) {
 
     loginMethods['supportedByNLX'].forEach( function( loginMethod ) {
       var thisLoginMethod = loginMethod.getAttribute( 'data-optional-login-method' );
-      var windowString = window.location.toString();
-      var requiresPrompt = windowString.indexOf( 'prompt=login' ) >= 0 || windowString.indexOf( 'prompt=select_account' );
+      var requiresPrompt = window.location.href.indexOf( 'prompt=login' ) >= 0 || window.location.href.indexOf( 'prompt=select_account' );
       var autologinEnabled = requiresPrompt === -1 && NLX.features.autologin === 'true';
       var savedLoginMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
       var rpSupportsSavedLoginMethod = savedLoginMethod && loginMethods['supportedByRP'].indexOf( savedLoginMethod ) >= 0;

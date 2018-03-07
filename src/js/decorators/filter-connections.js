@@ -19,9 +19,9 @@ module.exports = function( element ) {
     var i;
 
     loginMethods = {
-      'RP_supported': [],
-      'NLX_supported': dom.$( '[data-optional-login-method]' ),
-      'removed': []
+      RP_supported: [],
+      NLX_supported: dom.$( '[data-optional-login-method]' ),
+      removed: []
     };
 
     for ( i = 0; i < supported.length; i++ ) {

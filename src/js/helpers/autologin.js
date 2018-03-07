@@ -1,4 +1,6 @@
-module.exports = function autoLogin( loginMethod, form ) {
+var fireGAEvent = require( 'helpers/fireGAEvent' );
+
+module.exports = function autologin( loginMethod, form ) {
   var visualStatusReport = document.getElementById( 'loading__status' );
   var newLocation;
 

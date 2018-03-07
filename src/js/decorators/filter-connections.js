@@ -8,6 +8,7 @@ module.exports = function( element ) {
   var url = 'https://' + NLX.auth0_domain + '/public/api/' + form.webAuthConfig.clientID + '/connections';
   var form.willRedirect = false;
   var loginIntro = document.getElementById( 'initial-login-text' );
+  var loginIntro;
 
   ui.setLockState( element, 'loading' );
 
@@ -53,6 +54,7 @@ module.exports = function( element ) {
     }
 
     if ( loginMethods['removed'].indexOf( 'github' ) >= 0 && loginMethods['removed'].indexOf( 'google-oauth2' ) >= 0 ) {
+      loginIntro = document.getElementById( 'initial-login-text' );
       loginIntro.querySelector( 'span' ).style.display = 'none';
     }
   }).catch( function() {

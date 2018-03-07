@@ -1,7 +1,7 @@
 var dom = require( 'helpers/dom' );
 var ui = require( 'helpers/ui' );
 var fireGAEvent = require( 'helpers/fireGAEvent' );
-var autoLogn = require( 'helpers/autoLogin' );
+var autologin = require( 'helpers/autologin' );
 
 module.exports = function( element ) {
   var form = element.form;

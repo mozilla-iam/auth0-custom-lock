@@ -5,7 +5,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-_No changes yet_
+### Changed
+
+- We started honouring the `prompt` parameter as per OIDC spec in these ways: if value is `select_account` and `login`, autologin will not be attempted
 
 ## [1.1.0] - 2017-02-27
 

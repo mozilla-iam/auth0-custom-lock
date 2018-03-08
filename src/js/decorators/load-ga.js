@@ -1,4 +1,4 @@
-var checkDntEnabled = require( 'helpers/dntEnabled' );
+var checkDntEnabled = require( 'helpers/dnt-enabled' );
 var dntEnabled = checkDntEnabled();
 
 module.exports = function() {

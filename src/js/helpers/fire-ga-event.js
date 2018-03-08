@@ -1,6 +1,6 @@
 module.exports = function( eventCategory, eventAction ) {
   var TRACKER_NAME = 'gtm1';
-  var getRPName = require( 'helpers/getRPName' );
+  var getRPName = require( 'helpers/get-rp-name' );
   var RP = getRPName();
 
   if ( window.ga ) {

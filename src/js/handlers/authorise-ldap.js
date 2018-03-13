@@ -17,6 +17,11 @@ module.exports = function authorise( element, secondTry ) {
 
   fireGAEvent( 'Authorisation', 'Authorising with LDAP' );
 
+  if ( form.loginMethods && form.loginMethods['supportedByRP'].indexOf( NLX.LDAP_connection_name ) === -1 ) {
+    ui.setLockState( element, 'ldap-not-available' );
+    return;
+  }
+
   form.webAuth.redirect.loginWithCredentials({
     connection: connection,
     username: emailField.value,

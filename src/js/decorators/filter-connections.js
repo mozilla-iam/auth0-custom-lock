@@ -53,6 +53,8 @@ module.exports = function( element ) {
       }
     });
 
+    form.loginMethods = loginMethods;
+
     if ( !form.willRedirect ) {
       ui.setLockState( element, 'initial' );
     }

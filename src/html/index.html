@@ -129,6 +129,12 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
           </div>
+          <div id="ldap-not-available" data-screen data-hidden inert>
+            <h2 class="card__heading card__heading--error"><img src="../images/circled-x.svg" class="card__heading-icon" inline /> <span>Error</span></h2>
+            <p>Unfortunately, this website does not offer login with Mozilla LDAP.</p>
+            <hr>
+            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+          </div>
         </fieldset>
       </form>
       <ul class="legal-links list list--plain">

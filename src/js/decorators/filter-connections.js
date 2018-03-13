@@ -42,6 +42,7 @@ module.exports = function( element ) {
         loginMethods['removed'].push( thisLoginMethod );
 
         fireGAEvent( 'Hiding', 'Hiding login method that isn\'t supported for this RP' );
+        fireGAEvent( 'Hiding', 'Hiding ' + thisLoginMethod + ' as it isn\'t supported for this RP' );
       }
 
       // RPs that request autologin to happen with the prompt=none parameter,

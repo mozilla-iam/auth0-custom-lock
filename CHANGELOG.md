@@ -5,10 +5,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Show error when user uses non-LDAP email on an LDAP-only RP.
+- Added link to this changelog to HTML source code.
+
 ### Changed
 
 - We started honouring the `prompt` parameter as per OIDC spec in these ways: if value is `select_account` and `login`, autologin will not be attempted.
 - External links now open in a new window/tab.
+- When account linking, we no longer save the login method you're linking as your next autologin login method.
+- Improved loading spinner performance.
+- Fixed malformed SVGs.
+- Improved content hiding mechanism, so that it also hides from assistive technologies.
+
 
 ## [1.1.0] - 2017-02-27
 
@@ -54,3 +64,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0] - 2017-02-21
 
 The first release of NLX to the public.
+

@@ -2,6 +2,15 @@ var ui = {
   // hide `element`
   hide: function( element, focusElement ) {
     if ( !ui.isHidden( element ) ) {
+      // Non-standard hiding ahead:
+      //
+      // Because some password managers stop working when they detect
+      // a hidden password field, our hiding mechanism does not use
+      // standard hiding techniques like display:none or visiblity:hidden.
+      //
+      // To make it work for all, we use two attributes:
+      // - data-hidden hides visually only
+      // - aria-hidden hides from Assistive Technologies
       element.setAttribute( 'data-hidden', true );
       element.setAttribute( 'aria-hidden', true );
     }

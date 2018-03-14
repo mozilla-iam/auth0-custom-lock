@@ -19,6 +19,7 @@ function showLDAP( element, passwordField ) {
 }
 
 module.exports = function enter( element ) {
+  var form = document.querySelector( 'form' );
   var emailField = document.getElementById( 'field-email' );
   var passwordField = document.getElementById( 'field-password' );
   var accountLinking = window.location.toString().indexOf( 'account_linking=true' ) >= 0;

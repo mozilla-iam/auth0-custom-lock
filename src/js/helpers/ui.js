@@ -1,15 +1,4 @@
 var ui = {
-  // toggle visibility of `element`
-  toggle: function( element ) {
-    if ( !ui.isHidden( element ) ) {
-      element.setAttribute( 'data-hidden', true );
-      element.setAttribute( 'aria-hidden', true );
-    }
-    else {
-      element.removeAttribute( 'data-hidden' );
-      element.removeAttribute( 'aria-hidden' );
-    }
-  },
   // hide `element`
   hide: function( element, focusElement ) {
     if ( !ui.isHidden( element ) ) {
@@ -25,6 +14,17 @@ var ui = {
       element.removeAttribute( 'aria-hidden' );
     }
     ui.focus( focusElement );
+  },
+  // toggle visibility of `element`
+  toggle: function( element ) {
+    if ( !ui.isHidden( element ) ) {
+      element.setAttribute( 'data-hidden', true );
+      element.setAttribute( 'aria-hidden', true );
+    }
+    else {
+      element.removeAttribute( 'data-hidden' );
+      element.removeAttribute( 'aria-hidden' );
+    }
   },
   // check if `element` is hidden
   isHidden: function( element, checkForHiddenParents ) {

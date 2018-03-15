@@ -24,7 +24,7 @@ module.exports = function enter( element ) {
   var passwordField = document.getElementById( 'field-password' );
   var accountLinking = window.location.toString().indexOf( 'account_linking=true' ) >= 0;
   var qualifiesForLDAPShortcut = /mozilla.com|getpocket.com|mozillafoundation.org$/.test( emailField.value );
-  var supportedByRP = form.loginMethods['supportedByRP'];
+  var supportedByRP = form.loginMethods ? form.loginMethods['supportedByRP'] : null;
   var onlyAcceptsLDAP = supportedByRP && supportedByRP.length === 1 && supportedByRP.indexOf( NLX.LDAP_connection_name ) === 0;
   var ENDPOINT = NLX.person_api_domain;
 

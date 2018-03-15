@@ -50,7 +50,7 @@ module.exports = function( element ) {
       // RPs that request autologin to happen with the prompt=none parameter,
       // will not see this page. As a fallback for RPs that don't use prompt=none,
       // we attempt autologin once
-      if ( !triedAutologin && autologinEnabled && rpSupportsSavedLoginMethod ) {
+      if ( !didAccountLinking && !triedAutologin && autologinEnabled && rpSupportsSavedLoginMethod ) {
         autologin( savedLoginMethod, form );
       }
     });

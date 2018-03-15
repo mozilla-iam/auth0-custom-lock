@@ -59,7 +59,7 @@ module.exports = function enter( element ) {
                   showNonLDAP( element );
                 }
               }
-            })
+            });
           }
       ).catch( function() {
         if ( onlyAcceptsLDAP ) {

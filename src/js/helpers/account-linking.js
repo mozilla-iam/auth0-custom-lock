@@ -16,7 +16,7 @@ var accountLinking = {
     if ( accountLinking.isAccountLinking() ) {
       window.localStorage.setItem( accountLinkingValue, 'true' );
     }
-  },
-}
+  }
+};
 
 module.exports = accountLinking;

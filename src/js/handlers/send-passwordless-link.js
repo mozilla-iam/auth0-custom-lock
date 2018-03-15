@@ -6,7 +6,6 @@ module.exports = function authorise( element ) {
   var form = element.form;
   var emailPlaceholder = document.getElementById( 'passwordless-success-email-address' );
   var errorText = document.getElementById( 'error-message-passwordless' );
-  var connection = 'email';
 
   ui.setLockState( element, 'loading' );
 

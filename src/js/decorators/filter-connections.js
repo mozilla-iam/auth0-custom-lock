@@ -66,6 +66,9 @@ module.exports = function( element ) {
     if ( didAccountLinking ) {
       accountLinking.clear();
     }
+    else {
+      accountLinking.save();
+    }
 
     if ( !form.willRedirect ) {
       ui.setLockState( element, 'initial' );

@@ -34,9 +34,6 @@ module.exports = function( element ) {
       loginMethods['supportedByRP'].push( supported[i].name );
     }
 
-    // Note that supportedByNLX contains elements in the DOM that allow
-    // login via a certain method. Some methods exist twice, i.e. GitHub
-    // and Google are both on the initial page and on the non-LDAP page
     loginMethods['supportedByNLX'].forEach( function( loginMethod ) {
       var rpSupportsSavedLoginMethod = savedLoginMethod && loginMethods['supportedByRP'].indexOf( savedLoginMethod ) >= 0;
       var optionsInDom;
@@ -57,7 +54,7 @@ module.exports = function( element ) {
 
       // RPs that request autologin to happen with the prompt=none parameter,
       // will not see this page. As a fallback for RPs that don't use prompt=none,
-      // we attempt autologin once
+      // we attempt autologin once, and only under circumstances
       if ( !didAccountLinking && !triedAutologin && autologinEnabled && rpSupportsSavedLoginMethod ) {
         autologin( savedLoginMethod, form );
         return;

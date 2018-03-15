@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - We started honouring the `prompt` parameter as per OIDC spec in these ways: if value is `select_account` and `login`, autologin will not be attempted.
 - External links now open in a new window/tab.
 - When account linking, we no longer save the login method you're linking as your next autologin login method.
+- After account linking, NLX will prompt you to manually login, as we're unable to guess your ideal login method.
 - Improved loading spinner performance.
 - Fixed malformed SVGs.
 - Improved content hiding mechanism, so that it also hides from assistive technologies.

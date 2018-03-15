@@ -8,14 +8,13 @@ var accountLinking = {
     return window.localStorage.getItem( accountLinkingValue );
   },
   save: function() {
-    // remove existing
-    if ( accountLinking.didAccountLinking() ) {
-      window.localStorage.removeItem( accountLinkingValue );
-    }
     // check if needs to be set
     if ( accountLinking.isAccountLinking() ) {
       window.localStorage.setItem( accountLinkingValue, 'true' );
     }
+  },
+  clear: function() {
+    window.localStorage.removeItem( accountLinkingValue );
   }
 };
 

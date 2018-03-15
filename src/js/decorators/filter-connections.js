@@ -2,7 +2,6 @@ var dom = require( 'helpers/dom' );
 var ui = require( 'helpers/ui' );
 var fireGAEvent = require( 'helpers/fire-ga-event' );
 var autologin = require( 'helpers/autologin' );
-var accountLinking = require( 'helpers/account-linking' );
 
 module.exports = function( element ) {
   var form = element.form;
@@ -12,6 +11,7 @@ module.exports = function( element ) {
   var triedAutologin = window.location.href.indexOf( 'tried_autologin=true' ) >= 0;
   var autologinEnabled = requiresPrompt === -1 && NLX.features.autologin === 'true';
   var savedLoginMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
+  var accountLinking = require( 'helpers/account-linking' );
   var didAccountLinking = accountLinking.didAccountLinking();
 
   ui.setLockState( element, 'loading' );
@@ -62,6 +62,10 @@ module.exports = function( element ) {
     });
 
     form.loginMethods = loginMethods;
+
+    if ( didAccountLinking ) {
+      accountLinking.clear();
+    }
 
     if ( !form.willRedirect ) {
       ui.setLockState( element, 'initial' );

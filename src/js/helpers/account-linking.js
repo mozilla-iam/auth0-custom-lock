@@ -5,7 +5,7 @@ var accountLinking = {
     return window.location.href.indexOf( 'account_linking=true' ) >= 0;
   },
   didAccountLinking: function() {
-    return window.localStorage.getItem( accountLinkingValue );
+    return window.localStorage.getItem( accountLinkingValue ) === 'true' ? true : false;
   },
   save: function() {
     // check if needs to be set

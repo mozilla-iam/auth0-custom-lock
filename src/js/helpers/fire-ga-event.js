@@ -11,7 +11,8 @@ module.exports = function( eventCategory, eventAction ) {
       'eventLabel': RP
     });
   }
-  else if ( NLX.environment !== 'PROD' ) {
+
+  if ( NLX.environment !== 'PROD' ) {
     console.log( eventCategory + ' - ' + eventAction );
   }
 };

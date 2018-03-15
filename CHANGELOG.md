@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Improved loading spinner performance.
 - Fixed malformed SVGs.
 - Improved content hiding mechanism, so that it also hides from assistive technologies.
+- We now only log to Google Analytics when in PROD, if elsewhere, we log to the console.
 
 
 ## [1.1.0] - 2017-02-27

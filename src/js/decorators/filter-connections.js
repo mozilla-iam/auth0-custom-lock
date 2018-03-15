@@ -26,7 +26,7 @@ module.exports = function( element ) {
 
     loginMethods = {
       'supportedByRP': [],
-      'supportedByNLX': dom.$( '[data-optional-login-method]' ),
+      'supportedByNLX': NLX.supportedLoginMethods,
       'removed': []
     };
 
@@ -38,16 +38,21 @@ module.exports = function( element ) {
     // login via a certain method. Some methods exist twice, i.e. GitHub
     // and Google are both on the initial page and on the non-LDAP page
     loginMethods['supportedByNLX'].forEach( function( loginMethod ) {
-      var thisLoginMethod = loginMethod.getAttribute( 'data-optional-login-method' );
       var rpSupportsSavedLoginMethod = savedLoginMethod && loginMethods['supportedByRP'].indexOf( savedLoginMethod ) >= 0;
+      var optionsInDom;
 
       // Remove login options from page if not supported by RP
-      if ( loginMethods['supportedByRP'].indexOf( thisLoginMethod ) === -1 ) {
-        loginMethod.remove();
-        loginMethods['removed'].push( thisLoginMethod );
+      if ( loginMethods['supportedByRP'].indexOf( loginMethod ) === -1 ) {
+        optionsInDom = dom.$( '[data-optional-login-method="' + loginMethod + '"]' );
+
+        optionsInDom.forEach( function( method ) {
+          method.remove();
+        });
+
+        loginMethods['removed'].push( loginMethod );
 
         fireGAEvent( 'Hiding', 'Hiding login method that isn\'t supported for this RP' );
-        fireGAEvent( 'Hiding', 'Hiding ' + thisLoginMethod + ' as it isn\'t supported for this RP' );
+        fireGAEvent( 'Hiding', 'Hiding ' + loginMethod + ' as it isn\'t supported for this RP' );
       }
 
       // RPs that request autologin to happen with the prompt=none parameter,

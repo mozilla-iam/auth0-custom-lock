@@ -12,6 +12,6 @@ module.exports = function( eventCategory, eventAction ) {
     });
   }
   else if ( NLX.environment !== 'PROD' ) {
-    console.log( eventCategory + ' - ' + eventAction;
+    console.log( eventCategory + ' - ' + eventAction );
   }
 };

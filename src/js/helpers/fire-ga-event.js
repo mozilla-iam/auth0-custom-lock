@@ -3,12 +3,15 @@ module.exports = function( eventCategory, eventAction ) {
   var getRPName = require( 'helpers/get-rp-name' );
   var RP = getRPName();
 
-  if ( window.ga ) {
+  if ( window.ga && NLX.environment === 'PROD' ) {
     ga( TRACKER_NAME + '.send', {
       'hitType': 'event',
       'eventCategory': eventCategory,
       'eventAction': eventAction,
       'eventLabel': RP
     });
+  }
+  else if ( NLX.environment !== 'PROD' ) {
+    console.log( eventCategory + ' - ' + eventAction;
   }
 };

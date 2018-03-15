@@ -1,6 +1,5 @@
 var fireGAEvent = require( 'helpers/fire-ga-event' );
 var ui = require( 'helpers/ui' );
-var storeLastUsedConnection = require( 'helpers/store-last-used-connection' );
 
 module.exports = function authorise( element ) {
   var emailField = document.getElementById( 'field-email' );
@@ -12,8 +11,6 @@ module.exports = function authorise( element ) {
   ui.setLockState( element, 'loading' );
 
   fireGAEvent( 'Authorisation', 'Requested passwordless link' );
-
-  storeLastUsedConnection( connection );
 
   form.webAuth.passwordlessStart({
     connection: 'email',

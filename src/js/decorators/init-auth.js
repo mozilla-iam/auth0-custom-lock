@@ -23,7 +23,10 @@ module.exports = function initAuth( element ) {
   var auth0 = require( 'auth0-js' );
   var config = getConfig( '@@config@@' );
   var webAuth = new auth0.WebAuth( config );
+  var accountLinking = require( 'helpers/account-linking' );
 
   element.webAuth = webAuth;
   element.webAuthConfig = config;
+
+  accountLinking.save();
 };

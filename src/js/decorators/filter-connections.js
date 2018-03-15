@@ -12,7 +12,7 @@ module.exports = function( element ) {
   var triedAutologin = window.location.href.indexOf( 'tried_autologin=true' ) >= 0;
   var autologinEnabled = requiresPrompt === -1 && NLX.features.autologin === 'true';
   var savedLoginMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
-  var didAccountLinking = accountLinking.didAccountLinking;
+  var didAccountLinking = accountLinking.didAccountLinking();
 
   ui.setLockState( element, 'loading' );
 

@@ -3,11 +3,12 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.1.1] - 2018-03-15
 
 ### Added
 
-- Show error when user uses non-LDAP email on an LDAP-only RP.
+- We now show an error message when LDAP is not available as a login method.
+- We now show an error message when LDAP is required and it is the only login method the RP supports.
 - Added link to this changelog to HTML source code.
 
 ### Changed
@@ -20,11 +21,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed malformed SVGs.
 - Improved content hiding mechanism, so that it also hides from assistive technologies.
 - We now only log to Google Analytics when in PROD, if elsewhere, we log to the console.
-- We now show an error message when LDAP is not available as a login method.
-- We now show an error message when LDAP is required and it is the only login method the RP supports.
 
 
-## [1.1.0] - 2017-02-27
+## [1.1.0] - 2018-02-27
 
 ### Added
 

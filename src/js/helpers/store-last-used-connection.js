@@ -1,7 +1,9 @@
-module.exports = function( connectionName ) {
-  var accountLinking = window.location.href.indexOf( 'account_linking=true' ) >= 0;
+var accountLinking = require( 'helpers//account-linking' );
 
-  if ( !accountLinking && window.localStorage ) {
+module.exports = function( connectionName ) {
+  var isAccountLinking = accountLinking.isAccountLinking();
+
+  if ( !isAccountLinking && window.localStorage ) {
     window.localStorage.setItem( 'nlx-last-used-connection', connectionName );
   }
 };

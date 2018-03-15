@@ -2,11 +2,17 @@ var dom = require( 'helpers/dom' );
 var ui = require( 'helpers/ui' );
 var fireGAEvent = require( 'helpers/fire-ga-event' );
 var autologin = require( 'helpers/autologin' );
+var accountLinking = require( 'helpers/account-linking' );
 
 module.exports = function( element ) {
   var form = element.form;
   var url = 'https://' + NLX.auth0_domain + '/public/api/' + form.webAuthConfig.clientID + '/connections';
   var loginIntro;
+  var requiresPrompt = window.location.href.indexOf( 'prompt=login' ) >= 0 || window.location.href.indexOf( 'prompt=select_account' );
+  var triedAutologin = window.location.href.indexOf( 'tried_autologin=true' ) >= 0;
+  var autologinEnabled = requiresPrompt === -1 && NLX.features.autologin === 'true';
+  var savedLoginMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
+  var didAccountLinking = accountLinking.didAccountLinking;
 
   ui.setLockState( element, 'loading' );
 
@@ -30,10 +36,6 @@ module.exports = function( element ) {
 
     loginMethods['supportedByNLX'].forEach( function( loginMethod ) {
       var thisLoginMethod = loginMethod.getAttribute( 'data-optional-login-method' );
-      var requiresPrompt = window.location.href.indexOf( 'prompt=login' ) >= 0 || window.location.href.indexOf( 'prompt=select_account' );
-      var triedAutologin = window.location.href.indexOf( 'tried_autologin=true' ) >= 0;
-      var autologinEnabled = requiresPrompt === -1 && NLX.features.autologin === 'true';
-      var savedLoginMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
       var rpSupportsSavedLoginMethod = savedLoginMethod && loginMethods['supportedByRP'].indexOf( savedLoginMethod ) >= 0;
 
       // Remove login options from page if not supported by RP

@@ -34,6 +34,9 @@ module.exports = function( element ) {
       loginMethods['supportedByRP'].push( supported[i].name );
     }
 
+    // Note that supportedByNLX contains elements in the DOM that allow
+    // login via a certain method. Some methods exist twice, i.e. GitHub
+    // and Google are both on the initial page and on the non-LDAP page
     loginMethods['supportedByNLX'].forEach( function( loginMethod ) {
       var thisLoginMethod = loginMethod.getAttribute( 'data-optional-login-method' );
       var rpSupportsSavedLoginMethod = savedLoginMethod && loginMethods['supportedByRP'].indexOf( savedLoginMethod ) >= 0;
@@ -52,6 +55,7 @@ module.exports = function( element ) {
       // we attempt autologin once
       if ( !didAccountLinking && !triedAutologin && autologinEnabled && rpSupportsSavedLoginMethod ) {
         autologin( savedLoginMethod, form );
+        return;
       }
     });
 

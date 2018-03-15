@@ -11,6 +11,7 @@ document.documentElement.className = 'has-js';
 
 // environment variables are replaced in build process
 window.NLX = {
+  'environment': '{{{ environment }}}',
   'auth0_domain': '{{{ auth0_domain }}}',
   'client_ID': '{{{ client_ID }}}',
   'LDAP_connection_name': '{{{ LDAP_connection_name }}}',

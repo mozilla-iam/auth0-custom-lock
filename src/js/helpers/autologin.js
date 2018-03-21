@@ -7,7 +7,7 @@ module.exports = function autologin( loginMethod, form ) {
   form.willRedirect = true;
   visualStatusReport.textContent = 'Autologging in with ' + loginMethod;
 
-  newLocation = window.location.toString().replace( '/login?', '/authorize?' ).replace( '?client=', '?client_id=' ) + '&sso=true&connection=' + loginMethod + '&prompt=none&tried_autologin=true';
+  newLocation = window.location.toString().replace( '/login?', '/authorize?' ).replace( '?client=', '?client_id=' ).replace('&prompt=', '') + '&sso=true&connection=' + loginMethod + '&prompt=none&tried_autologin=true';
 
   window.location.replace( newLocation );
   fireGAEvent( 'Authorisation', 'Performing auto-login with ' + loginMethod );

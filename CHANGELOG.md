@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Changed
 
 - Uses Auth0js v9.3.3
+- Remove `prompt` support for autologin as it gets forwarded to Social providers in some cases, which may fail the entire login process.
 
 ## [1.1.1] - 2018-03-15
 

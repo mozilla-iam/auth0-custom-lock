@@ -1,5 +1,6 @@
 var ui = require( 'helpers/ui' );
-var fireGAEvent = require( 'helpers/fireGAEvent' );
+var fireGAEvent = require( 'helpers/fire-ga-event' );
+var accountLinking = require( 'helpers//account-linking' );
 
 function showNonLDAP( element ) {
   // show social logins + passwordless
@@ -19,10 +20,13 @@ function showLDAP( element, passwordField ) {
 }
 
 module.exports = function enter( element ) {
+  var form = document.querySelector( 'form' );
   var emailField = document.getElementById( 'field-email' );
   var passwordField = document.getElementById( 'field-password' );
-  var accountLinking = window.location.toString().indexOf( 'account_linking=true' ) >= 0;
+  var isAccountLinking = accountLinking.isAccountLinking();
   var qualifiesForLDAPShortcut = /mozilla.com|getpocket.com|mozillafoundation.org$/.test( emailField.value );
+  var supportedByRP = form.loginMethods ? form.loginMethods['supportedByRP'] : null;
+  var onlyAcceptsLDAP = supportedByRP && supportedByRP.length === 1 && supportedByRP.indexOf( NLX.LDAP_connection_name ) === 0;
   var ENDPOINT = NLX.person_api_domain;
 
   if ( emailField.value === '' || emailField.validity.valid === false ) {
@@ -30,7 +34,7 @@ module.exports = function enter( element ) {
     return;
   }
 
-  if ( qualifiesForLDAPShortcut && accountLinking === false ) {
+  if ( qualifiesForLDAPShortcut && isAccountLinking === false ) {
     showLDAP( element, passwordField );
   }
   else {
@@ -49,16 +53,31 @@ module.exports = function enter( element ) {
                 showLDAP( element, passwordField );
               }
               else {
-                showNonLDAP( element );
+                if ( onlyAcceptsLDAP ) {
+                  ui.setLockState( element, 'ldap-required' );
+                }
+                else {
+                  showNonLDAP( element );
+                }
               }
-            })
+            });
           }
       ).catch( function() {
-        showNonLDAP( element );
+        if ( onlyAcceptsLDAP ) {
+          ui.setLockState( element, 'ldap-required' );
+        }
+        else {
+          showNonLDAP( element );
+        }
       });
     }
     else {
-      showNonLDAP( element );
+      if ( onlyAcceptsLDAP ) {
+        ui.setLockState( element, 'ldap-required' );
+      }
+      else {
+        showNonLDAP( element );
+      }
     }
   }
 };

@@ -3,11 +3,27 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.1.1] - 2018-03-15
 
-_No changes yet_
+### Added
 
-## [1.1.0] - 2017-02-27
+- We now show an error message when LDAP is not available as a login method.
+- We now show an error message when LDAP is required and it is the only login method the RP supports.
+- Added link to this changelog to HTML source code.
+
+### Changed
+
+- We started honouring the `prompt` parameter as per OIDC spec in these ways: if value is `select_account` and `login`, autologin will not be attempted.
+- External links now open in a new window/tab.
+- When account linking, we no longer save the login method you're linking as your next autologin login method.
+- After account linking, NLX will prompt you to manually login, as we're unable to guess your ideal login method.
+- Improved loading spinner performance.
+- Fixed malformed SVGs.
+- Improved content hiding mechanism, so that it also hides from assistive technologies.
+- We now only log to Google Analytics when in PROD, if elsewhere, we log to the console.
+
+
+## [1.1.0] - 2018-02-27
 
 ### Added
 
@@ -47,8 +63,8 @@ _No changes yet_
 ### Removed
 
 - Hardcoded URLs have been removed.
-- Removed autologin feature for Passwordless logins.
 
 ## [1.0] - 2017-02-21
 
 The first release of NLX to the public.
+

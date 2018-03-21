@@ -1,17 +1,18 @@
 var ui = {
-  // toggle visibility of `element`
-  toggle: function( element ) {
-    if ( !ui.isHidden( element ) ) {
-      element.setAttribute( 'data-hidden', true );
-    }
-    else {
-      element.removeAttribute( 'data-hidden' );
-    }
-  },
   // hide `element`
   hide: function( element, focusElement ) {
     if ( !ui.isHidden( element ) ) {
+      // Non-standard hiding ahead:
+      //
+      // Because some password managers stop working when they detect
+      // a hidden password field, our hiding mechanism does not use
+      // standard hiding techniques like display:none or visiblity:hidden.
+      //
+      // To make it work for all, we use two attributes:
+      // - data-hidden hides visually only
+      // - aria-hidden hides from Assistive Technologies
       element.setAttribute( 'data-hidden', true );
+      element.setAttribute( 'aria-hidden', true );
     }
     ui.focus( focusElement );
   },
@@ -19,8 +20,20 @@ var ui = {
   show: function( element, focusElement ) {
     if ( ui.isHidden( element ) ) {
       element.removeAttribute( 'data-hidden' );
+      element.removeAttribute( 'aria-hidden' );
     }
     ui.focus( focusElement );
+  },
+  // toggle visibility of `element`
+  toggle: function( element ) {
+    if ( !ui.isHidden( element ) ) {
+      element.setAttribute( 'data-hidden', true );
+      element.setAttribute( 'aria-hidden', true );
+    }
+    else {
+      element.removeAttribute( 'data-hidden' );
+      element.removeAttribute( 'aria-hidden' );
+    }
   },
   // check if `element` is hidden
   isHidden: function( element, checkForHiddenParents ) {

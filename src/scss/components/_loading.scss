@@ -4,10 +4,22 @@
     display: block;
     margin: 3em auto;
     width: 2em;
+    animation: rotateSpinner 1.2s linear infinite;
+    transform-origin: center;
   }
 
   &__status {
     text-align: center;
     margin: 1em 0;
   }
+}
+
+@keyframes rotateSpinner {
+
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(359deg);
+    }
 }

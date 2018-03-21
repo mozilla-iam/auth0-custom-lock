@@ -1,4 +1,4 @@
-var fireGAEvent = require( 'helpers/fireGAEvent' );
+var fireGAEvent = require( 'helpers/fire-ga-event' );
 var ui = require( 'helpers/ui' );
 
 module.exports = function authorise( element ) {

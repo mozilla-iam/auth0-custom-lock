@@ -72,6 +72,8 @@ module.exports = function() {
     };
   }
 
+// localStorage (from MDN:
+// https://developer.mozilla.org/en-US/docs/Web/API/Storage/LocalStorage)
 if (!window.localStorage) {
   Object.defineProperty(window, "localStorage", new (function () {
     var aKeys = [], oStorage = {};

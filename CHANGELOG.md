@@ -3,12 +3,22 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.1.4] - 2018-03-26
+
+### Added
+
+- Add polyfill for localStorage so that NLX works in browsers that don't support it
+  (including Android Webviews)
+
+## [1.1.3] - 2018-03-22
+
+- Remove `prompt` support for autologin as it gets forwarded to Social providers in some cases, which may fail the entire login process.
+
 ## [1.1.2] - 2018-03-21
 
-## Changed
+### Changed
 
 - Uses Auth0js v9.3.3
-- Remove `prompt` support for autologin as it gets forwarded to Social providers in some cases, which may fail the entire login process.
 
 ## [1.1.1] - 2018-03-15
 

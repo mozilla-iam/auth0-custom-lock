@@ -21,7 +21,7 @@ window.NLX = {
     'autologin': '{{{ features.autologin }}}',
     'person_api_lookup': '{{{ features.person_api_lookup }}}'
   },
-  'supportedLoginMethods': [ 'github', 'google-oauth2', 'email' ]
+  'supportedLoginMethods': [ 'github', 'google-oauth2', 'firefoxaccounts', 'email' ]
 };
 
 polyfill();

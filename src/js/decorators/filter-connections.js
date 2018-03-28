@@ -74,7 +74,7 @@ module.exports = function( element ) {
       ui.setLockState( element, 'initial' );
     }
 
-    if ( loginMethods['removed'].indexOf( 'github' ) >= 0 && loginMethods['removed'].indexOf( 'google-oauth2' ) >= 0 ) {
+    if ( loginMethods['removed'].indexOf( 'github' ) >= 0 && loginMethods['removed'].indexOf( 'google-oauth2' ) >= 0 && loginMethods['removed'].indexOf( 'firefoxaccounts' ) >= 0 ) {
       loginIntro = document.getElementById( 'initial-login-text' );
       loginIntro.querySelector( 'span' ).style.display = 'none';
     }

@@ -8,7 +8,7 @@
     "build": "gulp build"
   },
   "author": "Hidde de Vries",
-  "license": "ISC",
+  "license": "MPL-2.0",
   "devDependencies": {
     "browser-sync": "^2.18.13",
     "browserify": "^14.3.0",

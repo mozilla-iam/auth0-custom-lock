@@ -15,7 +15,7 @@ vVVv    vVVv                 ': |_| |_| |_|\___/___|_|_|_|\__,_| ''
 
 This is the custom Mozilla Login Experience, designed and built by Mozilla's IAM Project.
 
-Version: 1.1.4
+Version: 1.1.5
 Changelog: https://github.com/mozilla-iam/auth0-custom-lock/blob/master/CHANGELOG.md
 
 These are the variables we are using:
@@ -28,6 +28,7 @@ These are the variables we are using:
   Features:
    autologin: {{{ features.autologin }}}
    person_api_lookup: {{{ features.person_api_lookup }}}
+   supportedLoginMethods: {{{ supportedLoginMethods }}}
 
 The code is the result of a build process, please find the source code
 on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
@@ -61,6 +62,12 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <input type="email" name="username" id="field-email" placeholder="Email address" autocomplete="username email" autofocus />
             <input type="submit" class="button button--full-width" id="enter-initial" value="Enter" />
             <ul class="login-options list list--plain">
+              <li data-optional-login-method="firefoxaccounts">
+                <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-firefoxaccounts">
+                  <img inline  class="icon" src="../images/firefox-logo.svg">
+                  <span>Log in with Firefox Accounts</span>
+                </button>
+              </li>
               <li data-optional-login-method="github">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-github">
                   <img inline class="icon" src="../images/github.svg">
@@ -72,7 +79,6 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
                   <img inline  class="icon" src="../images/google.svg">
                   <span>Log in with Google</span>
                 </button>
-              </li>
             </ul>
           </div>
           <div id="ldap" data-screen data-hidden aria-hidden inert>
@@ -91,6 +97,12 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             </ul>
             <a href="https://wiki.mozilla.org/IAM/Frequently_asked_questions#Q:_Why_do_you_support_email_login_.28.22passwordless.22.29_if_it.27s_less_safe_than_other_methods.3F" class="button button--text-only button--unpadded" target="_blank">Why an email?</a>
             <ul class="login-options list list--plain">
+              <li data-optional-login-method="firefoxaccounts">
+                <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-firefoxaccounts">
+                  <img inline  class="icon" src="../images/firefox-logo.svg">
+                  <span>Log in with Firefox Accounts</span>
+                </button>
+              </li>
               <li data-optional-login-method="github">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-github">
                   <img inline class="icon" src="../images/github.svg">
@@ -102,7 +114,6 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
                   <img inline  class="icon" src="../images/google.svg">
                   <span>Log in with Google</span>
                 </button>
-              </li>
             </ul>
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>

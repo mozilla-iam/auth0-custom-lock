@@ -57,28 +57,29 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <p role="alert" id="loading__status" class="loading__status"></p>
           </div>
           <div id="initial" data-screen data-hidden aria-hidden inert>
-            <p>Log in with email</p>
+            <p>Log in with email:</p>
             <label for="field-email" class="visually-hidden">E-mail address</label>
             <input type="email" name="username" id="field-email" placeholder="Email address" autocomplete="username email" autofocus />
             <input type="submit" class="button button--full-width" id="enter-initial" value="Enter" />
             <hr>
+            <p>Or log in with:</p>
             <ul class="login-options list list--plain">
               <li data-optional-login-method="firefoxaccounts">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-firefoxaccounts">
                   <img inline  class="icon" src="../images/firefox-logo.svg">
-                  <span>Log in with Firefox Accounts</span>
+                  <span><span class="visually-hidden">Log in with </span>Firefox Accounts</span>
                 </button>
               </li>
               <li data-optional-login-method="github">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-github">
                   <img inline class="icon" src="../images/github.svg">
-                  <span>Log in with GitHub</span>
+                  <span><span class="visually-hidden">Log in with </span>GitHub</span>
                 </button>
               </li>
               <li data-optional-login-method="google-oauth2">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-google">
                   <img inline  class="icon" src="../images/google.svg">
-                  <span>Log in with Google</span>
+                  <span><span class="visually-hidden">Log in with </span>Google</span>
                 </button>
             </ul>
           </div>
@@ -98,6 +99,7 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             </ul>
             <a href="https://wiki.mozilla.org/IAM/Frequently_asked_questions#Q:_Why_do_you_support_email_login_.28.22passwordless.22.29_if_it.27s_less_safe_than_other_methods.3F" class="button button--text-only button--unpadded" target="_blank">Why an email?</a>
             <hr>
+            <p>Or log in with:</p>
             <ul class="login-options list list--plain">
               <li data-optional-login-method="firefoxaccounts">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-firefoxaccounts">

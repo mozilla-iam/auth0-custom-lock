@@ -6,7 +6,6 @@ var autologin = require( 'helpers/autologin' );
 module.exports = function( element ) {
   var form = element.form;
   var url = 'https://' + NLX.auth0_domain + '/public/api/' + form.webAuthConfig.clientID + '/connections';
-  var loginIntro;
   var requiresPrompt = window.location.href.indexOf( 'prompt=login' ) >= 0 || window.location.href.indexOf( 'prompt=select_account' );
   var triedAutologin = window.location.href.indexOf( 'tried_autologin=true' ) >= 0;
   var autologinEnabled = requiresPrompt === -1 && NLX.features.autologin === 'true';
@@ -72,11 +71,6 @@ module.exports = function( element ) {
 
     if ( !form.willRedirect ) {
       ui.setLockState( element, 'initial' );
-    }
-
-    if ( loginMethods['removed'].indexOf( 'github' ) >= 0 && loginMethods['removed'].indexOf( 'google-oauth2' ) >= 0 && loginMethods['removed'].indexOf( 'firefoxaccounts' ) >= 0 ) {
-      loginIntro = document.getElementById( 'initial-login-text' );
-      loginIntro.querySelector( 'span' ).style.display = 'none';
     }
   }).catch( function() {
     // Could not check which connections are available for this RP; just show all.

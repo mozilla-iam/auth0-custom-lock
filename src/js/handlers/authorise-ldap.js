@@ -24,7 +24,7 @@ module.exports = function authorise( element, secondTry ) {
 
   form.webAuth.login({
     realm: connection,
-    username: emailField.value,
+    username: emailField.value.toLowercase(),
     password: passwordField.value
   }, function ( error ) {
     errorText.lastElementChild.textContent = error.description;

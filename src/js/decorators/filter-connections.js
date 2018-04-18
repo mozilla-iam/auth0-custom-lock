@@ -69,6 +69,13 @@ module.exports = function( element ) {
       accountLinking.save();
     }
 
+    if ( document.querySelector( '.login-options' ).children.length === 0 ) {
+
+      document.querySelectorAll( '.non-ldap-options-intro' ).forEach( function( text ) {
+        text.style.display = 'none';
+      });
+    }
+
     if ( !form.willRedirect ) {
       ui.setLockState( element, 'initial' );
     }

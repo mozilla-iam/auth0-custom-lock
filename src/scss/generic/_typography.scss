@@ -18,6 +18,7 @@ body {
 
 [data-hidden] {
   position: absolute;
+  top: -999em;
   opacity: 0;
 }
 

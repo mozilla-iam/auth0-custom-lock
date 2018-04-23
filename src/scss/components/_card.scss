@@ -11,6 +11,10 @@
     max-width: 26em;
   }
 
+  @media ( min-height: 50em ) {
+    top: -3em; /* compensate for negative margin for footer links */
+  }
+
   &__back {
     margin-bottom: 1em;
   }

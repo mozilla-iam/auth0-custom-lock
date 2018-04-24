@@ -5,7 +5,7 @@ module.exports = function autologin( loginMethod, form ) {
   var newLocation;
 
   form.willRedirect = true;
-  visualStatusReport.textContent = 'Autologging in with ' + loginMethod;
+  visualStatusReport.textContent = 'Attempting auto-login with ' + loginMethod;
 
   newLocation = window.location.toString().replace( '/login?', '/authorize?' ).replace( '?client=', '?client_id=' ) + '&sso=true&connection=' + loginMethod + '&tried_autologin=true';
 

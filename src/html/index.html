@@ -46,9 +46,11 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
       /* Trigger NLX actions that should happen before user sees NLX */
 
       if ( window.location.href.indexOf( 'action=logout' ) >= 0  ) {
+        // clear autologin method
         if ( window.localStorage ) {
           window.localStorage.removeItem( 'nlx-last-connection' );
         }
+        // redirect to logout URL
         window.location.replace( {{{ logout_URL }}} );
       }
 

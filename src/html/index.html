@@ -25,6 +25,7 @@ These are the variables we are using:
   LDAP connection name: {{{ LDAP_connection_name }}}
   Person API domain: {{{ person_api_domain }}}
   Google Tag Manager ID: {{{ GTM_ID }}}
+  Logout URL: {{{ logout_url }}}
   Features:
    autologin: {{{ features.autologin }}}
    person_api_lookup: {{{ features.person_api_lookup }}}
@@ -39,12 +40,20 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
     <title>Mozilla Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
+    document.addEventListener( 'DOMContentLoaded', function () {
+      document.body.style.display = 'none';
+
+      /* Trigger NLX actions that should happen before user sees NLX */
+
       if ( window.location.href.indexOf( 'action=logout' ) >= 0  ) {
         if ( window.localStorage ) {
-          window.localStorage.removeItem( 'nlx-last-connection' ):
+          window.localStorage.removeItem( 'nlx-last-connection' );
         }
-        window.location.replace( 'https://auth.mozilla.auth0.com/v2/logout?returnTo=https://sso.mozilla.com/signout.html' );
+        window.location.replace( {{{ logout_URL }}} );
       }
+
+      document.body.style.display = 'block';
+    });
     </script>
     <link href="../../dist/css/styles.css" type="text/css" inline />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">

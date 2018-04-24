@@ -3,12 +3,28 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [Unreleased, 1.2.0]
 
 ### Added
 
 - Firefox Accounts support, pref'd off for production, see also
   [POC](https://github.com/mozilla-iam/mozilla-iam/issues/36)
+- We can now trigger a logout from NLX, the first use case is the logout in SSO Dashboard.
+
+### Changed
+
+- Updated wording in various places to make things clearer:
+-- We now say 'Log in with email' and if there are social options 'Or log in with'
+-- Social buttons now just say the name of the option (and have visually hidden
+   text that adds 'Log in with' for users of assistive technologies)
+-- We now say ‘Please enter your LDAP password’ to make it clearer for users who
+   may not realise their email address is actually a valid LDAP address
+- We now convert email addresses to lowercase before checking or submitting
+- Google and GitHub logos no longer have 1px line at top missing
+- The page is now layed out with CSS Grid Layout, so that banners can take up
+  the space they need, while the card centers in the remaining space.
+- Links at bottom of card have now CSS with more prefixes, so that they work in
+  older versions of Webkit and Internet Explorer (as those sometimes get used).
 
 ## [1.1.4] - 2018-03-26
 

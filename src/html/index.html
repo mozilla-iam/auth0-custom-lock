@@ -40,22 +40,16 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
     <title>Mozilla Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
-    document.addEventListener( 'DOMContentLoaded', function () {
-      document.body.style.display = 'none';
+    /* Trigger NLX actions that should happen before user sees NLX */
 
-      /* Trigger NLX actions that should happen before user sees NLX */
-
-      if ( window.location.href.indexOf( 'action=logout' ) >= 0  ) {
-        // clear autologin method
-        if ( window.localStorage ) {
-          window.localStorage.removeItem( 'nlx-last-connection' );
-        }
-        // redirect to logout URL
-        window.location.replace( '{{{ logout_url }}}' );
+    if ( window.location.href.indexOf( 'action=logout' ) >= 0  ) {
+      // clear autologin method
+      if ( window.localStorage ) {
+        window.localStorage.removeItem( 'nlx-last-used-connection' );
       }
-
-      document.body.style.display = 'block';
-    });
+      // redirect to logout URL
+      window.location.replace( '{{{ logout_url }}}' );
+    }
     </script>
     <link href="../../dist/css/styles.css" type="text/css" inline />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">

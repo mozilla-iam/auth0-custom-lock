@@ -42,7 +42,7 @@ module.exports = function enter( element ) {
 
       ui.setLockState( element, 'loading' );
 
-      fetch( ENDPOINT + emailField.value )
+      fetch( ENDPOINT + emailField.value.toLowercase() )
         .then(
           function( response ) {
             response.json().then( function( data ) {

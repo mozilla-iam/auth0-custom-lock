@@ -22,6 +22,7 @@ function showLDAP( element, passwordField ) {
 module.exports = function enter( element ) {
   var form = document.querySelector( 'form' );
   var emailField = document.getElementById( 'field-email' );
+  var emailFieldValue = emailField.value.toLowerCase();
   var passwordField = document.getElementById( 'field-password' );
   var isAccountLinking = accountLinking.isAccountLinking();
   var qualifiesForLDAPShortcut = /mozilla.com|getpocket.com|mozillafoundation.org$/.test( emailField.value );
@@ -42,7 +43,7 @@ module.exports = function enter( element ) {
 
       ui.setLockState( element, 'loading' );
 
-      fetch( ENDPOINT + emailField.value.toLowercase() )
+      fetch( ENDPOINT + emailFieldValue )
         .then(
           function( response ) {
             response.json().then( function( data ) {

@@ -8,7 +8,8 @@ var decorators = {
   'load-ga': require( 'decorators/load-ga' ),
   'handle-submit': require( 'decorators/handle-submit' ),
   'display-rp-name': require( 'decorators/display-rp-name' ),
-  'filter-connections': require( 'decorators/filter-connections' )
+  'filter-connections': require( 'decorators/filter-connections' ),
+  'set-autologin-preference': require( 'decorators/set-autologin-preference' )
 };
 
 module.exports = decorators;

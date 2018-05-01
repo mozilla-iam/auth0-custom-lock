@@ -8,5 +8,6 @@
   "features": {
     "autologin": "true",
     "person_api_lookup": "true"
-  }
+  },
+  "supportedLoginMethods": [ "github", "google-oauth2", "email" ]
 }

@@ -11,6 +11,14 @@
     max-width: 26em;
   }
 
+  @supports ( display: grid ) {
+    grid-row-start: 2;
+
+    @media ( min-height: 50em ) {
+      top: -3em; /* compensate for negative margin for footer links */
+    }
+  }
+
   &__back {
     margin-bottom: 1em;
   }

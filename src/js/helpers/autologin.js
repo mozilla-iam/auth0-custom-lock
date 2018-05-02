@@ -4,6 +4,7 @@ module.exports = function autologin( loginMethod, form ) {
   var visualStatusReport = document.getElementById( 'loading__status' );
   var url = window.location;
   var params = new URLSearchParams( url.search );
+  var newLocation;
 
   form.willRedirect = true;
   visualStatusReport.textContent = 'Attempting auto-login with ' + loginMethod;

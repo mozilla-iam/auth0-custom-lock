@@ -7,12 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Added `URL.searchParams` polyfill
+- Added `URLSearchParams` polyfill
 
 ### Changed
 
-- Use the URL object's `searchParams` to contruct the redirect URL (more reliable)
+- Use `URLSearchParams` to contruct the redirect URL (more reliable)
 - Remove `prompt` if not set, so that OIDC OP that do not support it don't get confused
+- Tweak padding in small screen view so that it is like it was before
 
 ## [1.2.0]
 

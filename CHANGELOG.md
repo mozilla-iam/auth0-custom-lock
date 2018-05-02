@@ -3,22 +3,18 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## Unreleased [1.2.1]
+## [1.2.1]
 
 ### Added
 
-- Added URL.searchParams polyfill
+- Added `URL.searchParams` polyfill
 
 ### Changed
 
-- Autologin URL transformation now happens with `URL.searchParams`.
+- Use the URL object's `searchParams` to contruct the redirect URL (more reliable)
+- Remove `prompt` if not set, so that OIDC OP that do not support it don't get confused
 
 ## [1.2.0]
-
-### Changed
-
-- Use the URL object's searchParams to contruct the redirect URL (more reliable)
-- Remove `prompt` if not set, so that OIDC OP that do not support it don't get confused
 
 ### Added
 

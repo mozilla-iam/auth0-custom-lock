@@ -6,6 +6,11 @@ module.exports = function setAutologinPreference( element ) {
     checkbox.checked = true;
   }
 
+  if ( localStorage.getItem( 'nlx-prevent-autologin' ) !== null  ) {
+    checkbox.checked = false;
+  }
+
+
   checkbox.addEventListener( 'change', function() {
     // when autologin is turned OFF, remove last used connection,
     // prevent autologin method from being stored next time

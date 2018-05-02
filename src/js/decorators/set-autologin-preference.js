@@ -2,11 +2,13 @@ module.exports = function setAutologinPreference( element ) {
   var checkbox = element;
 
   // when page loads, make sure checkbox matches autologin setting
+  // (one of these two is not needed, depending on whether page has
+  // 'checked' attribute on the checkbox)
   if ( localStorage.getItem( 'nlx-last-used-connection' ) !== null ) {
     checkbox.checked = true;
   }
 
-  if ( localStorage.getItem( 'nlx-prevent-autologin' ) !== null  ) {
+  if ( localStorage.getItem( 'nlx-prevent-autologin' ) !== null ) {
     checkbox.checked = false;
   }
 

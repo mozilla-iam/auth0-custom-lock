@@ -2,9 +2,8 @@ var fireGAEvent = require( 'helpers/fire-ga-event' );
 
 module.exports = function autologin( loginMethod, form ) {
   var visualStatusReport = document.getElementById( 'loading__status' );
-  var newLocation;
-  var url = new URL( document.location );
-  var params = url.searchParams;
+  var url = window.location;
+  var params = new URLSearchParams( url.search );
 
   form.willRedirect = true;
   visualStatusReport.textContent = 'Attempting auto-login with ' + loginMethod;

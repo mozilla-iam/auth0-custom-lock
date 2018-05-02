@@ -1,6 +1,6 @@
 {
   "name": "lock",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "The front-end for Mozilla's Auth0 Lock",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,7 @@
   "dependencies": {
     "auth0-js": "^9.3.3",
     "promise-polyfill": "^6.0.2",
+    "url-search-params-polyfill": "^3.0.0",
     "whatwg-fetch": "^2.0.3"
   }
 }

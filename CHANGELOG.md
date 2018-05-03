@@ -3,6 +3,18 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.2.1]
+
+### Added
+
+- Added `URLSearchParams` polyfill
+
+### Changed
+
+- Use `URLSearchParams` to contruct the redirect URL (more reliable)
+- Remove `prompt` if not set, so that OIDC OP that do not support it don't get confused
+- Tweak padding in small screen view so that it is like it was before
+
 ## [1.2.0]
 
 ### Added

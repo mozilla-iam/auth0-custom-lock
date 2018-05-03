@@ -9,9 +9,13 @@ body {
   font-family: "Open Sans", sans-serif;
   letter-spacing: 0.03em;
   margin: 0 1.5em;
-  padding: 1em;
+  padding: 1em 0;
   display: grid;
   grid-template-rows: auto 1fr;
+
+  @media ( min-width: 50em ) {
+    padding: 3em 0;
+  }
 }
 
 [hidden] {

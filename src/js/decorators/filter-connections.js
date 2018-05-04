@@ -57,6 +57,8 @@ module.exports = function( element ) {
       if ( !didAccountLinking && !triedAutologin && autologinEnabled && rpSupportsSavedLoginMethod ) {
         autologin( savedLoginMethod, form );
         return;
+      } else if (triedAutoLogin && autologinEnabled && rpSupportsSavedLoginMethod) {
+        fireGAEvent( 'Authorisation', 'Autologin did not succeed with ' + loginMethod );
       }
     });
 

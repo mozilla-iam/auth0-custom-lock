@@ -31,6 +31,10 @@
     position: relative;
     min-height: 1.5em;
 
+    &--iconless {
+      padding-left: 0;
+    }
+
     svg {
       width: 1.5em;
       height: 1.5em;

@@ -66,12 +66,23 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
       <form data-decorator="init-auth handle-submit" method="post" action="/" lock-state="initial">
         <fieldset data-decorator="filter-connections">
           <legend class="rp-name"><span class="visually-hidden">Log in to </span><span id="rp-name-placeholder" class="rp-name__text"></span></legend>
-          <div id="loading" class="loading" data-screen>
+          <div id="loading" class="loading" data-screen data-hidden aria-hidden inert>
             <p class="visually-hidden ">Loading…</p>
             <img src="../images/loading.svg" class="loading__spinner" inline />
             <p role="alert" id="loading__status" class="loading__status"></p>
           </div>
-          <div id="initial" data-screen data-hidden aria-hidden inert>
+<!--           <div id="preferences">
+            <h2 class="card__heading card__heading--iconless">Auto-login settings</h2>
+            <p>You are currently logged in as <strong>hidde@hiddedevries.nl</strong> using <strong>Github</strong>.</p>
+            <div class="setting">
+              <input type="checkbox" id="use-autologin" data-decorator="set-autologin-preference" checked>
+              <label for="use-autologin"><span class="setting__toggle"></span> Auto-login is <strong>On</strong></label>
+            </div>
+            <hr>
+            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+          </div>
+ -->
+          <div id="initial" data-screen data-hidden aria-hidden>
             <p>Log in with email:</p>
             <label for="field-email" class="visually-hidden">E-mail address</label>
             <input type="email" name="username" id="field-email" placeholder="Email address" autocomplete="username email" autofocus />

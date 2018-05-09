@@ -67,7 +67,7 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
         <fieldset data-decorator="decide-screen">
           <legend class="rp-name"><span class="visually-hidden">Log in to </span><span id="rp-name-placeholder" class="rp-name__text"></span></legend>
           <div id="loading" class="loading" data-screen data-hidden aria-hidden inert>
-            <p class="visually-hidden ">Loading…</p>
+            <p class="visually-hidden">Loading…</p>
             <img src="../images/loading.svg" class="loading__spinner" inline />
             <p role="alert" id="loading__status" class="loading__status"></p>
           </div>
@@ -101,6 +101,10 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <div class="setting">
               <input type="checkbox" id="use-autologin" data-decorator="set-autologin-preference" checked>
               <label for="use-autologin"><span class="setting__toggle"></span> <span class="setting__enabled-text">Disable Auto-login</span><span class="setting__disabled-text">Enable Auto-login</span></label>
+              <a href="#what-is-autologin"><span class="visually-hidden">What is Auto-login?</span> <img inline  class="icon" src="../images/info.svg"></a>
+              <div id="what-is-autologin" class="tooltip">
+                <p>Enable Auto-login will allow you to bypass this screen in the future and be automatically logged in via your chosen account. This setting can be edited by visiting your user menu on the SSO Dashboard. <a href="#">Dismiss</a></p>
+              </div>
             </div>
           </div>
           <div id="ldap" data-screen data-hidden aria-hidden inert>

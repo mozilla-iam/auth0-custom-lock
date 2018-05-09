@@ -72,10 +72,12 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <p role="alert" id="loading__status" class="loading__status"></p>
           </div>
           <div id="initial" data-screen data-hidden aria-hidden>
-            <p>Log in with email:</p>
-            <label for="field-email" class="visually-hidden">E-mail address</label>
-            <input type="email" name="username" id="field-email" placeholder="Email address" autocomplete="username email" autofocus />
+            <div class="form__input">
+              <input type="email" name="username" id="field-email" autocomplete="username email" autofocus data-decorator="watch-contents" />
+              <label for="field-email"><span>E-mail</span></label>
+            </div>
             <input type="submit" class="button button--full-width" id="enter-initial" value="Enter" />
+            <hr>
             <ul class="login-options list list--plain">
               <li data-optional-login-method="firefoxaccounts">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-firefoxaccounts">
@@ -102,9 +104,8 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             </div>
           </div>
           <div id="ldap" data-screen data-hidden aria-hidden inert>
-            <p>Please enter your LDAP password:</p>
-            <label for="field-password" class="visually-hidden">LDAP password</label>
-            <input type="password" id="field-password" autocomplete="current-password" name="password" placeholder="Password" data-decorator="submit-with-enter" data-continue-with="authorise-ldap-credentials"  />
+            <label for="field-password">LDAP password</label>
+            <input type="password" id="field-password" autocomplete="current-password" name="password" data-decorator="submit-with-enter" data-continue-with="authorise-ldap-credentials"  />
             <input type="submit" class="button button--full-width" id="authorise-ldap-credentials" value="Enter"/>
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
@@ -116,6 +117,7 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
               </li>
             </ul>
             <a href="https://wiki.mozilla.org/IAM/Frequently_asked_questions#Q:_Why_do_you_support_email_login_.28.22passwordless.22.29_if_it.27s_less_safe_than_other_methods.3F" class="button button--text-only button--unpadded" target="_blank">Why an email?</a>
+            <hr>
             <ul class="login-options list list--plain">
               <li data-optional-login-method="firefoxaccounts">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-firefoxaccounts">

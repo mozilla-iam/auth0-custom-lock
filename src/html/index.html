@@ -99,7 +99,7 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <hr>
             <div class="setting">
               <input type="checkbox" id="use-autologin" data-decorator="set-autologin-preference" checked>
-              <label for="use-autologin"><span class="setting__toggle"></span> Use auto-login</label>
+              <label for="use-autologin"><span class="setting__toggle"></span> <span class="setting__enabled-text">Disable Auto-login</span><span class="setting__disabled-text">Enable Auto-login</span></label>
             </div>
           </div>
           <div id="ldap" data-screen data-hidden aria-hidden inert>
@@ -178,8 +178,8 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <h2 class="card__heading card__heading--iconless">Auto-login settings</h2>
             <p>You are currently logged in as <strong>hidde@hiddedevries.nl</strong> using <strong>Github</strong>.</p>
             <div class="setting">
-              <input type="checkbox" id="use-autologin" data-decorator="set-autologin-preference" checked>
-              <label for="use-autologin"><span class="setting__toggle"></span> Auto-login is <strong>On</strong></label>
+              <input type="checkbox" id="use-autologin-2" data-decorator="set-autologin-preference" checked>
+              <label for="use-autologin-2" toggle-text=""><span class="setting__toggle"></span> <span class="setting__enabled-text">Disable Auto-login</span><span class="setting__disabled-text">Enable Auto-login</span></label>
             </div>
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>

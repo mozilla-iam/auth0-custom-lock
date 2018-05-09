@@ -3,12 +3,14 @@
 // decorators are functions that run when the page loads
 
 var decorators = {
-  'init-auth': require( 'decorators/init-auth' ),
-  'submit-with-enter': require( 'decorators/submit-with-enter' ),
-  'load-ga': require( 'decorators/load-ga' ),
-  'handle-submit': require( 'decorators/handle-submit' ),
+  'decide-screen': require( 'decorators/decide-screen'),
   'display-rp-name': require( 'decorators/display-rp-name' ),
-  'filter-connections': require( 'decorators/filter-connections' )
+  'filter-connections': require( 'decorators/filter-connections' ),
+  'handle-submit': require( 'decorators/handle-submit' ),
+  'init-auth': require( 'decorators/init-auth' ),
+  'load-ga': require( 'decorators/load-ga' ),
+  'set-autologin-preference': require( 'decorators/set-autologin-preference' ),
+  'submit-with-enter': require( 'decorators/submit-with-enter' )
 };
 
 module.exports = decorators;

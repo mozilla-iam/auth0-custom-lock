@@ -1,0 +1,64 @@
+.setting {
+
+  input {
+    position: absolute;
+    left: -9999em;
+
+    &:focus + label span {
+      border: 1px dotted;
+    }
+  }
+
+  label {
+    margin: 0;
+  }
+
+  &__disabled-text {
+    display: inline;
+
+    input:checked + label & {
+      display: none;
+    }
+  }
+
+  &__enabled-text {
+    display: none;
+
+    input:checked + label & {
+      display: inline;
+    }
+  }
+
+  &__toggle {
+    width: 3em;
+    height: 1.75em;
+    border-radius: 1em;
+    background-color: $midGrey;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: .5em;
+    position: relative;
+    border: 1px solid transparent;
+
+    input:checked + label & {
+      background-color: $green;
+    }
+
+    &::after {
+      transition: all 0.2s ease-in-out;
+      position: absolute;
+      width: 1.5em;
+      height: 1.5em;
+      border-radius: 1em;
+      content: '';
+      top: .05em;
+      left: 1.375em;
+      background-color: white;
+
+      input:checked + label & {
+        left: .125em;
+      }
+    }
+  }
+
+}

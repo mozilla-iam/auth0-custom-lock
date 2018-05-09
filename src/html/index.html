@@ -15,7 +15,7 @@ vVVv    vVVv                 ': |_| |_| |_|\___/___|_|_|_|\__,_| ''
 
 This is the custom Mozilla Login Experience, designed and built by Mozilla's IAM Project.
 
-Version: 1.2.1
+Version: 1.3.0
 Changelog: https://github.com/mozilla-iam/auth0-custom-lock/blob/master/CHANGELOG.md
 
 These are the variables we are using:
@@ -51,8 +51,8 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
       window.location.replace( '{{{ logout_url }}}' );
     }
     </script>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <link href="../../dist/css/styles.css" type="text/css" inline />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
   </head>
   <body data-decorator="load-ga display-rp-name">
     <!--
@@ -64,14 +64,14 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
       <a href="https://mozilla.org" class="logo" target="_blank"><img alt="Mozilla" src="../images/mozilla.svg" inline /></a>
       <noscript><p>This login form requires JavaScript to work, please enable it to log in.</p></noscript>
       <form data-decorator="init-auth handle-submit" method="post" action="/" lock-state="initial">
-        <fieldset data-decorator="filter-connections">
+        <fieldset data-decorator="decide-screen">
           <legend class="rp-name"><span class="visually-hidden">Log in to </span><span id="rp-name-placeholder" class="rp-name__text"></span></legend>
-          <div id="loading" class="loading" data-screen>
+          <div id="loading" class="loading" data-screen data-hidden aria-hidden inert>
             <p class="visually-hidden ">Loading…</p>
             <img src="../images/loading.svg" class="loading__spinner" inline />
             <p role="alert" id="loading__status" class="loading__status"></p>
           </div>
-          <div id="initial" data-screen data-hidden aria-hidden inert>
+          <div id="initial" data-screen data-hidden aria-hidden>
             <p>Log in with email:</p>
             <label for="field-email" class="visually-hidden">E-mail address</label>
             <input type="email" name="username" id="field-email" placeholder="Email address" autocomplete="username email" autofocus />
@@ -96,6 +96,11 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
                   <span><span class="visually-hidden">Log in with </span>Google</span>
                 </button>
             </ul>
+            <hr>
+            <div class="setting">
+              <input type="checkbox" id="use-autologin" data-decorator="set-autologin-preference" checked>
+              <label for="use-autologin"><span class="setting__toggle"></span> <span class="setting__enabled-text">Disable Auto-login</span><span class="setting__disabled-text">Enable Auto-login</span></label>
+            </div>
           </div>
           <div id="ldap" data-screen data-hidden aria-hidden inert>
             <p>Please enter your LDAP password:</p>
@@ -117,19 +122,19 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
               <li data-optional-login-method="firefoxaccounts">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-firefoxaccounts">
                   <img inline  class="icon" src="../images/firefox.svg">
-                  <span>Log in with Firefox Accounts</span>
+                  <span>Firefox Accounts</span>
                 </button>
               </li>
               <li data-optional-login-method="github">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-github">
                   <img inline class="icon" src="../images/github.svg">
-                  <span>Log in with GitHub</span>
+                  <span>GitHub</span>
                 </button>
               </li>
               <li data-optional-login-method="google-oauth2">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-google">
                   <img inline  class="icon" src="../images/google.svg">
-                  <span>Log in with Google</span>
+                  <span>Google</span>
                 </button>
             </ul>
             <hr>
@@ -166,6 +171,16 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
           <div id="ldap-required" data-screen data-hidden aria-hidden inert>
             <h2 class="card__heading card__heading--error"><img src="../images/circled-x.svg" class="card__heading-icon" inline /> <span>Error</span></h2>
             <p>Unfortunately, you can only login to this website using Mozilla LDAP.</p>
+            <hr>
+            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+          </div>
+          <div id="autologin-settings" data-screen data-hidden aria-hidden inert>
+            <h2 class="card__heading card__heading--iconless">Auto-login settings</h2>
+            <p>You are currently logged in as <strong>hidde@hiddedevries.nl</strong> using <strong>Github</strong>.</p>
+            <div class="setting">
+              <input type="checkbox" id="use-autologin-2" data-decorator="set-autologin-preference" checked>
+              <label for="use-autologin-2" toggle-text=""><span class="setting__toggle"></span> <span class="setting__enabled-text">Disable Auto-login</span><span class="setting__disabled-text">Enable Auto-login</span></label>
+            </div>
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
           </div>

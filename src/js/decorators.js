@@ -5,6 +5,7 @@
 var decorators = {
   'decide-screen': require( 'decorators/decide-screen'),
   'display-rp-name': require( 'decorators/display-rp-name' ),
+  'fill-in-session-info': require( 'decorators/fill-in-session-info' ),
   'filter-connections': require( 'decorators/filter-connections' ),
   'handle-submit': require( 'decorators/handle-submit' ),
   'init-auth': require( 'decorators/init-auth' ),

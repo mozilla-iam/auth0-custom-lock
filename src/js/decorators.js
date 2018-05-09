@@ -10,7 +10,8 @@ var decorators = {
   'init-auth': require( 'decorators/init-auth' ),
   'load-ga': require( 'decorators/load-ga' ),
   'set-autologin-preference': require( 'decorators/set-autologin-preference' ),
-  'submit-with-enter': require( 'decorators/submit-with-enter' )
+  'submit-with-enter': require( 'decorators/submit-with-enter' ),
+  'watch-contents': require( 'decorators/watch-contents' )
 };
 
 module.exports = decorators;

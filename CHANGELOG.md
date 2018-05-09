@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Added auto-login switch
+- Added autologin switch
 - Added hidden auto-login settings screen
 
 ## [1.2.1]

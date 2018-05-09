@@ -13,6 +13,22 @@
     margin: 0;
   }
 
+  &__disabled-text {
+    display: inline;
+
+    input:checked + label & {
+      display: none;
+    }
+  }
+
+  &__enabled-text {
+    display: none;
+
+    input:checked + label & {
+      display: inline;
+    }
+  }
+
   &__toggle {
     width: 3em;
     height: 1.75em;

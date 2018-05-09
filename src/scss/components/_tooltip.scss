@@ -9,6 +9,10 @@
     margin-bottom: 0;
   }
 
+  a:last-child /* Assuming this would be 'Dismiss' */ {
+    margin-left: .5em;
+  }
+
   &:target {
     display: block;
   }

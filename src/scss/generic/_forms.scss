@@ -42,6 +42,10 @@ input[type="password"] {
 .form__input {
   position: relative;
 
+  p + & {
+    margin-top: 2.5em; /* leave space to fit a paragraph above a field */
+  }
+
   label {
     margin: 0;
     position: absolute;

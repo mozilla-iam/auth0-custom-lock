@@ -1,0 +1,33 @@
+.link-to-tooltip {
+  color: $darkerGrey;
+  float: right;
+  font-size: 1.2em;
+
+  &:hover svg path {
+    fill: $blue;
+  }
+
+  .icon {
+    vertical-align: baseline;
+  }
+}
+
+.tooltip {
+  display: none;
+  border: 1px solid $midGrey;
+  background-color: $lightGrey;
+  padding: 1em;
+  margin: 1em 0;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  a:last-child /* Assuming this would be 'Dismiss' */ {
+    margin-left: .5em;
+  }
+
+  &:target {
+    display: block;
+  }
+}

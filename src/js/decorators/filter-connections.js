@@ -2,6 +2,7 @@ var dom = require( 'helpers/dom' );
 var ui = require( 'helpers/ui' );
 var fireGAEvent = require( 'helpers/fire-ga-event' );
 var autologin = require( 'helpers/autologin' );
+var applyEmptyClass = require( 'helpers/apply-empty-class' );
 
 module.exports = function( element ) {
   var form = element.form;
@@ -57,7 +58,8 @@ module.exports = function( element ) {
       if ( !didAccountLinking && !triedAutologin && autologinEnabled && rpSupportsSavedLoginMethod ) {
         autologin( savedLoginMethod, form );
         return;
-      } else if (triedAutoLogin && autologinEnabled && rpSupportsSavedLoginMethod) {
+      }
+      else if ( triedAutologin && autologinEnabled && rpSupportsSavedLoginMethod ) {
         fireGAEvent( 'Authorisation', 'Autologin did not succeed with ' + loginMethod );
       }
     });
@@ -70,6 +72,8 @@ module.exports = function( element ) {
     else {
       accountLinking.save();
     }
+
+    applyEmptyClass();
 
     if ( !form.willRedirect ) {
       ui.setLockState( element, 'initial' );

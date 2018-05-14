@@ -3,12 +3,17 @@
   float: right;
   font-size: 1.2em;
 
+  svg path {
+    fill: $darkerGrey;
+  }
+
   &:hover svg path {
     fill: $blue;
   }
 
   .icon {
     vertical-align: baseline;
+    margin-top: .16em;
   }
 }
 

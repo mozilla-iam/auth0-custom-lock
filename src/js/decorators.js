@@ -12,6 +12,7 @@ var decorators = {
   'load-ga': require( 'decorators/load-ga' ),
   'set-autologin-preference': require( 'decorators/set-autologin-preference' ),
   'submit-with-enter': require( 'decorators/submit-with-enter' ),
+  'tooltip': require( 'decorators/tooltip'),
   'watch-contents': require( 'decorators/watch-contents' )
 };
 

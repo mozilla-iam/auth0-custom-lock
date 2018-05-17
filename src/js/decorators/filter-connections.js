@@ -2,6 +2,7 @@ var dom = require( 'helpers/dom' );
 var ui = require( 'helpers/ui' );
 var fireGAEvent = require( 'helpers/fire-ga-event' );
 var autologin = require( 'helpers/autologin' );
+var applyEmptyClass = require( 'helpers/apply-empty-class' );
 
 module.exports = function( element ) {
   var form = element.form;
@@ -12,7 +13,6 @@ module.exports = function( element ) {
   var savedLoginMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
   var accountLinking = require( 'helpers/account-linking' );
   var didAccountLinking = accountLinking.didAccountLinking();
-
 
   ui.setLockState( element, 'loading' );
 
@@ -33,7 +33,6 @@ module.exports = function( element ) {
     for ( i = 0; i < supported.length; i++ ) {
       loginMethods['supportedByRP'].push( supported[i].name );
     }
-
 
     loginMethods['supportedByNLX'].forEach( function( loginMethod ) {
       var rpSupportsSavedLoginMethod = savedLoginMethod && loginMethods['supportedByRP'].indexOf( savedLoginMethod ) >= 0;
@@ -73,6 +72,8 @@ module.exports = function( element ) {
     else {
       accountLinking.save();
     }
+
+    applyEmptyClass();
 
     if ( !form.willRedirect ) {
       ui.setLockState( element, 'initial' );

@@ -12,3 +12,7 @@
     margin-top: 1em;
   }
 }
+
+.login-options--empty + hr {
+  display: none;
+}

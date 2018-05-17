@@ -34,12 +34,10 @@ module.exports = function( element ) {
       loginMethods['supportedByRP'].push( supported[i].name );
     }
 
-    console.log( loginMethods );
 
     loginMethods['supportedByNLX'].forEach( function( loginMethod ) {
       var rpSupportsSavedLoginMethod = savedLoginMethod && loginMethods['supportedByRP'].indexOf( savedLoginMethod ) >= 0;
       var optionsInDom;
-
 
       // Remove login options from page if not supported by RP
       if ( loginMethods['supportedByRP'].indexOf( loginMethod ) === -1 ) {

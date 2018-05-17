@@ -26,7 +26,7 @@ module.exports = function authorise( element, secondTry ) {
     realm: connection,
     username: emailField.value.toLowerCase(),
     password: passwordField.value
-  }, function ( error ) {
+  }, function( error ) {
     errorText.lastElementChild.textContent = error.description;
     ui.setLockState( element, 'error-password' );
     fireGAEvent( 'Error', 'LDAP: invalid username or password' );

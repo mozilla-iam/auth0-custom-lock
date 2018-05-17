@@ -2,6 +2,7 @@ var dom = require( 'helpers/dom' );
 var ui = require( 'helpers/ui' );
 var fireGAEvent = require( 'helpers/fire-ga-event' );
 var autologin = require( 'helpers/autologin' );
+var applyEmptyClass = require( 'helpers/apply-empty-class' );
 
 module.exports = function( element ) {
   var form = element.form;
@@ -58,6 +59,9 @@ module.exports = function( element ) {
         autologin( savedLoginMethod, form );
         return;
       }
+      else if ( triedAutologin && autologinEnabled && rpSupportsSavedLoginMethod ) {
+        fireGAEvent( 'Authorisation', 'Autologin did not succeed with ' + loginMethod );
+      }
     });
 
     form.loginMethods = loginMethods;
@@ -69,12 +73,7 @@ module.exports = function( element ) {
       accountLinking.save();
     }
 
-    if ( document.querySelector( '.login-options' ).children.length === 0 ) {
-
-      document.querySelectorAll( '.non-ldap-options-intro' ).forEach( function( text ) {
-        text.style.display = 'none';
-      });
-    }
+    applyEmptyClass();
 
     if ( !form.willRedirect ) {
       ui.setLockState( element, 'initial' );

@@ -4,6 +4,7 @@
   "LDAP_connection_name": "Mozilla-LDAP",
   "person_api_domain": "https://person-api.sso.mozilla.com/v1/connection/",
   "logout_url": "https://auth.mozilla.auth0.com/v2/logout?returnTo=https://sso.mozilla.com/signout.html",
+  "sso_dashboard_url": "http://sso.mozilla.com",
   "GTM_ID": "GTM-T2N2BRW",
   "features": {
     "autologin": "true",

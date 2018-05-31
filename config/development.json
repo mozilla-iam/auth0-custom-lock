@@ -13,5 +13,5 @@
   },
   "supportedLoginMethods": [ "github", "google-oauth2", "firefoxaccounts", "email" ],
   "cdn": "https://mozilla-iam.github.io/auth0-custom-lock",
-  "csp": "default-src 'none'; connect-src 'self' https://person-api.sso.allizom.org; script-src 'unsafe-inline' https://mozilla-iam.github.io; style-src 'unsafe-inline' https://mozilla-iam.github.io"
+  "csp": "default-src 'none'; connect-src 'self' https://person-api.sso.allizom.org; script-src https://mozilla-iam.github.io; style-src 'self unsafe-inline' https://mozilla-iam.github.io"
 }

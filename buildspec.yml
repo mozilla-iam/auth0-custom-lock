@@ -1,0 +1,13 @@
+version: 0.1
+phases:
+  build:
+    commands:
+      - echo Build started on `date`
+      - bash ci/scripts/build.sh
+  post_build:
+    commands:
+      - bash ci/scripts/copy.sh
+      - bash ci/scripts/cloudfront.sh
+      - bash ci/scipts/deploy.sh
+      - echo done
+      - exit 0

@@ -78,7 +78,7 @@ Resources:
             Effect: "Allow"
             Action:
               - "s3:*"
-            Resource: !Ref CDNS3BucketArn
+            Resource:  !Join [ '', [ !Ref CDNS3BucketArn, '**' ] ]
       PolicyName: put-lock-to-cdn
       Roles:
         -
@@ -94,7 +94,7 @@ Resources:
             Effect: "Allow"
             Action:
               - "cloudfront:CreateInvalidation"
-            Resource: *
+            Resource: '*'
       PolicyName: all-to-cloudfront
       Roles:
         -

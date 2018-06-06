@@ -43,6 +43,21 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
     <title>Mozilla Login</title>
     <script>
     /* Trigger NLX actions that should happen before user sees NLX */
+    window.NLX = {
+      'isHostedLock': '@@config@@',
+      'environment': '{{{ environment }}}',
+      'auth0_domain': '{{{ auth0_domain }}}',
+      'client_ID': '{{{ client_ID }}}',
+      'LDAP_connection_name': '{{{ LDAP_connection_name }}}',
+      'person_api_domain': '{{{ person_api_domain }}}',
+      'GTM_ID': '{{{ GTM_ID }}}',
+      'features': {
+        'autologin': '{{{ features.autologin }}}',
+        'person_api_lookup': '{{{ features.person_api_lookup }}}'
+      },
+      'supportedLoginMethods': [ 'github', 'google-oauth2', 'firefoxaccounts', 'email' ]
+    };
+
 
     if ( window.location.href.indexOf( 'action=logout' ) >= 0  ) {
       // clear autologin method

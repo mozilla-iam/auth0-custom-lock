@@ -1,8 +1,10 @@
 #!/bin/bash
 
 # Prep this container to run python3
-yum update -y
-yum install python34 python34-devel python34-virtualenv -y
+apt-get update
+apt-get install -y build-essential libssl-dev libffi-dev python-dev
+apt-get install -y python3.4-venv python3.4 python3.4-dev python3-pip python-virtualenv
+
 virtualenv-3.4 env -p python3
 source env/bin/activate
 

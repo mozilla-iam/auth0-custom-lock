@@ -22,6 +22,7 @@ const paths = {
   html : 'src/html',
   styles : 'src/scss',
   scripts : 'src/js',
+  fonts: 'src/fonts',
   drop : 'dist'
 };
 
@@ -95,6 +96,22 @@ gulp.task( 'css:watch', function() {
 
 gulp.task( 'css', gulp.series( 'css:clean', 'css:process' ) );
 
+// Fonts
+gulp.task( 'fonts:copy', function() {
+  return gulp.src( paths.fonts + '/**/*' )
+    .pipe( gulp.dest( paths.drop + '/fonts' ) );
+});
+
+gulp.task( 'fonts:clean', function( done ) {
+  return del([paths.drop + '/fonts'], done );
+});
+
+gulp.task( 'fonts', gulp.series( 'fonts:clean', 'fonts:copy' ) );
+
+gulp.task( 'fonts:watch', function() {
+  gulp.watch( paths.fonts + '/**/*', gulp.parallel( 'fonts' ) );
+});
+
 // JS
 
 gulp.task( 'js:clean', function( done ) {
@@ -128,8 +145,8 @@ gulp.task( 'html:watch', function() {
    Combined tasks
    ------------------------------------ */
 
-gulp.task( 'default', gulp.series( gulp.parallel( 'css', 'js' ), [ 'process-html' ] ) );
-gulp.task( 'watch', gulp.series( gulp.parallel( 'lint:watch', 'css:watch', 'js:watch', 'html:watch' ) ) );
-gulp.task( 'clean', gulp.parallel( 'css:clean', 'js:clean' ) );
+gulp.task( 'default', gulp.series( gulp.parallel( 'css', 'fonts', 'js' ), [ 'process-html' ] ) );
+gulp.task( 'watch', gulp.series( gulp.parallel( 'lint:watch', 'css:watch', 'fonts:watch', 'js:watch', 'html:watch' ) ) );
+gulp.task( 'clean', gulp.parallel( 'css:clean', 'fonts:clean', 'js:clean' ) );
 gulp.task( 'dev', gulp.parallel( gulp.series( 'default', 'browserSync' ), 'watch' ) );
 gulp.task( 'build', gulp.parallel( gulp.series( 'default' ) ) );

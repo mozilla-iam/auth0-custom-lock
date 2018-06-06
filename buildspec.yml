@@ -8,6 +8,6 @@ phases:
     commands:
       - bash ci/scripts/copy.sh
       - bash ci/scripts/cloudfront.sh
-      - bash ci/scipts/deploy.sh
+      - bash ci/scripts/deploy.sh
       - echo done
       - exit 0

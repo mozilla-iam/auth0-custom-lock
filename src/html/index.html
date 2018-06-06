@@ -42,9 +42,9 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
   <head>
     <title>Mozilla Login</title>
     <script>
-    /* Trigger NLX actions that should happen before user sees NLX */
+    /* Set up config */
     window.NLX = {
-      'isHostedLock': '@@config@@',
+      'hostedConfig': '@@config@@',
       'environment': '{{{ environment }}}',
       'auth0_domain': '{{{ auth0_domain }}}',
       'client_ID': '{{{ client_ID }}}',
@@ -58,7 +58,7 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
       'supportedLoginMethods': [ 'github', 'google-oauth2', 'firefoxaccounts', 'email' ]
     };
 
-
+    /* Trigger NLX actions that should happen before user sees NLX */
     if ( window.location.href.indexOf( 'action=logout' ) >= 0  ) {
       // clear autologin method
       if ( window.localStorage ) {

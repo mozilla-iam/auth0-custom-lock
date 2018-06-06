@@ -13,6 +13,7 @@ const inlinesource = require('gulp-inline-source'); // automatically inlines CSS
 const sass = require( 'gulp-sass' ); // builds Sass (.scss) into CSS
 const source = require( 'vinyl-source-stream' ); // lets us use Browserify within Gulp
 const mustache = require("gulp-mustache"); // replace variables
+const fs = require( 'fs' );
 
 /* -----------------------------------
    Other constants
@@ -24,15 +25,15 @@ const paths = {
   drop : 'dist'
 };
 
-const environment = process.env.NODE_ENV || 'development'
+let environment = process.env.NODE_ENV || 'development';
+environment = environment.toLowerCase();
 
-var fs = require('fs');
-const config = JSON.parse(fs.readFileSync('config/' + environment.toLowerCase() + '.json', 'utf8'));
+const config = JSON.parse( fs.readFileSync( 'config/' + environment + '.json', 'utf8' ) );
 
-console.log('Production environment identified.  Building NLX with production config:')
-console.log('---------------------------Begin configuration.---------------------------')
-console.log(config);
-console.log('---------------------------End configuration.---------------------------')
+console.log( 'Environment “' + environment + '” identified.  Building NLX with ' + environment + ' config:' );
+console.log( '---------------------------Begin configuration.---------------------------' );
+console.log( config );
+console.log( '---------------------------End configuration.---------------------------' );
 
 /* -----------------------------------
    Tasks

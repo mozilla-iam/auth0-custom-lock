@@ -1,13 +1,13 @@
 var ui = require( 'helpers/ui' );
-var fireGAEvent = require( 'helpers/fireGAEvent' );
-var storeLastUsedConnection = require( 'helpers/storeLastUsedConnection' );
+var fireGAEvent = require( 'helpers/fire-ga-event' );
+var storeLastUsedConnection = require( 'helpers/store-last-used-connection' );
 
 module.exports = function authorise( element, secondTry ) {
   var form = element.tagName === 'FORM' ? element : element.form;
   var emailField = document.getElementById( 'field-email' );
   var passwordField = secondTry ? document.getElementById( 'field-password-try-2' ) : document.getElementById( 'field-password' );
   var errorText = document.getElementById( 'error-message-ldap' );
-  var connection = '{{{ LDAP_connection_name }}}';
+  var connection = NLX.LDAP_connection_name;
 
   if ( element.id === 'authorise-ldap-credentials-try-2' ) {
     passwordField = document.getElementById( 'field-password-try-2' );
@@ -17,19 +17,19 @@ module.exports = function authorise( element, secondTry ) {
 
   fireGAEvent( 'Authorisation', 'Authorising with LDAP' );
 
-  form.webAuth.redirect.loginWithCredentials({
-    connection: connection,
-    username: emailField.value,
-    password: passwordField.value,
-    scope: 'openid'
+  if ( form.loginMethods && form.loginMethods['supportedByRP'].indexOf( NLX.LDAP_connection_name ) === -1 ) {
+    ui.setLockState( element, 'ldap-not-available' );
+    return;
+  }
+
+  form.webAuth.login({
+    realm: connection,
+    username: emailField.value.toLowerCase(),
+    password: passwordField.value
   }, function( error ) {
-
-    if ( error && error.code === 'invalid_user_password' ) {
-      errorText.lastElementChild.textContent = error.description;
-      ui.setLockState( element, 'error-password' );
-      fireGAEvent( 'Error', 'LDAP: invalid username or password' );
-    }
+    errorText.lastElementChild.textContent = error.description;
+    ui.setLockState( element, 'error-password' );
+    fireGAEvent( 'Error', 'LDAP: invalid username or password' );
   });
-
   storeLastUsedConnection( connection );
 };

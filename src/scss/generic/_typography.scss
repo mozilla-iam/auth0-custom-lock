@@ -1,14 +1,20 @@
+html,
+body {
+  height: 100%;
+}
+
 body {
   background: $backgroundColor;
   color: $darkerGrey;
   font-family: "Open Sans", sans-serif;
   letter-spacing: 0.03em;
-  margin: 0;
+  margin: 0 1.5em;
+  padding: 1em 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
 
-  @media ( min-height: 50em ) and ( min-width: 20em ) {
-    display: flex;
-    padding: 8em 1em;
-    height: calc( 100vh - 6em );
+  @media ( min-width: 50em ) {
+    padding: 3em 0;
   }
 }
 
@@ -18,6 +24,7 @@ body {
 
 [data-hidden] {
   position: absolute;
+  top: -999em;
   opacity: 0;
 }
 
@@ -51,4 +58,10 @@ hr {
 .visually-hidden {
   position: absolute;
   left: -9999em;
+}
+
+.non-ldap-options-intro {
+  padding-top: 2em;
+  border-top: 2px solid $lightGrey;
+  margin-top: 2em;
 }

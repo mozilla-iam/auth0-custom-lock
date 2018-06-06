@@ -9,7 +9,10 @@
   }
 
   + a {
-    display: inline-block;
     margin-top: 1em;
   }
+}
+
+.login-options--empty + hr {
+  display: none;
 }

@@ -1,51 +1,85 @@
 var dom = require( 'helpers/dom' );
 var ui = require( 'helpers/ui' );
-var fireGAEvent = require( 'helpers/fireGAEvent' );
+var fireGAEvent = require( 'helpers/fire-ga-event' );
+var autologin = require( 'helpers/autologin' );
+var applyEmptyClass = require( 'helpers/apply-empty-class' );
 
 module.exports = function( element ) {
   var form = element.form;
-  var url = '{{ auth0domain }}' + '/public/api/' + form.webAuthConfig.clientID + '/connections';
+  var url = 'https://' + NLX.auth0_domain + '/public/api/' + form.webAuthConfig.clientID + '/connections';
+  var requiresPrompt = window.location.href.indexOf( 'prompt=login' ) >= 0 || window.location.href.indexOf( 'prompt=select_account' );
+  var triedAutologin = window.location.href.indexOf( 'tried_autologin=true' ) >= 0;
+  var autologinEnabled = requiresPrompt === -1 && NLX.features.autologin === 'true';
+  var savedLoginMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
+  var accountLinking = require( 'helpers/account-linking' );
+  var didAccountLinking = accountLinking.didAccountLinking();
 
   ui.setLockState( element, 'loading' );
 
+  form.willRedirect = false;
+
   fetch( url ).then( function( response ) {
     return response.json();
-  }).then( function( allowed ) {
-    var allowedRPs = [];
-    var RPfunctionalities = dom.$( '[data-optional-rp]' );
+  }).then( function( supported ) {
+    var loginMethods;
     var i;
 
-    for ( i = 0; i < allowed.length; i++ ) {
-      allowedRPs.push( allowed[i].name );
+    loginMethods = {
+      'supportedByRP': [],
+      'supportedByNLX': NLX.supportedLoginMethods,
+      'removed': []
+    };
+
+    for ( i = 0; i < supported.length; i++ ) {
+      loginMethods['supportedByRP'].push( supported[i].name );
     }
 
-    RPfunctionalities.forEach( function( functionality ) {
-      var functionalityName = functionality.getAttribute( 'data-optional-rp' );
-      var lastUsedConnection;
-      var locationString;
-      var silentAuthEnabled;
+    loginMethods['supportedByNLX'].forEach( function( loginMethod ) {
+      var rpSupportsSavedLoginMethod = savedLoginMethod && loginMethods['supportedByRP'].indexOf( savedLoginMethod ) >= 0;
+      var optionsInDom;
 
-      if ( allowedRPs.indexOf( functionalityName ) === -1 ) {
-        ui.hide( functionality );
+      // Remove login options from page if not supported by RP
+      if ( loginMethods['supportedByRP'].indexOf( loginMethod ) === -1 ) {
+        optionsInDom = dom.$( '[data-optional-login-method="' + loginMethod + '"]' );
+
+        optionsInDom.forEach( function( method ) {
+          method.remove();
+        });
+
+        loginMethods['removed'].push( loginMethod );
+
         fireGAEvent( 'Hiding', 'Hiding login method that isn\'t supported for this RP' );
+        fireGAEvent( 'Hiding', 'Hiding ' + loginMethod + ' as it isn\'t supported for this RP' );
       }
 
-      if ( window.location.hostname !== 'localhost' && window.localStorage ) {
-        lastUsedConnection = window.localStorage.getItem( 'nlx-last-used-connection' );
-        locationString = window.location.toString();
-        silentAuthEnabled = locationString.indexOf('tried_silent_auth=true') === -1;
-
-        if ( silentAuthEnabled && lastUsedConnection && allowedRPs.indexOf( lastUsedConnection ) >= 0 ) {
-          window.location = locationString.replace('/login?', '/authorize?').replace('?client=', '?client_id=') + '&sso=true&connection=' + lastUsedConnection + '&tried_silent_auth=true';
-          fireGAEvent( 'Authorisation', 'Performing auto-login' );
-
-          return
-        }
+      // RPs that request autologin to happen with the prompt=none parameter,
+      // will not see this page. As a fallback for RPs that don't use prompt=none,
+      // we attempt autologin once, and only under circumstances
+      if ( !didAccountLinking && !triedAutologin && autologinEnabled && rpSupportsSavedLoginMethod ) {
+        autologin( savedLoginMethod, form );
+        return;
+      }
+      else if ( triedAutologin && autologinEnabled && rpSupportsSavedLoginMethod ) {
+        fireGAEvent( 'Authorisation', 'Autologin did not succeed with ' + loginMethod );
       }
     });
 
-    ui.setLockState( element, 'initial' );
-  }, function(){
+    form.loginMethods = loginMethods;
+
+    if ( didAccountLinking ) {
+      accountLinking.clear();
+    }
+    else {
+      accountLinking.save();
+    }
+
+    applyEmptyClass();
+
+    if ( !form.willRedirect ) {
+      ui.setLockState( element, 'initial' );
+    }
+  }).catch( function() {
+    // Could not check which connections are available for this RP; just show all.
     ui.setLockState( element, 'initial' );
   });
 };

@@ -1,5 +1,5 @@
 module.exports = function() {
-  var getRPName = require( 'helpers/getRPName' );
+  var getRPName = require( 'helpers/get-rp-name' );
   var rp = getRPName();
   var rpLocation = document.getElementById( 'rp-name-placeholder' );
 

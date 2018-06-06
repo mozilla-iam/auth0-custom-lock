@@ -5,8 +5,8 @@ rm -rf node_modules/
 rm -rf dist/
 mkdir -p dist/
 
-echo 'Building the lock for ' ${NODE_ENV}
+echo 'Building the lock for' ${NODE_ENV}
 
 # Run a install and build
 npm install
-npm run build export NODE_ENV=${NODE_ENV}
+npm run build NODE_ENV=${NODE_ENV}

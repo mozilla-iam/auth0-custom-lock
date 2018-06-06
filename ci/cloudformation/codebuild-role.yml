@@ -93,8 +93,8 @@ Resources:
           -
             Effect: "Allow"
             Action:
-              - "cloudfront:*"
-            Resource: !Ref CloudFrontDistributionIDArn
+              - "cloudfront:CreateInvalidation"
+            Resource: *
       PolicyName: all-to-cloudfront
       Roles:
         -

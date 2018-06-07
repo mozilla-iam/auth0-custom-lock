@@ -23,6 +23,7 @@ const paths = {
   styles : 'src/scss',
   scripts : 'src/js',
   fonts: 'src/fonts',
+  images: 'src/images',
   drop : 'dist'
 };
 
@@ -112,6 +113,23 @@ gulp.task( 'fonts:watch', function() {
   gulp.watch( paths.fonts + '/**/*', gulp.parallel( 'fonts' ) );
 });
 
+// Images
+gulp.task( 'images:copy', function() {
+  return gulp.src( paths.images + '/**/*' )
+    .pipe( gulp.dest( paths.drop + '/images' ) );
+});
+
+gulp.task( 'images:clean', function( done ) {
+  return del([paths.drop + '/images'], done );
+});
+
+gulp.task( 'images', gulp.series( 'images:clean', 'images:copy' ) );
+
+gulp.task( 'images:watch', function() {
+  gulp.watch( paths.fonts + '/**/*', gulp.parallel( 'images' ) );
+});
+
+
 // JS
 
 gulp.task( 'js:clean', function( done ) {
@@ -145,8 +163,8 @@ gulp.task( 'html:watch', function() {
    Combined tasks
    ------------------------------------ */
 
-gulp.task( 'default', gulp.series( gulp.parallel( 'css', 'fonts', 'js' ), [ 'process-html' ] ) );
-gulp.task( 'watch', gulp.series( gulp.parallel( 'lint:watch', 'css:watch', 'fonts:watch', 'js:watch', 'html:watch' ) ) );
-gulp.task( 'clean', gulp.parallel( 'css:clean', 'fonts:clean', 'js:clean' ) );
+gulp.task( 'default', gulp.series( gulp.parallel( 'css', 'fonts', 'images', 'js' ), [ 'process-html' ] ) );
+gulp.task( 'watch', gulp.series( gulp.parallel( 'lint:watch', 'css:watch', 'fonts:watch', 'images:watch', 'js:watch', 'html:watch' ) ) );
+gulp.task( 'clean', gulp.parallel( 'css:clean', 'fonts:clean', 'images:clean', 'js:clean' ) );
 gulp.task( 'dev', gulp.parallel( gulp.series( 'default', 'browserSync' ), 'watch' ) );
 gulp.task( 'build', gulp.parallel( gulp.series( 'default' ) ) );

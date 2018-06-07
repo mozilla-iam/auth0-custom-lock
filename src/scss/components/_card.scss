@@ -11,6 +11,14 @@
     max-width: 26em;
   }
 
+  @supports ( display: grid ) {
+    grid-row-start: 2;
+
+    @media ( min-height: 50em ) {
+      top: -3em; /* compensate for negative margin for footer links */
+    }
+  }
+
   &__back {
     margin-bottom: 1em;
   }
@@ -21,6 +29,11 @@
     text-transform: capitalize;
     padding-left: 2.125em;
     position: relative;
+    min-height: 1.5em;
+
+    &--iconless {
+      padding-left: 0;
+    }
 
     svg {
       width: 1.5em;

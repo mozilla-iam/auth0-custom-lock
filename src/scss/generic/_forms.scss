@@ -38,3 +38,31 @@ input[type="password"] {
     background-color: $white;
   }
 }
+
+.form__input {
+  position: relative;
+
+  p + & {
+    margin-top: 2.5em; /* leave space to fit a paragraph above a field */
+  }
+
+  label {
+    margin: 0;
+    position: absolute;
+    top: .5em;
+    left: .5em;
+    transition: 0.2s top ease-in-out;
+  }
+
+  input:focus + label,
+  input.has-contents + label {
+    position: absolute;
+    top: -1.5em;
+    color: $blue;
+    font-weight: bold;
+
+    > span {
+      font-size: 0.75em;
+    }
+  }
+}

@@ -8,6 +8,7 @@ var decorators = {
   'fill-in-session-info': require( 'decorators/fill-in-session-info' ),
   'filter-connections': require( 'decorators/filter-connections' ),
   'handle-submit': require( 'decorators/handle-submit' ),
+  'hide-autologin-setting-conditionally': require( 'decorators/hide-autologin-setting-conditionally' ),
   'init-auth': require( 'decorators/init-auth' ),
   'load-ga': require( 'decorators/load-ga' ),
   'set-autologin-preference': require( 'decorators/set-autologin-preference' ),

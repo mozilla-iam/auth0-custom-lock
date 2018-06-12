@@ -41,18 +41,6 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
 <html lang="en">
   <head>
     <title>Mozilla Login</title>
-    <script>
-
-    /* Trigger NLX actions that should happen before user sees NLX */
-    if ( window.location.href.indexOf( 'action=logout' ) >= 0  ) {
-      // clear autologin method
-      if ( window.localStorage ) {
-        window.localStorage.removeItem( 'nlx-last-used-connection' );
-      }
-      // redirect to logout URL
-      window.location.replace( '{{{ logout_url }}}' );
-    }
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="dns-prefetch" href="{{{ person_api_domain }}}">
     <meta http-equiv="Content-Security-Policy" content="{{{ csp }}}">
@@ -221,7 +209,8 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
         "autologin": "{{{ features.autologin }}}",
         "person_api_lookup": "{{{ features.person_api_lookup }}}"
       },
-      "supportedLoginMethods": "{{{ supportedLoginMethods }}}"
+      "supportedLoginMethods": "{{{ supportedLoginMethods }}}",
+      "logout_url": "{{{ logout_url }}}"
    }</script>
     <script src="{{{ cdn }}}/js/main.js"></script>
   </body>

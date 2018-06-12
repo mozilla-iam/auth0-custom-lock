@@ -13,9 +13,16 @@ polyfill();
 document.documentElement.className = 'has-js';
 
 window.NLX = JSON.parse( settingsElement.textContent );
-console.log ( '--- start NLX config as fetched  --');
-console.log ( NLX );
-console.log ( '--- end NLX config as fetched --');
+
+/* Trigger NLX actions that should happen before user sees NLX */
+if ( window.location.href.indexOf( 'action=logout' ) >= 0  ) {
+  // clear autologin method
+  if ( window.localStorage ) {
+    window.localStorage.removeItem( 'nlx-last-used-connection' );
+  }
+  // redirect to logout URL
+  window.location.replace( NLX.logout_url );
+}
 
 // run all decorators on page load
 decorate( decorators );

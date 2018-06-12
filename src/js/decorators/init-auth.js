@@ -5,9 +5,6 @@ function getConfig( string ) {
 
   if ( isHostedLock ) {
     hostedConfig = JSON.parse( decodeURIComponent( escape( window.atob( string ) ) ) );
-    console.log ( '--- found and parsed a hostedConfig --');
-    console.log ( hostedConfig );
-    console.log ( '--- hosted config --');
     config.domain = hostedConfig.auth0Domain;
     config.clientID = hostedConfig.clientID;
     config.redirectUri = hostedConfig.callbackURL;

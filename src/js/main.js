@@ -15,7 +15,7 @@ document.documentElement.className = 'has-js';
 window.NLX = JSON.parse( settingsElement.textContent );
 
 /* Trigger NLX actions that should happen before user sees NLX */
-if ( window.location.href.indexOf( 'action=logout' ) >= 0  ) {
+if ( window.location.href.indexOf( 'action=logout' ) >= 0 ) {
   // clear autologin method
   if ( window.localStorage ) {
     window.localStorage.removeItem( 'nlx-last-used-connection' );

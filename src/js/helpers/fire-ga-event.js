@@ -13,6 +13,6 @@ module.exports = function( eventCategory, eventAction ) {
   }
 
   if ( NLX.environment !== 'PROD' ) {
-    console.log( eventCategory + ' - ' + eventAction );
+    console.log( eventCategory + ' - ' + eventAction ); // eslint-disable-line
   }
 };

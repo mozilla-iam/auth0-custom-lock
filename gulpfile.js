@@ -9,7 +9,6 @@ const browserSync = require( 'browser-sync' ).create(); // starts a dev server a
 const del = require( 'del' ); // deletes files, so that we can clean up before generating a new `dist`
 const eslint = require( 'gulp-eslint' ); // lints our JavaScript
 const gulp = require( 'gulp' ); // runs tasks
-const inlinesource = require('gulp-inline-source'); // automatically inlines CSS, JS and images
 const sass = require( 'gulp-sass' ); // builds Sass (.scss) into CSS
 const source = require( 'vinyl-source-stream' ); // lets us use Browserify within Gulp
 const mustache = require("gulp-mustache"); // replace variables
@@ -50,15 +49,8 @@ gulp.task('browserSync', function() {
 });
 
 gulp.task( 'process-html', function() {
-  var options = {
-    inlineSource: {
-      compress: false,
-      pretty: true
-    }
-  };
 
   return gulp.src( paths.html + '/*.html' )
-    .pipe( inlinesource( options.inlineSource ) )
     .pipe( mustache( config ) )
     .pipe( gulp.dest( paths.drop ) )
     .pipe( browserSync.reload( { stream: true } ));

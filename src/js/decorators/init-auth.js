@@ -4,7 +4,10 @@ function getConfig( string ) {
   var isHostedLock = string !== '@@' + 'config@@'; // if the string isn't this, we're not in the hosted Lock
 
   if ( isHostedLock ) {
-    hostedConfig = string;
+    hostedConfig = JSON.parse( decodeURIComponent( escape( window.atob( string ) ) ) );
+    console.log ( '--- found and parsed a hostedConfig --');
+    console.log ( hostedConfig );
+    console.log ( '--- hosted config --');
     config.domain = hostedConfig.auth0Domain;
     config.clientID = hostedConfig.clientID;
     config.redirectUri = hostedConfig.callbackURL;
@@ -21,9 +24,6 @@ function getConfig( string ) {
 
 module.exports = function initAuth( element ) {
   var auth0 = require( 'auth0-js' );
-  console.log ( '--- hosted config --');
-  console.log ( NLX.hostedConfig );
-  console.log ( '--- hosted config --');
   var config = getConfig( NLX.hostedConfig );
   var webAuth = new auth0.WebAuth( config );
 

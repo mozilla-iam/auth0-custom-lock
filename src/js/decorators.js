@@ -11,6 +11,7 @@ var decorators = {
   'hide-autologin-setting-conditionally': require( 'decorators/hide-autologin-setting-conditionally' ),
   'init-auth': require( 'decorators/init-auth' ),
   'load-ga': require( 'decorators/load-ga' ),
+  'prevent-clickjack': require( 'decorators/prevent-clickjack' ),
   'set-autologin-preference': require( 'decorators/set-autologin-preference' ),
   'submit-with-enter': require( 'decorators/submit-with-enter' ),
   'tooltip': require( 'decorators/tooltip' ),

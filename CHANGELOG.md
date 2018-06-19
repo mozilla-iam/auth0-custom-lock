@@ -5,11 +5,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.4.3]
 
+### Added
+
+- Minify task that minifies JS. This broke the JS when we were using
+  inline-source, but works in our new setup.
+- Use `font-display: swap` which, in supporting browsers, decreases
+  the time browser waits for font to download.
+
 ### Changed
 
 - aria-hidden is now used with explicit boolean values,
   instead of relying on its presence/absence.
 - Version number in HTML is now retrieved from package.json.
+- Updated npm packages to be the latest version.
+- Updated error handling for LDAP login to only display specific
+  errors that we specify and expect. (This is because sometimes Auth0
+  returns a JSON object instead of a nicely formatted title and responses
+  are not consistent enough to just display them).
 
 ## [1.4.2]
 

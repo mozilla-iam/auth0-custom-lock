@@ -13,6 +13,10 @@ const sass = require( 'gulp-sass' ); // builds Sass (.scss) into CSS
 const source = require( 'vinyl-source-stream' ); // lets us use Browserify within Gulp
 const mustache = require("gulp-mustache"); // replace variables
 const fs = require( 'fs' );
+const buffer = require( 'vinyl-buffer' );
+const uglify = require( 'gulp-uglify' );
+const sourcemaps = require( 'gulp-sourcemaps' );
+const log = require( 'gulplog' );
 
 /* -----------------------------------
    Other constants
@@ -139,6 +143,11 @@ gulp.task( 'js:browserify', function() {
   })
     .bundle()
     .pipe( source('main.js') )
+    .pipe ( buffer() )
+    .pipe( sourcemaps.init( {loadMaps: true} ) )
+        .pipe( uglify() )
+        .on( 'error', log.error )
+    .pipe( sourcemaps.write('./') )
     .pipe( gulp.dest( paths.drop + '/js' ) );
 });
 

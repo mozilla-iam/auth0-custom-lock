@@ -16,8 +16,13 @@
     "eslint": "^3.13.1",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-eslint": "^3.0.1",
+    "gulp-minify": "^3.0.2",
     "gulp-mustache": "^3.0.1",
     "gulp-sass": "^3.2.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
+    "gulplog": "^1.0.0",
+    "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {

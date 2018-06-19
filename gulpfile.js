@@ -29,7 +29,9 @@ const paths = {
 let environment = process.env.NODE_ENV || 'development';
 environment = environment.toLowerCase();
 
-const config = JSON.parse( fs.readFileSync( 'config/' + environment + '.json', 'utf8' ) );
+const configFile = JSON.parse( fs.readFileSync( 'config/' + environment + '.json', 'utf8' ) );
+const packageJSON = JSON.parse( fs.readFileSync( 'package.json', 'utf8' ) );
+const config = Object.assign( configFile, packageJSON );
 
 console.log( 'Environment “' + environment + '” identified.  Building NLX with ' + environment + ' config:' );
 console.log( '---------------------------Begin configuration.---------------------------' );

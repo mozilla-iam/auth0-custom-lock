@@ -9,11 +9,14 @@ const browserSync = require( 'browser-sync' ).create(); // starts a dev server a
 const del = require( 'del' ); // deletes files, so that we can clean up before generating a new `dist`
 const eslint = require( 'gulp-eslint' ); // lints our JavaScript
 const gulp = require( 'gulp' ); // runs tasks
-const inlinesource = require('gulp-inline-source'); // automatically inlines CSS, JS and images
 const sass = require( 'gulp-sass' ); // builds Sass (.scss) into CSS
 const source = require( 'vinyl-source-stream' ); // lets us use Browserify within Gulp
 const mustache = require("gulp-mustache"); // replace variables
 const fs = require( 'fs' );
+const buffer = require( 'vinyl-buffer' );
+const uglify = require( 'gulp-uglify' );
+const sourcemaps = require( 'gulp-sourcemaps' );
+const log = require( 'gulplog' );
 
 /* -----------------------------------
    Other constants
@@ -22,13 +25,17 @@ const paths = {
   html : 'src/html',
   styles : 'src/scss',
   scripts : 'src/js',
+  fonts: 'src/fonts',
+  images: 'src/images',
   drop : 'dist'
 };
 
 let environment = process.env.NODE_ENV || 'development';
 environment = environment.toLowerCase();
 
-const config = JSON.parse( fs.readFileSync( 'config/' + environment + '.json', 'utf8' ) );
+const configFile = JSON.parse( fs.readFileSync( 'config/' + environment + '.json', 'utf8' ) );
+const packageJSON = JSON.parse( fs.readFileSync( 'package.json', 'utf8' ) );
+const config = Object.assign( configFile, packageJSON );
 
 console.log( 'Environment “' + environment + '” identified.  Building NLX with ' + environment + ' config:' );
 console.log( '---------------------------Begin configuration.---------------------------' );
@@ -48,15 +55,8 @@ gulp.task('browserSync', function() {
 });
 
 gulp.task( 'process-html', function() {
-  var options = {
-    inlineSource: {
-      compress: false,
-      pretty: true
-    }
-  };
 
   return gulp.src( paths.html + '/*.html' )
-    .pipe( inlinesource( options.inlineSource ) )
     .pipe( mustache( config ) )
     .pipe( gulp.dest( paths.drop ) )
     .pipe( browserSync.reload( { stream: true } ));
@@ -95,6 +95,39 @@ gulp.task( 'css:watch', function() {
 
 gulp.task( 'css', gulp.series( 'css:clean', 'css:process' ) );
 
+// Fonts
+gulp.task( 'fonts:copy', function() {
+  return gulp.src( paths.fonts + '/**/*' )
+    .pipe( gulp.dest( paths.drop + '/fonts' ) );
+});
+
+gulp.task( 'fonts:clean', function( done ) {
+  return del([paths.drop + '/fonts'], done );
+});
+
+gulp.task( 'fonts', gulp.series( 'fonts:clean', 'fonts:copy' ) );
+
+gulp.task( 'fonts:watch', function() {
+  gulp.watch( paths.fonts + '/**/*', gulp.parallel( 'fonts' ) );
+});
+
+// Images
+gulp.task( 'images:copy', function() {
+  return gulp.src( paths.images + '/**/*' )
+    .pipe( gulp.dest( paths.drop + '/images' ) );
+});
+
+gulp.task( 'images:clean', function( done ) {
+  return del([paths.drop + '/images'], done );
+});
+
+gulp.task( 'images', gulp.series( 'images:clean', 'images:copy' ) );
+
+gulp.task( 'images:watch', function() {
+  gulp.watch( paths.fonts + '/**/*', gulp.parallel( 'images' ) );
+});
+
+
 // JS
 
 gulp.task( 'js:clean', function( done ) {
@@ -110,6 +143,11 @@ gulp.task( 'js:browserify', function() {
   })
     .bundle()
     .pipe( source('main.js') )
+    .pipe ( buffer() )
+    .pipe( sourcemaps.init( {loadMaps: true} ) )
+        .pipe( uglify() )
+        .on( 'error', log.error )
+    .pipe( sourcemaps.write('./') )
     .pipe( gulp.dest( paths.drop + '/js' ) );
 });
 
@@ -128,8 +166,8 @@ gulp.task( 'html:watch', function() {
    Combined tasks
    ------------------------------------ */
 
-gulp.task( 'default', gulp.series( gulp.parallel( 'css', 'js' ), [ 'process-html' ] ) );
-gulp.task( 'watch', gulp.series( gulp.parallel( 'lint:watch', 'css:watch', 'js:watch', 'html:watch' ) ) );
-gulp.task( 'clean', gulp.parallel( 'css:clean', 'js:clean' ) );
+gulp.task( 'default', gulp.series( gulp.parallel( 'css', 'fonts', 'images', 'js' ), [ 'process-html' ] ) );
+gulp.task( 'watch', gulp.series( gulp.parallel( 'lint:watch', 'css:watch', 'fonts:watch', 'images:watch', 'js:watch', 'html:watch' ) ) );
+gulp.task( 'clean', gulp.parallel( 'css:clean', 'fonts:clean', 'images:clean', 'js:clean' ) );
 gulp.task( 'dev', gulp.parallel( gulp.series( 'default', 'browserSync' ), 'watch' ) );
 gulp.task( 'build', gulp.parallel( gulp.series( 'default' ) ) );

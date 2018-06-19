@@ -5,7 +5,7 @@ var switchClass = function( input ) {
   else {
     input.classList.remove( 'has-contents' );
   }
-}
+};
 
 module.exports = function watchContents( input ) {
   switchClass( input );

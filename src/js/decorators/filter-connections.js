@@ -6,7 +6,7 @@ var applyEmptyClass = require( 'helpers/apply-empty-class' );
 
 module.exports = function( element ) {
   var form = element.form;
-  var url = 'https://' + NLX.auth0_domain + '/public/api/' + form.webAuthConfig.clientID + '/connections';
+  var url = 'https://' + NLX.domain + '/public/api/' + form.webAuthConfig.clientID + '/connections';
   var requiresPrompt = window.location.href.indexOf( 'prompt=login' ) >= 0 || window.location.href.indexOf( 'prompt=select_account' );
   var triedAutologin = window.location.href.indexOf( 'tried_autologin=true' ) >= 0;
   var autologinEnabled = requiresPrompt === -1 && NLX.features.autologin === 'true';

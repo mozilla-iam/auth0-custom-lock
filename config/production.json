@@ -10,5 +10,7 @@
     "autologin": "true",
     "person_api_lookup": "true"
   },
-  "supportedLoginMethods": [ "github", "google-oauth2", "firefoxaccounts", "email" ]
+  "supportedLoginMethods": [ "github", "google-oauth2", "firefoxaccounts", "email" ],
+  "cdn": "https://cdn.sso.mozilla.com/nlx/latest",
+  "csp": "default-src 'none'; connect-src 'self' https://person-api.sso.mozilla.org; script-src 'self' https://cdn.sso.mozilla.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://cdn.sso.mozilla.com; font-src 'self' https://cdn.sso.mozilla.com; img-src 'self' https://cdn.sso.mozilla.com https://www.google-analytics.com"
 }

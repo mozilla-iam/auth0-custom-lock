@@ -6,5 +6,4 @@ module.exports = function( element ) {
   if ( accountLinking.isAccountLinking() ) {
     ui.hide( element );
   }
-console.log('bla');
 };

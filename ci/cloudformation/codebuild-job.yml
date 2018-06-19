@@ -1,0 +1,54 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: CodeBuild job for automated testing.
+Parameters:
+  CDNS3Bucket:
+    Type: String
+    Description: The name of the s3 bucket that you want the lock deployed to.
+  CloudFrontDistributionID:
+    Type: String
+    Description: The ID of the cloudfront distribution for performing cache invalidations.
+  NLXEnv:
+    Type: String
+    Description: What environment are we building for.
+  ServiceRoleArn:
+    Type: String
+    Description: The Arn of your codebuild service role.
+Resources:
+  ArtifactStoreBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      VersioningConfiguration:
+        Status: Enabled
+      AccessControl: BucketOwnerFullControl
+  CodeBuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Artifacts:
+        Type: no_artifacts
+      Environment:
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/nodejs:8.11.0
+        Type: LINUX_CONTAINER
+        EnvironmentVariables:
+          - Name: CDN_BUCKET_NAME
+            Value: !Ref CDNS3Bucket
+          - Name: CLOUDFRONT_DIST_ID
+            Value: !Ref CloudFrontDistributionID
+          - Name: NODE_ENV
+            Value: !Ref NLXEnv
+      Name: !Sub ${AWS::StackName}CodeBuildProject
+      ServiceRole: !Ref ServiceRoleArn
+      Source:
+        Type: GITHUB
+        Location: "https://github.com/mozilla-iam/auth0-custom-lock"
+Outputs:
+  CodeBuildURL:
+    Description: CodeBuild URL
+    Value:
+      Fn::Join:
+        - ""
+        - - "https://console.aws.amazon.com/codebuild/home?region="
+          - Ref: AWS::Region
+          - "#/projects/"
+          - Ref: CodeBuildProject
+          - "/view"

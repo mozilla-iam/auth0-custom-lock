@@ -12,7 +12,7 @@ var ui = {
       // - data-hidden hides visually only
       // - aria-hidden hides from Assistive Technologies
       element.setAttribute( 'data-hidden', true );
-      element.setAttribute( 'aria-hidden', true );
+      element.setAttribute( 'aria-hidden', 'true' );
     }
     ui.focus( focusElement );
   },
@@ -20,7 +20,7 @@ var ui = {
   show: function( element, focusElement ) {
     if ( ui.isHidden( element ) ) {
       element.removeAttribute( 'data-hidden' );
-      element.removeAttribute( 'aria-hidden' );
+      element.setAttribute( 'aria-hidden', 'false' );
     }
     ui.focus( focusElement );
   },
@@ -28,11 +28,11 @@ var ui = {
   toggle: function( element ) {
     if ( !ui.isHidden( element ) ) {
       element.setAttribute( 'data-hidden', true );
-      element.setAttribute( 'aria-hidden', true );
+      element.setAttribute( 'aria-hidden', 'true' );
     }
     else {
       element.removeAttribute( 'data-hidden' );
-      element.removeAttribute( 'aria-hidden' );
+      element.setAttribute( 'aria-hidden', 'false' );
     }
   },
   // check if `element` is hidden

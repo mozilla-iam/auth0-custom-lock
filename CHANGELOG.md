@@ -28,6 +28,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   errors that we specify and expect. (This is because sometimes Auth0
   returns a JSON object instead of a nicely formatted title and responses
   are not consistent enough to just display them).
+- Auto-login switch indicator changed: OFF is to left, ON is to right, it now
+  matches what iOS and Android do. Also, better padding (Thanks @LunarTwilight!)
 
 ## [1.4.2]
 

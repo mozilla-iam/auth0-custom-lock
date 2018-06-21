@@ -26,7 +26,7 @@ module.exports = function( element ) {
 
     loginMethods = {
       'supportedByRP': [],
-      'supportedByNLX': NLX.supportedLoginMethods,
+      'supportedByNLX': NLX.supportedLoginMethods.split(','),
       'removed': []
     };
 

@@ -186,18 +186,6 @@ if (!('inert' in HTMLElement.prototype)) {
   });
 
   window.addEventListener('load', function() {
-    function applyStyle(css) {
-      var style = document.createElement('style');
-      style.type = 'text/css';
-      if (style.styleSheet) {
-        style.styleSheet.cssText = css;
-      } else {
-        style.appendChild(document.createTextNode(css));
-      }
-      document.body.appendChild(style);
-    }
-    var css = "/*[inert]*/*[inert]{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;pointer-events:none}";
-    applyStyle(css);
 
     /**
      * Sends a fake tab event. This is only supported by some browsers.

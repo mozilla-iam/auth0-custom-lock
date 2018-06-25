@@ -11,8 +11,14 @@ fieldset {
   padding: 0;
 }
 
-fieldset[has-data-hidden] {
+fieldset.hidden-lastpass-password-offset {
   margin-bottom: -4em;
+}
+
+#hidden-lastpass-password {
+  height: 3em;
+  position: relative;
+  z-index: -999;
 }
 
 label {

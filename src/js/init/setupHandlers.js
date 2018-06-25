@@ -32,8 +32,8 @@ module.exports = function( handlers ) {
   // the off-screen password field DOM node is only required to trigger LastPass
   // on page load, and isn't necessary afterwards
   window.addEventListener( 'load', function removeOffscreenPassword() {
-    var element = document.getElementById('off-screen-field-password');
-    element.parentNode.removeAttribute('has-data-hidden');
+    var element = document.getElementById('hidden-lastpass-password');
+    element.parentNode.classList.remove('hidden-lastpass-password-offset');
     element.parentNode.removeChild(element);
   });
 };

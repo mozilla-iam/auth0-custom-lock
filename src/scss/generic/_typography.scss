@@ -18,10 +18,8 @@ body {
   }
 }
 
-[data-hidden] {
-  height: 3em;
-  position: relative;
-  z-index: -999;
+[hidden] {
+  display: none;
 }
 
 h1 {

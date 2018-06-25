@@ -58,7 +58,7 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
       <a href="https://mozilla.org" class="logo" target="_blank"><img alt="Mozilla" src="{{{ cdn }}}/images/mozilla.svg" /></a>
       <noscript><p>This login form requires JavaScript to work, please enable it to log in.</p></noscript>
       <form data-decorator="init-auth handle-submit" method="post" action="/" lock-state="initial">
-        <fieldset data-decorator="decide-screen" has-data-hidden>
+        <fieldset class="hidden-lastpass-password-offset" data-decorator="decide-screen">
           <legend class="rp-name"><span class="visually-hidden">Log in to </span><span id="rp-name-placeholder" class="rp-name__text"></span></legend>
           <div id="loading" class="loading" data-screen hidden>
             <p class="visually-hidden">Loading…</p>
@@ -191,8 +191,8 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
               <li><a href="{{{ sso_dashboard_url }}}/logout" class="button button--full-width button--secondary">Log out of Mozilla</a></li>
             </ul>
           </div>
-          <!-- this input is intentionally hidden off screen to trigger LastPass -->
-          <input type="password" id="off-screen-field-password" autocomplete="current-password" name="off-screen-password" data-hidden aria-hidden />
+          {{! this input is intentionally hidden to trigger LastPass }}
+          <input type="password" id="hidden-lastpass-password" autocomplete="current-password" name="hidden-lastpass-password" aria-hidden />
         </fieldset>
       </form>
       <ul class="legal-links list list--plain">

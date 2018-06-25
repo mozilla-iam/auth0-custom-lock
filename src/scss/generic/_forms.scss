@@ -11,6 +11,10 @@ fieldset {
   padding: 0;
 }
 
+fieldset[has-data-hidden] {
+  margin-bottom: -4em;
+}
+
 label {
   margin: 2em 0;
   display: block;

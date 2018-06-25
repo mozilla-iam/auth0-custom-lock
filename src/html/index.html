@@ -58,16 +58,16 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
       <a href="https://mozilla.org" class="logo" target="_blank"><img alt="Mozilla" src="{{{ cdn }}}/images/mozilla.svg" /></a>
       <noscript><p>This login form requires JavaScript to work, please enable it to log in.</p></noscript>
       <form data-decorator="init-auth handle-submit" method="post" action="/" lock-state="initial">
-        <fieldset data-decorator="decide-screen">
+        <fieldset data-decorator="decide-screen" has-data-hidden>
           <legend class="rp-name"><span class="visually-hidden">Log in to </span><span id="rp-name-placeholder" class="rp-name__text"></span></legend>
-          <div id="loading" class="loading" data-screen data-hidden aria-hidden="true" inert>
+          <div id="loading" class="loading" data-screen hidden>
             <p class="visually-hidden">Loading…</p>
             <img src="{{{ cdn }}}/images/loading.svg" class="loading__spinner" />
             <p role="alert" id="loading__status" class="loading__status"></p>
           </div>
-          <div id="initial" data-screen data-hidden aria-hidden="true">
+          <div id="initial" data-screen hidden>
             <div class="form__input">
-              <input type="email" name="username" id="field-email" autocomplete="username email" autofocus data-decorator="watch-contents" />
+              <input type="email" name="username" id="field-email" autocomplete="email" autofocus data-decorator="watch-contents" />
               <label for="field-email"><span><span aria-hidden="true">Log in with </span>email</span></label>
             </div>
             <input type="submit" class="button button--full-width" id="enter-initial" value="Enter" />
@@ -103,7 +103,7 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
               </div>
             </div>
           </div>
-          <div id="ldap" data-screen data-hidden aria-hidden="true" inert>
+          <div id="ldap" data-screen hidden>
             <div class="form__input">
               <input type="password" id="field-password" autocomplete="current-password" name="password" data-decorator="submit-with-enter watch-contents" data-continue-with="authorise-ldap-credentials"  />
               <label for="field-password"><span>LDAP password</span></label>
@@ -112,7 +112,7 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
           </div>
-          <div id="non-ldap" data-screen data-hidden aria-hidden="true" inert>
+          <div id="non-ldap" data-screen hidden>
             <ul class="login-options list list--plain" data-optional-login-method="email">
               <li>
                 <button class="button button--full-width button--secondary" type="button" data-handler="send-passwordless-link">Send me an email</button>
@@ -142,13 +142,13 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
           </div>
-          <div id="passwordless-success" data-screen data-hidden aria-hidden="true" inert>
+          <div id="passwordless-success" data-screen hidden>
             <h2 class="card__heading card__heading--success"><img src="{{{ cdn }}}/images/envelope.svg" class="card__heading-icon" /> <span>Success</span></h2>
             <p>Email sent to <span id="passwordless-success-email-address"></span>, your login link will expire in 15 minutes.</p>
             <hr>
             <button id="back" type="button" class="button button--text-only card__back  button--unpadded" data-handler="go-to-initial-page">Need to send that to a different email?</button>
           </div>
-          <div id="error-password" data-screen data-hidden aria-hidden="true" inert>
+          <div id="error-password" data-screen hidden>
             <h2 class="card__heading card__heading--error" id="error-message-ldap"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
             <p>Please attempt again or contact the Help Desk for assistance.</p>
             <div class="form__input">
@@ -159,26 +159,26 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
           </div>
-          <div id="error-passwordless" data-screen data-hidden aria-hidden="true" inert>
+          <div id="error-passwordless" data-screen hidden>
             <h2 class="card__heading card__heading--error" id="error-message-passwordless"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
             <p>We cannot send an email to this address</p>
             <button type="button" class="button button--text-only card__back  button--unpadded" data-handler="go-to-initial-page">Try again</button>
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
           </div>
-          <div id="ldap-not-available" data-screen data-hidden aria-hidden="true" inert>
+          <div id="ldap-not-available" data-screen hidden>
             <h2 class="card__heading card__heading--error"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
             <p>Unfortunately, this website does not offer login with Mozilla LDAP.</p>
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
           </div>
-          <div id="ldap-required" data-screen data-hidden aria-hidden="true" inert>
+          <div id="ldap-required" data-screen hidden>
             <h2 class="card__heading card__heading--error"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
             <p>Unfortunately, you can only login to this website using Mozilla LDAP.</p>
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
           </div>
-          <div id="autologin-settings" data-screen data-hidden aria-hidden="true" inert>
+          <div id="autologin-settings" data-screen hidden>
             <h2 class="card__heading card__heading--iconless">Auto-login settings</h2>
             <p data-decorator="fill-in-session-info">You are currently logged in<span data-email hidden> as <strong></strong></span><span data-login-method hidden> using <strong></strong></span>.</p>
             <div class="setting">
@@ -191,6 +191,8 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
               <li><a href="{{{ sso_dashboard_url }}}/logout" class="button button--full-width button--secondary">Log out of Mozilla</a></li>
             </ul>
           </div>
+          <!-- this input is intentionally hidden off screen to trigger LastPass -->
+          <input type="password" id="off-screen-field-password" autocomplete="current-password" name="off-screen-password" data-hidden aria-hidden />
         </fieldset>
       </form>
       <ul class="legal-links list list--plain">

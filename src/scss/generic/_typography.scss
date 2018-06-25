@@ -18,14 +18,10 @@ body {
   }
 }
 
-[hidden] {
-  display: none;
-}
-
 [data-hidden] {
-  position: absolute;
-  top: -999em;
-  opacity: 0;
+  height: 3em;
+  position: relative;
+  z-index: -999;
 }
 
 h1 {

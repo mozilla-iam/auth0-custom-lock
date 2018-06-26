@@ -10,6 +10,7 @@ module.exports = function( element ) {
   var requiresPrompt = window.location.href.indexOf( 'prompt=login' ) >= 0 || window.location.href.indexOf( 'prompt=select_account' );
   var triedAutologin = window.location.href.indexOf( 'tried_autologin=true' ) >= 0;
   var autologinEnabled = requiresPrompt === -1 && NLX.features.autologin === 'true';
+  var usedBackButton = window.performance && window.performance.navigation.type === window.performance.navigation.TYPE_BACK_FORWARD;
   var savedLoginMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
   var accountLinking = require( 'helpers/account-linking' );
   var didAccountLinking = accountLinking.didAccountLinking();
@@ -55,7 +56,7 @@ module.exports = function( element ) {
       // RPs that request autologin to happen with the prompt=none parameter,
       // will not see this page. As a fallback for RPs that don't use prompt=none,
       // we attempt autologin once, and only under circumstances
-      if ( !didAccountLinking && !triedAutologin && autologinEnabled && rpSupportsSavedLoginMethod ) {
+      if ( !didAccountLinking && !triedAutologin && !usedBackButton && autologinEnabled && rpSupportsSavedLoginMethod ) {
         autologin( savedLoginMethod, form );
         return;
       }

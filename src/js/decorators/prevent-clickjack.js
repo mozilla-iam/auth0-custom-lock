@@ -5,7 +5,4 @@ module.exports = function() {
     document.body.style.display = 'none';
     fireGAEvent( 'Security', 'NLX was loaded inside iframe' );
   }
-  if ( window.self === window.top ) {
-    document.body.classList.add( 'notframed' );
-  }
 };

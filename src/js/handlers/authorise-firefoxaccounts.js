@@ -16,7 +16,7 @@ module.exports = function authorise( element ) {
 
   newLocation = url.origin + url.pathname + '?' + params.toString();
 
-  window.history.pushState( null, null, newLocation );
+  window.history.replaceState( null, null, newLocation );
 
   form.webAuth.authorize({
     responseType: 'token',

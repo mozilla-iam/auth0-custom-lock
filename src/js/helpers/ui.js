@@ -2,37 +2,24 @@ var ui = {
   // hide `element`
   hide: function( element, focusElement ) {
     if ( !ui.isHidden( element ) ) {
-      // Non-standard hiding ahead:
-      //
-      // Because some password managers stop working when they detect
-      // a hidden password field, our hiding mechanism does not use
-      // standard hiding techniques like display:none or visiblity:hidden.
-      //
-      // To make it work for all, we use two attributes:
-      // - data-hidden hides visually only
-      // - aria-hidden hides from Assistive Technologies
-      element.setAttribute( 'data-hidden', true );
-      element.setAttribute( 'aria-hidden', true );
+      element.setAttribute( 'hidden', true );
     }
     ui.focus( focusElement );
   },
   // show `element`
   show: function( element, focusElement ) {
     if ( ui.isHidden( element ) ) {
-      element.removeAttribute( 'data-hidden' );
-      element.removeAttribute( 'aria-hidden' );
+      element.removeAttribute( 'hidden' );
     }
     ui.focus( focusElement );
   },
   // toggle visibility of `element`
   toggle: function( element ) {
     if ( !ui.isHidden( element ) ) {
-      element.setAttribute( 'data-hidden', true );
-      element.setAttribute( 'aria-hidden', true );
+      element.setAttribute( 'hidden', true );
     }
     else {
-      element.removeAttribute( 'data-hidden' );
-      element.removeAttribute( 'aria-hidden' );
+      element.removeAttribute( 'hidden' );
     }
   },
   // check if `element` is hidden
@@ -40,23 +27,11 @@ var ui = {
     var hasHiddenParents = false;
 
     if ( checkForHiddenParents ) {
-      hasHiddenParents = !!element.closest( '[data-hidden]' );
+      hasHiddenParents = !!element.closest( '[hidden]' );
     }
-    return element.hasAttribute( 'data-hidden' ) || checkForHiddenParents && hasHiddenParents;
+    return element.hasAttribute( 'hidden' ) || checkForHiddenParents && hasHiddenParents;
   },
-  // make `element` inert (unavailable for anything, including keyboard users, AT users, in page search)
-  makeInert: function( element ) {
-    if ( !element.hasAttribute( 'inert' ) ) {
-      element.setAttribute( 'inert', '' );
-    }
-  },
-  // undo making `element` inert
-  undoInert: function( element ) {
-    if ( element.hasAttribute( 'inert' ) ) {
-      element.removeAttribute( 'inert' );
-    }
-  },
-    // focus `element`
+  // focus `element`
   focus: function( element ) {
     if ( element ) {
       if ( element.nodeName === 'DIV' && !element.hasAttribute( 'tabindex' ) ) {
@@ -96,12 +71,10 @@ var ui = {
       // hide all screens
       screens.forEach( function( screen ) {
         ui.hide( screen );
-        ui.makeInert( screen );
       });
 
       // show and focus screenToShow
       ui.show( screenToShow, screenToShow );
-      ui.undoInert( screenToShow );
       form.setAttribute( 'lock-state', state );
 
       if ( autofocusInput && autofocusInput.length > 0 ) {

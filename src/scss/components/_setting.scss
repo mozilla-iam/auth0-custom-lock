@@ -54,11 +54,11 @@
       border-radius: 1em;
       content: '';
       top: .07em;
-      left: 1.375em;
+      left: .125em;
       background-color: white;
 
       input:checked + label & {
-        left: .125em;
+        left: 1.3em;
       }
     }
   }

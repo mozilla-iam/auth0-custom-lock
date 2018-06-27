@@ -11,6 +11,16 @@ fieldset {
   padding: 0;
 }
 
+fieldset.hidden-lastpass-password-offset {
+  margin-bottom: -4em;
+}
+
+#hidden-lastpass-password {
+  height: 3em;
+  position: relative;
+  z-index: -999;
+}
+
 label {
   margin: 2em 0;
   display: block;
@@ -51,7 +61,6 @@ input[type="password"] {
     position: absolute;
     top: .5em;
     left: .5em;
-    transition: 0.2s top ease-in-out;
   }
 
   input:focus + label,

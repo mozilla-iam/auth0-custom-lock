@@ -22,12 +22,6 @@ body {
   display: none;
 }
 
-[data-hidden] {
-  position: absolute;
-  top: -999em;
-  opacity: 0;
-}
-
 h1 {
   margin: 0;
 }

@@ -27,9 +27,18 @@ module.exports = function authorise( element, secondTry ) {
     username: emailField.value.toLowerCase(),
     password: passwordField.value
   }, function( error ) {
-    errorText.lastElementChild.textContent = error.description;
+
+    if ( error.error && error.error === 'request_error' ) {
+      errorText.lastElementChild.textContent = 'An invalid request error occurred';
+      fireGAEvent( 'Error', 'LDAP: request invalid' );
+  }
+
+    if ( error.code && error.code === 'invalid_user_password' ) {
+      errorText.lastElementChild.textContent = error.description;
+      fireGAEvent( 'Error', 'LDAP: invalid username or password' );
+    }
+
     ui.setLockState( element, 'error-password' );
-    fireGAEvent( 'Error', 'LDAP: invalid username or password' );
   });
   storeLastUsedConnection( connection );
 };

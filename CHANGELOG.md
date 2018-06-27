@@ -3,6 +3,62 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.4.5]
+
+### Changed
+
+- Changed DOM and CSS to make sure NLX works well with iOS's integrated
+  password manager (Thanks @april).
+
+
+## [1.4.4]
+
+### Changed
+
+- Removed animation from floating labels
+
+## [1.4.3]
+
+### Added
+
+- Minify task that minifies JS. This broke the JS when we were using
+  inline-source, but works in our new setup.
+- Use `font-display: swap` which, in supporting browsers, decreases
+  the time browser waits for font to download.
+
+### Changed
+
+- aria-hidden is now used with explicit boolean values,
+  instead of relying on its presence/absence.
+- Version number in HTML is now retrieved from package.json.
+- Updated npm packages to be the latest version.
+- Updated error handling for LDAP login to only display specific
+  errors that we specify and expect. (This is because sometimes Auth0
+  returns a JSON object instead of a nicely formatted title and responses
+  are not consistent enough to just display them).
+- Auto-login switch indicator changed: OFF is to left, ON is to right, it now
+  matches what iOS and Android do. Also, better padding (Thanks @LunarTwilight!)
+
+## [1.4.2]
+
+### Added
+
+- Favicon added
+- Removed all inline scripts so that Content Security-Policy does
+  not require 'unsafe-inline' for scripts
+
+## [1.4.1]
+
+### Added
+
+- Assets are loaded from a configurable CDN URL.
+- Configurable Content Security-Policy added.
+- dns-prefetch header for the Person API domain.
+
+### Changed
+
+- Fonts are now part of this package.
+
 ## [1.4.0]
 
 ### Added

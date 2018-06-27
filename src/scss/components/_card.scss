@@ -35,7 +35,7 @@
       padding-left: 0;
     }
 
-    svg {
+    img {
       width: 1.5em;
       height: 1.5em;
       position: absolute;
@@ -45,20 +45,10 @@
 
     &--success {
       color: $green;
-
-      svg use,
-      svg path {
-        fill: $green;
-      }
     }
 
     &--error {
       color: $red;
-
-      svg use,
-      svg path {
-        fill: $red;
-      }
     }
   }
 

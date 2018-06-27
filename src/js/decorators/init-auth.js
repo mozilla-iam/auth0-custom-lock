@@ -12,7 +12,7 @@ function getConfig( string ) {
     config = Object.assign( config, hostedConfig.internalOptions );
   }
   else {
-    config.domain = NLX.auth0_domain;
+    config.domain = NLX.domain;
     config.clientID = NLX.client_ID;
     config.responseType = 'code';
   }
@@ -21,7 +21,7 @@ function getConfig( string ) {
 
 module.exports = function initAuth( element ) {
   var auth0 = require( 'auth0-js' );
-  var config = getConfig( '@@config@@' );
+  var config = getConfig( NLX.hostedConfig );
   var webAuth = new auth0.WebAuth( config );
 
   element.webAuth = webAuth;

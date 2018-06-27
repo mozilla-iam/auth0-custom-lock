@@ -1,6 +1,6 @@
 {
   "name": "lock",
-  "version": "1.4.0",
+  "version": "1.4.5",
   "description": "The front-end for Mozilla's Auth0 Lock",
   "main": "index.js",
   "scripts": {
@@ -10,21 +10,25 @@
   "author": "Hidde de Vries",
   "license": "MPL-2.0",
   "devDependencies": {
-    "browser-sync": "^2.18.13",
+    "browser-sync": "^2.24.4",
     "browserify": "^14.3.0",
     "del": "^2.2.2",
     "eslint": "^3.13.1",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-eslint": "^3.0.1",
-    "gulp-inline-source": "^3.1.0",
+    "gulp-minify": "^3.0.2",
     "gulp-mustache": "^3.0.1",
-    "gulp-sass": "^3.1.0",
+    "gulp-sass": "^3.2.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
+    "gulplog": "^1.0.0",
+    "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
-    "auth0-js": "^9.3.3",
-    "promise-polyfill": "^6.0.2",
-    "url-search-params-polyfill": "^3.0.0",
-    "whatwg-fetch": "^2.0.3"
+    "auth0-js": "^9.6.1",
+    "promise-polyfill": "^8.0.0",
+    "url-search-params-polyfill": "^4.0.0",
+    "whatwg-fetch": "^2.0.4"
   }
 }

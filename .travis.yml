@@ -15,7 +15,7 @@ deploy:
   local_dir: dist
   github_token: $github_token
   on:
-    branch: master
+    branch: development
 
 env:
   global:

@@ -14,7 +14,7 @@
     "browserify": "^14.3.0",
     "del": "^2.2.2",
     "eslint": "^3.13.1",
-    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp": "^4.0.0",
     "gulp-eslint": "^3.0.1",
     "gulp-minify": "^3.0.2",
     "gulp-mustache": "^3.0.1",

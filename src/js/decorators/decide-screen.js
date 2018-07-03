@@ -7,6 +7,33 @@ module.exports = function decideScreen( element ) {
   if ( hasParams( 'action=autologin_settings' ) ) {
     ui.setLockState( element, 'autologin-settings' );
   }
+  else if ( hasParams( 'action=error_githubrequiremfa' ) ) {
+    ui.replaceVars( 'error-githubrequiremfa' );
+    ui.setLockState( element, 'error-githubrequiremfa' );
+  }
+  else if ( hasParams( 'action=error_fxarequiremfa' ) ) {
+    ui.replaceVars( 'error-fxarequiremfa' );
+    ui.setLockState( element, 'error-fxarequiremfa' );
+  }
+  else if ( hasParams( 'action=error_notingroup' ) ) {
+    ui.replaceVars( 'error-notingroup' );
+    ui.setLockState( element, 'error-notingroup' );
+  }
+  else if ( hasParams( 'action=error_accesshasexpired' ) ) {
+    ui.replaceVars( 'error-accesshasexpired' );
+    ui.setLockState( element, 'error-accesshasexpired' );
+  }
+  else if ( hasParams( 'action=error_primarynotverified' ) ) {
+    ui.replaceVars( 'error-primarynotverified' );
+    ui.setLockState( element, 'error-primarynotverified' );
+  }
+  else if ( hasParams( 'action=error_incorrectaccount' ) ) {
+    ui.replaceVars( 'error-incorrectaccount' );
+    ui.setLockState( element, 'error-incorrectaccount' );
+  }
+  else if ( hasParams( 'action=error_general' ) ) {
+    ui.setLockState( element, 'error-general' );
+  }
   else {
     filterConnections( element );
   }

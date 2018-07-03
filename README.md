@@ -57,3 +57,39 @@ Because only in strings the Mustache syntax can produce valid JavaScript, we sav
 ```js
 NLX.variable === 'true' // true or false
 ```
+
+## Parameters for special screens
+
+When you call NLX with one of the following parameters, the standard interactive screen is not shown, instead you will get a special screen.
+
+### action=autologin_settings
+
+Auto-login Settings screen. Allows user to enable or disable auto-login.
+
+### action=error_githubrequiremfa
+
+Error message for when GitHub is used without MFA.
+
+### action=error_fxarequiremfa
+
+Error message for when Firefox Accounts is used without MFA.
+
+### action=error_notingroup
+
+Error message for when user does not have correct group permissions.
+
+### action=error_accesshasexpired
+
+Error message for when access has expired.
+
+### action=error_primarynotverified
+
+Error message for when primary identity was not verified.
+
+### action=error_incorrectaccount
+
+Error message for when wrong account is being used to log in.
+
+### action=error_general
+
+General error message.

@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Tweak wording for Passwordless success message
 - Autologin is now prevented when you go to NLX using the back button
 - Use human readable names for login methods in auto-login messaging
 

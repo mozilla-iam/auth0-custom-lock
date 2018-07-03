@@ -183,6 +183,18 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
           </div>
+          <div id="error-general" data-screen hidden>
+            <h2 class="card__heading card__heading--error"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
+            <p>Oye, something went wrong.</p>
+            <hr>
+            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+          </div>
+          <div id="error-githubrequiredmfa" data-screen hidden>
+            <h2 class="card__heading card__heading--error"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
+            <p>You must setup a security device ("MFA", "2FA") for your GitHub account in order to access this service. Please follow the <a href="https://help.github.com/articles/securing-your-account-with-two-factor-authentication-2fa/">GitHub documentation</a> to setup your device, then try logging in again</p>
+            <hr>
+            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+          </div>
           <div id="autologin-settings" data-screen hidden>
             <h2 class="card__heading card__heading--iconless">Auto-login settings</h2>
             <p data-decorator="fill-in-session-info">You are currently logged in<span data-email hidden> as <strong></strong></span><span data-login-method hidden> using <strong></strong></span>.</p>

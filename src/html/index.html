@@ -33,6 +33,11 @@ These are the variables we are using:
    autologin: {{{ features.autologin }}}
    person_api_lookup: {{{ features.person_api_lookup }}}
    supportedLoginMethods: {{{ supportedLoginMethods }}}
+  Display names:
+    github: {{{ displayNames.github }}}
+    google-oauth2: {{{ displayNames.google-oauth2 }}}
+    firefoxaccounts: {{{ displayNames.firefoxaccounts }}}
+    email: {{{ displayNames.email }}}
 
 The code is the result of a build process, please find the source code
 on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
@@ -47,7 +52,7 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
     <link rel="stylesheet" href="{{{ cdn }}}/css/fonts.css" type="text/css" />
     <link rel="stylesheet" href="{{{ cdn }}}/css/styles.css" type="text/css" />
     <link rel="icon" href="{{{ cdn }}}/images/favicon.png" type="image/png" sizes="196x196" />
-  </head> 
+  </head>
   <body data-decorator="load-ga display-rp-name prevent-clickjack">
     <!--
     <div class="banner">
@@ -215,7 +220,13 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
         "person_api_lookup": "{{{ features.person_api_lookup }}}"
       },
       "supportedLoginMethods": "{{{ supportedLoginMethods }}}",
-      "logout_url": "{{{ logout_url }}}"
+      "logout_url": "{{{ logout_url }}}",
+      "displayNames": {
+        "github": "{{{ displayNames.github }}}",
+        "google-oauth2": "{{{ displayNames.google-oauth2 }}}",
+        "firefoxaccounts": "{{{ displayNames.firefoxaccounts }}}",
+        "email": "{{{ displayNames.email }}}"
+      }
    }</script>
     <script src="{{{ cdn }}}/js/main.js"></script>
   </body>

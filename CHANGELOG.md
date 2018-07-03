@@ -3,6 +3,13 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.4.7]
+
+### Changed
+
+- Autologin is now prevented when you go to NLX using the back button
+- Use human readable names for login methods in auto-login messaging
+
 ## [1.4.6]
 
 ### Changed

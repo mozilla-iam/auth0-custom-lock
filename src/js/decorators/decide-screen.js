@@ -8,9 +8,11 @@ module.exports = function decideScreen( element ) {
     ui.setLockState( element, 'autologin-settings' );
   }
   else if ( hasParams( 'action=error_githubrequiremfa' ) ) {
+    ui.replaceVars( 'error-githubrequiremfa' );
     ui.setLockState( element, 'error-githubrequiremfa' );
   }
   else if ( hasParams( 'action=error_fxarequiremfa' ) ) {
+    ui.replaceVars( 'error-fxarequiremfa' );
     ui.setLockState( element, 'error-fxarequiremfa' );
   }
   else if ( hasParams( 'action=error_notingroup' ) ) {

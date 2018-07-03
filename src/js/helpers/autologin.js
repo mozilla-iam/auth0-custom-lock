@@ -4,7 +4,7 @@ module.exports = function autologin( loginMethod, form ) {
   var visualStatusReport = document.getElementById( 'loading__status' );
   var url = window.location;
   var params = new URLSearchParams( url.search );
-  var loginMethodDisplayName = NLX.displayNames.loginMethod ? NLX.displayNames.loginMethod : loginMethod;
+  var loginMethodDisplayName = NLX.displayNames[loginMethod] ? NLX.displayNames[loginMethod] : loginMethod;
   var newLocation;
 
   form.willRedirect = true;

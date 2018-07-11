@@ -15,7 +15,7 @@
   "csp": "default-src 'none'; connect-src 'self' https://person-api.sso.mozilla.com; script-src 'self' https://cdn.sso.mozilla.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' https://cdn.sso.mozilla.com; font-src 'self' https://cdn.sso.mozilla.com; img-src 'self' https://cdn.sso.mozilla.com https://www.google-analytics.com",
   "displayNames": {
     "github": "GitHub",
-    "google-oauth2": "Google Accounts",
+    "google-oauth2": "Google",
     "firefoxaccounts": "Firefox Accounts",
     "email": "email"
   }

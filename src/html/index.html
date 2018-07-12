@@ -47,13 +47,13 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
     <link rel="stylesheet" href="{{{ cdn }}}/css/fonts.css" type="text/css" />
     <link rel="stylesheet" href="{{{ cdn }}}/css/styles.css" type="text/css" />
     <link rel="icon" href="{{{ cdn }}}/images/favicon.png" type="image/png" sizes="196x196" />
-  </head> 
+  </head>
   <body data-decorator="load-ga display-rp-name prevent-clickjack">
-    <!--
-    <div class="banner">
-      <p></p>
+    <div data-decorator="check-if-maintenance-mode" hidden>
+      <div class="banner">
+        <p>We are currently experiencing an issue & working hard to resolve it. Please try to login again in a few minutes.  Request help via <a href="mailto:moc@mozilla.com">moc@mozilla.com</a>, IRC #moc or Slack #it-all.</p>
+      </div>
     </div>
-    -->
     <div class="card">
       <a href="https://mozilla.org" class="logo" target="_blank"><img alt="Mozilla" src="{{{ cdn }}}/images/mozilla.svg" /></a>
       <noscript><p>This login form requires JavaScript to work, please enable it to log in.</p></noscript>

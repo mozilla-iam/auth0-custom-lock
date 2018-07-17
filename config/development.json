@@ -9,7 +9,8 @@
   "client_ID": "CIynn5wTPyYZQcA1FJx1Io9z4t7QWDaE",
   "features": {
     "autologin": "true",
-    "person_api_lookup": "true"
+    "person_api_lookup": "true",
+    "maintenanceMode": "true"
   },
   "supportedLoginMethods": [ "github", "google-oauth2", "firefoxaccounts", "email" ],
   "cdn": "https://mozilla-iam.github.io/auth0-custom-lock",

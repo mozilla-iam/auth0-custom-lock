@@ -8,7 +8,8 @@
   "GTM_ID": "GTM-T2N2BRW",
   "features": {
     "autologin": "true",
-    "person_api_lookup": "true"
+    "person_api_lookup": "true",
+    "maintenanceMode": "false"
   },
   "supportedLoginMethods": [ "github", "google-oauth2", "firefoxaccounts", "email" ],
   "cdn": "https://cdn.sso.mozilla.com/nlx/latest",

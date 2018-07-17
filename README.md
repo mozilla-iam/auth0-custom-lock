@@ -58,6 +58,17 @@ Because only in strings the Mustache syntax can produce valid JavaScript, we sav
 NLX.variable === 'true' // true or false
 ```
 
+### Adding a new environment variable
+
+Add new variables in two places:
+
+* in any `config` you use, by default that is `config/development.json` and `config/production.json`
+* in `index.html`, all the way at the bottom of the file. We print the variable values there, so that we can merge them into one settings file with the settings Auth0 provides through `@@config@@`.
+
+## Maintenance banner
+
+NLX comes with a maintenance banner that can be triggered by setting the `features.maintenanceMode` to `"true"`. If you need a maintenance banner, build NLX again with that variable set to `"true"`.
+
 ## Parameters for special screens
 
 When you call NLX with one of the following parameters, the standard interactive screen is not shown, instead you will get a special screen.

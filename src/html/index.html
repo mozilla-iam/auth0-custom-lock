@@ -33,6 +33,11 @@ These are the variables we are using:
    autologin: {{{ features.autologin }}}
    person_api_lookup: {{{ features.person_api_lookup }}}
    supportedLoginMethods: {{{ supportedLoginMethods }}}
+  Display names:
+    github: {{{ displayNames.github }}}
+    google-oauth2: {{{ displayNames.google-oauth2 }}}
+    firefoxaccounts: {{{ displayNames.firefoxaccounts }}}
+    email: {{{ displayNames.email }}}
 
 The code is the result of a build process, please find the source code
 on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
@@ -144,7 +149,7 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
           </div>
           <div id="passwordless-success" data-screen hidden>
             <h2 class="card__heading card__heading--success"><img src="{{{ cdn }}}/images/envelope.svg" class="card__heading-icon" /> <span>Success</span></h2>
-            <p>Email sent to <span id="passwordless-success-email-address"></span>, your login link will expire in 15 minutes.</p>
+            <p>Email sent to <span id="passwordless-success-email-address"></span>, go to your inbox to continue. Your login link will expire in 15 minutes.</p>
             <hr>
             <button id="back" type="button" class="button button--text-only card__back  button--unpadded" data-handler="go-to-initial-page">Need to send that to a different email?</button>
           </div>
@@ -175,6 +180,48 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
           <div id="ldap-required" data-screen hidden>
             <h2 class="card__heading card__heading--error"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
             <p>Unfortunately, you can only login to this website using Mozilla LDAP.</p>
+            <hr>
+            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+          </div>
+          <div id="error-general" data-screen hidden>
+            <h2 class="card__heading card__heading--error"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
+            <p>Oye, something went wrong.</p>
+            <hr>
+            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+          </div>
+          <div id="error-githubrequiredmfa" data-screen hidden>
+            <h2 class="card__heading card__heading--error"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
+            <p>You must setup a security device ("MFA", "2FA") for your GitHub account in order to access <span data-replace-var="connection_name">this login method</span>. Please follow the <a href="https://help.github.com/articles/securing-your-account-with-two-factor-authentication-2fa/">GitHub documentation</a> to setup your device, then try logging in again</p>
+            <hr>
+            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+          </div>
+          <div id="error-fxarequiremfa" data-screen hidden>
+            <h2 class="card__heading card__heading--error"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
+            <p>You must setup a security device ("MFA", "2FA") for your Firefox Account in order to access <span data-replace-var="rp_name">this service</span>. Please setup a <a href="https://accounts.firefox.com">security device</a>, then try logging in again</p>
+            <hr>
+            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+          </div>
+          <div id="error-notingroup" data-screen hidden>
+            <h2 class="card__heading card__heading--error"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
+            <p>Sorry, you do not have permission to access <span data-replace-var="rp_name">this service</span>. Please contact eus@mozilla.com if you should have access.</p>
+            <hr>
+            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+          </div>
+          <div id="error-accesshasexpired" data-screen hidden>
+            <h2 class="card__heading card__heading--error"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
+            <p>Sorry, your access to <span data-replace-var="rp_name">this service</span> has expired because you have not been actively using it. Please request access again.</p>
+            <hr>
+            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+          </div>
+          <div id="error-primarynotverified" data-screen hidden>
+            <h2 class="card__heading card__heading--error"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
+            <p>You primary email address is not yet verified. Please verify your email address with <span data-replace-var="connection_name">the login method</span> in order to use this service.</p>
+            <hr>
+            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+          </div>
+          <div id="error-incorrectaccount" data-screen hidden>
+            <h2 class="card__heading card__heading--error"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
+            <p>Sorry, you may not login using <span data-replace-var="connection_name">this login method</span>. We require login to be performed using the most secure method available for your account, which is <span data-replace-var="most_secure_connection_name"></span>.</p>
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
           </div>
@@ -216,7 +263,13 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
         "maintenanceMode": "{{{ features.maintenanceMode }}}"
       },
       "supportedLoginMethods": "{{{ supportedLoginMethods }}}",
-      "logout_url": "{{{ logout_url }}}"
+      "logout_url": "{{{ logout_url }}}",
+      "displayNames": {
+        "github": "{{{ displayNames.github }}}",
+        "google-oauth2": "{{{ displayNames.google-oauth2 }}}",
+        "firefoxaccounts": "{{{ displayNames.firefoxaccounts }}}",
+        "email": "{{{ displayNames.email }}}"
+      }
    }</script>
     <script src="{{{ cdn }}}/js/main.js"></script>
   </body>

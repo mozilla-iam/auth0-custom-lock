@@ -10,7 +10,7 @@
   "features": {
     "autologin": "true",
     "person_api_lookup": "true",
-    "maintenanceMode": "true"
+    "maintenance_mode": "true"
   },
   "supportedLoginMethods": [ "github", "google-oauth2", "firefoxaccounts", "email" ],
   "cdn": "https://mozilla-iam.github.io/auth0-custom-lock",

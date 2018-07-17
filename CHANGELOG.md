@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Added maintenance banner that can be toggled from config with `features.maintenanceMode`
+- Added maintenance banner that can be toggled from config with `features.maintenance_mode`
 
 ### Changed
 

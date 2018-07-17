@@ -67,7 +67,7 @@ Add new variables in two places:
 
 ## Maintenance banner
 
-NLX comes with a maintenance banner that can be triggered by setting the `features.maintenanceMode` to `"true"`. If you need a maintenance banner, build NLX again with that variable set to `"true"`, or, even quicker, set the variable to `"true"` in the already built HTML file.
+NLX comes with a maintenance banner that can be triggered by setting the `features.maintenance_mode` to `"true"`. If you need a maintenance banner, build NLX again with that variable set to `"true"`, or, even quicker, set the variable to `"true"` in the already built HTML file.
 
 ## Parameters for special screens
 

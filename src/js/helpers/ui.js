@@ -83,28 +83,6 @@ var ui = {
         }, 100 );
       }
     }
-  },
-  replaceVars: function( id ) {
-    var element = document.getElementById( id );
-    var hasParams = require( 'helpers/has-params' );
-    var params = new URLSearchParams( window.location.search ) || null;
-    var replaceables;
-
-    if ( element ) {
-      replaceables = element.querySelectorAll( '[data-replace-var]' );
-
-      if ( replaceables ) {
-        replaceables.forEach( function( element ) {
-          var replaceKey = element.getAttribute( 'data-replace-var' );
-          var replaceValue;
-
-          if ( hasParams( replaceKey ) ) {
-            replaceValue = params.get( replaceKey );
-            element.textContent = replaceValue;
-          }
-        });
-      }
-    }
   }
 };
 

@@ -5,6 +5,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.4.7]
 
+### Added
+
+- Added maintenance banner that can be toggled from config with `features.maintenanceMode`
+
 ### Changed
 
 - Tweak wording for Passwordless success message

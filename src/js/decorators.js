@@ -3,6 +3,7 @@
 // decorators are functions that run when the page loads
 
 var decorators = {
+  'check-if-maintenance-mode': require( 'decorators/check-if-maintenance-mode' ),
   'decide-screen': require( 'decorators/decide-screen' ),
   'display-rp-name': require( 'decorators/display-rp-name' ),
   'fill-in-session-info': require( 'decorators/fill-in-session-info' ),

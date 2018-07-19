@@ -33,6 +33,11 @@ These are the variables we are using:
    autologin: {{{ features.autologin }}}
    person_api_lookup: {{{ features.person_api_lookup }}}
    supportedLoginMethods: {{{ supportedLoginMethods }}}
+  Display names:
+    github: {{{ displayNames.github }}}
+    google-oauth2: {{{ displayNames.google-oauth2 }}}
+    firefoxaccounts: {{{ displayNames.firefoxaccounts }}}
+    email: {{{ displayNames.email }}}
 
 The code is the result of a build process, please find the source code
 on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
@@ -47,13 +52,13 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
     <link rel="stylesheet" href="{{{ cdn }}}/css/fonts.css" type="text/css" />
     <link rel="stylesheet" href="{{{ cdn }}}/css/styles.css" type="text/css" />
     <link rel="icon" href="{{{ cdn }}}/images/favicon.png" type="image/png" sizes="196x196" />
-  </head> 
+  </head>
   <body data-decorator="load-ga display-rp-name prevent-clickjack">
-    <!--
-    <div class="banner">
-      <p></p>
+    <div data-decorator="check-if-maintenance-mode" hidden>
+      <div class="banner">
+        <p>We are currently experiencing an issue &amp; working hard to resolve it. Please try to login again in a few minutes.  Request help via <a href="mailto:moc@mozilla.com">moc@mozilla.com</a>, IRC #moc or Slack #mozsm-all.</p>
+      </div>
     </div>
-    -->
     <div class="card">
       <a href="https://mozilla.org" class="logo" target="_blank"><img alt="Mozilla" src="{{{ cdn }}}/images/mozilla.svg" /></a>
       <noscript><p>This login form requires JavaScript to work, please enable it to log in.</p></noscript>
@@ -144,7 +149,7 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
           </div>
           <div id="passwordless-success" data-screen hidden>
             <h2 class="card__heading card__heading--success"><img src="{{{ cdn }}}/images/envelope.svg" class="card__heading-icon" /> <span>Success</span></h2>
-            <p>Email sent to <span id="passwordless-success-email-address"></span>, your login link will expire in 15 minutes.</p>
+            <p>Email sent to <span id="passwordless-success-email-address"></span>, go to your inbox to continue. Your login link will expire in 15 minutes.</p>
             <hr>
             <button id="back" type="button" class="button button--text-only card__back  button--unpadded" data-handler="go-to-initial-page">Need to send that to a different email?</button>
           </div>
@@ -212,10 +217,17 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
       "GTM_ID": "{{{ GTM_ID }}}",
       "features" : {
         "autologin": "{{{ features.autologin }}}",
-        "person_api_lookup": "{{{ features.person_api_lookup }}}"
+        "person_api_lookup": "{{{ features.person_api_lookup }}}",
+        "maintenance_mode": "{{{ features.maintenance_mode }}}"
       },
       "supportedLoginMethods": "{{{ supportedLoginMethods }}}",
-      "logout_url": "{{{ logout_url }}}"
+      "logout_url": "{{{ logout_url }}}",
+      "displayNames": {
+        "github": "{{{ displayNames.github }}}",
+        "google-oauth2": "{{{ displayNames.google-oauth2 }}}",
+        "firefoxaccounts": "{{{ displayNames.firefoxaccounts }}}",
+        "email": "{{{ displayNames.email }}}"
+      }
    }</script>
     <script src="{{{ cdn }}}/js/main.js"></script>
   </body>

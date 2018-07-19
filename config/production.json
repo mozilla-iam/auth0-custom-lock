@@ -8,9 +8,16 @@
   "GTM_ID": "GTM-T2N2BRW",
   "features": {
     "autologin": "true",
-    "person_api_lookup": "true"
+    "person_api_lookup": "true",
+    "maintenance_mode": "false"
   },
   "supportedLoginMethods": [ "github", "google-oauth2", "firefoxaccounts", "email" ],
   "cdn": "https://cdn.sso.mozilla.com/nlx/latest",
-  "csp": "default-src 'none'; connect-src 'self' https://person-api.sso.mozilla.com; script-src 'self' https://cdn.sso.mozilla.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' https://cdn.sso.mozilla.com; font-src 'self' https://cdn.sso.mozilla.com; img-src 'self' https://cdn.sso.mozilla.com https://www.google-analytics.com"
+  "csp": "default-src 'none'; connect-src 'self' https://person-api.sso.mozilla.com; script-src 'self' https://cdn.sso.mozilla.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' https://cdn.sso.mozilla.com; font-src 'self' https://cdn.sso.mozilla.com; img-src 'self' https://cdn.sso.mozilla.com https://www.google-analytics.com",
+  "displayNames": {
+    "github": "GitHub",
+    "google-oauth2": "Google",
+    "firefoxaccounts": "Firefox Accounts",
+    "email": "email"
+  }
 }

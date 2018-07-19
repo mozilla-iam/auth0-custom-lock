@@ -51,6 +51,9 @@ build: .installdeps
 build-prod: .installdeps
 	NODE_ENV=production npm run build
 
+start:
+	npm start
+
 .installdeps: .npm_lazy-start
 	npm install
 	touch .installdeps

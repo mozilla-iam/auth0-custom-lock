@@ -33,7 +33,7 @@ deploy: push-to-auth0 invalidate-cfn-cache
 
 deploy-prod: CDN_BUCKET_NAME=$(CDN_BUCKET_NAME_PROD)
 deploy-prod: NODE_ENV=$(NODE_ENV_PROD)
-deploy: CLOUDFRONT_DIST_ID=$(CLOUDFRONT_DIST_ID_PROD)
+deploy-prod: CLOUDFRONT_DIST_ID=$(CLOUDFRONT_DIST_ID_PROD)
 deploy-prod: push-to-auth0 invalidate-cfn-cache
 
 invalidate-cfn-cache:

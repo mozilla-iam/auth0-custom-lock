@@ -3,9 +3,9 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - bash dmake build
+      - make build
   post_build:
     commands:
-      - bash dmake deploy
+      - make deploy
       - echo done
       - exit 0

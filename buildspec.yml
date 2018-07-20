@@ -3,12 +3,9 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - bash ci/scripts/00-build-nlx-assets.sh
+      - bash dmake build
   post_build:
     commands:
-      - bash ci/scripts/01-copy-to-cdn.sh
-      - bash ci/scripts/02-sanity-checks.sh
-      - bash ci/scripts/03-deploy-to-auth0.sh
-      - bash ci/scripts/04-invalidate-cloudfront.sh
+      - bash dmake deploy
       - echo done
       - exit 0

@@ -28,7 +28,7 @@ all:
 # `CLOUDFRONT_DIST_ID=xxxx make invalidate-cfn-cache`
 deploy: CDN_BUCKET_NAME=$(CDN_BUCKET_NAME_DEV)
 deploy: CLOUDFRONT_DIST_ID=$(CLOUDFRONT_DIST_ID_DEV)
-deploy: export NODE_ENV=$(NODE_ENV_DEV)
+deploy: NODE_ENV=$(NODE_ENV_DEV)
 deploy: push-to-auth0 invalidate-cfn-cache
 
 deploy-prod: CDN_BUCKET_NAME=$(CDN_BUCKET_NAME_PROD)
@@ -46,7 +46,7 @@ push-to-auth0: sanity-checks
 
 sanity-checks: copy-to-cdn
 	@echo "Running sanity script for $(NODE_ENV)..."
-	ci/scripts/02-sanity-checks.sh
+	NODE_ENV=$(NODE_ENV) ci/scripts/02-sanity-checks.sh
 
 copy-to-cdn:
 	@echo "Copying resources to CDN..."

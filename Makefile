@@ -2,12 +2,19 @@ CACHE			:= --no-cache
 DKR_HUB			:= mozillaiam
 IMG_NAME		:= auth0-custom-lock-builder
 
+# Possible environments {DEV,PROD}
 CLOUDFRONT_DIST_ID_DEV	:= E3B9GI6602TZBY
 CDN_BUCKET_NAME_DEV	:= sso-dashboard.configuration
+NODE_ENV_DEV		:= development
 CLOUDFRONT_DIST_ID_PROD	:= E2AENIS3M2FKJL
 CDN_BUCKET_NAME_PROD	:= sso-dashboard.configuration-prod
+NODE_ENV_PROD		:= production
 COMMIT_ID		:= $(shell git rev-parse --short HEAD)
-CDN_BUCKET_NAME		= none
+
+# Default to dev
+CDN_BUCKET_NAME		= $(CDN_BUCKET_NAME_DEV)
+CLOUDFRONT_DIST_ID	= $(CLOUDFRONT_DIST_ID_DEV)
+NODE_ENV		= $(NODE_ENV_DEV)
 
 all:
 	@echo 'Available make targets:'
@@ -16,24 +23,30 @@ all:
 	@echo 'In order to build within docker, type `./dmake <target>`'
 
 
-## Deployment targets
+## Deployment targets - these are shortcuts with preset variables for each environment
+# You may also call targets individually as long as you set the correct env or are OK with defaulting to dev. Eg:
+# `CLOUDFRONT_DIST_ID=xxxx make invalidate-cfn-cache`
 deploy: CDN_BUCKET_NAME=$(CDN_BUCKET_NAME_DEV)
-deploy: sanity-checks
-	@echo "Deploying to auth0..."
-	$(shell ci/scripts/03-deploy-to-auth0.sh)
-	@echo "Invalidating Cloudfront cache..."
-	aws cloudfront create-invalidation --distribution-id $(CLOUDFRONT_DIST_ID) --paths /nlx/*
+deploy: CLOUDFRONT_DIST_ID=$(CLOUDFRONT_DIST_ID_DEV)
+deploy: export NODE_ENV=$(NODE_ENV_DEV)
+deploy: push-to-auth0 invalidate-cfn-cache
 
 deploy-prod: CDN_BUCKET_NAME=$(CDN_BUCKET_NAME_PROD)
-deploy-prod: sanity-checks
-	@echo "Deploying to auth0..."
-	$(shell ci/scripts/03-deploy-to-auth0.sh)
+deploy-prod: NODE_ENV=$(NODE_ENV_PROD)
+deploy-prod: CLOUDFRONT_DIST_ID=$(CLOUDFRONT_DIST_ID_PROD)
+deploy-prod: push-to-auth0 invalidate-cfn-cache
+
+invalidate-cfn-cache:
 	@echo "Invalidating Cloudfront cache..."
 	aws cloudfront create-invalidation --distribution-id $(CLOUDFRONT_DIST_ID) --paths /nlx/*
 
+push-to-auth0: sanity-checks
+	@echo "Deploying to auth0..."
+	ci/scripts/03-deploy-to-auth0.sh
+
 sanity-checks: copy-to-cdn
-	@echo "Running sanity script..."
-	$(shell ci/scripts/02-sanity-checks.sh)
+	@echo "Running sanity script for $(NODE_ENV)..."
+	ci/scripts/02-sanity-checks.sh
 
 copy-to-cdn:
 	@echo "Copying resources to CDN..."
@@ -44,12 +57,13 @@ copy-to-cdn:
 	aws s3 sync dist/ s3://$(CDN_BUCKET_NAME)/nlx/$(COMMIT_ID)/
 
 ## Build and management targets
-
+build-prod: NODE_ENV=$(NODE_ENV_DEV)
 build: .installdeps
-	NODE_ENV=development npm run build
+	npm run build
 
+build-prod: NODE_ENV=$(NODE_ENV_PROD)
 build-prod: .installdeps
-	NODE_ENV=production npm run build
+	npm run build
 
 start:
 	npm start

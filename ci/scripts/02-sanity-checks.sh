@@ -5,9 +5,9 @@
 # Test the dist/ output for instances of mozilla.com and allizom.org
 NLX_ENV=${NODE_ENV}
 
-echo 'Running sanity checks for' ${NLX_ENV}
+echo "Running sanity checks for ${NLX_ENV}"
 
-if [ ${NLX_ENV} == 'production' ]
+if [ "${NLX_ENV}" == 'production' ]
 then echo 'Production environment detected.  Testing the dist/ output for instances of allizom.org and other dev vars.';
 
 CDN_BASE_URL='https://cdn.sso.mozilla.com/nlx'
@@ -25,7 +25,7 @@ FAILURES=$[${FAILURES} + `grep -r -i 'allizom.org' dist/* | wc -l`]
 
 fi
 
-if [ ${NLX_ENV} == 'development' ]
+if [ "${NLX_ENV}" == 'development' ]
 then echo 'Development environment detected.  Testing the dist/ output for instances of mozilla.com and other prod vars';
 CDN_BASE_URL='https://cdn.sso.allizom.org/nlx'
 FAILURES=0

@@ -18,22 +18,24 @@ all:
 
 ## Deployment targets
 deploy: CDN_BUCKET_NAME=$(CDN_BUCKET_NAME_DEV)
+deploy: export NODE_ENV=development
 deploy: sanity-checks
 	@echo "Deploying to auth0..."
-	$(shell ci/scripts/03-deploy-to-auth0.sh)
+	ci/scripts/03-deploy-to-auth0.sh
 	@echo "Invalidating Cloudfront cache..."
 	aws cloudfront create-invalidation --distribution-id $(CLOUDFRONT_DIST_ID) --paths /nlx/*
 
 deploy-prod: CDN_BUCKET_NAME=$(CDN_BUCKET_NAME_PROD)
+deploy-prod: NODE_ENV=production
 deploy-prod: sanity-checks
 	@echo "Deploying to auth0..."
-	$(shell ci/scripts/03-deploy-to-auth0.sh)
+	ci/scripts/03-deploy-to-auth0.sh
 	@echo "Invalidating Cloudfront cache..."
 	aws cloudfront create-invalidation --distribution-id $(CLOUDFRONT_DIST_ID) --paths /nlx/*
 
 sanity-checks: copy-to-cdn
-	@echo "Running sanity script..."
-	$(shell ci/scripts/02-sanity-checks.sh)
+	@echo "Running sanity script for $(NODE_ENV)..."
+	ci/scripts/02-sanity-checks.sh
 
 copy-to-cdn:
 	@echo "Copying resources to CDN..."

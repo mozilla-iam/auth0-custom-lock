@@ -28,4 +28,7 @@ exec docker run --rm --name ${CONTAINER_NAME} \
   -u $(id -u) \
   -v ${AWS_CREDS_DIR}:/root/.aws \
   -v $(pwd):${DOCKER_PROJECT_DIR} \
+  -e "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" \
+  -e "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}" \
+  -e "AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}" \
   ${IMG_NAME}:latest make $@

@@ -3,11 +3,9 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - bash ci/scripts/build.sh
+      - make build
   post_build:
     commands:
-      - bash ci/scripts/copy.sh
-      - bash ci/scripts/cloudfront.sh
-      - bash ci/scripts/deploy.sh
+      - make deploy
       - echo done
       - exit 0

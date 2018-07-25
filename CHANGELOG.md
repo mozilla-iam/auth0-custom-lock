@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   prevent autologin when linking account.
 - Uses Histori API to add entry to history when doing autologin so that user can go back.
 
+### Added
+
+- Makefile based build & deploy, uses Docker to contain the build by default. Supports local, dev, prod envs.
+
+
 ## [1.4.7]
 
 ### Added

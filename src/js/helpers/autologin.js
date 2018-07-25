@@ -24,7 +24,10 @@ module.exports = function autologin( loginMethod, form ) {
 
   newLocation = url.origin + url.pathname.replace( '/login', '/authorize' ) + '?' + params.toString();
 
-  window.location.assign( newLocation );
+  if ( window.history ) {
+    window.history.pushState( null, null, newLocation );
+  }
+  window.location.replace( newLocation );
 
   fireGAEvent( 'Authorisation', 'Performing auto-login with ' + loginMethod );
 

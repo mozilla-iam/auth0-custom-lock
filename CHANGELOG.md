@@ -3,6 +3,14 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.4.8]
+
+### Changed
+
+- Now respects `account_linking=true` in addition to `prompt=select_account` in order to
+  prevent autologin when linking account.
+- Uses Histori API to add entry to history when doing autologin so that user can go back.
+
 ## [1.4.7]
 
 ### Added

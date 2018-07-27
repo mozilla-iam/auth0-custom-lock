@@ -31,7 +31,7 @@ module.exports = function authorise( element, secondTry ) {
     if ( error.error && error.error === 'request_error' ) {
       errorText.lastElementChild.textContent = 'An invalid request error occurred';
       fireGAEvent( 'Error', 'LDAP: request invalid' );
-  }
+    }
 
     if ( error.code && error.code === 'invalid_user_password' ) {
       errorText.lastElementChild.textContent = error.description;

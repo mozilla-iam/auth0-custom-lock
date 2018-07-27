@@ -19,7 +19,7 @@ module.exports = function( element ) {
   form.willRedirect = false;
 
   if ( hasParams( 'prompt=login' ) || hasParams( 'prompt=select_account' ) ||
-    hasParams( 'account_linking=true' ) || hasParams( 'tried_autologin=true' ) ) {
+    hasParams( 'account_verification=true' ) || hasParams( 'tried_autologin=true' ) ) {
     shouldAutologin = false;
   }
 

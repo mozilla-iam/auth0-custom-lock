@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-- Now respects `account_linking=true` in addition to `prompt=select_account` in order to
+- Now respects `account_verification=true` in addition to `prompt=select_account` in order to
   prevent autologin when linking account.
 - Uses Histori API to add entry to history when doing autologin so that user can go back.
 

@@ -2,7 +2,7 @@ var accountLinkingValue = 'nlx-start-account-linking';
 
 var accountLinking = {
   isAccountLinking: function() {
-    return window.location.href.indexOf( 'account_linking=true' ) >= 0;
+    return window.location.href.indexOf( 'account_verification=true' ) >= 0;
   },
   didAccountLinking: function() {
     return window.localStorage.getItem( accountLinkingValue ) === 'true' ? true : false;

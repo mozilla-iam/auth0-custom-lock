@@ -3,21 +3,29 @@ var ui = require( 'helpers/ui' );
 var fireGAEvent = require( 'helpers/fire-ga-event' );
 var autologin = require( 'helpers/autologin' );
 var applyEmptyClass = require( 'helpers/apply-empty-class' );
+var accountLinking = require( 'helpers/account-linking' );
+var hasParams = require( 'helpers/has-params' );
 
 module.exports = function( element ) {
   var form = element.form;
   var url = 'https://' + NLX.domain + '/public/api/' + form.webAuthConfig.clientID + '/connections';
-  var requiresPrompt = window.location.href.indexOf( 'prompt=login' ) >= 0 || window.location.href.indexOf( 'prompt=select_account' )  >= 0 || window.location.href.indexOf( 'account_linking=true' ) >= 0;
-  var triedAutologin = window.location.href.indexOf( 'tried_autologin=true' ) >= 0;
   var usedBackButton = window.performance && window.performance.navigation.type === 2;
-  var autologinEnabled = requiresPrompt === -1 && NLX.features.autologin === 'true';
   var savedLoginMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
-  var accountLinking = require( 'helpers/account-linking' );
   var didAccountLinking = accountLinking.didAccountLinking();
+  var shouldAutologin = true;
 
   ui.setLockState( element, 'loading' );
 
   form.willRedirect = false;
+
+  if ( hasParams( 'prompt=login' ) || hasParams( 'prompt=select_account' ) ||
+    hasParams( 'account_linking=true' ) || hasParams( 'tried_autologin=true' ) ) {
+    shouldAutologin = false;
+  }
+
+  if ( usedBackButton ) {
+    shouldAutologin = false;
+  }
 
   fetch( url ).then( function( response ) {
     return response.json();
@@ -27,7 +35,7 @@ module.exports = function( element ) {
 
     loginMethods = {
       'supportedByRP': [],
-      'supportedByNLX': NLX.supportedLoginMethods.split(','),
+      'supportedByNLX': NLX.supportedLoginMethods.split( ',' ),
       'removed': []
     };
 
@@ -56,11 +64,11 @@ module.exports = function( element ) {
       // RPs that request autologin to happen with the prompt=none parameter,
       // will not see this page. As a fallback for RPs that don't use prompt=none,
       // we attempt autologin once, and only under circumstances
-      if ( !didAccountLinking && !triedAutologin && !usedBackButton && autologinEnabled && rpSupportsSavedLoginMethod ) {
+      if ( !didAccountLinking && rpSupportsSavedLoginMethod && shouldAutologin ) {
         autologin( savedLoginMethod, form );
         return;
       }
-      else if ( triedAutologin && autologinEnabled && rpSupportsSavedLoginMethod ) {
+      else if ( rpSupportsSavedLoginMethod && shouldAutologin ) {
         fireGAEvent( 'Authorisation', 'Autologin did not succeed with ' + loginMethod );
       }
     });

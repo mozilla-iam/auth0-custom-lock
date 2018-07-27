@@ -97,3 +97,7 @@ get a special screen.
 ### action=autologin_settings
 
 Auto-login Settings screen. Allows user to enable or disable auto-login.
+
+### account_verification=true
+
+This is a specific parameter that is set when the log in screen is used for _account verification_.

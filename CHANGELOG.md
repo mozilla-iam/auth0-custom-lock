@@ -3,9 +3,18 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.4.8]
+
+### Changed
+
+- Now respects `account_verification=true` in addition to `prompt=select_account` in order to
+  prevent autologin when linking account.
+- Uses History API to add entry to history when doing autologin so that user can go back.
+
 ### Added
 
 - Makefile based build & deploy, uses Docker to contain the build by default. Supports local, dev, prod envs.
+
 
 ## [1.4.7]
 

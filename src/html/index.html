@@ -108,6 +108,33 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
               </div>
             </div>
           </div>
+          <div id="initial-login-signup" data-screen hidden>
+            <div class="form__input">
+              <input type="email" name="username" id="field-email-signup" autocomplete="email" data-decorator="watch-contents" />
+              <label for="field-email-signup"><span><span aria-hidden="true">Log In or Sign Up with </span>email</span></label>
+            </div>
+            <input type="submit" class="button button--full-width" id="enter-initial-signup" value="Enter" />
+            <hr>
+            <ul class="login-options list list--plain">
+              <li data-optional-login-method="firefoxaccounts">
+                <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-firefoxaccounts">
+                  <img  class="icon" src="{{{ cdn }}}/images/firefox.svg">
+                  <span>Continue with Firefox</span>
+                </button>
+              </li>
+              <li data-optional-login-method="github">
+                <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-github">
+                  <img class="icon" src="{{{ cdn }}}/images/github.svg">
+                  <span>Continue with GitHub</span>
+                </button>
+              </li>
+              <li data-optional-login-method="google-oauth2">
+                <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-google">
+                  <img  class="icon" src="{{{ cdn }}}/images/google.svg">
+                  <span>Continue with Google</span>
+                </button>
+            </ul>
+          </div>
           <div id="ldap" data-screen hidden>
             <div class="form__input">
               <input type="password" id="field-password" autocomplete="current-password" name="password" data-decorator="submit-with-enter watch-contents" data-continue-with="authorise-ldap-credentials"  />
@@ -115,12 +142,12 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             </div>
             <input type="submit" class="button button--full-width" id="authorise-ldap-credentials" value="Enter"/>
             <hr>
-            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to start over with a different account?</button>
           </div>
           <div id="non-ldap" data-screen hidden>
             <ul class="login-options list list--plain" data-optional-login-method="email">
               <li>
-                <button class="button button--full-width button--secondary" type="button" data-handler="send-passwordless-link">Send me an email</button>
+                <button class="button button--full-width button--secondary" type="button" data-handler="send-passwordless-link">Send me an email to continue</button>
               </li>
             </ul>
             <a href="https://wiki.mozilla.org/IAM/Frequently_asked_questions#Q:_Why_do_you_support_email_login_.28.22passwordless.22.29_if_it.27s_less_safe_than_other_methods.3F" class="button button--text-only button--unpadded" target="_blank">Why an email?</a>
@@ -129,23 +156,23 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
               <li data-optional-login-method="firefoxaccounts">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-firefoxaccounts">
                   <img  class="icon" src="{{{ cdn }}}/images/firefox.svg">
-                  <span>Log in with Firefox</span>
+                  <span>Continue with Firefox</span>
                 </button>
               </li>
               <li data-optional-login-method="github">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-github">
                   <img class="icon" src="{{{ cdn }}}/images/github.svg">
-                  <span>Log in with GitHub</span>
+                  <span>Continue with GitHub</span>
                 </button>
               </li>
               <li data-optional-login-method="google-oauth2">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-google">
-                  <img  class="icon" src="{{{ cdn }}}/images/google.svg">
-                  <span>Log in with Google</span>
+                  <img class="icon" src="{{{ cdn }}}/images/google.svg">
+                  <span>Continue with Google</span>
                 </button>
             </ul>
             <hr>
-            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to start over with a different account?</button>
           </div>
           <div id="passwordless-success" data-screen hidden>
             <h2 class="card__heading card__heading--success"><img src="{{{ cdn }}}/images/envelope.svg" class="card__heading-icon" /> <span>Success</span></h2>
@@ -162,26 +189,26 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             </div>
             <input type="submit" class="button button--full-width" id="authorise-ldap-credentials-try-2" value="Enter" />
             <hr>
-            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to start over with a different account?</button>
           </div>
           <div id="error-passwordless" data-screen hidden>
             <h2 class="card__heading card__heading--error" id="error-message-passwordless"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
             <p>We cannot send an email to this address</p>
             <button type="button" class="button button--text-only card__back  button--unpadded" data-handler="go-to-initial-page">Try again</button>
             <hr>
-            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to start over with a different account?</button>
           </div>
           <div id="ldap-not-available" data-screen hidden>
             <h2 class="card__heading card__heading--error"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
             <p>Unfortunately, this website does not offer login with Mozilla LDAP.</p>
             <hr>
-            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to start over with a different account?</button>
           </div>
           <div id="ldap-required" data-screen hidden>
             <h2 class="card__heading card__heading--error"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
             <p>Unfortunately, you can only login to this website using Mozilla LDAP.</p>
             <hr>
-            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to log in with a different account?</button>
+            <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to start over with a different account?</button>
           </div>
           <div id="autologin-settings" data-screen hidden>
             <h2 class="card__heading card__heading--iconless">Auto-login settings</h2>

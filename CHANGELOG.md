@@ -16,11 +16,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Makefile based build & deploy, uses Docker to contain the build by default. Supports local, dev, prod envs.
 
 
-### Added
-
-- Makefile based build & deploy, uses Docker to contain the build by default. Supports local, dev, prod envs.
-
-
 ## [1.4.7]
 
 ### Added

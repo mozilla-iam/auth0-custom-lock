@@ -13,7 +13,7 @@
     "maintenance_mode": "false"
   },
   "supportedLoginMethods": [ "github", "google-oauth2", "firefoxaccounts", "email" ],
-  "csp": "default-src 'none'; connect-src 'self' https://person-api.sso.allizom.org; script-src 'self' https://mozilla-iam.github.io https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' https://mozilla-iam.github.io; font-src 'self' https://mozilla-iam.github.io; img-src 'self' https://mozilla-iam.github.io https://www.google-analytics.com",
+  "csp": "default-src 'none'; connect-src 'self' https://person-api.sso.allizom.org; script-src 'self' https://cdn.sso.allizom.org https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' https://cdn.sso.allizom.org; font-src 'self' https://cdn.sso.allizom.org; img-src 'self' https://cdn.sso.allizom.org https://www.google-analytics.com",
   "displayNames": {
     "github": "GitHub",
     "google-oauth2": "Google",

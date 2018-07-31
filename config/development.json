@@ -13,7 +13,7 @@
     "maintenance_mode": "false"
   },
   "supportedLoginMethods": [ "github", "google-oauth2", "firefoxaccounts", "email" ],
-  "cdn": "https://mozilla-iam.github.io/auth0-custom-lock",
+  "cdn": "https://cdn.sso.allizom.org/nlx/d55587e",
   "csp": "default-src 'none'; connect-src 'self' https://person-api.sso.allizom.org; script-src 'self' https://mozilla-iam.github.io https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' https://mozilla-iam.github.io; font-src 'self' https://mozilla-iam.github.io; img-src 'self' https://mozilla-iam.github.io https://www.google-analytics.com",
   "displayNames": {
     "github": "GitHub",

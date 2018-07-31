@@ -25,7 +25,7 @@ module.exports = function autologin( loginMethod, form ) {
 
   newLocation = url.origin + url.pathname.replace( '/login', '/authorize' ) + '?' + params.toString();
 
-  window.localStorage.setItem( 'last-nlx-autologin-time' , timeStamp );
+  window.localStorage.setItem( 'nlx-last-autologin-time' , timeStamp );
 
   if ( window.history ) {
     window.history.pushState( null, null, newLocation );

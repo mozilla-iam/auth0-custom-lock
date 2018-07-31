@@ -11,7 +11,7 @@ module.exports = function( element ) {
   var url = 'https://' + NLX.domain + '/public/api/' + form.webAuthConfig.clientID + '/connections';
   var usedBackButton = window.performance && window.performance.navigation.type === 2;
   var savedLoginMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
-  var savedTimeStamp = window.localStorage.getItem( 'nlx-last-used-connection' );
+  var savedTimeStamp = window.localStorage.getItem( 'nlx-last-autologin-time' );
   var didAccountLinking = accountLinking.didAccountLinking();
   var timeStamp = new Date().getTime();
   var shouldAutologin = true;

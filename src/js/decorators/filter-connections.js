@@ -11,7 +11,7 @@ module.exports = function( element ) {
   var url = 'https://' + NLX.domain + '/public/api/' + form.webAuthConfig.clientID + '/connections';
   var usedBackButton = window.performance && window.performance.navigation.type === 2;
   var savedLoginMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
-  var savedTimeStamp = window.localStorage.getItem( 'nlx-last-autologin-time' );
+  var savedTimeStamp = parseInt( window.localStorage.getItem( 'nlx-last-autologin-time' ) );
   var didAccountLinking = accountLinking.didAccountLinking();
   var timeStamp = new Date().getTime();
   var shouldAutologin = true;
@@ -26,12 +26,12 @@ module.exports = function( element ) {
     shouldAutologin = false;
   }
 
-  if ( usedBackButton ) {
+  else if ( usedBackButton ) {
     fireGAEvent( 'Auto-login', 'Used back button to return, aborting auto-login' );
     shouldAutologin = false;
   }
 
-  if ( timeStamp - savedTimeStamp < 600000 ) {
+  else if ( ( timeStamp - savedTimeStamp ) < 600000 ) {
     fireGAEvent( 'Auto-login', 'Already auto-logged in in last ten minutes, aborting auto-login' );
     shouldAutologin = false;
   }

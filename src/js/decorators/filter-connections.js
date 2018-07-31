@@ -20,10 +20,12 @@ module.exports = function( element ) {
 
   if ( hasParams( 'prompt=login' ) || hasParams( 'prompt=select_account' ) ||
     hasParams( 'account_verification=true' ) || hasParams( 'tried_autologin=true' ) ) {
+    fireGAEvent( 'Auto-login', 'Is verifying account, already tried autologin or has prompt set to login or select_account, aborting auto-login' );
     shouldAutologin = false;
   }
 
   if ( usedBackButton ) {
+    fireGAEvent( 'Auto-login', 'Used back button to return, aborting auto-login' );
     shouldAutologin = false;
   }
 

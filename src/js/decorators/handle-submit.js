@@ -11,6 +11,7 @@ module.exports = function( element ) {
 
     switch ( currentState ) {
     case 'initial':
+    case 'initial-login-signup':
       enter( element );
       break;
     case 'ldap':

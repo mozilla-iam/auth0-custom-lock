@@ -24,6 +24,8 @@ module.exports = function initAuth( element ) {
   var config = getConfig( NLX.hostedConfig );
   var webAuth = new auth0.WebAuth( config );
 
+  NLX.mergedConfig = config;
+
   element.webAuth = webAuth;
   element.webAuthConfig = config;
 };

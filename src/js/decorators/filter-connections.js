@@ -11,7 +11,11 @@ module.exports = function( element ) {
   var url = 'https://' + NLX.domain + '/public/api/' + form.webAuthConfig.clientID + '/connections';
   var usedBackButton = window.performance && window.performance.navigation.type === 2;
   var savedLoginMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
+  var savedTimeStamp = parseInt( window.localStorage.getItem( 'nlx-last-autologin-time' ), 10 ) || 0;
+  var savedAutologinRP = window.localStorage.getItem( 'nlx-last-autologin-rp' );
   var didAccountLinking = accountLinking.didAccountLinking();
+  var timeStamp = new Date().getTime();
+  var autologinInterval = 600000; // in milliseconds
   var shouldAutologin = true;
 
   ui.setLockState( element, 'loading' );
@@ -20,10 +24,17 @@ module.exports = function( element ) {
 
   if ( hasParams( 'prompt=login' ) || hasParams( 'prompt=select_account' ) ||
     hasParams( 'account_verification=true' ) || hasParams( 'tried_autologin=true' ) ) {
+    fireGAEvent( 'Auto-login', 'Is verifying account, already tried autologin or has prompt set to login or select_account, aborting auto-login' );
     shouldAutologin = false;
   }
 
-  if ( usedBackButton ) {
+  else if ( usedBackButton ) {
+    fireGAEvent( 'Auto-login', 'Used back button to return, aborting auto-login' );
+    shouldAutologin = false;
+  }
+
+  else if ( ( timeStamp - savedTimeStamp ) < autologinInterval &&  NLX.mergedConfig.clientID === savedAutologinRP ) {
+    fireGAEvent( 'Auto-login', 'Already auto-logged in to this RP in the last ten minutes, aborting auto-login' );
     shouldAutologin = false;
   }
 

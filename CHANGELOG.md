@@ -9,7 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Now respects `account_verification=true` in addition to `prompt=select_account` in order to
   prevent autologin when linking account.
-- Uses History API to add entry to history when doing autologin so that user can go back.
+- Uses History API to add entry to history when doing autologin so that user can go back with
+  the browser back button.
+- Autologin is now prevented if we are about to autologin to the same RP for the second time
+  in 10 minutes. This should safeguard people against getting in a locked out state where manually
+  clearing `localStorage` is the only way out.
 
 ### Added
 

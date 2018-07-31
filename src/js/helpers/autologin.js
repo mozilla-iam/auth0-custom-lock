@@ -6,6 +6,7 @@ module.exports = function autologin( loginMethod, form ) {
   var params = new URLSearchParams( url.search );
   var loginMethodDisplayName = NLX.displayNames[loginMethod] ? NLX.displayNames[loginMethod] : loginMethod;
   var newLocation;
+  var timeStamp = new Date().getTime();
 
   form.willRedirect = true;
   visualStatusReport.textContent = 'Attempting auto-login with ' + loginMethodDisplayName;
@@ -23,6 +24,9 @@ module.exports = function autologin( loginMethod, form ) {
   }
 
   newLocation = url.origin + url.pathname.replace( '/login', '/authorize' ) + '?' + params.toString();
+
+  window.localStorage.setItem( 'nlx-last-autologin-time', timeStamp );
+  window.localStorage.setItem( 'nlx-last-autologin-rp', NLX.mergedConfig.clientID );
 
   if ( window.history ) {
     window.history.pushState( null, null, newLocation );

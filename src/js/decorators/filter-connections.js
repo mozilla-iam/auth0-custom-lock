@@ -11,7 +11,7 @@ module.exports = function( element ) {
   var url = 'https://' + NLX.domain + '/public/api/' + form.webAuthConfig.clientID + '/connections';
   var usedBackButton = window.performance && window.performance.navigation.type === 2;
   var savedLoginMethod = window.localStorage.getItem( 'nlx-last-used-connection' );
-  var savedTimeStamp = parseInt( window.localStorage.getItem( 'nlx-last-autologin-time' ) ) || 0;
+  var savedTimeStamp = parseInt( window.localStorage.getItem( 'nlx-last-autologin-time' ), 10 ) || 0;
   var savedAutologinRP = window.localStorage.getItem( 'nlx-last-autologin-rp' );
   var didAccountLinking = accountLinking.didAccountLinking();
   var timeStamp = new Date().getTime();
@@ -32,7 +32,7 @@ module.exports = function( element ) {
     shouldAutologin = false;
   }
 
-  else if ( ( timeStamp - savedTimeStamp ) < 600000 && NLX.client_ID === savedAutologinRP ) {
+  else if ( ( timeStamp - savedTimeStamp ) < 600000 &&  NLX.mergedConfig.clientID === savedAutologinRP ) {
     fireGAEvent( 'Auto-login', 'Already auto-logged in to this RP in the last ten minutes, aborting auto-login' );
     shouldAutologin = false;
   }

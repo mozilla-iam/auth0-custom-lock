@@ -46,7 +46,7 @@ if (environment == 'development') {
   config['cdn'] = 'https://cdn.sso.allizom.org/nlx/' + revision
 }
 else {
-  config['cdn'] = 'https://cdn.sso.mozilla.com/nlx' + revision
+  config['cdn'] = 'https://cdn.sso.mozilla.com/nlx/' + revision
 }
 
 console.log(config)

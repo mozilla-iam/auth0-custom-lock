@@ -36,6 +36,20 @@ environment = environment.toLowerCase();
 const configFile = JSON.parse( fs.readFileSync( 'config/' + environment + '.json', 'utf8' ) );
 const packageJSON = JSON.parse( fs.readFileSync( 'package.json', 'utf8' ) );
 const config = Object.assign( configFile, packageJSON );
+var revision = require('child_process')
+  .execSync('git rev-parse --short HEAD')
+  .toString().trim()
+
+console.log(revision)
+
+if (environment == 'development') {
+  config['cdn'] = 'https://cdn.sso.allizom.org/nlx/' + revision
+}
+else {
+  config['cdn'] = 'https://cdn.sso.mozilla.com/nlx' + revision
+}
+
+console.log(config)
 
 console.log( 'Environment “' + environment + '” identified.  Building NLX with ' + environment + ' config:' );
 console.log( '---------------------------Begin configuration.---------------------------' );

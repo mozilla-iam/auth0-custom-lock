@@ -1,10 +1,11 @@
 var ui = require( 'helpers/ui' );
+var dom = require( 'helpers/dom' );
 var fireGAEvent = require( 'helpers/fire-ga-event' );
 var storeLastUsedConnection = require( 'helpers/store-last-used-connection' );
 
 module.exports = function authorise( element, secondTry ) {
   var form = element.tagName === 'FORM' ? element : element.form;
-  var emailField = document.getElementById( 'field-email' );
+  var emailField = dom.getEmailField();
   var passwordField = secondTry ? document.getElementById( 'field-password-try-2' ) : document.getElementById( 'field-password' );
   var errorText = document.getElementById( 'error-message-ldap' );
   var connection = NLX.LDAP_connection_name;

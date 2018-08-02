@@ -1,4 +1,5 @@
 var ui = require( 'helpers/ui' );
+var hasParams = require( 'helpers/has-params' );
 
 var dom = {
   // convenience function that returns an Array of elements that matches selectors
@@ -13,6 +14,17 @@ var dom = {
 
     // only return elements that are not hidden and not inside a hidden parent
     return !ui.isHidden( element, CHECK_FOR_HIDDEN_PARENTS );
+  },
+  getEmailField: function() {
+    var email = document.getElementById( 'field-email' );
+    var emailSignUp = document.getElementById( 'field-email-signup' );
+
+    if ( hasParams( 'action=signup' ) ) {
+      return emailSignUp;
+    }
+    else {
+      return email;
+    }
   }
 };
 

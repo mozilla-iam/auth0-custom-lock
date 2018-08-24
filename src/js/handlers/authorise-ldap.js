@@ -1,10 +1,11 @@
 var ui = require( 'helpers/ui' );
+var dom = require( 'helpers/dom' );
 var fireGAEvent = require( 'helpers/fire-ga-event' );
 var storeLastUsedConnection = require( 'helpers/store-last-used-connection' );
 
 module.exports = function authorise( element, secondTry ) {
   var form = element.tagName === 'FORM' ? element : element.form;
-  var emailField = document.getElementById( 'field-email' );
+  var emailField = dom.getEmailField();
   var passwordField = secondTry ? document.getElementById( 'field-password-try-2' ) : document.getElementById( 'field-password' );
   var errorText = document.getElementById( 'error-message-ldap' );
   var connection = NLX.LDAP_connection_name;
@@ -31,7 +32,7 @@ module.exports = function authorise( element, secondTry ) {
     if ( error.error && error.error === 'request_error' ) {
       errorText.lastElementChild.textContent = 'An invalid request error occurred';
       fireGAEvent( 'Error', 'LDAP: request invalid' );
-  }
+    }
 
     if ( error.code && error.code === 'invalid_user_password' ) {
       errorText.lastElementChild.textContent = error.description;

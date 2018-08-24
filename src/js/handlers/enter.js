@@ -1,4 +1,5 @@
 var ui = require( 'helpers/ui' );
+var dom = require( 'helpers/dom' );
 var fireGAEvent = require( 'helpers/fire-ga-event' );
 var accountLinking = require( 'helpers//account-linking' );
 
@@ -21,7 +22,7 @@ function showLDAP( element, passwordField ) {
 
 module.exports = function enter( element ) {
   var form = document.querySelector( 'form' );
-  var emailField = document.getElementById( 'field-email' );
+  var emailField = dom.getEmailField();
   var emailFieldValue = emailField.value.toLowerCase();
   var passwordField = document.getElementById( 'field-password' );
   var isAccountLinking = accountLinking.isAccountLinking();

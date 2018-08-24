@@ -5,6 +5,50 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.4.5]
 
+### Added
+
+- Now has Log In / Sign Up flow, which has wording that better conveys users are logging in
+  or signing up. It is triggered by `action=signup` parameter.
+
+## [1.4.8]
+
+### Changed
+
+- Now respects `account_verification=true` in addition to `prompt=select_account` in order to
+  prevent autologin when linking account.
+- Uses History API to add entry to history when doing autologin so that user can go back with
+  the browser back button.
+- Autologin is now prevented if we are about to autologin to the same RP for the second time
+  in 10 minutes. This should safeguard people against getting in a locked out state where manually
+  clearing `localStorage` is the only way out.
+
+### Added
+
+- Makefile based build & deploy, uses Docker to contain the build by default. Supports local, dev, prod envs.
+
+
+## [1.4.7]
+
+### Added
+
+- Added maintenance banner that can be toggled from config with `features.maintenance_mode`
+
+### Changed
+
+- Tweak wording for Passwordless success message
+- Autologin is now prevented when you go to NLX using the back button
+- Use human readable names for login methods in auto-login messaging
+
+## [1.4.6]
+
+### Changed
+
+- Update Gulp
+- Update CSP for PROD to include correct Person API URL
+- Commit package-lock
+
+## [1.4.5]
+
 ### Changed
 
 - Changed DOM and CSS to make sure NLX works well with iOS's integrated

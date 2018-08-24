@@ -4,9 +4,22 @@
   border-bottom: 1px solid $white;
   padding: 1.5em;
   text-align: center;
-  margin: -1em -2.5em 2em;
+  margin: -1em -1.5em 5em;
   display: flex;
   flex-direction: column;
+
+  @media ( min-width: 50em ) {
+    margin: -3em -1.5em 5em;
+  }
+
+  a {
+    color: $white;
+
+    &:hover {
+      color: $white;
+      text-decoration: underline;
+    }
+  }
 
   p {
     margin: 0;

@@ -9,9 +9,15 @@
   "client_ID": "CIynn5wTPyYZQcA1FJx1Io9z4t7QWDaE",
   "features": {
     "autologin": "true",
-    "person_api_lookup": "true"
+    "person_api_lookup": "true",
+    "maintenance_mode": "false"
   },
   "supportedLoginMethods": [ "github", "google-oauth2", "firefoxaccounts", "email" ],
-  "cdn": "https://mozilla-iam.github.io/auth0-custom-lock",
-  "csp": "default-src 'none'; connect-src 'self' https://person-api.sso.allizom.org; script-src 'self' https://mozilla-iam.github.io https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://mozilla-iam.github.io; font-src 'self' https://mozilla-iam.github.io; img-src 'self' https://mozilla-iam.github.io https://www.google-analytics.com"
+  "csp": "default-src 'none'; connect-src 'self' https://person-api.sso.allizom.org; script-src 'self' https://cdn.sso.allizom.org https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' https://cdn.sso.allizom.org; font-src 'self' https://cdn.sso.allizom.org; img-src 'self' https://cdn.sso.allizom.org https://www.google-analytics.com",
+  "displayNames": {
+    "github": "GitHub",
+    "google-oauth2": "Google",
+    "firefoxaccounts": "Firefox Accounts",
+    "email": "email"
+  }
 }

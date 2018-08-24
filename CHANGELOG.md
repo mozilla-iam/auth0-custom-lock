@@ -3,6 +3,13 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.4.5]
+
+### Added
+
+- Now has Log In / Sign Up flow, which has wording that better conveys users are logging in
+  or signing up. It is triggered by `action=signup` parameter.
+
 ## [1.4.8]
 
 ### Changed

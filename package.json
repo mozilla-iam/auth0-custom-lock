@@ -1,6 +1,6 @@
 {
   "name": "lock",
-  "version": "1.4.8",
+  "version": "1.5.0",
   "description": "The front-end for Mozilla's Auth0 Lock",
   "main": "index.js",
   "scripts": {

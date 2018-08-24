@@ -1,8 +1,9 @@
 var fireGAEvent = require( 'helpers/fire-ga-event' );
 var ui = require( 'helpers/ui' );
+var dom = require( 'helpers/dom' );
 
 module.exports = function authorise( element ) {
-  var emailField = document.getElementById( 'field-email' );
+  var emailField = dom.getEmailField();
   var form = element.form;
   var emailPlaceholder = document.getElementById( 'passwordless-success-email-address' );
   var errorText = document.getElementById( 'error-message-passwordless' );

@@ -8,7 +8,7 @@ module.exports = function decideScreen( element ) {
     ui.setLockState( element, 'autologin-settings' );
   }
   else if ( hasParams( 'action=signup' ) ) {
-    ui.setLockState( element, 'initial-login-signup' );
+    filterConnections( element, 'initial-login-signup' );
   }
   else {
     filterConnections( element );

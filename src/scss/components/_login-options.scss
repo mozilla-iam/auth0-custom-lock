@@ -13,7 +13,6 @@
   }
 }
 
-.login-options--empty + hr,
-.login-options--empty + div > hr {
+.login-options--empty + hr {
   display: none;
 }

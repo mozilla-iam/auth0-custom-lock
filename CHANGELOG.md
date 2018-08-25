@@ -3,7 +3,17 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [1.4.5]
+## [1.5.1]
+
+### Added
+
+- There was no autologin in Log in / Sign Up flow, this was added.
+
+### Changed
+
+- Login methods were not filtered properly in Log In / Sign Up flow, this is now fixed.
+
+## [1.5.0]
 
 ### Added
 

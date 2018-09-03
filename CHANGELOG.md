@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Login methods were not filtered properly in Log In / Sign Up flow, this is now fixed.
+- Fixed bug in which an error screen showed in some occassions while a succesful login
+  was underway.
 
 ## [1.5.0]
 

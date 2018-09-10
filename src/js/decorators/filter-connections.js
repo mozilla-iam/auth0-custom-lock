@@ -6,7 +6,7 @@ var applyEmptyClass = require( 'helpers/apply-empty-class' );
 var accountLinking = require( 'helpers/account-linking' );
 var hasParams = require( 'helpers/has-params' );
 
-module.exports = function( element ) {
+module.exports = function( element, initialState ) {
   var form = element.form;
   var url = 'https://' + NLX.domain + '/public/api/' + form.webAuthConfig.clientID + '/connections';
   var usedBackButton = window.performance && window.performance.navigation.type === 2;
@@ -17,6 +17,7 @@ module.exports = function( element ) {
   var timeStamp = new Date().getTime();
   var autologinInterval = 600000; // in milliseconds
   var shouldAutologin = true;
+  var initialState = initialState ? initialState : 'initial';
 
   ui.setLockState( element, 'loading' );
 
@@ -96,10 +97,10 @@ module.exports = function( element ) {
     applyEmptyClass();
 
     if ( !form.willRedirect ) {
-      ui.setLockState( element, 'initial' );
+      ui.setLockState( element, initialState );
     }
   }).catch( function() {
     // Could not check which connections are available for this RP; just show all.
-    ui.setLockState( element, 'initial' );
+    ui.setLockState( element, initialState );
   });
 };

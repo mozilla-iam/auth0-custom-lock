@@ -10,13 +10,12 @@ module.exports = function trackPasswordManagerUsage() {
   form.addEventListener( 'submit', report );
 
   function watchKeyTiming() {
-    if (start === 0) {
+    if ( start === 0 ) {
       start = Date.now();
     }
 
     end = Date.now();
-    console.log("Handler for .keypress() called." + event.which);
-    }
+    console.log( 'Handler for .keypress() called.' + event.which );
   }
 
   function report() {
@@ -27,7 +26,7 @@ module.exports = function trackPasswordManagerUsage() {
       time_spent_typing = 0;
     }
 
-    if (time_spent_typing < 200) {
+    if ( time_spent_typing < 200 ) {
       fireGAEvent( 'Password entry', 'Machine' );
     }
     else {

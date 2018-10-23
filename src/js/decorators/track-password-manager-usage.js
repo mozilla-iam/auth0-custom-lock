@@ -8,7 +8,7 @@ module.exports = function trackPasswordManagerUsage() {
 
   passwordField.addEventListener( 'keypress', watchKeyTiming );
   form.addEventListener( 'submit', function() {
-    if ( form.getAttribute( 'lock-state' ) !== 'ldap' ) {
+    if ( form.getAttribute( 'lock-state' ) === 'ldap' ) {
       report();
     }
   });

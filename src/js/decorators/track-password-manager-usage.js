@@ -18,6 +18,10 @@ module.exports = function trackPasswordManagerUsage() {
   }
 
   function report() {
+    if ( form.getAttribute( 'lock-state' ) !== 'ldap' ) {
+      return;
+    }
+
     if ( start !== 0 ) {
       time_spent_typing = end - start;
     }

@@ -7,21 +7,22 @@ module.exports = function trackPasswordManagerUsage() {
   var time_spent_typing;
 
   passwordField.addEventListener( 'keypress', watchKeyTiming );
-  form.addEventListener( 'submit', report );
+  form.addEventListener( 'submit', function() {
+    if ( form.getAttribute( 'lock-state' ) !== 'ldap' ) {
+      report();
+    }
+  });
 
-  function watchKeyTiming() {
+  function watchKeyTiming(event) {
     if ( start === 0 ) {
       start = Date.now();
     }
 
     end = Date.now();
+    console.log("Handler for .keypress() called. " + event.which);
   }
 
   function report() {
-    if ( form.getAttribute( 'lock-state' ) !== 'ldap' ) {
-      return;
-    }
-
     if ( start !== 0 ) {
       time_spent_typing = end - start;
     }

@@ -23,7 +23,7 @@ module.exports = function trackPasswordManagerUsage() {
     console.table({
       'start': start,
       'end': end,
-      'time spent': time_spent_typing
+      'time spent': end - start,
     });
   }
 

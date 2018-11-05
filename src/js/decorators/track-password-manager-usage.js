@@ -19,12 +19,6 @@ module.exports = function trackPasswordManagerUsage() {
     }
 
     end = Date.now();
-    console.log( 'Handler for keypress called: ' + event.which );
-    console.table({
-      'start': start,
-      'end': end,
-      'time spent': end - start,
-    });
   }
 
   function report() {

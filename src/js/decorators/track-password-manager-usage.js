@@ -15,11 +15,20 @@ module.exports = function trackPasswordManagerUsage() {
 
   function watchKeyTiming(event) {
     if ( start === 0 ) {
-      start = Date.now();
+      console.log( 'Length of password: ' + event.target.value.length );
+      if ( event.target.value.length > 0 ) {
+        console.log( 'Setting start time because password length is greater than 0' );
+        start = Date.now();
+      }
+      else {
+        console.log( 'Setting start time to 0 because password length is 0' );
+        start = 0;
+      }
     }
 
     end = Date.now();
     console.log( 'Handler for keypress called: ' + event.which );
+    console.log( 'Length of password: ' + event.target.value.length );
     console.table({
       'start': start,
       'end': end,

@@ -3,6 +3,13 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.6.0]
+
+### Added
+
+- NLX now tries to recognise password managers and reports its findings to Google Analytics
+  (unless DNT is enabled) or the Console (if not on PROD).
+
 ## [1.5.1]
 
 ### Added

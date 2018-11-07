@@ -5,7 +5,7 @@
 ## Build tools
 
 This project uses Gulp to run a number of automated tasks, including one that grabs our source files (HTML, Sass, JS)
-and compiles them into one single HTML file that has everything inlined and can be deployed to auth0.
+and compiles them into a single JS file which is deployed to a CDN and referenced by the hosted HTML page in Auth0.
 
 This project is also meant to be built in a Docker container to ensure you have all the necessary dependencies. This is
 done by calling a tool named `dmake`. If you wish not to use the container, you can also simply call `make` directly.

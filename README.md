@@ -52,8 +52,8 @@ The CodeBuild Project has an environment image set to `aws/codebuild/nodejs:8.11
 however the running CodeBuild Project has an environment image of `mozillaiam/auth0-custom-lock-builder`
 
 [`mozillaiam/auth0-custom-lock-builder`](https://hub.docker.com/r/mozillaiam/auth0-custom-lock-builder/)
-is a docker image built from the [`Dockerfile`][Dockerfile]. This docker image
-is created with the `dkrbuild` target of the [`Makefile`][Makefile] and uploaded
+is a docker image built from the [`Dockerfile`](Dockerfile). This docker image
+is created with the `dkrbuild` target of the [`Makefile`](Makefile) and uploaded
 to Docker Hub with the `hub` target. This docker image has, among other things,
 the [`mozilla-iam/auth0-ci`](https://github.com/mozilla-iam/auth0-ci/) python
 module installed which will be used to make changes to Auth0

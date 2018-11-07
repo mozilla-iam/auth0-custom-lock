@@ -3,7 +3,14 @@ phases:
   build:
     commands:
       - echo Build started on `date`
+      - rm -rf /nlx/*
+      - cp -ar . /nlx/
+      - cd /nlx
       - make build
+      - cp -ar . /nlx/
+      - cat /nlx/dist/index.html
+      - make copy-to-cdn
+      - make deploy
   post_build:
     commands:
       - make deploy

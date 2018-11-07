@@ -48,50 +48,47 @@ The CodeBuild Project is provisioned with the [`codebuild-job.yml` CloudFormatio
 The CodeBuild Project uses an IAM Role, which gives it permissions to execute.
 That IAM Role is provisioned with the [`codebuild-role.yml` CloudFormation template](ci/cloudformation/codebuild-role.yml).
 
-The CodeBuild Project has an environment image set to `aws/codebuild/nodejs:8.11.0`
-however the running CodeBuild Project has an environment image of `mozillaiam/auth0-custom-lock-builder`
-
-[`mozillaiam/auth0-custom-lock-builder`](https://hub.docker.com/r/mozillaiam/auth0-custom-lock-builder/)
-is a docker image built from the [`Dockerfile`](Dockerfile). This docker image
+The CodeBuild Project uses an
+[environment image](https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref.html)
+of
+[`mozillaiam/auth0-custom-lock-builder`](https://hub.docker.com/r/mozillaiam/auth0-custom-lock-builder/).
+This is a docker image built from the [`Dockerfile`](Dockerfile). This docker image
 is created with the `dkrbuild` target of the [`Makefile`](Makefile) and uploaded
 to Docker Hub with the `hub` target. This docker image has, among other things,
 the [`mozilla-iam/auth0-ci`](https://github.com/mozilla-iam/auth0-ci/) python
-module installed which will be used to make changes to Auth0
+module installed which will be used to make changes to Auth0 as well as locally
+cached versions of js dependencies.
 
 The [`mozilla-iam/auth0-custom-lock` GitHub repository](https://github.com/mozilla-iam/auth0-custom-lock)
 has a [GitHub webhook](https://developer.github.com/webhooks/) configured which
 will contact AWS CodeBuild each time someone does a git `push` to the repo. This
-webhook makes this contact to https://codebuild.us-west-2.amazonaws.com/webhooks
+webhook makes this contact to `https://codebuild.us-west-2.amazonaws.com/webhooks`
 
 The CodeBuild Project is configured with a [`branchFilter`](https://docs.aws.amazon.com/codebuild/latest/APIReference/API_Webhook.html#CodeBuild-Type-Webhook-branchFilter)
-of `master` so that only pushes to the `master` branch in the git repo trigger
-a CodeBuild run. It's unclear how this `branchFilter` is configured since the
-CloudFormation template doesn't do it.
+of `master` so that, only pushes to the `master` branch in the git repo trigger
+a CodeBuild run. The `branchFilter` is configured manually at the moment (not in
+the CloudFormation template) as CloudFormation doesn't support it.
 
 When the webhook triggers CodeBuild, CodeBuild executes the instructions in the
-[`buildspec.yml`](buildspec.yml) file. The `buildspec.yml` in the repo isn't
-currently be used by CodeBuild and instead a custom set of instructions has been
-loaded in. PR #250 is open to attempt to reconcile this.
+[`buildspec.yml`](buildspec.yml) file. These `buildspec.yml` instructions tell
+CodeBuild to call the `build` target of the [`Makefile`](Makefile) followed by
+the `copy-to-cdn` target and then the `deploy` target.
 
-These `buildspec.yml` instructions tell CodeBuild to call the `build` target of
-the [`Makefile`](Makefile) followed by the `copy-to-cdn` target and then the
-`deploy` target.
+The `build` uses `npm` and `gulp` to build the NLX code.
 
-The `build` uses `npm` to build the NLX code.
-
-The `copy-to-cdn` uploads the built artifacts to the S3 CDN `sso-dashboard.configuration`
+The `copy-to-cdn` uploads the built artifacts to the S3 CDN bucket `sso-dashboard.configuration`
 
 The `deploy` calls the [`03-deploy-to-auth0.sh`](ci/scripts/03-deploy-to-auth0.sh)
-script which, using the installed [`mozilla-iam/auth0-ci`](https://github.com/mozilla-iam/auth0-ci/)
-python module in the [`mozillaiam/auth0-custom-lock-builder`](https://hub.docker.com/r/mozillaiam/auth0-custom-lock-builder/)
+script which, using the [`mozilla-iam/auth0-ci`](https://github.com/mozilla-iam/auth0-ci/)
+python module installed in the [`mozillaiam/auth0-custom-lock-builder`](https://hub.docker.com/r/mozillaiam/auth0-custom-lock-builder/)
 environment image, calls the [`uploader_login_page.py` tool](https://github.com/mozilla-iam/auth0-ci/blob/master/uploader_login_page.py).
 
-`uploader_login_page.py` calls Auth0 to update the client attributes of a special
+`uploader_login_page.py` calls the Auth0 API to update the client attributes of a special
 "Default Client" in Auth0. This special reserved client (a relying party) has a
 special attribute called `custom_login_page` which, when updated, updates the
-hosted login page which is the [`src/html/index.html`](src/html/index.html) page.
+hosted login page which is sourced from [`src/html/index.html`](src/html/index.html).
 
-This page references the S3 CDN URL now containing the built javascript artifacts.
+This HTML page references the S3 CDN URL now containing the built javascript artifacts.
 
 #### Deploying to Auth0-Dev manually
 

@@ -17,8 +17,9 @@ module.exports = function trackPasswordManagerUsage() {
     if ( start === 0 && event.target.value.length > 0 ) {
       start = Date.now();
     }
-
-    end = Date.now();
+    if ( event.which !== 13 ) {
+      end = Date.now();
+    }
   }
 
   function report() {

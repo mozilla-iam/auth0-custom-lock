@@ -47,7 +47,7 @@ for tpath in ${TEST_PATHS}; do
 done
 
 grep "${CDN_BASE_URL}/${COMMIT_ID}" dist/index.html || {
-  fatal "dist/index.html does not match environment's COMMIT_ID: ${COMMIT_ID}
+  fatal "dist/index.html does not match environment's COMMIT_ID: ${COMMIT_ID}"
 }
 
 echo "All checks passed"

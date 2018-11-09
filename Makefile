@@ -7,6 +7,8 @@ COMMIT_ID		:= $(shell git rev-parse --short HEAD)
 CLOUDFRONT_DIST_ID	?= E3B9GI6602TZBY
 CDN_BUCKET_NAME		?= sso-dashboard.configuration
 NODE_ENV		?= development
+CDN_BASE_URL		?= https://cdn.sso.allizom.org/nlx
+TEST_BAD_CONFIG_PATHS	?= auth.mozilla.auth0.com
 
 .PHONY: all $(MAKECMDGOALS)
 

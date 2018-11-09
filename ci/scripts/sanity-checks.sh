@@ -6,16 +6,9 @@
 TEST_PATHS="/js/main.js /js/main.js.map /fonts/open-sans-400.woff /fonts/open-sans-600.woff /css/fonts.css \
   /css/styles.css /index.html"
 COMMIT_ID=$(git rev-parse --short HEAD)
-[[ -z "$NODE_ENV" ]] && {
-  NODE_ENV="development"
-  echo "WARNING: Failed to read NODE_ENV from environment. Defaulting to $NODE_ENV"
-}
-if [ "$NODE_ENV" == 'production' ]; then
-  CDN_BASE_URL='https://cdn.sso.mozilla.com/nlx'
-  TEST_BAD_CONFIG_PATHS="auth-dev.mozilla.auth0.com allizom.org"
-else
-  CDN_BASE_URL='https://cdn.sso.allizom.org/nlx'
-  TEST_BAD_CONFIG_PATHS="auth.mozilla.auth0.com"
+if [ -z "$TEST_BAD_CONFIG_PATHS" -o -z "$CDN_BASE_URL" ]; then
+  echo "Make sure the TEST_BAD_CONFIG_PATHS and CDN_BASE_URL environment variables are set. Aborting"
+  exit 1
 fi
 
 function test_url_ok() {
@@ -36,13 +29,13 @@ function fatal() {
 }
 
 
-echo "Running sanity checks for ${NODE_ENV} (Commit id: ${COMMIT_ID}, CDN: ${CDN_BASE_URL})"
+echo "Running sanity checks (Commit id: ${COMMIT_ID}, CDN: ${CDN_BASE_URL})"
 
 # Is the configuration matching the environment?
 # It must NOT contain the path from the opposite env (ie no "dev path" in prod env)
 for tpath in ${TEST_BAD_CONFIG_PATHS}; do
   test_config_contain "$tpath" && {
-    fatal "Configuration does not match environment ($NODE_ENV contains $tpath)"
+    fatal "Configuration does not match environment (files in /dist contain $tpath)"
   }
 done
 
@@ -52,5 +45,9 @@ for tpath in ${TEST_PATHS}; do
     fatal "URL $tpath check failed"
   }
 done
+
+grep "${CDN_BASE_URL}/${COMMIT_ID}" dist/index.html || {
+  fatal "dist/index.html does not match environment's COMMIT_ID: ${COMMIT_ID}"
+}
 
 echo "All checks passed"

@@ -1,4 +1,15 @@
-version: 0.1
+version: 0.2
+env:
+  parameter-store:
+    CLOUDFRONT_DISTRIBUTION_ID: /iam/nlx/cloudfront_distribution_id
+    CDN_BUCKET_NAME: /iam/nlx/cdn_bucket_name
+    TEST_BAD_CONFIG_PATHS: /iam/nlx/test_bad_config_paths
+    CDN_BASE_URL: /iam/nlx/cdn_base_url
+    NODE_ENV: /iam/nlx/node_env
+    CLIENT_ID: /iam/nlx/client_id
+    CLIENT_SECRET: /iam/nlx/deploy_client_secret
+    LOCK_CLIENT_ID: /iam/nlx/lock_client_id
+    AUTH0_URL: /iam/nlx/auth0_url
 phases:
   build:
     commands:
@@ -9,8 +20,6 @@ phases:
       - make build
       - cp -ar . /nlx/
       - cat /nlx/dist/index.html
-      - make copy-to-cdn
-      - make deploy
   post_build:
     commands:
       - make deploy

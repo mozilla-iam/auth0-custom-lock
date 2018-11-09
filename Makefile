@@ -11,7 +11,7 @@ CDN_BASE_URL		?= https://cdn.sso.allizom.org/nlx
 TEST_BAD_CONFIG_PATHS	?= auth.mozilla.auth0.com
 # Auth0 dev defaults
 CLIENT_ID		?= jwBjjyo7NNmTfKpZ6ibm54w3TNRH5Mu7
-# CLIENT_SECRET will be fetched from SSM if not provided in environment, for safety reasons
+CLIENT_SECRET		?=
 LOCK_CLIENT_ID		?= VNGM4quJw3Nhx28j8XKVYmu5LcPMCgAH
 AUTH0_URL		?= auth-dev.mozilla.auth0.com
 
@@ -32,18 +32,15 @@ invalidate-cfn-cache:
 
 push-to-auth0: sanity-checks
 	@echo "Deploying to auth0..."
-	CLIENT_ID=$(CLIENT_ID) \
-	CLIENT_SECRET=$(CLIENT_SECRET) \
-	AUTH0_URL=$(AUTH0_URL) \
-	LOCK_CLIENT_ID=$(LOCK_CLIENT_ID) \
-	ci/scripts/03-deploy-to-auth0.sh
+	uploader_login_page.py -u $(AUTH0_URL) -c $(CLIENT_ID) -s $(CLIENT_SECRET) \
+	  --default-client $(LOCK_CLIENT_ID) --login-page dist/index.html
 
 sanity-checks: copy-to-cdn
 	@echo "Running sanity script for $(NODE_ENV)..."
 	CDN_BASE_URL=$(CDN_BASE_URL) \
 	TEST_BAD_CONFIG_PATHS=$(TEST_BAD_CONFIG_PATHS) \
 	NODE_ENV=$(NODE_ENV) \
-	ci/scripts/02-sanity-checks.sh
+	ci/scripts/sanity-checks.sh
 
 copy-to-cdn:
 	@echo "Backup resources from CDN..."

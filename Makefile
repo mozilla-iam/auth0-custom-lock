@@ -1,12 +1,12 @@
 CACHE			:= --no-cache
 DKR_HUB			:= mozillaiam
 IMG_NAME		:= auth0-custom-lock-builder
+COMMIT_ID		:= $(shell git rev-parse --short HEAD)
 
 # Default to dev
-CLOUDFRONT_DIST_ID	:= E3B9GI6602TZBY
-CDN_BUCKET_NAME		:= sso-dashboard.configuration
-NODE_ENV		:= development
-COMMIT_ID		:= $(shell git rev-parse --short HEAD)
+CLOUDFRONT_DIST_ID	?= E3B9GI6602TZBY
+CDN_BUCKET_NAME		?= sso-dashboard.configuration
+NODE_ENV		?= development
 
 .PHONY: all $(MAKECMDGOALS)
 

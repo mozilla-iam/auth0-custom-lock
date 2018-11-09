@@ -67,10 +67,10 @@ npm_lazy-stop: .npm_lazy-start
 
 dkrbuild: Dockerfile
 	docker build $(CACHE) -t $(IMG_NAME):latest .
+	docker tag $(IMG_NAME):latest $(DKR_HUB)/$(IMG_NAME)
 
 hub:
 	docker login
-	docker tag $(IMG_NAME):latest $(DKR_HUB)/$(IMG_NAME)
 	docker push $(DKR_HUB)/$(IMG_NAME)
 
 clean:

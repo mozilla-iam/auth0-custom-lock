@@ -3,12 +3,17 @@ DKR_HUB			:= mozillaiam
 IMG_NAME		:= auth0-custom-lock-builder
 COMMIT_ID		:= $(shell git rev-parse --short HEAD)
 
-# Default to dev
+# Default to dev settings
 CLOUDFRONT_DIST_ID	?= E3B9GI6602TZBY
 CDN_BUCKET_NAME		?= sso-dashboard.configuration
 NODE_ENV		?= development
 CDN_BASE_URL		?= https://cdn.sso.allizom.org/nlx
 TEST_BAD_CONFIG_PATHS	?= auth.mozilla.auth0.com
+# Auth0 dev defaults
+CLIENT_ID		?= jwBjjyo7NNmTfKpZ6ibm54w3TNRH5Mu7
+# CLIENT_SECRET will be fetched from SSM if not provided in environment, for safety reasons
+LOCK_CLIENT_ID		?= VNGM4quJw3Nhx28j8XKVYmu5LcPMCgAH
+AUTH0_URL		?= auth-dev.mozilla.auth0.com
 
 .PHONY: all $(MAKECMDGOALS)
 
@@ -31,6 +36,7 @@ push-to-auth0: sanity-checks
 
 sanity-checks: copy-to-cdn
 	@echo "Running sanity script for $(NODE_ENV)..."
+	@export CDN_BASE_URL TEST_BAD_CONFIG_PATHS
 	NODE_ENV=$(NODE_ENV) ci/scripts/02-sanity-checks.sh
 
 copy-to-cdn:

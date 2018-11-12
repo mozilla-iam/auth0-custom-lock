@@ -37,9 +37,9 @@ push-to-auth0: sanity-checks
 
 sanity-checks: copy-to-cdn
 	@echo "Running sanity script for $(NODE_ENV)..."
-	CDN_BASE_URL=$(CDN_BASE_URL) \
-	TEST_BAD_CONFIG_PATHS=$(TEST_BAD_CONFIG_PATHS) \
-	NODE_ENV=$(NODE_ENV) \
+	CDN_BASE_URL="$(CDN_BASE_URL)" \
+	TEST_BAD_CONFIG_PATHS="$(TEST_BAD_CONFIG_PATHS)" \
+	NODE_ENV="$(NODE_ENV)" \
 	ci/scripts/sanity-checks.sh
 
 copy-to-cdn:

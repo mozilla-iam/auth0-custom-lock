@@ -73,6 +73,7 @@ start:
 	npm config set registry http://localhost:8080/
 
 npm_lazy-stop: .npm_lazy-start
+	npm config delete registry
 	kill $(cat $<)
 	rm $<
 

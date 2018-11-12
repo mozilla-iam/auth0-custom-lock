@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - NLX now tries to recognise password managers and reports its findings to Google Analytics
   (unless DNT is enabled) or the Console (if not on PROD).
 
+### Changed
+
+- Several build and deploy related changes
+
 ## [1.5.1]
 
 ### Added

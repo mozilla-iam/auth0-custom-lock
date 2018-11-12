@@ -34,7 +34,7 @@ module.exports = function( element, initialState ) {
     shouldAutologin = false;
   }
 
-  else if ( ( timeStamp - savedTimeStamp ) < autologinInterval &&  NLX.mergedConfig.clientID === savedAutologinRP ) {
+  else if ( ( timeStamp - savedTimeStamp ) < autologinInterval && NLX.mergedConfig.clientID === savedAutologinRP ) {
     fireGAEvent( 'Auto-login', 'Already auto-logged in to this RP in the last ten minutes, aborting auto-login' );
     shouldAutologin = false;
   }

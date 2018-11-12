@@ -13,6 +13,7 @@ var decorators = {
   'init-auth': require( 'decorators/init-auth' ),
   'load-ga': require( 'decorators/load-ga' ),
   'prevent-clickjack': require( 'decorators/prevent-clickjack' ),
+  'track-password-manager-usage': require( 'decorators/track-password-manager-usage' ),
   'set-autologin-preference': require( 'decorators/set-autologin-preference' ),
   'submit-with-enter': require( 'decorators/submit-with-enter' ),
   'tooltip': require( 'decorators/tooltip' ),

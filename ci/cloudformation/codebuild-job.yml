@@ -29,13 +29,6 @@ Resources:
         ComputeType: BUILD_GENERAL1_SMALL
         Image: mozillaiam/auth0-custom-lock-builder
         Type: LINUX_CONTAINER
-        EnvironmentVariables:
-          - Name: CDN_BUCKET_NAME
-            Value: !Ref CDNS3Bucket
-          - Name: CLOUDFRONT_DIST_ID
-            Value: !Ref CloudFrontDistributionID
-          - Name: NODE_ENV
-            Value: !Ref NLXEnv
       Name: !Sub ${AWS::StackName}CodeBuildProject
       ServiceRole: !Ref ServiceRoleArn
       Source:

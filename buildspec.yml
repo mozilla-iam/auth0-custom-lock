@@ -5,7 +5,7 @@ env:
     CDN_BUCKET_NAME: /iam/nlx/cdn_bucket_name
     TEST_BAD_CONFIG_PATHS: /iam/nlx/test_bad_config_paths
     CDN_BASE_URL: /iam/nlx/cdn_base_url
-    NODE_ENV: /iam/nlx/node_env
+    NLX_ENV: /iam/nlx/nlx_env
     CLIENT_ID: /iam/nlx/deploy_client_id
     CLIENT_SECRET: /iam/nlx/deploy_client_secret
     LOCK_CLIENT_ID: /iam/nlx/lock_client_id

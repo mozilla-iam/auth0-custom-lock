@@ -6,7 +6,7 @@ COMMIT_ID		:= $(shell git rev-parse --short HEAD)
 # Default to dev settings
 CLOUDFRONT_DIST_ID	?= E3B9GI6602TZBY
 CDN_BUCKET_NAME		?= sso-dashboard.configuration
-NODE_ENV		?= development
+NLX_ENV		?= development
 CDN_BASE_URL		?= https://cdn.sso.allizom.org/nlx
 TEST_BAD_CONFIG_PATHS	?= auth.mozilla.auth0.com
 # Auth0 dev defaults
@@ -24,7 +24,7 @@ all:
 	@echo 'In order to build within docker, type `./dmake <target>`'
 
 deploy: push-to-auth0 invalidate-cfn-cache
-	@echo "Deployment completed ($(NODE_ENV))"
+	@echo "Deployment completed ($(NLX_ENV))"
 
 invalidate-cfn-cache:
 	@echo "Invalidating Cloudfront cache..."
@@ -36,10 +36,9 @@ push-to-auth0: sanity-checks
 	  --default-client $(LOCK_CLIENT_ID) --login-page dist/index.html
 
 sanity-checks: copy-to-cdn
-	@echo "Running sanity script for $(NODE_ENV)..."
+	@echo "Running sanity script for $(NLX_ENV)..."
 	CDN_BASE_URL=$(CDN_BASE_URL) \
-	TEST_BAD_CONFIG_PATHS=$(TEST_BAD_CONFIG_PATHS) \
-	NODE_ENV=$(NODE_ENV) \
+	TEST_BAD_CONFIG_PATHS=$(TEST_BAD_CONFIG_PATHS)
 	ci/scripts/sanity-checks.sh
 
 copy-to-cdn:

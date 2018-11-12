@@ -30,7 +30,7 @@ const paths = {
   drop : 'dist'
 };
 
-let environment = process.env.NODE_ENV || 'development';
+let environment = process.env.NLX_ENV || 'development';
 environment = environment.toLowerCase();
 
 const configFile = JSON.parse( fs.readFileSync( 'config/' + environment + '.json', 'utf8' ) );

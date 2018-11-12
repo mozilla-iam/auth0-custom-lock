@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- When going back to the same RP, the autologin timer is now much shorter (seconds), so auto-login will only be aborted
+  if a user goes back to the same RP login link very quickly (instead of within 10  minutes)
 - Several build and deploy related changes
 
 ## [1.5.1]

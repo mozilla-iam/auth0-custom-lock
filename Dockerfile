@@ -31,3 +31,5 @@ ADD ci/ ci
 RUN npm install -g npm_lazy && \
   npm install -g gulp-cli
 RUN /bin/sh ci/scripts/docker-cache-node-modules.sh
+RUN rm package.json package-lock.json && \
+  rm -rf ci

@@ -15,7 +15,7 @@ module.exports = function( element, initialState ) {
   var savedAutologinRP = window.localStorage.getItem( 'nlx-last-autologin-rp' );
   var didAccountLinking = accountLinking.didAccountLinking();
   var timeStamp = new Date().getTime();
-  var autologinInterval = 600000; // in milliseconds
+  var autologinInterval = 5000; // in milliseconds
   var shouldAutologin = true;
   var initialState = initialState ? initialState : 'initial';
 
@@ -35,7 +35,7 @@ module.exports = function( element, initialState ) {
   }
 
   else if ( ( timeStamp - savedTimeStamp ) < autologinInterval && NLX.mergedConfig.clientID === savedAutologinRP ) {
-    fireGAEvent( 'Auto-login', 'Already auto-logged in to this RP in the last ten minutes, aborting auto-login' );
+    fireGAEvent( 'Auto-login', 'Already auto-logged in to this RP in the last 5s, aborting auto-login' );
     shouldAutologin = false;
   }
 

@@ -15,7 +15,7 @@ phases:
     commands:
       - echo Build started on `date`
       - make build
-      - cat /nlx/dist/index.html
+      - cat dist/index.html
   post_build:
     commands:
       - make deploy

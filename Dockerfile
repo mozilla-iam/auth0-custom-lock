@@ -4,12 +4,6 @@ MAINTAINER Andrew Krug <akrug@mozilla.com>
 RUN mkdir /nlx
 WORKDIR /nlx
 
-# Setup the container for caching the node modules in case of npm repository failures.
-ADD package.json package.json
-ADD package-lock.json package-lock.json
-ADD ci/ ci
-RUN chmod +x ci/*/*.sh
-
 # Get the container OS up to date
 RUN apt-get update
 RUN apt-get upgrade -y
@@ -30,5 +24,10 @@ RUN pip3 install auth0-ci
 RUN pip3 install awscli
 
 # Install npm_lazy to use as a local cache for failures retrieving from NPM.
-RUN npm install -g npm_lazy
-RUN ci/scripts/docker-cache-node-modules.sh
+## Setup the container for caching the node modules in case of npm repository failures.
+ADD package.json package.json
+ADD package-lock.json package-lock.json
+ADD ci/ ci
+RUN npm install -g npm_lazy && \
+  npm install -g gulp-cli
+RUN /bin/sh ci/scripts/docker-cache-node-modules.sh

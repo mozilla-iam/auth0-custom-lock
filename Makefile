@@ -63,6 +63,7 @@ start:
 
 .installdeps: .npm_lazy-start
 	npm install
+	npm install --only=dev
 	touch .installdeps
 
 # This is an NPM cache in case NPM servers don't work correctly, which happens sometimes

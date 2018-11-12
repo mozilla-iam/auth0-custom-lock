@@ -29,7 +29,10 @@ ADD package.json package.json
 ADD package-lock.json package-lock.json
 ADD ci/ ci
 RUN npm install -g npm_lazy && \
-  npm install -g gulp-cli
+  npm install -g gulp-cli && \
+  npm install gulp
 RUN /bin/sh ci/scripts/docker-cache-node-modules.sh
-RUN rm package.json package-lock.json && \
-  rm -rf ci
+# Cleanup
+RUN rm /nlx/package.json /nlx/package-lock.json && \
+  rm -rf /nlx/ci && \
+  rm /root/.npmrc

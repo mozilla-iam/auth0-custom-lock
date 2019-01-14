@@ -44,9 +44,7 @@ sanity-checks: copy-to-cdn
 
 copy-to-cdn:
 	@echo "Backup resources from CDN..."
-	mkdir -p /tmp/nlx-backup
-	aws s3 sync s3://$(CDN_BUCKET_NAME)/nlx/latest/ /tmp/backup
-	aws s3 sync /tmp/nlx-backup s3://$(CDN_BUCKET_NAME)/nlx/backup
+	tempdir="`mktemp --directory`"; aws s3 sync s3://$(CDN_BUCKET_NAME)/nlx/latest/ "$$tempdir"; aws s3 sync "$$tempdir" s3://$(CDN_BUCKET_NAME)/nlx/backup; rm -rf "$$tempdir"
 	@echo "Copying resources to CDN..."
 	aws s3api put-object --bucket $(CDN_BUCKET_NAME) --key nlx/latest/index.html --body dist/index.html
 	aws s3 sync dist/ s3://$(CDN_BUCKET_NAME)/nlx/latest/

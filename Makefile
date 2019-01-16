@@ -31,6 +31,7 @@ invalidate-cfn-cache:
 	aws cloudfront create-invalidation --distribution-id $(CLOUDFRONT_DIST_ID) --paths /nlx/*
 
 push-to-auth0: sanity-checks
+	test -e dist/index.html
 	@echo "Deploying to auth0..."
 	uploader_login_page.py -u $(AUTH0_URL) -c $(CLIENT_ID) -s $(CLIENT_SECRET) \
 	  --default-client $(LOCK_CLIENT_ID) --login-page dist/index.html
@@ -43,6 +44,7 @@ sanity-checks: copy-to-cdn
 	ci/scripts/sanity-checks.sh
 
 copy-to-cdn:
+	test -e dist/index.html
 	@echo "Backup resources from CDN..."
 	mkdir -p /tmp/nlx-backup
 	aws s3 sync s3://$(CDN_BUCKET_NAME)/nlx/latest/ /tmp/backup

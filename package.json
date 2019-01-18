@@ -19,6 +19,7 @@
     "gulp-minify": "^3.0.2",
     "gulp-mustache": "^3.0.1",
     "gulp-sass": "^3.2.1",
+    "node-sass": "^4.9.3",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.0",
     "gulplog": "^1.0.0",

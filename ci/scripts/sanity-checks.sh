@@ -46,6 +46,10 @@ for tpath in ${TEST_PATHS}; do
   }
 done
 
+if ! test -e dist/index.html; then
+  fatal "dist/index.html is missing. Aborting"
+fi
+
 grep "${CDN_BASE_URL}/${COMMIT_ID}" dist/index.html || {
   fatal "dist/index.html does not match environment's COMMIT_ID: ${COMMIT_ID}"
 }

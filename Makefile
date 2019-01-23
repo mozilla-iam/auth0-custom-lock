@@ -43,6 +43,7 @@ sanity-checks: copy-to-cdn
 	ci/scripts/sanity-checks.sh
 
 copy-to-cdn:
+	test -e dist/index.html
 	@echo "Backup resources from CDN..."
 	tempdir="`mktemp --directory`"; aws s3 sync s3://$(CDN_BUCKET_NAME)/nlx/latest/ "$$tempdir"; aws s3 sync "$$tempdir" s3://$(CDN_BUCKET_NAME)/nlx/backup; rm -rf "$$tempdir"
 	@echo "Copying resources to CDN..."

@@ -97,12 +97,38 @@ For development:
 ./dmake deploy
 ```
 
+#### Deploying to Auth0-Prod automatically
+
+Auth0-Prod is setup with an AWS CodeBuild job in `infosec-prod` (just like 
+Auth0-Dev). To trigger a production deployment
+
+* Merge `master` in to `production` in your fork of `auth0-custom-lock`
+* Push your fork's `production` branch to your fork's origin
+* Submit a pull request between your fork's `production` branch and the upstream
+  `mozilla-iam/auth0-custom-lock`'s `production` branch
+  * In this PR reference the original PR to `master` for which this is a
+    production deploy
+* Have someone review the PR
+* Merge the PR
+
+This will trigger deployment to production with AWS CodeBuild.
+
 #### Deploying to Auth0-Prod
 
 For production:
 ```bash
 ./dmake deploy-prod
 ```
+
+#### Rolling back an Auth0-Prod deploy
+
+Historical artifacts are retained in the `sso-dashboard.configuration` and
+`sso-dashboard.configuration-prod` buckets under directories with hashes for
+names so rolling back should be as easy as replacing the `index.html` hosted
+page in Auth0.
+
+This can be done manually through the Auth0 web UI by copy pasting the old
+`index.html` contents into the Hosted Pages form.
 
 ## Coding standards
 

@@ -38,15 +38,18 @@ const packageJSON = JSON.parse( fs.readFileSync( 'package.json', 'utf8' ) );
 const config = Object.assign( configFile, packageJSON );
 var revision = require('child_process')
   .execSync('git rev-parse --short HEAD')
-  .toString().trim()
+  .toString().trim();
 
 console.log(revision)
 
-if (environment == 'development') {
-  config['cdn'] = 'https://cdn.sso.allizom.org/nlx/' + revision
+if (environment == 'local') {
+  config['cdn'] = '';
+}
+else if (environment == 'development') {
+  config['cdn'] = 'https://cdn.sso.allizom.org/nlx/' + revision;
 }
 else {
-  config['cdn'] = 'https://cdn.sso.mozilla.com/nlx/' + revision
+  config['cdn'] = 'https://cdn.sso.mozilla.com/nlx/' + revision;
 }
 
 console.log(config)

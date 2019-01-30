@@ -45,7 +45,15 @@ sanity-checks: copy-to-cdn
 copy-to-cdn:
 	test -e dist/index.html
 	@echo "Backup resources from CDN..."
-	tempdir="`mktemp --directory`"; aws s3 sync s3://$(CDN_BUCKET_NAME)/nlx/latest/ "$$tempdir"; aws s3 sync "$$tempdir" s3://$(CDN_BUCKET_NAME)/nlx/backup; rm -rf "$$tempdir"
+	# Create a temp directory to contain a downloaded copy of nlx/latest
+	# and set TEMPDIR to the path of that temp directory
+	$(eval TEMPDIR := $(shell mktemp --directory))
+	# Fetch nlx/latest and store it in TEMPDIR
+	aws s3 sync s3://$(CDN_BUCKET_NAME)/nlx/latest/ "$(TEMPDIR)"
+	# Upload our local temp copy of nlx/lates into nlx/backup
+	aws s3 sync "$(TEMPDIR)" s3://$(CDN_BUCKET_NAME)/nlx/backup
+	# Cleanup and remove the TEMPDIR
+	rm -rf "$(TEMPDIR)"
 	@echo "Copying resources to CDN..."
 	aws s3api put-object --bucket $(CDN_BUCKET_NAME) --key nlx/latest/index.html --body dist/index.html
 	aws s3 sync dist/ s3://$(CDN_BUCKET_NAME)/nlx/latest/

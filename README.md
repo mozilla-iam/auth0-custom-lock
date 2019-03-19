@@ -40,9 +40,9 @@ Make sure your AWS credentials are set correctly and use the proper role when de
 
 #### Deploying to Auth0-Dev automatically
 
-An [AWS CodeBuild](https://docs.aws.amazon.com/codebuild/index.html#lang/en_us)
-Project is deployed in the `infosec-dev` AWS account. This is used to build and
-deploy the NLX code.
+A pair of [AWS CodeBuild](https://docs.aws.amazon.com/codebuild/index.html#lang/en_us)
+Projects are deployed in the `infosec-dev` and `infosec-prod` AWS accounts. 
+These are used to build and deploy the NLX code.
 
 The CodeBuild Project is provisioned with the [`codebuild-job.yml` CloudFormation template](ci/cloudformation/codebuild-job.yml).
 The CodeBuild Project uses an IAM Role, which gives it permissions to execute.
@@ -60,16 +60,29 @@ module installed which will be used to make changes to Auth0 as well as locally
 cached versions of js dependencies.
 
 The [`mozilla-iam/auth0-custom-lock` GitHub repository](https://github.com/mozilla-iam/auth0-custom-lock)
-has a [GitHub webhook](https://developer.github.com/webhooks/) configured which
-will contact AWS CodeBuild each time someone does a git `push` to the repo. This
-webhook makes this contact to `https://codebuild.us-west-2.amazonaws.com/webhooks`
+has a pair of [GitHub webhooks](https://developer.github.com/webhooks/) 
+configured which will contact either the AWS CodeBuild in `infosec-prod` or
+`infosec-dev` each time someone does a git `push` to the repo.
 
-The CodeBuild Project is configured with a [`branchFilter`](https://docs.aws.amazon.com/codebuild/latest/APIReference/API_Webhook.html#CodeBuild-Type-Webhook-branchFilter)
-of `master` so that, only pushes to the `master` branch in the git repo trigger
-a CodeBuild run. The `branchFilter` is configured manually at the moment (not in
-the CloudFormation template) as CloudFormation doesn't support it.
+* Development webhook (as of March 2019) which triggers `infosec-dev` CodeBuild
+  * https://github.com/mozilla-iam/auth0-custom-lock/settings/hooks/32255963
+  * `https://codebuild.us-west-2.amazonaws.com/webhooks?t=eyJlbmNyeXB0ZWREYXRhIjoieTE0eHcweW91MERY...`
+* Production webhook (as of March 2019) which triggers `infosec-prod` CodeBuild
+  * https://github.com/mozilla-iam/auth0-custom-lock/settings/hooks/95633862
+  * `https://codebuild.us-west-2.amazonaws.com/webhooks?t=eyJlbmNyeXB0ZWREYXRhIjoiMkk0VkJjS1dhUmZs...`
 
-When the webhook triggers CodeBuild, CodeBuild executes the instructions in the
+These CodeBuild Projects are configured with [`filterGroups`](https://docs.aws.amazon.com/codebuild/latest/APIReference/API_Webhook.html#CodeBuild-Type-Webhook-filterGroups)
+to control which git branches cause builds. 
+
+* `infosec-dev` CodeBuild triggers on pushes to `master`
+  * This is set with a `filterGroup` of `HEAD_REF` of `^refs/heads/master$` on event type of `PUSH`
+* `infosec-prod` CodeBuild triggers on pushes to `production`
+  * This is set with a `filterGroup` of `HEAD_REF` of `^refs/heads/production$` on event type of `PUSH`
+
+The `filterGroups` are configured manually at the moment (not in the 
+CloudFormation template) as CloudFormation doesn't support it.
+
+When the webhooks trigger CodeBuild, CodeBuild executes the instructions in the
 [`buildspec.yml`](buildspec.yml) file. These `buildspec.yml` instructions tell
 CodeBuild to call the `build` target of the [`Makefile`](Makefile) followed by
 the `copy-to-cdn` target and then the `deploy` target.
@@ -89,6 +102,30 @@ special attribute called `custom_login_page` which, when updated, updates the
 hosted login page which is sourced from [`src/html/index.html`](src/html/index.html).
 
 This HTML page references the S3 CDN URL now containing the built javascript artifacts.
+
+#### Changing the AWS CodeBuild to GitHub integration
+
+These AWS CodeBuild webhooks must be provisioned by AWS CodeBuild (as opposed to
+manually within GitHub). As a result the process to create or update these 
+webhooks must follow this process
+
+* As a GitHub user with admin rights in this repo, [add a new collaborator](https://github.com/mozilla-iam/auth0-custom-lock/settings/collaboration)
+  to the repo
+* The collaborator to add is
+  * the `infosec-prod-371522382791-codebuild` GitHub user to affect the `production` webhook
+  * the `infosec-dev-656532927350-codebuild` GitHub user to affect the `master` webhook
+* Grant the service user `admin` rights in the repo
+* Since the `github.com/mozilla-iam` GitHub organization already whitelists the
+`AWS CodeBuild (Oregon)` third-party app, we don't need to temporarily whitelist
+the app in this step (unlike in, for example, the `github.com/mozilla` GitHub
+Organization)
+* In the AWS CodeBuild web console (in the appropriate AWS account), go to the
+  `Edit`... `Source` settings 
+* Make changes and save
+* As a repo admin go back in [and remove the collaborator you added](https://github.com/mozilla-iam/auth0-custom-lock/settings/collaboration)
+* We don't need to un-whitelist the intergation at the GitHub Organization level
+  in the `github.com/mozilla-iam` GitHub org (as would be necessary in the
+  `github.com/mozilla` GitHub org)
 
 #### Deploying to Auth0-Dev manually
 

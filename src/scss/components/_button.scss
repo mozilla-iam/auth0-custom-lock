@@ -23,14 +23,6 @@
     text-decoration: none;
   }
 
-  &:focus {
-    outline: none;
-    outline: 0;
-    background-color: $lightGrey;
-    border-color: $lightGrey;
-    color: $blue;
-  }
-
   &:active {
     background-color: $black;
     color: $white;
@@ -91,14 +83,6 @@
       border-color: transparent;
       text-decoration: underline;
       text-decoration-skip: ink;
-    }
-
-    &:focus {
-      outline: none;
-      outline: 0;
-      background-color: $lightGrey;
-      border-color: $lightGrey;
-      color: $blue;
     }
 
     &:active {

@@ -35,7 +35,7 @@ var ui = {
   focus: function( element ) {
     if ( element ) {
       if ( element.nodeName === 'DIV' && !element.hasAttribute( 'tabindex' ) ) {
-        element.setAttribute( 'tabindex', '0' );
+        element.setAttribute( 'tabindex', '-1' );
       }
       if ( typeof element.focus === 'function' ) {
         if ( window.requestAnimationFrame ) {

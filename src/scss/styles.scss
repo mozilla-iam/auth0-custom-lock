@@ -5,11 +5,15 @@ $white: #fff;
 $black: #000;
 $backgroundColor: $lightGrey;
 
-$blue: #229DC4;
+$blue: #0060df;
+$transparentBlue: rgba(69, 161, 255, 0.54);
 $yellow: #fff44f;
 $darkYellow: #faba00;
 $green: #158640;
 $red: #ff4f5e;
+
+$focusOutline: 0px 0 0 1px $blue,
+    0 0 0 3px $transparentBlue;
 
 * {
   box-sizing: border-box;

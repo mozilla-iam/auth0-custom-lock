@@ -26,6 +26,19 @@ h1 {
   margin: 0;
 }
 
+.focus-styles {
+  :focus {
+    box-shadow: $focusOutline;
+    outline: transparent;
+  }
+  [tabindex="-1"]:focus {
+    box-shadow: none;
+  }
+  ::-moz-focus-inner {
+    border: 0;
+  }
+}
+
 a {
   color: $blue;
   text-decoration: none;
@@ -35,7 +48,6 @@ a {
     text-decoration: underline;
     text-decoration-skip: ink;
   }
-
 }
 
 p:first-child {

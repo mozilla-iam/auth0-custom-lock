@@ -4,8 +4,8 @@
     position: absolute;
     left: -9999em;
 
-    &:focus + label span {
-      border: 1px dotted;
+    &:focus + label .setting__toggle {
+      box-shadow: $focusOutline;
     }
   }
 

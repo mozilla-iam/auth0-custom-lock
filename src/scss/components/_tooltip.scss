@@ -1,10 +1,10 @@
 .link-to-tooltip {
-  color: $darkerGrey;
+  color: $darkestGrey;
   float: right;
   font-size: 1.2em;
 
   svg path {
-    fill: $darkerGrey;
+    fill: $darkestGrey;
   }
 
   &:hover svg path {

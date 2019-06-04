@@ -4,6 +4,7 @@
 
 var decorators = {
   'check-if-maintenance-mode': require( 'decorators/check-if-maintenance-mode' ),
+  'check-keyboard': require( 'decorators/check-keyboard' ),
   'decide-screen': require( 'decorators/decide-screen' ),
   'display-rp-name': require( 'decorators/display-rp-name' ),
   'fill-in-session-info': require( 'decorators/fill-in-session-info' ),

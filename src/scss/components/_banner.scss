@@ -53,13 +53,5 @@
       color: $white;
       text-decoration: none;
     }
-
-    &:focus {
-      outline: none;
-      outline: 0;
-      background-color: $lightGrey;
-      border-color: $lightGrey;
-      color: $blue;
-    }
   }
 }

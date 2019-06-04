@@ -23,14 +23,6 @@
     text-decoration: none;
   }
 
-  &:focus {
-    outline: none;
-    outline: 0;
-    background-color: $lightGrey;
-    border-color: $lightGrey;
-    color: $blue;
-  }
-
   &:active {
     background-color: $black;
     color: $white;
@@ -87,18 +79,10 @@
 
     &:hover {
       background-color: transparent;
-      color: $darkerGrey;
+      color: $darkestGrey;
       border-color: transparent;
       text-decoration: underline;
       text-decoration-skip: ink;
-    }
-
-    &:focus {
-      outline: none;
-      outline: 0;
-      background-color: $lightGrey;
-      border-color: $lightGrey;
-      color: $blue;
     }
 
     &:active {

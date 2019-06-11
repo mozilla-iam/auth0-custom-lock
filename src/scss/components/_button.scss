@@ -79,7 +79,7 @@
 
     &:hover {
       background-color: transparent;
-      color: $darkestGrey;
+      color: $blue;
       border-color: transparent;
       text-decoration: underline;
       text-decoration-skip: ink;
@@ -94,6 +94,18 @@
 
   &--unpadded {
     margin-left: -1em; // compensate for padding we need for its focus state
+  }
+
+  &--github {
+    .icon-hover {
+      display: none;
+    }
+    &:hover .icon-hover {
+      display: block;
+    }
+    &:hover .icon-default {
+      display: none;
+    }
   }
 
   &:last-child {

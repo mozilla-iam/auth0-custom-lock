@@ -51,9 +51,9 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
     <link rel="dns-prefetch" href="{{{ person_api_domain }}}">
     <link rel="stylesheet" href="{{{ cdn }}}/css/fonts.css" type="text/css" />
     <link rel="stylesheet" href="{{{ cdn }}}/css/styles.css" type="text/css" />
-    <link rel="icon" href="{{{ cdn }}}/images/favicon.png" type="image/png" sizes="196x196" />
+    <link rel="icon" href="{{{ cdn }}}/images/favicon.png" type="image/png" sizes="192x192" />
   </head>
-  <body data-decorator="load-ga display-rp-name prevent-clickjack track-password-manager-usage">
+  <body data-decorator="load-ga display-rp-name prevent-clickjack track-password-manager-usage check-keyboard">
     <div data-decorator="check-if-maintenance-mode" hidden>
       <div class="banner">
         <p>We are currently experiencing an issue &amp; working hard to resolve it. Please try to login again in a few minutes.  Request help via <a href="mailto:moc@mozilla.com">moc@mozilla.com</a>, IRC #moc or Slack #mozsm-all.</p>
@@ -67,7 +67,7 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
           <legend class="rp-name"><span class="visually-hidden">Log in to </span><span id="rp-name-placeholder" class="rp-name__text"></span></legend>
           <div id="loading" class="loading" data-screen hidden>
             <p class="visually-hidden">Loading…</p>
-            <img src="{{{ cdn }}}/images/loading.svg" class="loading__spinner" />
+            <img src="{{{ cdn }}}/images/loading.svg" class="loading__spinner" alt="" />
             <p role="alert" id="loading__status" class="loading__status"></p>
           </div>
           <div id="initial" data-screen hidden>
@@ -80,30 +80,31 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <ul class="login-options list list--plain">
               <li data-optional-login-method="firefoxaccounts">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-firefoxaccounts">
-                  <img  class="icon" src="{{{ cdn }}}/images/firefox.svg">
+                  <img class="icon" src="{{{ cdn }}}/images/firefox.svg" alt="">
                   <span>Log in with Firefox</span>
                 </button>
               </li>
               <li data-optional-login-method="github">
-                <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-github">
-                  <img class="icon" src="{{{ cdn }}}/images/github.svg">
+                <button class="button button--github button--full-width button--social button--secondary" type="button" data-handler="authorise-github">
+                  <img class="icon icon-default" src="{{{ cdn }}}/images/github.svg" alt="">
+                  <img class="icon icon-hover" src="{{{ cdn }}}/images/github-white.svg" alt="">
                   <span>Log in with GitHub</span>
                 </button>
               </li>
               <li data-optional-login-method="google-oauth2">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-google">
-                  <img  class="icon" src="{{{ cdn }}}/images/google.svg">
+                  <img class="icon" src="{{{ cdn }}}/images/google.svg" alt="">
                   <span>Log in with Google</span>
                 </button>
             </ul>
             <div data-decorator="hide-autologin-setting-conditionally">
               <hr>
               <div class="setting">
-                <a href="#what-is-autologin" class="link-to-tooltip" data-decorator="tooltip"><span class="visually-hidden">What is Auto-login?</span> <img class="icon" src="{{{ cdn }}}/images/info.svg"></a>
+                <a href="#what-is-autologin" class="link-to-tooltip" data-decorator="tooltip"><span class="visually-hidden">What is Auto-login?</span> <img class="icon" src="{{{ cdn }}}/images/info.svg" alt=""></a>
                 <input type="checkbox" id="use-autologin" data-decorator="set-autologin-preference" checked>
                 <label for="use-autologin"><span class="setting__toggle"></span> <span class="setting__enabled-text">Auto-login is enabled</span><span class="setting__disabled-text">Auto-login is disabled</span></label>
                 <div id="what-is-autologin" class="tooltip">
-                  <p>Auto-login will allow you to bypass this screen in the future and be automatically logged in via your chosen login method. This setting can soon be edited by visiting your user menu on the SSO Dashboard.</p>
+                  <p>Auto-login will allow you to bypass this screen and be automatically logged in via your chosen login method. This setting can be edited by visiting your menu on the SSO Dashboard.</p>
                 </div>
               </div>
             </div>
@@ -118,30 +119,31 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <ul class="login-options list list--plain">
               <li data-optional-login-method="firefoxaccounts">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-firefoxaccounts">
-                  <img  class="icon" src="{{{ cdn }}}/images/firefox.svg">
+                  <img class="icon" src="{{{ cdn }}}/images/firefox.svg" alt="">
                   <span>Continue with Firefox</span>
                 </button>
               </li>
               <li data-optional-login-method="github">
-                <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-github">
-                  <img class="icon" src="{{{ cdn }}}/images/github.svg">
+                <button class="button button--github button--full-width button--social button--secondary" type="button" data-handler="authorise-github">
+                  <img class="icon icon-default" src="{{{ cdn }}}/images/github.svg" alt="">
+                  <img class="icon icon-hover" src="{{{ cdn }}}/images/github-white.svg" alt="">
                   <span>Continue with GitHub</span>
                 </button>
               </li>
               <li data-optional-login-method="google-oauth2">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-google">
-                  <img  class="icon" src="{{{ cdn }}}/images/google.svg">
+                  <img class="icon" src="{{{ cdn }}}/images/google.svg" alt="">
                   <span>Continue with Google</span>
                 </button>
             </ul>
             <div data-decorator="hide-autologin-setting-conditionally">
               <hr>
               <div class="setting">
-                <a href="#what-is-autologin-2" class="link-to-tooltip" data-decorator="tooltip"><span class="visually-hidden">What is Auto-login?</span> <img class="icon" src="{{{ cdn }}}/images/info.svg"></a>
+                <a href="#what-is-autologin-2" class="link-to-tooltip" data-decorator="tooltip"><span class="visually-hidden">What is Auto-login?</span> <img class="icon" src="{{{ cdn }}}/images/info.svg" alt=""></a>
                 <input type="checkbox" id="use-autologin-2" data-decorator="set-autologin-preference" checked>
                 <label for="use-autologin-2"><span class="setting__toggle"></span> <span class="setting__enabled-text">Auto-login is enabled</span><span class="setting__disabled-text">Auto-login is disabled</span></label>
                 <div id="what-is-autologin-2" class="tooltip">
-                  <p>Auto-login will allow you to bypass this screen in the future and be automatically logged in via your chosen login method. This setting can soon be edited by visiting your user menu on the SSO Dashboard.</p>
+                  <p>Auto-login will allow you to bypass this screen and be automatically logged in via your chosen login method. This setting can be edited by visiting your menu on the SSO Dashboard.</p>
                 </div>
               </div>
             </div>
@@ -166,19 +168,20 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <ul class="login-options list list--plain">
               <li data-optional-login-method="firefoxaccounts">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-firefoxaccounts">
-                  <img  class="icon" src="{{{ cdn }}}/images/firefox.svg">
+                  <img class="icon" src="{{{ cdn }}}/images/firefox.svg" alt="">
                   <span>Continue with Firefox</span>
                 </button>
               </li>
               <li data-optional-login-method="github">
-                <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-github">
-                  <img class="icon" src="{{{ cdn }}}/images/github.svg">
+                <button class="button button--github button--full-width button--social button--secondary" type="button" data-handler="authorise-github">
+                  <img class="icon icon-default" src="{{{ cdn }}}/images/github.svg" alt="">
+                  <img class="icon icon-hover" src="{{{ cdn }}}/images/github-white.svg" alt="">
                   <span>Continue with GitHub</span>
                 </button>
               </li>
               <li data-optional-login-method="google-oauth2">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-google">
-                  <img class="icon" src="{{{ cdn }}}/images/google.svg">
+                  <img class="icon" src="{{{ cdn }}}/images/google.svg" alt="">
                   <span>Continue with Google</span>
                 </button>
             </ul>
@@ -186,13 +189,13 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to start over with a different account?</button>
           </div>
           <div id="passwordless-success" data-screen hidden>
-            <h2 class="card__heading card__heading--success"><img src="{{{ cdn }}}/images/envelope.svg" class="card__heading-icon" /> <span>Success</span></h2>
+            <h2 class="card__heading card__heading--success"><img src="{{{ cdn }}}/images/envelope.svg" class="card__heading-icon" alt="" /> <span>Success</span></h2>
             <p>Email sent to <span id="passwordless-success-email-address"></span>, go to your inbox to continue. Your login link will expire in 15 minutes.</p>
             <hr>
             <button id="back" type="button" class="button button--text-only card__back  button--unpadded" data-handler="go-to-initial-page">Need to send that to a different email?</button>
           </div>
           <div id="error-password" data-screen hidden>
-            <h2 class="card__heading card__heading--error" id="error-message-ldap"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
+            <h2 class="card__heading card__heading--error" id="error-message-ldap"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" alt="" /> <span>Error</span></h2>
             <p>Please attempt again or contact the Help Desk for assistance.</p>
             <div class="form__input">
               <input type="password" id="field-password-try-2" autocomplete="current-password" name="password" data-decorator="submit-with-enter watch-contents" data-continue-with="authorise-ldap-credentials"  />
@@ -203,20 +206,20 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to start over with a different account?</button>
           </div>
           <div id="error-passwordless" data-screen hidden>
-            <h2 class="card__heading card__heading--error" id="error-message-passwordless"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
+            <h2 class="card__heading card__heading--error" id="error-message-passwordless"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" alt="" /> <span>Error</span></h2>
             <p>We cannot send an email to this address</p>
             <button type="button" class="button button--text-only card__back  button--unpadded" data-handler="go-to-initial-page">Try again</button>
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to start over with a different account?</button>
           </div>
           <div id="ldap-not-available" data-screen hidden>
-            <h2 class="card__heading card__heading--error"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
+            <h2 class="card__heading card__heading--error"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" alt="" /> <span>Error</span></h2>
             <p>Unfortunately, this website does not offer login with Mozilla LDAP.</p>
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to start over with a different account?</button>
           </div>
           <div id="ldap-required" data-screen hidden>
-            <h2 class="card__heading card__heading--error"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" /> <span>Error</span></h2>
+            <h2 class="card__heading card__heading--error"><img src="{{{ cdn }}}/images/circled-x.svg" class="card__heading-icon" alt="/> <span>Error</span></h2>
             <p>Unfortunately, you can only login to this website using Mozilla LDAP.</p>
             <hr>
             <button type="button" class="button button--text-only card__back button--unpadded" data-handler="go-to-initial-page">Need to start over with a different account?</button>
@@ -227,6 +230,8 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <div class="setting">
               <input type="checkbox" id="use-autologin-2" data-decorator="set-autologin-preference" checked>
               <label for="use-autologin-2"><span class="setting__toggle"></span> <span class="setting__enabled-text">Auto-login is enabled</span><span class="setting__disabled-text">Auto-login is disabled</span></label>
+              <input type="checkbox" id="use-autologin-3" data-decorator="set-autologin-preference" checked>
+              <label for="use-autologin-3"><span class="setting__toggle"></span> <span class="setting__enabled-text">Auto-login is enabled</span><span class="setting__disabled-text">Auto-login is disabled</span></label>
             </div>
             <hr>
             <ul class="login-options list list--plain">

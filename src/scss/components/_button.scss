@@ -23,14 +23,6 @@
     text-decoration: none;
   }
 
-  &:focus {
-    outline: none;
-    outline: 0;
-    background-color: $lightGrey;
-    border-color: $lightGrey;
-    color: $blue;
-  }
-
   &:active {
     background-color: $black;
     color: $white;
@@ -87,18 +79,10 @@
 
     &:hover {
       background-color: transparent;
-      color: $darkerGrey;
+      color: $blue;
       border-color: transparent;
       text-decoration: underline;
       text-decoration-skip: ink;
-    }
-
-    &:focus {
-      outline: none;
-      outline: 0;
-      background-color: $lightGrey;
-      border-color: $lightGrey;
-      color: $blue;
     }
 
     &:active {
@@ -110,6 +94,18 @@
 
   &--unpadded {
     margin-left: -1em; // compensate for padding we need for its focus state
+  }
+
+  &--github {
+    .icon-hover {
+      display: none;
+    }
+    &:hover .icon-hover {
+      display: block;
+    }
+    &:hover .icon-default {
+      display: none;
+    }
   }
 
   &:last-child {

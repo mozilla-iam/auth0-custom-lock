@@ -1,10 +1,10 @@
 .link-to-tooltip {
-  color: $darkerGrey;
+  color: $darkestGrey;
   float: right;
   font-size: 1.2em;
 
   svg path {
-    fill: $darkerGrey;
+    fill: $darkestGrey;
   }
 
   &:hover svg path {
@@ -13,13 +13,13 @@
 
   .icon {
     vertical-align: baseline;
-    margin-top: .16em;
+    margin: .16em;
+    display: block;
   }
 }
 
 .tooltip {
   display: none;
-  border: 1px solid $midGrey;
   background-color: $lightGrey;
   padding: 1em;
   margin: 1em 0;

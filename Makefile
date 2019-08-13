@@ -43,10 +43,17 @@ sanity-checks: copy-to-cdn
 	ci/scripts/sanity-checks.sh
 
 copy-to-cdn:
+	test -e dist/index.html
 	@echo "Backup resources from CDN..."
-	mkdir -p /tmp/nlx-backup
-	aws s3 sync s3://$(CDN_BUCKET_NAME)/nlx/latest/ /tmp/backup
-	aws s3 sync /tmp/nlx-backup s3://$(CDN_BUCKET_NAME)/nlx/backup
+	# Create a temp directory to contain a downloaded copy of nlx/latest
+	# and set TEMPDIR to the path of that temp directory
+	$(eval TEMPDIR := $(shell mktemp --directory))
+	# Fetch nlx/latest and store it in TEMPDIR
+	aws s3 sync s3://$(CDN_BUCKET_NAME)/nlx/latest/ "$(TEMPDIR)"
+	# Upload our local temp copy of nlx/lates into nlx/backup
+	aws s3 sync "$(TEMPDIR)" s3://$(CDN_BUCKET_NAME)/nlx/backup
+	# Cleanup and remove the TEMPDIR
+	rm -rf "$(TEMPDIR)"
 	@echo "Copying resources to CDN..."
 	aws s3api put-object --bucket $(CDN_BUCKET_NAME) --key nlx/latest/index.html --body dist/index.html
 	aws s3 sync dist/ s3://$(CDN_BUCKET_NAME)/nlx/latest/

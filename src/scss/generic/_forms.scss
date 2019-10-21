@@ -33,7 +33,7 @@ input[type="password"] {
   background-color: $midGrey;
   border: 1px solid $white;
   border-radius: .2em;
-  padding: .5em;
+  padding: .5em .9em;
   display: block;
   width: 100%;
   margin-bottom: 1em;
@@ -46,10 +46,6 @@ input[type="password"] {
 
   .focus-styles &:focus {
     border-color: transparent;
-  }
-
-  &:focus {
-    background-color: $white;
   }
 }
 
@@ -64,7 +60,7 @@ input[type="password"] {
     margin: 0;
     position: absolute;
     top: .5em;
-    left: .5em;
+    left: .9em;
   }
 
   input:focus + label,

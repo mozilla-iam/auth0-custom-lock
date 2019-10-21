@@ -46,6 +46,7 @@ console.log(revision)
 if (environment == 'development') {
   if (local_dev) {
     config['cdn'] = "http://localhost:3000"
+    config['csp'] = "default-src: *"
   } else {
     config['cdn'] = 'https://cdn.sso.allizom.org/nlx/' + revision
   }

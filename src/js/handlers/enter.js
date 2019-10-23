@@ -26,7 +26,7 @@ module.exports = function enter( element ) {
   var emailFieldValue = emailField.value.toLowerCase();
   var passwordField = document.getElementById( 'field-password' );
   var isAccountLinking = accountLinking.isAccountLinking();
-  var qualifiesForLDAPShortcut = /mozilla.com|getpocket.com|mozillafoundation.org$/.test( emailField.value );
+  var qualifiesForLDAPShortcut = /@(mozilla.com|getpocket.com|mozillafoundation.org)$/.test( emailField.value );
   var supportedByRP = form.loginMethods ? form.loginMethods['supportedByRP'] : null;
   var onlyAcceptsLDAP = supportedByRP && supportedByRP.length === 1 && supportedByRP.indexOf( NLX.LDAP_connection_name ) === 0;
   var ENDPOINT = NLX.person_api_domain;
@@ -83,5 +83,3 @@ module.exports = function enter( element ) {
     }
   }
 };
-
-

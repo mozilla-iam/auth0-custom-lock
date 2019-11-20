@@ -4,6 +4,10 @@
   padding: 0;
   border-radius: 0;
 
+  @media ( min-width: 25em ) {
+    margin-bottom: 2.5em;
+  }
+
   svg {
     width: 100%;
     max-width: 6.5em;

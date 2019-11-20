@@ -1,14 +1,15 @@
 // scss-lint:disable PropertyCount /* buttons just need lots of properties */
 .button {
   text-align: center;
-  font-weight: bold;
   text-decoration: none;
-  padding: .5em 2em;
+  padding: .93em 2em;
   display: block;
-  font-size: 1em;
+  font-size: 87.5%;
+  letter-spacing: .04em;
+  line-height: 1.57;
   font-family: inherit;
-  border-radius: 1.25em;
-  background-color: $black;
+  border-radius: 2em;
+  background-color: $blue;
   color: $white;
   border: 1px solid transparent;
   transition: background-color .1s ease-in-out;
@@ -18,15 +19,15 @@
 
   &:hover {
     background-color: $white;
-    color: $black;
+    color: $blue;
     border-color: currentColor;
     text-decoration: none;
   }
 
   &:active {
-    background-color: $black;
+    background-color: $blue;
     color: $white;
-    border-color: $black;
+    border-color: $blue;
   }
 
   &--full-width {
@@ -34,7 +35,7 @@
   }
 
   &--secondary {
-    border-color: $black;
+    border-color: $darkerGrey;
     background-color: transparent;
     color: $black;
     text-transform: none;
@@ -58,7 +59,13 @@
 
   &--social {
     display: flex;
-    padding: .5em 1em;
+    padding-left: 1.14em;
+    padding-right: 1.14em;
+
+    .icon {
+      width: 1.29em;
+      height: 1.29em;
+    }
 
     .icon,
     span {

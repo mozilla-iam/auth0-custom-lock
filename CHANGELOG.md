@@ -3,6 +3,34 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [1.7.0]
+
+### Added
+
+- Detection of whether or not the user used a password manager to fill out their LDAP password [#245](https://github.com/mozilla-iam/auth0-custom-lock/pull/245)
+
+### Changed
+
+- Firefox logo [#319](https://github.com/mozilla-iam/auth0-custom-lock/pull/319)
+- Padding on small mobile screens [#318](https://github.com/mozilla-iam/auth0-custom-lock/pull/318) [#320](https://github.com/mozilla-iam/auth0-custom-lock/pull/320)
+- UI to look more like people.mozilla.org [#303](https://github.com/mozilla-iam/auth0-custom-lock/pull/303) [#305](https://github.com/mozilla-iam/auth0-custom-lock/pull/305) [#310](https://github.com/mozilla-iam/auth0-custom-lock/pull/310) [#314](https://github.com/mozilla-iam/auth0-custom-lock/pull/314)
+- Many automatic build and deploy processes
+- Favicon [#281](https://github.com/mozilla-iam/auth0-custom-lock/pull/281)
+- Autologin interval by reducing it to 5s [#266](https://github.com/mozilla-iam/auth0-custom-lock/pull/266)
+
+### Fixed
+
+- Fixed LDAP email address regex to be more specific [#315](https://github.com/mozilla-iam/auth0-custom-lock/pull/315) [#317](https://github.com/mozilla-iam/auth0-custom-lock/pull/317)
+
+### Security
+
+- Allow a whitelist of click-jackable-domains for FxA iframes within NLX [#307](https://github.com/mozilla-iam/auth0-custom-lock/pull/307)
+- Update dev dependency on node-sass to 4.9.3 to mitigate cryptiles vulnerability [#291](https://github.com/mozilla-iam/auth0-custom-lock/pull/291)
+- Update version of cached-path-relative required to mitigate vulnerability [#291](https://github.com/mozilla-iam/auth0-custom-lock/pull/291)
+- Update browser-sync to mitigate vulnerability [#291](https://github.com/mozilla-iam/auth0-custom-lock/pull/291)
+
 ## [1.6.0]
 
 ### Added
@@ -167,8 +195,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Firefox Accounts support, pref'd off for production, see also
-  [POC](https://github.com/mozilla-iam/mozilla-iam/issues/36)
 - We can now trigger a logout from NLX, the first use case is the logout in SSO Dashboard.
 
 ### Changed
@@ -185,6 +211,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   the space they need, while the card centers in the remaining space.
 - Links at bottom of card have now CSS with more prefixes, so that they work in
   older versions of Webkit and Internet Explorer (as those sometimes get used).
+
+## [1.1.5] - 2018-03-26
+
+### Added
+
+- Firefox Accounts support, pref'd off for production, see also
+  [POC](https://github.com/mozilla-iam/mozilla-iam/issues/36)
 
 ## [1.1.4] - 2018-03-26
 
@@ -264,7 +297,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Hardcoded URLs have been removed.
 
-## [1.0] - 2017-02-21
+## [1.0.0] - 2017-02-21
 
 The first release of NLX to the public.
 
+[Unreleased]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.6.0...HEAD
+[1.7.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.6.0...v1.7.0
+[1.6.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.5.1...v1.6.0
+[1.5.1]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.5.0...v1.5.1
+[1.5.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.4.8...v1.5.0
+[1.4.8]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.4.7...v1.4.8
+[1.4.7]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.4.6...v1.4.7
+[1.4.6]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.4.5...v1.4.6
+[1.4.5]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.4.4...v1.4.5
+[1.4.4]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.4.3...v1.4.4
+[1.4.3]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.4.2...v1.4.3
+[1.4.2]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.4.1...v1.4.2
+[1.4.1]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.4.0...v1.4.1
+[1.4.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.3.0...v1.4.0
+[1.3.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.2.1...v1.3.0
+[1.2.1]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.2.0...v1.2.1
+[1.2.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.1.5...v1.2.0
+[1.1.5]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.1.4...v1.1.5
+[1.1.4]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.1.3...v1.1.4
+[1.1.3]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.1.2...v1.1.3
+[1.1.2]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.1.1...v1.1.2
+[1.1.1]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.1.0...v1.1.1
+[1.1.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/olivierlacan/keep-a-changelog/releases/tag/v1.0.0

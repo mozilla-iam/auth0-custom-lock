@@ -33,5 +33,6 @@ exec docker run --rm --name ${CONTAINER_NAME} \
   -e "AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}" \
   -e "AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}" \
   -e "CLIENT_SECRET=${CLIENT_SECRET}" \
+  -e "NLX_LOCAL_DEV=${NLX_LOCAL_DEV}" \
   -p 3000:3000 \
   ${HUB}/${IMG_NAME}:latest make $@

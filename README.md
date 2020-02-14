@@ -33,6 +33,11 @@ For local development:
 ./dmake start
 ```
 
+For local development with assets loaded locally (not from the cdn):
+```bash
+NLX_LOCAL_DEV=1 ./dmake start
+```
+
 This should start a local server and open it in the browser. It also starts a watch task. If you make any changes in
 source files (HTML, Sass or JS), the `dist` folder will get rebuilt.
 
@@ -41,7 +46,7 @@ Make sure your AWS credentials are set correctly and use the proper role when de
 #### Deploying to Auth0-Dev automatically
 
 A pair of [AWS CodeBuild](https://docs.aws.amazon.com/codebuild/index.html#lang/en_us)
-Projects are deployed in the `infosec-dev` and `infosec-prod` AWS accounts. 
+Projects are deployed in the `infosec-dev` and `infosec-prod` AWS accounts.
 These are used to build and deploy the NLX code.
 
 The CodeBuild Project is provisioned with the [`codebuild-job.yml` CloudFormation template](ci/cloudformation/codebuild-job.yml).
@@ -60,7 +65,7 @@ module installed which will be used to make changes to Auth0 as well as locally
 cached versions of js dependencies.
 
 The [`mozilla-iam/auth0-custom-lock` GitHub repository](https://github.com/mozilla-iam/auth0-custom-lock)
-has a pair of [GitHub webhooks](https://developer.github.com/webhooks/) 
+has a pair of [GitHub webhooks](https://developer.github.com/webhooks/)
 configured which will contact either the AWS CodeBuild in `infosec-prod` or
 `infosec-dev` each time someone does a git `push` to the repo.
 
@@ -72,14 +77,14 @@ configured which will contact either the AWS CodeBuild in `infosec-prod` or
   * `https://codebuild.us-west-2.amazonaws.com/webhooks?t=eyJlbmNyeXB0ZWREYXRhIjoiMkk0VkJjS1dhUmZs...`
 
 These CodeBuild Projects are configured with [`filterGroups`](https://docs.aws.amazon.com/codebuild/latest/APIReference/API_Webhook.html#CodeBuild-Type-Webhook-filterGroups)
-to control which git branches cause builds. 
+to control which git branches cause builds.
 
 * `infosec-dev` CodeBuild triggers on pushes to `master`
   * This is set with a `filterGroup` of `HEAD_REF` of `^refs/heads/master$` on event type of `PUSH`
 * `infosec-prod` CodeBuild triggers on pushes to `production`
   * This is set with a `filterGroup` of `HEAD_REF` of `^refs/heads/production$` on event type of `PUSH`
 
-The `filterGroups` are configured manually at the moment (not in the 
+The `filterGroups` are configured manually at the moment (not in the
 CloudFormation template) as CloudFormation doesn't support it.
 
 When the webhooks trigger CodeBuild, CodeBuild executes the instructions in the
@@ -106,7 +111,7 @@ This HTML page references the S3 CDN URL now containing the built javascript art
 #### Changing the AWS CodeBuild to GitHub integration
 
 These AWS CodeBuild webhooks must be provisioned by AWS CodeBuild (as opposed to
-manually within GitHub). As a result the process to create or update these 
+manually within GitHub). As a result the process to create or update these
 webhooks must follow this process
 
 * As a GitHub user with admin rights in this repo, [add a new collaborator](https://github.com/mozilla-iam/auth0-custom-lock/settings/collaboration)
@@ -120,7 +125,7 @@ webhooks must follow this process
 the app in this step (unlike in, for example, the `github.com/mozilla` GitHub
 Organization)
 * In the AWS CodeBuild web console (in the appropriate AWS account), go to the
-  `Edit`... `Source` settings 
+  `Edit`... `Source` settings
 * Make changes and save
 * As a repo admin go back in [and remove the collaborator you added](https://github.com/mozilla-iam/auth0-custom-lock/settings/collaboration)
 * We don't need to un-whitelist the intergation at the GitHub Organization level
@@ -136,7 +141,7 @@ For development:
 
 #### Deploying to Auth0-Prod automatically
 
-Auth0-Prod is setup with an AWS CodeBuild job in `infosec-prod` (just like 
+Auth0-Prod is setup with an AWS CodeBuild job in `infosec-prod` (just like
 Auth0-Dev). To trigger a production deployment
 
 * Merge `master` in to `production` in your fork of `auth0-custom-lock`

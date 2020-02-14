@@ -31,6 +31,7 @@ const paths = {
 };
 
 let environment = process.env.NODE_ENV || 'development';
+let local_dev = !!process.env.NLX_LOCAL_DEV;
 environment = environment.toLowerCase();
 
 const configFile = JSON.parse( fs.readFileSync( 'config/' + environment + '.json', 'utf8' ) );
@@ -43,7 +44,12 @@ var revision = require('child_process')
 console.log(revision)
 
 if (environment == 'development') {
-  config['cdn'] = 'https://cdn.sso.allizom.org/nlx/' + revision
+  if (local_dev) {
+    config['cdn'] = "http://localhost:3000"
+    config['csp'] = "default-src: *"
+  } else {
+    config['cdn'] = 'https://cdn.sso.allizom.org/nlx/' + revision
+  }
 }
 else {
   config['cdn'] = 'https://cdn.sso.mozilla.com/nlx/' + revision

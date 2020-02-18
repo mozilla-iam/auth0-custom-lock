@@ -5,7 +5,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [1.7.0]
+## [1.7.0] - 2020-02-14
 
 ### Added
 
@@ -31,7 +31,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Update version of cached-path-relative required to mitigate vulnerability [#291](https://github.com/mozilla-iam/auth0-custom-lock/pull/291)
 - Update browser-sync to mitigate vulnerability [#291](https://github.com/mozilla-iam/auth0-custom-lock/pull/291)
 
-## [1.6.0]
+## [1.6.0] - 2018-10-22
 
 ### Added
 
@@ -44,7 +44,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   if a user goes back to the same RP login link very quickly (instead of within 10  minutes)
 - Several build and deploy related changes
 
-## [1.5.1]
+## [1.5.1] - 2018-08-25
 
 ### Added
 
@@ -56,14 +56,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed bug in which an error screen showed in some occassions while a succesful login
   was underway.
 
-## [1.5.0]
+## [1.5.0] - 2018-08-22
 
 ### Added
 
 - Now has Log In / Sign Up flow, which has wording that better conveys users are logging in
   or signing up. It is triggered by `action=signup` parameter.
 
-## [1.4.8]
+## [1.4.8] - 2018-07-31
 
 ### Changed
 
@@ -80,7 +80,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Makefile based build & deploy, uses Docker to contain the build by default. Supports local, dev, prod envs.
 
 
-## [1.4.7]
+## [1.4.7] - 2018-07-17
 
 ### Added
 
@@ -92,7 +92,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Autologin is now prevented when you go to NLX using the back button
 - Use human readable names for login methods in auto-login messaging
 
-## [1.4.6]
+## [1.4.6] - 2018-06-27
 
 ### Changed
 
@@ -100,7 +100,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Update CSP for PROD to include correct Person API URL
 - Commit package-lock
 
-## [1.4.5]
+## [1.4.5] - 2018-06-26
 
 ### Changed
 
@@ -108,13 +108,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   password manager (Thanks @april).
 
 
-## [1.4.4]
+## [1.4.4] - 2018-06-21
 
 ### Changed
 
 - Removed animation from floating labels
 
-## [1.4.3]
+## [1.4.3] - 2018-06-19
 
 ### Added
 
@@ -136,7 +136,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Auto-login switch indicator changed: OFF is to left, ON is to right, it now
   matches what iOS and Android do. Also, better padding (Thanks @LunarTwilight!)
 
-## [1.4.2]
+## [1.4.2] - 2018-06-12
 
 ### Added
 
@@ -144,7 +144,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Removed all inline scripts so that Content Security-Policy does
   not require 'unsafe-inline' for scripts
 
-## [1.4.1]
+## [1.4.1] - 2018-06-06
 
 ### Added
 
@@ -156,14 +156,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Fonts are now part of this package.
 
-## [1.4.0]
+## [1.4.0] - 2018-05-29
 
 ### Added
 
 - Options to Log out of Mozilla and go back to SSO Dashboard from
   Auto-login Settings screen
 
-## [1.3.0]
+## [1.3.0] - 2018-05-22
 
 ### Added
 
@@ -179,7 +179,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - ‘Or login with’ text; each button now says ‘Login with’
 
-## [1.2.1]
+## [1.2.1] - 2018-05-02
 
 ### Added
 
@@ -191,7 +191,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Remove `prompt` if not set, so that OIDC OP that do not support it don't get confused
 - Tweak padding in small screen view so that it is like it was before
 
-## [1.2.0]
+## [1.2.0] - 2018-04-24
 
 ### Added
 
@@ -301,27 +301,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 The first release of NLX to the public.
 
-[Unreleased]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.6.0...HEAD
-[1.7.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.6.0...v1.7.0
-[1.6.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.5.1...v1.6.0
-[1.5.1]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.5.0...v1.5.1
-[1.5.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.4.8...v1.5.0
-[1.4.8]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.4.7...v1.4.8
-[1.4.7]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.4.6...v1.4.7
-[1.4.6]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.4.5...v1.4.6
-[1.4.5]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.4.4...v1.4.5
-[1.4.4]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.4.3...v1.4.4
-[1.4.3]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.4.2...v1.4.3
-[1.4.2]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.4.1...v1.4.2
-[1.4.1]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.4.0...v1.4.1
-[1.4.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.3.0...v1.4.0
-[1.3.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.2.1...v1.3.0
-[1.2.1]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.2.0...v1.2.1
-[1.2.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.1.5...v1.2.0
-[1.1.5]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.1.4...v1.1.5
-[1.1.4]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.1.3...v1.1.4
-[1.1.3]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.1.2...v1.1.3
-[1.1.2]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.1.1...v1.1.2
-[1.1.1]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.1.0...v1.1.1
-[1.1.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.0.0...v1.1.0
-[1.0.0]: https://github.com/olivierlacan/keep-a-changelog/releases/tag/v1.0.0
+[Unreleased]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.6.0...HEAD
+[1.7.0]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.6.0...v1.7.0
+[1.6.0]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.5.1...v1.6.0
+[1.5.1]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.5.0...v1.5.1
+[1.5.0]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.4.8...v1.5.0
+[1.4.8]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.4.7...v1.4.8
+[1.4.7]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.4.6...v1.4.7
+[1.4.6]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.4.5...v1.4.6
+[1.4.5]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.4.4...v1.4.5
+[1.4.4]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.4.3...v1.4.4
+[1.4.3]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.4.2...v1.4.3
+[1.4.2]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.4.1...v1.4.2
+[1.4.1]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.4.0...v1.4.1
+[1.4.0]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.3.0...v1.4.0
+[1.3.0]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.2.1...v1.3.0
+[1.2.1]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.2.0...v1.2.1
+[1.2.0]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.1.5...v1.2.0
+[1.1.5]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.1.4...v1.1.5
+[1.1.4]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.1.3...v1.1.4
+[1.1.3]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.1.2...v1.1.3
+[1.1.2]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.1.1...v1.1.2
+[1.1.1]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.1.0...v1.1.1
+[1.1.0]: https://github.com/mozilla-iam/auth0-custom-lock/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/mozilla-iam/auth0-custom-lock/releases/tag/v1.0.0

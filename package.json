@@ -28,7 +28,7 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
-    "auth0-js": "^9.6.1",
+    "auth0-js": "^9.13.2",
     "promise-polyfill": "^8.0.0",
     "url-search-params-polyfill": "^4.0.0",
     "whatwg-fetch": "^2.0.4"

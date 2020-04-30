@@ -1,29 +1,21 @@
-.legal-links {
-  position: absolute;
-  bottom: -3em;
-  left: 0;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
+#legal-links {
   display: flex;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin: 2em -.25em 0;
+
+  @media ( min-width: 25em ) {
+    margin: 3em -.25em 0;
+  }
 
   li {
-    margin: 0 1em 0 0;
     font-size: .75em;
-
-    &:last-child {
-      margin-left: auto;
-      margin-right: 0;
-    }
   }
 
   a {
     text-decoration: none;
     color: $black;
-    padding: 2em 1em;
+    padding: 0 1em;
 
     &:hover {
       color: $blue;

@@ -1,14 +1,21 @@
 .card {
   background-color: $white;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto auto auto;
+  max-width: 26em;
+  min-height: 100%;
   padding: 2em;
-  position: relative;
-  margin: auto;
   width: 100%;
-  box-shadow: 0 0.25em 0.25em 0 rgba(210, 210, 210, 0.5);
-  border-radius: 0.125em;
 
-  @media ( min-width: 25em ) {
-    max-width: 26em;
+  @media ( min-height: 51.5em ) {  /* 824px, iPhone X and Pixel XL size */
+    min-height: unset;  /* don't grow on huge screens */
+  }
+
+  @media ( min-width: 36em ) {  /* bootstrap xs sizing, 576px */
+    border-radius: 0.125em;
+    box-shadow: 0 0.25em 0.25em 0 rgba(210, 210, 210, 0.5);
     padding: 2.5em;
   }
 

@@ -1,10 +1,17 @@
 .card {
   background-color: $white;
   border: 0;
+  display: flex;
+  flex-direction: column;
   margin: 0 auto auto auto;
   max-width: 26em;
+  min-height: 100%;
   padding: 2em;
   width: 100%;
+
+  @media ( min-height: 51.5em ) {  /* 824px, iPhone X and Pixel XL size */
+    min-height: unset;  /* don't grow on huge screens */
+  }
 
   @media ( min-width: 36em ) {  /* bootstrap xs sizing, 576px */
     border-radius: 0.125em;

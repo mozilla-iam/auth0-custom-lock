@@ -4,6 +4,10 @@ form {
   * {
     font-family: inherit;
   }
+
+  &#nlx-form {
+    flex-grow: 1;
+  }
 }
 
 fieldset {

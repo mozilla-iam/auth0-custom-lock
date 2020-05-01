@@ -1,5 +1,5 @@
-FROM node:7
-MAINTAINER Andrew Krug <akrug@mozilla.com>
+FROM node:14
+MAINTAINER April King <april@mozilla.com>
 
 RUN mkdir /nlx
 WORKDIR /nlx
@@ -8,18 +8,18 @@ WORKDIR /nlx
 RUN apt-get update
 RUN apt-get upgrade -y
 
-# Auth0 cli requires python3.  Get python 3.4 into the runtime.
-RUN echo "deb http://ftp.osuosl.org/debian testing main" >> /etc/apt/sources.list
+# Auth0 cli requires python3.
 RUN apt-get update
 RUN apt-get install -y \
   build-essential libssl-dev libffi-dev python-dev \
-  python3.6 python3.6-dev python3-pip python-virtualenv
+  python3.5 python3.5-dev python3-pip python-virtualenv
 RUN apt-get clean
 
 # Set python3 as the default since no other python runs in this container.
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.5 2
 
 # Install tools for running deploys to auth0 tenants.
+RUN pip3 install --upgrade pip
 RUN pip3 install auth0-ci
 RUN pip3 install awscli
 

@@ -46,7 +46,7 @@ console.log(revision)
 if (environment == 'development') {
   if (local_dev) {
     config['cdn'] = "http://localhost:3000"
-    config['csp'] = "default-src *"
+    config['csp'] = "default-src http: https: ws: 'unsafe-inline'"
   } else {
     config['cdn'] = 'https://cdn.sso.allizom.org/nlx/' + revision
   }

@@ -1,6 +1,7 @@
 {
   "environment": "PROD",
   "auth0_domain": "auth.mozilla.auth0.com",
+  "cdn_domain": "cdn.sso.mozilla.com",
   "LDAP_connection_name": "Mozilla-LDAP",
   "person_api_domain": "https://person-api.sso.mozilla.com/v1/connection/",
   "logout_url": "https://auth.mozilla.auth0.com/v2/logout?returnTo=https://sso.mozilla.com/signout.html",

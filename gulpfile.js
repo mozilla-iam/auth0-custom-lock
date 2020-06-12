@@ -11,7 +11,7 @@ const eslint = require( 'gulp-eslint' ); // lints our JavaScript
 const gulp = require( 'gulp' ); // runs tasks
 const sass = require( 'gulp-sass' ); // builds Sass (.scss) into CSS
 const source = require( 'vinyl-source-stream' ); // lets us use Browserify within Gulp
-const mustache = require("gulp-mustache"); // replace variables
+const mustache = require( 'gulp-mustache' ); // replace variables
 const fs = require( 'fs' );
 const buffer = require( 'vinyl-buffer' );
 const uglify = require( 'gulp-uglify' );
@@ -31,31 +31,21 @@ const paths = {
 };
 
 let environment = process.env.NODE_ENV || 'development';
-let local_dev = !!process.env.NLX_LOCAL_DEV;
-environment = environment.toLowerCase();
 
 const configFile = JSON.parse( fs.readFileSync( 'config/' + environment + '.json', 'utf8' ) );
 const packageJSON = JSON.parse( fs.readFileSync( 'package.json', 'utf8' ) );
 const config = Object.assign( configFile, packageJSON );
-var revision = require('child_process')
-  .execSync('git rev-parse --short HEAD')
-  .toString().trim()
 
-console.log(revision)
+// if we're running in github actions, the SHA is available as an environmental variable
+config.revision = process.env.GITHUB_SHA || require( 'child_process' ).execSync( 'git rev-parse HEAD' ).toString().trim();
 
-if (environment == 'development') {
-  if (local_dev) {
-    config['cdn'] = "http://localhost:3000"
-    config['csp'] = "default-src *"
-  } else {
-    config['cdn'] = 'https://cdn.sso.allizom.org/nlx/' + revision
-  }
-}
-else {
-  config['cdn'] = 'https://cdn.sso.mozilla.com/nlx/' + revision
-}
+// get the date of the build to include in HTML comments
+config.build_date = new Date().toISOString().substr( 0, 16 );
 
-console.log(config)
+// set the full url to the cdn
+config['cdn'] = environment === 'local' ? `http://${config.cdn_domain}` : `https://${config.cdn_domain}/nlx/${config.revision}`;
+
+console.log( config );
 
 console.log( 'Environment “' + environment + '” identified.  Building NLX with ' + environment + ' config:' );
 console.log( '---------------------------Begin configuration.---------------------------' );
@@ -66,7 +56,7 @@ console.log( '---------------------------End configuration.---------------------
    Tasks
    ------------------------------------ */
 
-gulp.task('browserSync', function() {
+gulp.task( 'browserSync', function() {
   browserSync.init({
     server: {
       baseDir: 'dist'
@@ -79,12 +69,12 @@ gulp.task( 'process-html', function() {
   return gulp.src( paths.html + '/*.html' )
     .pipe( mustache( config ) )
     .pipe( gulp.dest( paths.drop ) )
-    .pipe( browserSync.reload( { stream: true } ));
+    .pipe( browserSync.reload({ stream: true }) );
 });
 
 gulp.task( 'lint', function() {
   return gulp.src([paths.scripts + '/**/*.js'])
-    .pipe( eslint( { 'configFile': './.eslintrc.yml' } ) )
+    .pipe( eslint({ 'configFile': './.eslintrc.yml' }) )
     .pipe( eslint.format() );
 });
 
@@ -92,7 +82,7 @@ gulp.task( 'lint:watch', function() {
   gulp.watch([paths.scripts + '/**/*.js'], gulp.series( 'lint' ) );
 });
 
- // SCSS -> CSS
+// SCSS -> CSS
 gulp.task( 'css:process', function() {
   const logger = console;
 
@@ -106,11 +96,11 @@ gulp.task( 'css:process', function() {
 });
 
 gulp.task( 'css:clean', function() {
-  return del( [ paths.drop + '/css'] );
+  return del([paths.drop + '/css']);
 });
 
 gulp.task( 'css:watch', function() {
-  gulp.watch( [ paths.styles + '/**/*.scss' ], gulp.series( 'css', 'process-html' ) );
+  gulp.watch([paths.styles + '/**/*.scss'], gulp.series( 'css', 'process-html' ) );
 });
 
 gulp.task( 'css', gulp.series( 'css:clean', 'css:process' ) );
@@ -162,12 +152,12 @@ gulp.task( 'js:browserify', function() {
     ]
   })
     .bundle()
-    .pipe( source('main.js') )
+    .pipe( source( 'main.js' ) )
     .pipe ( buffer() )
-    .pipe( sourcemaps.init( {loadMaps: true} ) )
-        .pipe( uglify() )
-        .on( 'error', log.error )
-    .pipe( sourcemaps.write('./') )
+    .pipe( sourcemaps.init({ loadMaps: true }) )
+    .pipe( uglify() )
+    .on( 'error', log.error )
+    .pipe( sourcemaps.write( './' ) )
     .pipe( gulp.dest( paths.drop + '/js' ) );
 });
 
@@ -179,14 +169,14 @@ gulp.task( 'js:watch', function() {
 
 gulp.task( 'html:watch', function() {
   gulp.watch( paths.html + '/*.html', gulp.series( 'process-html' ) );
-})
+});
 
 
 /* -----------------------------------
    Combined tasks
    ------------------------------------ */
 
-gulp.task( 'default', gulp.series( gulp.parallel( 'css', 'fonts', 'images', 'js' ), [ 'process-html' ] ) );
+gulp.task( 'default', gulp.series( gulp.parallel( 'css', 'fonts', 'images', 'js' ), ['process-html']) );
 gulp.task( 'watch', gulp.series( gulp.parallel( 'lint:watch', 'css:watch', 'fonts:watch', 'images:watch', 'js:watch', 'html:watch' ) ) );
 gulp.task( 'clean', gulp.parallel( 'css:clean', 'fonts:clean', 'images:clean', 'js:clean' ) );
 gulp.task( 'dev', gulp.parallel( gulp.series( 'default', 'browserSync' ), 'watch' ) );

@@ -1,3 +1,6 @@
+# ignore secrets, as used by `act`
+/config/secrets
+
 /dist
 /node_modules
 /src/js/config/local-config.json

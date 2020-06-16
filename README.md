@@ -43,8 +43,10 @@ with either a development-_version_ or production-_version_ tag.
 It shouldn't be necessary to deploy code manually, as you can tag an old commit with a new tag to rebuild.
 
 If you do need to deploy manually, you can install [act](https://github.com/nektos/act), and run
-`act --secret-file config/secrets`. You'll need to set your secrets file to contain the following environmental
-variables:
+`act --secret-file config/secrets.dev -j dev-build-and-deploy` or
+`act --secret-file config/secrets.prod -j prod-build-and-deploy`.
+
+You'll also need to set your secrets file to contain the following environmental variables:
 
 ```
 DEVELOPMENT_AWS_ACCESS_KEY_ID=...
@@ -54,7 +56,15 @@ DEVELOPMENT_AUTH0_CLIENT_ID=...
 DEVELOPMENT_AUTH0_CLIENT_SECRET=...
 ```
 
-Replacing `DEVELOPMENT` with `PRODUCTION` if necessary.
+Or:
+
+```
+PRODUCTION_AWS_ACCESS_KEY_ID=...
+PRODUCTION_AWS_SECRET_ACCESS_KEY=...
+PRODUCTION_AWS_CDN_BUCKET_NAME=...
+PRODUCTION_AUTH0_CLIENT_ID=...
+PRODUCTION_AUTH0_CLIENT_SECRET=...
+```
 
 ## Coding standards
 

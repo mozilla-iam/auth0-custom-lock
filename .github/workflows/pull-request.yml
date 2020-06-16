@@ -1,17 +1,21 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: auth0-custom-lock
 env:
   NODE_ENV: 'development'
   nodeVersion: '14.x'
 
 on:
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
+  push:
+    branches:
+      - master
 
 jobs:
-  build:
+  dev-build:
     runs-on: ubuntu-latest
 
     steps:

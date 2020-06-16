@@ -3,15 +3,15 @@
 
 name: auth0-custom-lock
 env:
-  NODE_ENV: 'development'
+  NODE_ENV: 'production'
   nodeVersion: '14.x'
   pythonVersion: '3.x'
   AUTH0_DOMAIN: 'auth-dev.mozilla.auth0.com'
-  AUTH0_CLIENT_ID: ${{ secrets.DEVELOPMENT_AUTH0_CLIENT_ID }}
-  AUTH0_CLIENT_SECRET: ${{ secrets.DEVELOPMENT_AUTH0_CLIENT_SECRET }}
-  AWS_ACCESS_KEY_ID: ${{ secrets.DEVELOPMENT_AWS_ACCESS_KEY_ID }}
-  AWS_CDN_BUCKET_NAME: ${{ secrets.DEVELOPMENT_AWS_CDN_BUCKET_NAME }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.DEVELOPMENT_AWS_SECRET_ACCESS_KEY }}
+  AUTH0_CLIENT_ID: ${{ secrets.PRODUCTION_AUTH0_CLIENT_ID }}
+  AUTH0_CLIENT_SECRET: ${{ secrets.PRODUCTION_AUTH0_CLIENT_SECRET }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.PRODUCTION_AWS_ACCESS_KEY_ID }}
+  AWS_CDN_BUCKET_NAME: ${{ secrets.PRODUCTION_AWS_CDN_BUCKET_NAME }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.PRODUCTION_AWS_SECRET_ACCESS_KEY }}
 
 on:
   push:
@@ -19,7 +19,7 @@ on:
       - refs/tags/*-pre
 
 jobs:
-  dev-build-and-deploy:
+  prod-build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,7 +32,7 @@ jobs:
         node-version: ${{ env.nodeVersion }}
     - name: Build Auth0 custom lock pages
       run: |
-        npm ci
+        NODE_ENV=development npm ci
         npm run build
     - name: Install Python
       uses: actions/setup-python@v2

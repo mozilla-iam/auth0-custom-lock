@@ -1,5 +1,5 @@
 # ignore secrets, as used by `act`
-/config/secrets
+/config/secrets*
 
 /dist
 /node_modules

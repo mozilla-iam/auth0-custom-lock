@@ -16,9 +16,7 @@ env:
 on:
   push:
     branches:
-      - master
-    tags:
-      - *-pre
+      - refs/tags/*-pre
 
 jobs:
   build-and-deploy:

@@ -32,7 +32,7 @@ const paths = {
 
 let environment = process.env.NODE_ENV || 'development';
 
-const configFile = JSON.parse( fs.readFileSync( 'config/' + environment + '.json', 'utf8' ) );
+const configFile = JSON.parse( fs.readFileSync( `config/${environment}.json`, 'utf8' ) );
 const packageJSON = JSON.parse( fs.readFileSync( 'package.json', 'utf8' ) );
 const config = Object.assign( configFile, packageJSON );
 
@@ -43,11 +43,13 @@ config.revision = process.env.GITHUB_SHA || require( 'child_process' ).execSync(
 config.build_date = new Date().toISOString().substr( 0, 16 );
 
 // set the full url to the cdn
-config['cdn'] = environment === 'local' ? `http://${config.cdn_domain}` : `https://${config.cdn_domain}/nlx/${config.revision}`;
+config.cdn = environment === 'local' ? `http://${config.cdn_domain}` : `https://${config.cdn_domain}/nlx/${config.revision}`;
 
-console.log( config );
+// set the environmental variable so that the sanity check can run
+console.log( `Setting $CDN_BASE_URL to: ${config.cdn}` );
+process.env.CDN_BASE_URL = config.cdn;
 
-console.log( 'Environment “' + environment + '” identified.  Building NLX with ' + environment + ' config:' );
+console.log( `Building NLX with ${environment}, config:` );
 console.log( '---------------------------Begin configuration.---------------------------' );
 console.log( config );
 console.log( '---------------------------End configuration.---------------------------' );

@@ -31,14 +31,16 @@ These both run with the settings in `config/local.json`, although in the rare ci
 development or production directly, simply run `NODE_ENV=development npm run build` or
 `NODE_ENV=production npm run build`.
 
-To build for development or production, simply tag the repo with `development` or `production` tags, and GitHub
+To build for development or production, simply tag the repo with `_version_-pre` or `_version_-prod` tags, and GitHub
 should build and deploy. You can also build directly with `NODE_ENV=development npm run build` or
 `NODE_ENV=production npm run build`, although this should generally not be necessary.
 
 ### Deploying code automatically
 
-Both development and production code is deployed automatically via GitHub actions. Simply tag the `master` branch
-with either a development-_version_ or production-_version_ tag.
+The long-term plan is to have both development and production code deployed automatically via GitHub actions. The
+process for that will be to tag the `master` branch with either a _version_-pre or _version_-prod tag. However,
+this currently only works for development. Until GitHub Actions have completed evaluation, deployments to production
+must be done manually via the process below.
 
 ### Deploying code manually ###
 

@@ -9,9 +9,7 @@ env:
   AUTH0_DOMAIN: 'auth-dev.mozilla.auth0.com'
   AUTH0_CLIENT_ID: ${{ secrets.PRODUCTION_AUTH0_CLIENT_ID }}
   AUTH0_CLIENT_SECRET: ${{ secrets.PRODUCTION_AUTH0_CLIENT_SECRET }}
-  AWS_ACCESS_KEY_ID: ${{ secrets.PRODUCTION_AWS_ACCESS_KEY_ID }}
   AWS_CDN_BUCKET_NAME: ${{ secrets.PRODUCTION_AWS_CDN_BUCKET_NAME }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.PRODUCTION_AWS_SECRET_ACCESS_KEY }}
 
 on:
   push:
@@ -34,12 +32,12 @@ jobs:
       run: |
         NODE_ENV=development npm ci
         npm run build
-    - name: Install Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ env.pythonVersion }}
     - name: Install AWS CLI
-      run: pip install awscli
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.PRODUCTION_AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.PRODUCTION_AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-west-2
     - name: Sync files to S3
       run: aws s3 cp --recursive dist s3://$AWS_CDN_BUCKET_NAME/nlx/$GITHUB_SHA
     - name: Deploy login page to Auth0

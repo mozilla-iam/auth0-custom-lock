@@ -40,5 +40,7 @@ jobs:
         aws-region: us-west-2
     - name: Sync files to S3
       run: aws s3 cp --recursive dist s3://$AWS_CDN_BUCKET_NAME/nlx/$GITHUB_SHA
+    - name: Running sanity checks prior to pushing to Auth0
+      run: ci/scripts/sanity-checks.sh
     - name: Deploy login page to Auth0
       run: npm run deploy

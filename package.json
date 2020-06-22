@@ -8,7 +8,7 @@
     "deploy": "a0deploy import -f yaml -i config/a0config.yml",
     "watch": "NODE_ENV=local gulp dev"
   },
-  "author": "April King",
+  "author": "Mozilla IAM",
   "license": "MPL-2.0",
   "devDependencies": {
     "auth0-deploy-cli": "^4.3.1",

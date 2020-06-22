@@ -37,16 +37,18 @@ should build and deploy. You can also build directly with `NODE_ENV=development 
 
 ### Deploying code automatically
 
-The long-term plan is to have both development and production code deployed automatically via GitHub actions. The
+The long-term plan is to have both development and production code deployed automatically via GitHub Actions. The
 process for that will be to tag the `master` branch with either a _version_-pre or _version_-prod tag. However,
 this currently only works for development. Until GitHub Actions have completed evaluation, deployments to production
 must be done manually via the process below.
 
 ### Deploying code manually ###
 
-It shouldn't be necessary to deploy code manually, as you can tag an old commit with a new tag to rebuild.
+It shouldn't be necessary to deploy development code manually, as you can tag a commit with a `_version_-pre` tag
+to rebuild.
 
-If you do need to deploy manually, you can install [act](https://github.com/nektos/act), and run
+If you do need to deploy manually (as is currently required for production), you can install
+[act](https://github.com/nektos/act) on a local machine, and run:
 `act --secret-file config/secrets.dev -j dev-build-and-deploy` or
 `act --secret-file config/secrets.prod -j prod-build-and-deploy`.
 
@@ -69,6 +71,9 @@ PRODUCTION_AWS_CDN_BUCKET_NAME=...
 PRODUCTION_AUTH0_CLIENT_ID=...
 PRODUCTION_AUTH0_CLIENT_SECRET=...
 ```
+
+Contact a member of the Mozilla-IAM team for a copy of these credentials, or push to the repo and request them
+to deploy.
 
 ## Coding standards
 

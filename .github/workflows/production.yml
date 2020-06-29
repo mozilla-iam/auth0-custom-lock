@@ -13,8 +13,8 @@ env:
 
 on:
   push:
-    branches:
-      - 'tags/*-prod'
+    tags:
+      - 'v*-prod'
 
 jobs:
   prod-build-and-deploy:

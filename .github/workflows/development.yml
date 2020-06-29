@@ -14,7 +14,7 @@ env:
 on:
   push:
     branches:
-      - 'tags/*-pre'
+      - 'releases/*-pre'
 
 jobs:
   dev-build-and-deploy:

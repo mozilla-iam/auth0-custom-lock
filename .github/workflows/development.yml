@@ -1,0 +1,46 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: auth0-custom-lock
+env:
+  NODE_ENV: 'development'
+  nodeVersion: '14.x'
+  pythonVersion: '3.x'
+  AUTH0_DOMAIN: 'auth-dev.mozilla.auth0.com'
+  AUTH0_CLIENT_ID: ${{ secrets.DEVELOPMENT_AUTH0_CLIENT_ID }}
+  AUTH0_CLIENT_SECRET: ${{ secrets.DEVELOPMENT_AUTH0_CLIENT_SECRET }}
+  AWS_CDN_BUCKET_NAME: ${{ secrets.DEVELOPMENT_AWS_CDN_BUCKET_NAME }}
+
+on:
+  push:
+    branches:
+      - refs/tags/*-pre
+
+jobs:
+  dev-build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check for secrets to be set
+      run: if [ ${#AWS_CDN_BUCKET_NAME} -lt 1 ]; then echo "Github Secrets not set"; exit 1; fi
+    - uses: actions/checkout@v2
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ env.nodeVersion }}
+    - name: Build Auth0 custom lock pages
+      run: |
+        npm ci
+        npm run build
+    - name: Install AWS CLI
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.DEVELOPMENT_AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.DEVELOPMENT_AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-west-2
+    - name: Sync files to S3
+      run: aws s3 cp --recursive dist s3://$AWS_CDN_BUCKET_NAME/nlx/$GITHUB_SHA
+    - name: Running sanity checks prior to pushing to Auth0
+      run: ci/scripts/sanity-checks.sh
+    - name: Deploy login page to Auth0
+      run: npm run deploy

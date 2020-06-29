@@ -4,10 +4,13 @@ env:
   amd: true
   browser: true
 globals:
-  module: true
-  require: true
   ga: true
+  module: true
+  process: true
+  require: true
   NLX: true
+parserOptions:
+  ecmaVersion: 2015
 extends: eslint:recommended
 rules:
   array-bracket-spacing:

@@ -5,39 +5,20 @@
 # Test the dist/ output for instances of mozilla.com and allizom.org
 TEST_PATHS="/js/main.js /js/main.js.map /fonts/open-sans-400.woff /fonts/open-sans-600.woff /css/fonts.css \
   /css/styles.css /index.html"
-COMMIT_ID=$(git rev-parse --short HEAD)
-if [ -z "$TEST_BAD_CONFIG_PATHS" -o -z "$CDN_BASE_URL" ]; then
-  echo "Make sure the TEST_BAD_CONFIG_PATHS and CDN_BASE_URL environment variables are set. Aborting"
-  exit 1
-fi
-
-function test_url_ok() {
-  # Returns 0/true if the URL was fetched successfully
-  URLPATH="$1"
-  curl -s -f -I "${CDN_BASE_URL}/${COMMIT_ID}${URLPATH}"
-}
-
-function test_config_contain() {
-  # Returns 0/true if the pattern is found, thus 1/false if the pattern is not found
-  pattern="$1"
-  grep -ri ${pattern} dist/*
-}
+COMMIT_ID=$(git rev-parse HEAD)
+CDN_BASE_URL="https://`cat config/$NODE_ENV.json | jq -r .cdn_domain`/nlx/$COMMIT_ID"
 
 function fatal() {
   echo "FATAL: $@"
   exit 127
 }
 
+function test_url_ok() {
+  # Returns 0/true if the URL was fetched successfully
+  curl --silent --output /dev/null -I "${CDN_BASE_URL}$1" > /dev/null
+}
 
 echo "Running sanity checks (Commit id: ${COMMIT_ID}, CDN: ${CDN_BASE_URL})"
-
-# Is the configuration matching the environment?
-# It must NOT contain the path from the opposite env (ie no "dev path" in prod env)
-for tpath in ${TEST_BAD_CONFIG_PATHS}; do
-  test_config_contain "$tpath" && {
-    fatal "Configuration does not match environment (files in /dist contain $tpath)"
-  }
-done
 
 # Are the files for this commit_id present in the CDN?
 for tpath in ${TEST_PATHS}; do
@@ -47,11 +28,11 @@ for tpath in ${TEST_PATHS}; do
 done
 
 if ! test -e dist/index.html; then
-  fatal "dist/index.html is missing. Aborting"
+  fatal "dist/index.html is missing. Aborting."
 fi
 
-grep "${CDN_BASE_URL}/${COMMIT_ID}" dist/index.html || {
+grep --silent "${CDN_BASE_URL}" dist/index.html || {
   fatal "dist/index.html does not match environment's COMMIT_ID: ${COMMIT_ID}"
 }
 
-echo "All checks passed"
+echo "All sanity checks passed."

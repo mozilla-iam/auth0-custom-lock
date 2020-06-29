@@ -1,0 +1,4 @@
+pages:
+  - name: login
+    enabled: true
+    html: dist/index.html

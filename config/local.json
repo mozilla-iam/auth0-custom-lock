@@ -1,7 +1,7 @@
 {
   "environment": "DEV",
   "auth0_domain": "auth-dev.mozilla.auth0.com",
-  "cdn_domain": "cdn.sso.allizom.org",
+  "cdn_domain": "localhost:3000",
   "LDAP_connection_name": "Mozilla-LDAP-Dev",
   "person_api_domain": "https://person-api.sso.allizom.org/v1/connection/",
   "logout_url": "https://auth-dev.mozilla.auth0.com/v2/logout?returnTo=https://sso.allizom.org/signout.html",
@@ -14,7 +14,7 @@
     "maintenance_mode": "false"
   },
   "supportedLoginMethods": [ "github", "google-oauth2", "firefoxaccounts", "email" ],
-  "csp": "default-src 'none'; connect-src 'self' https://person-api.sso.allizom.org; script-src 'self' https://cdn.sso.allizom.org https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' https://cdn.sso.allizom.org; font-src 'self' https://cdn.sso.allizom.org; img-src 'self' https://cdn.sso.allizom.org https://www.google-analytics.com",
+  "csp": "default-src *",
   "displayNames": {
     "github": "GitHub",
     "google-oauth2": "Google",

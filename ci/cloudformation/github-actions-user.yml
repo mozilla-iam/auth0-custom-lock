@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: auth0-custom-lock GitHub Actions IAM User used to upload the NLX files to S3
+Metadata:
+  Source: https://github.com/mozilla-iam/auth0-custom-lock/tree/master/ci/cloudformation
+Resources:
+  GitHubActionsAuth0CustomLockUser:
+    Type: AWS::IAM::User
+    Properties:
+      Policies:
+        - PolicyName: AllowPutAuth0CustomLockFilesInS3
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:ListAllMyBuckets
+                Resource: '*'
+              - Effect: Allow
+                Action:
+                  - s3:ListBucket
+                Resource:
+                  - arn:aws:s3:::sso-dashboard.configuration
+              - Effect: Allow
+                Action:
+                  - s3:ListObjects*
+                  - s3:PutObject
+                Resource:
+                  - arn:aws:s3:::sso-dashboard.configuration/nlx
+                  - arn:aws:s3:::sso-dashboard.configuration/nlx/*
+  GitHubActionsAuth0CustomLockUserAccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      Serial: 20200612
+      Status: Active
+      UserName: !Ref GitHubActionsAuth0CustomLockUser
+Outputs:
+  GitHubActionsAuth0CustomLockUserName:
+    Description: The Username of the GitHubActionsAuth0CustomLockUser
+    Value: !Ref GitHubActionsAuth0CustomLockUser
+  GitHubActionsAuth0CustomLockUserAccessKeyId:
+    Description: The AWS API Access Key ID of the GitHubActionsAuth0CustomLockUser
+    Value: !Ref GitHubActionsAuth0CustomLockUserAccessKey
+  GitHubActionsAuth0CustomLockUserSecretAccessKey:
+    Description: The AWS API Access Key Secret Key of the GitHubActionsAuth0CustomLockUser
+    Value: !GetAtt GitHubActionsAuth0CustomLockUserAccessKey.SecretAccessKey

@@ -1,6 +1,11 @@
 # Auth0 Custom Lock
 
-![Build Status](https://github.com/mozilla-iam/auth0-custom-lock/workflows/.github/workflows/development.yml/badge.svg)
+| description | status |
+|------------ | ----------- |
+| latest commit | ![](https://github.com/mozilla-iam/auth0-custom-lock/workflows/auth0-custom-lock-push/badge.svg)
+| latest pull request | ![](https://github.com/mozilla-iam/auth0-custom-lock/workflows/auth0-custom-lock-pull/badge.svg)
+| development release | ![](https://github.com/mozilla-iam/auth0-custom-lock/workflows/auth0-custom-lock-pre/badge.svg)
+| production release | ![](https://github.com/mozilla-iam/auth0-custom-lock/workflows/auth0-custom-lock-prod/badge.svg)
 
 The `auth0-custom-lock` repo contains the code behind the Mozilla New Login Experience (NLX) which is the single sign on (SSO) web interface that users log into to access Mozilla properties.
 

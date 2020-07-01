@@ -3,7 +3,6 @@
 | description | status |
 |------------ | ----------- |
 | latest commit | ![](https://github.com/mozilla-iam/auth0-custom-lock/workflows/auth0-custom-lock-push/badge.svg)
-| latest pull request | ![](https://github.com/mozilla-iam/auth0-custom-lock/workflows/auth0-custom-lock-pull/badge.svg)
 | development release | ![](https://github.com/mozilla-iam/auth0-custom-lock/workflows/auth0-custom-lock-pre/badge.svg)
 | production release | ![](https://github.com/mozilla-iam/auth0-custom-lock/workflows/auth0-custom-lock-prod/badge.svg)
 

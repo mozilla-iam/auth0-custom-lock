@@ -54,22 +54,20 @@ to rebuild.
 
 If you do need to deploy manually (as is currently required for production), you can install
 [act](https://github.com/nektos/act) on a local machine, and run:
-`act --secret-file config/secrets.dev -j dev-build-and-deploy` or
-`act --secret-file config/secrets.prod -j prod-build-and-deploy`.
+`act --secret-file config/secrets -j dev-build-and-deploy` or
+`act --secret-file config/secrets -j prod-build-and-deploy`.
 
 You'll also need to set your secrets file to contain the following environmental variables:
 
 ```
+# these are needed to invoke `act --secret-file config/secrets -j dev-build-and-deploy`
 DEVELOPMENT_AWS_ACCESS_KEY_ID=...
 DEVELOPMENT_AWS_SECRET_ACCESS_KEY=...
 DEVELOPMENT_AWS_CDN_BUCKET_NAME=...
 DEVELOPMENT_AUTH0_CLIENT_ID=...
 DEVELOPMENT_AUTH0_CLIENT_SECRET=...
-```
 
-Or:
-
-```
+# these are needed to invoke `act --secret-file config/secrets -j prod-build-and-deploy`
 PRODUCTION_AWS_ACCESS_KEY_ID=...
 PRODUCTION_AWS_SECRET_ACCESS_KEY=...
 PRODUCTION_AWS_CDN_BUCKET_NAME=...
@@ -77,7 +75,7 @@ PRODUCTION_AUTH0_CLIENT_ID=...
 PRODUCTION_AUTH0_CLIENT_SECRET=...
 ```
 
-Contact a member of the Mozilla-IAM team for a copy of these credentials, or push to the repo and request them
+Contact a member of the Mozilla-IAM team for a copy of these credentials, or push to the repo and create a release
 to deploy.
 
 ## Coding standards
@@ -133,3 +131,20 @@ Auto-login Settings screen. Allows user to enable or disable auto-login.
 ### account_verification=true
 
 This is a specific parameter that is set when the log in screen is used for _account verification_.
+
+## Backend setup
+
+First, run the CloudFormation template in AWS. Currently, this is done in the `infosec-dev` and `infosec-prod` AWS accounts.
+This will generate the `environment_AWS_ACCESS_KEY_ID` and `environment_AWS_SECRET_ACCESS_KEY` values needed to run `act` or
+invoke the GitHub Action.
+
+Secondly, create an Application in Auth0 with the correct scopes to the Auth0 Management API:
+
+application name: `github.com/mozilla-iam/auth0-custom-lock`
+application type: Machine to Machine
+description: `Owner: Mozilla-IAM (Your Name)`
+apis: Auth0 Management API
+scopes: `read:clients`, `update:clients`, `read:client_keys`, `update:client_keys`, `update:tenant_settings`
+
+This will generate the `environment_AUTH0_CLIENT_ID` and `environment_AUTH0_CLIENT_SECRET` needed to run `a0deploy` inside
+the GitHub action.

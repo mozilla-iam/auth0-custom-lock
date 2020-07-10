@@ -6,7 +6,7 @@ env:
   NODE_ENV: 'production'
   nodeVersion: '14.x'
   pythonVersion: '3.x'
-  AUTH0_DOMAIN: 'auth-dev.mozilla.auth0.com'
+  AUTH0_DOMAIN: 'auth.mozilla.auth0.com'
   AUTH0_CLIENT_ID: ${{ secrets.PRODUCTION_AUTH0_CLIENT_ID }}
   AUTH0_CLIENT_SECRET: ${{ secrets.PRODUCTION_AUTH0_CLIENT_SECRET }}
   AWS_CDN_BUCKET_NAME: ${{ secrets.PRODUCTION_AWS_CDN_BUCKET_NAME }}

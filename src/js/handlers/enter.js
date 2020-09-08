@@ -29,7 +29,7 @@ module.exports = function enter( element ) {
   var qualifiesForLDAPShortcut = /@(mozilla\.com|getpocket\.com|mozillafoundation\.org)$/.test( emailField.value );
   var supportedByRP = form.loginMethods ? form.loginMethods['supportedByRP'] : null;
   var onlyAcceptsLDAP = supportedByRP && supportedByRP.length === 1 && supportedByRP.indexOf( NLX.LDAP_connection_name ) === 0;
-  var ENDPOINT = NLX.person_api_domain;
+  var ENDPOINT = 'https://' + NLX.person_api_domain + '/v2/user/metadata/';
 
   if ( emailField.value === '' || emailField.validity.valid === false ) {
     emailField.focus();
@@ -47,11 +47,8 @@ module.exports = function enter( element ) {
       fetch( ENDPOINT + emailFieldValue )
         .then(
           function( response ) {
-            response.json().then( function( data ) {
-              var userinfo = JSON.parse( data );
-              var isLDAP = userinfo.hasOwnProperty( 'user_email' ) && userinfo.hasOwnProperty( 'connection_method' ) && userinfo[ 'connection_method' ] === 'ad';
-
-              if ( isLDAP ) {
+            response.json().then( function( userinfo ) {
+              if ( userinfo.exists.ldap ) {
                 showLDAP( element, passwordField );
               }
               else {

@@ -3,7 +3,7 @@
   "auth0_domain": "auth.mozilla.auth0.com",
   "cdn_domain": "cdn.sso.mozilla.com",
   "LDAP_connection_name": "Mozilla-LDAP",
-  "person_api_domain": "https://person-api.sso.mozilla.com/v1/connection/",
+  "person_api_domain": "person.api.sso.mozilla.com",
   "logout_url": "https://auth.mozilla.auth0.com/v2/logout?returnTo=https://sso.mozilla.com/signout.html",
   "sso_dashboard_url": "https://sso.mozilla.com",
   "GTM_ID": "GTM-T2N2BRW",
@@ -13,7 +13,7 @@
     "maintenance_mode": "false"
   },
   "supportedLoginMethods": [ "github", "google-oauth2", "firefoxaccounts", "email" ],
-  "csp": "default-src 'none'; connect-src 'self' https://person-api.sso.mozilla.com; script-src 'self' https://cdn.sso.mozilla.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' https://cdn.sso.mozilla.com; font-src 'self' https://cdn.sso.mozilla.com; img-src 'self' https://cdn.sso.mozilla.com https://www.google-analytics.com",
+  "csp": "default-src 'none'; connect-src 'self' https://person.api.sso.mozilla.com; script-src 'self' https://cdn.sso.mozilla.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' https://cdn.sso.mozilla.com; font-src 'self' https://cdn.sso.mozilla.com; img-src 'self' https://cdn.sso.mozilla.com https://www.google-analytics.com",
   "displayNames": {
     "github": "GitHub",
     "google-oauth2": "Google",

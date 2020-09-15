@@ -29,7 +29,7 @@ module.exports = function enter( element ) {
   var qualifiesForLDAPShortcut = /@(mozilla\.com|getpocket\.com|mozillafoundation\.org)$/.test( emailField.value );
   var supportedByRP = form.loginMethods ? form.loginMethods['supportedByRP'] : null;
   var onlyAcceptsLDAP = supportedByRP && supportedByRP.length === 1 && supportedByRP.indexOf( NLX.LDAP_connection_name ) === 0;
-  var ENDPOINT = 'https://' + NLX.person_api_domain + '/v2/user/metadata/';
+  var ENDPOINT = 'https://' + NLX.iam_api_domain + '/api/v1/ldap-lookup-email/';
 
   if ( emailField.value === '' || emailField.validity.valid === false ) {
     emailField.focus();
@@ -40,7 +40,7 @@ module.exports = function enter( element ) {
     showLDAP( element, passwordField );
   }
   else {
-    if ( NLX.features.person_api_lookup ) {
+    if ( NLX.features.iam_api_lookup ) {
 
       ui.setLockState( element, 'loading' );
 

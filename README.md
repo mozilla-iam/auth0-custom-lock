@@ -75,7 +75,7 @@ PRODUCTION_AUTH0_CLIENT_SECRET=...
 ```
 
 Contact a member of the Mozilla-IAM team for a copy of these credentials, or push to the repo and create a release
-to deploy.
+to deploy. They are currently contained in the opsec keys repo.
 
 ## Coding standards
 

@@ -23,7 +23,7 @@ These are the variables we are using:
   Auth0-domain: {{{ auth0_domain }}}
   Client ID: {{{ client_ID }}}
   LDAP connection name: {{{ LDAP_connection_name }}}
-  Person API domain: {{{ person_api_domain }}}
+  IAM API domain: {{{ iam_api_domain }}}
   Google Tag Manager ID: {{{ GTM_ID }}}
   Logout URL: {{{ logout_url }}}
   SSO Dashboard URL: {{{ sso_dashboard_url }}}
@@ -31,7 +31,7 @@ These are the variables we are using:
   CDN: {{{ cdn }}}
   Features:
    autologin: {{{ features.autologin }}}
-   person_api_lookup: {{{ features.person_api_lookup }}}
+   iam_api_lookup: {{{ features.iam_api_lookup }}}
    supportedLoginMethods: {{{ supportedLoginMethods }}}
   Display names:
     github: {{{ displayNames.github }}}
@@ -48,7 +48,7 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
     <title>Mozilla Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="{{{ csp }}}">
-    <link rel="dns-prefetch" href="https://{{{ person_api_domain }}}">
+    <link rel="dns-prefetch" href="https://{{{ iam_api_domain }}}">
     <link rel="stylesheet" href="{{{ cdn }}}/css/fonts.css" type="text/css" />
     <link rel="stylesheet" href="{{{ cdn }}}/css/styles.css" type="text/css" />
     <link rel="icon" href="{{{ cdn }}}/images/favicon.png" type="image/png" sizes="192x192" />
@@ -257,11 +257,11 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
       "domain": "{{{ auth0_domain }}}",
       "client_ID": "{{{ client_ID }}}",
       "LDAP_connection_name": "{{{ LDAP_connection_name }}}",
-      "person_api_domain": "{{{ person_api_domain }}}",
+      "iam_api_domain": "{{{ iam_api_domain }}}",
       "GTM_ID": "{{{ GTM_ID }}}",
       "features" : {
         "autologin": "{{{ features.autologin }}}",
-        "person_api_lookup": "{{{ features.person_api_lookup }}}",
+        "iam_api_lookup": "{{{ features.iam_api_lookup }}}",
         "maintenance_mode": "{{{ features.maintenance_mode }}}"
       },
       "supportedLoginMethods": "{{{ supportedLoginMethods }}}",

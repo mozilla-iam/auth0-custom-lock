@@ -8,7 +8,7 @@
 
 The `auth0-custom-lock` repo contains the code behind the Mozilla New Login Experience (NLX) which is the single sign on (SSO) web interface that users log into to access Mozilla properties.
 
-The original customized Auth0 lock, which can be found in [`mozilla-iam/auth0-deploy`](https://github.com/mozilla-iam/auth0-deploy/tree/2a09a74e4deb869f063ee8895916d74027eb65ad/pages) from [2016 to 2017](https://github.com/mozilla-iam/auth0-deploy/compare/3ba9e054e89fafcf48b2874a6b2fdffdc64c59a0...2a09a74e4deb869f063ee8895916d74027eb65ad), was succeeded by NLX, also tracked in `mozilla-iam/auth0-deploy` until NLX was moved to this repo in 2018.
+The original customized Auth0 lock, which can be found in [`mozilla-iam/auth0-deploy`](https://github.com/mozilla-iam/auth0-deploy/tree/2a09a74e4deb869f063ee8895916d74027eb65ad/pages) from [2016 to 2017](https://github.com/mozilla-iam/auth0-deploy/compare/3ba9e054e89fafcf48b2874a6b2fdffdc64c59a0...2a09a74e4deb869f063ee8895916d74027eb65ad), was succeeded by NLX, also tracked in `mozilla-iam/auth0-deploy` until NLX was moved to this repo in 2018. This repository currently relies on the [IAM API](https://github.com/mozilla-iam/iam-api) to check whether or not a user is in LDAP.
 
 ## Build tools
 

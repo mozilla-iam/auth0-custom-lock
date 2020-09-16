@@ -3,14 +3,14 @@
   "auth0_domain": "auth-dev.mozilla.auth0.com",
   "cdn_domain": "localhost:3000",
   "LDAP_connection_name": "Mozilla-LDAP-Dev",
-  "person_api_domain": "person.api.dev.sso.allizom.org",
+  "iam_api_domain": "iam.api.dev.sso.allizom.org",
   "logout_url": "https://auth-dev.mozilla.auth0.com/v2/logout?returnTo=https://sso.allizom.org/signout.html",
   "sso_dashboard_url": "https://sso.allizom.org",
   "GTM_ID": "GTM-T2N2BRW",
   "client_ID": "CIynn5wTPyYZQcA1FJx1Io9z4t7QWDaE",
   "features": {
     "autologin": "true",
-    "person_api_lookup": "true",
+    "iam_api_lookup": "true",
     "maintenance_mode": "false"
   },
   "supportedLoginMethods": [ "github", "google-oauth2", "firefoxaccounts", "email" ],

@@ -77,9 +77,9 @@ PRODUCTION_AUTH0_CLIENT_ID=...
 PRODUCTION_AUTH0_CLIENT_SECRET=...
 ```
 
-Contact a member of the IT Service Engineering for a copy of these credentials, or push to the repo and create
-a release to deploy to development. These credentials are currently kept in the IT Service Engineering 1Password
-repository.
+Contact a member of the IT Web SRE team for a copy of these credentials, or push to the repo and create
+a release to deploy to development. These credentials are currently kept in the IT Web SRE 1Password
+vault.
 
 
 ## Coding standards

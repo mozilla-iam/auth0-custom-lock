@@ -56,6 +56,9 @@ If you do need to deploy manually (as is currently required for production), you
 `act --secret-file config/secrets -j dev-build-and-deploy` or
 `act --secret-file config/secrets -j prod-build-and-deploy`.
 
+Note that to run `act`, you may need to add the following to your `~/.actrc` for the build to properly function:
+`-P ubuntu-latest=nektos/act-environments-ubuntu:18.04`.
+
 You'll also need to set your secrets file to contain the following environmental variables:
 
 ```
@@ -74,8 +77,10 @@ PRODUCTION_AUTH0_CLIENT_ID=...
 PRODUCTION_AUTH0_CLIENT_SECRET=...
 ```
 
-Contact a member of the Mozilla-IAM team for a copy of these credentials, or push to the repo and create a release
-to deploy.
+Contact a member of the IT Web SRE team for a copy of these credentials, or push to the repo and create
+a release to deploy to development. These credentials are currently kept in the IT Web SRE 1Password
+vault.
+
 
 ## Coding standards
 

@@ -152,3 +152,19 @@ scopes: `read:clients`, `update:clients`, `read:client_keys`, `update:client_key
 
 This will generate the `environment_AUTH0_CLIENT_ID` and `environment_AUTH0_CLIENT_SECRET` needed to run `a0deploy` inside
 the GitHub action.
+
+## Password Manager Analytics
+
+The Auth0 Custom Lock (NLX) reports [analytics about how users type their
+passwords](https://github.com/mozilla-iam/auth0-custom-lock/blob/master/src/js/decorators/track-password-manager-usage.js)
+in to differentiate between users who hand type passwords and users who machine
+enter passwords (either password manager or copy/paste) as a signal about the
+prevalence of password manager use.
+
+The data can be viewed in Google Analytics in the `Mozilla Corporation` parent
+under the `Mozilla (ParSys Websites)` account under the `NLX (aka Auth0 Lock)`
+(`UA-84301250-4`) property in the
+`Auth0 Lock All Web Site Data` view. Within this view navigate to `Behavior`...
+`Events` and filter by `Event Category` of `Password entry`. Look for the
+`Event Action` of either `Machine` or `Human` indicating which type of password
+entry was performed.

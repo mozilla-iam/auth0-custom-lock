@@ -157,8 +157,8 @@ the GitHub action.
 
 The Auth0 Custom Lock (NLX) reports [analytics about how users type their
 passwords](https://github.com/mozilla-iam/auth0-custom-lock/blob/master/src/js/decorators/track-password-manager-usage.js)
-in to differentiate between users who hand type passwords and users who machine
-enter passwords (either password manager or copy/paste) as a signal about the
+in order to differentiate between users who hand type passwords and users who machine
+enter passwords (either with a password manager or via copy/paste) as a signal about the
 prevalence of password manager use.
 
 The data can be viewed in Google Analytics in the `Mozilla Corporation` parent

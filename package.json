@@ -11,7 +11,7 @@
   "author": "Mozilla IAM",
   "license": "MPL-2.0",
   "devDependencies": {
-    "auth0-deploy-cli": "^4.3.1",
+    "auth0-deploy-cli": "^7.17.1",
     "browser-sync": "^2.24.7",
     "browserify": "^14.3.0",
     "cached-path-relative": "^1.0.2",

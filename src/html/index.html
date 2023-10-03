@@ -59,6 +59,30 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
         <p>We are currently experiencing an issue &amp; working hard to resolve it. Please try to login again in a few minutes.  Request help via <a href="mailto:moc@mozilla.com">moc@mozilla.com</a>, IRC #moc or Slack #mozsm-all.</p>
       </div>
     </div>
+    <div data-decorator="check-if-accounts-banner-pre" hidden>
+      <div class="banner-branding">
+        <div class="flex">
+          <div class="cta flex">
+                <div class="flex-none relative">
+                    <img
+                        class="mozilla-logo"
+                        src="{{{ cdn }}}/images/m.svg"
+                        alt="Mozilla m logo"
+                    />
+                </div>
+                <div class="flex-initial max-w-md">
+                    <p class="text-l font-bold">
+                        Firefox accounts will be renamed Mozilla accounts on Nov 1
+                    </p>
+                    <p class="text-s">
+                        You’ll still sign in with the same username and password, and there are no other changes to the products that you use.
+                        <a href="https://support.mozilla.org/kb/firefox-accounts-renamed-mozilla-accounts">Learn more</a>
+                    </p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
     <div class="card">
       <a href="https://mozilla.org" class="logo" target="_blank"><img alt="Mozilla" src="{{{ cdn }}}/images/mozilla.svg" /></a>
       <noscript><p>This login form requires JavaScript to work, please enable it to log in.</p></noscript>
@@ -262,7 +286,8 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
       "features" : {
         "autologin": "{{{ features.autologin }}}",
         "iam_api_lookup": "{{{ features.iam_api_lookup }}}",
-        "maintenance_mode": "{{{ features.maintenance_mode }}}"
+        "maintenance_mode": "{{{ features.maintenance_mode }}}",
+        "mozilla_accounts_banner_pre": "{{{ features.mozilla_accounts_banner_pre }}}"
       },
       "supportedLoginMethods": "{{{ supportedLoginMethods }}}",
       "logout_url": "{{{ logout_url }}}",

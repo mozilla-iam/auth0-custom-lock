@@ -57,4 +57,19 @@
       display: block;
     }
   }
+
+  .order-last {
+    margin {
+      top: -0.5em;
+      left: 2em;
+    }
+  }
+
+  .order-last button {
+    float: right;
+    background-color: transparent;
+    border-style: none;
+    box-shadow: none;
+    cursor: pointer;
+  }
 }

@@ -60,9 +60,24 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
       </div>
     </div>
     <div data-decorator="check-if-accounts-banner-pre" hidden>
-      <div class="banner-branding">
+      <div class="banner-branding" id="accounts-banner-pre">
         <div class="flex">
           <div class="cta flex">
+            <div class="flex-none order-last">
+                  <button
+                      class="close-brand-banner"
+                      aria-label="Close Banner"
+                      type=button
+                      >
+                      <img
+                          src="{{{ cdn }}}/images/x.svg"
+                          class="cursor-pointer"
+                          data-handler="mozilla-accounts-pre"
+                          alt="Close Banner"
+                      />
+                  </button>
+              </div>
+
                 <div class="flex-none relative">
                     <img
                         class="mozilla-logo"

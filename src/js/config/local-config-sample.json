@@ -1,6 +1,6 @@
 {
-  "domain": "auth-dev.mozilla.auth0.com",
-  "clientID": "CIynn5wTPyYZQcA1FJx1Io9z4t7QWDaE",
+  "domain": "dev.mozilla-dev.auth0.com",
+  "clientID": "ePsG2xvde5KFkUviYJ0I7VtpiR7fGo0i",
   "redirectUri": "http://localhost:3000/callback",
   "responseType": "token"
 }

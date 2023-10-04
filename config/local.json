@@ -1,13 +1,13 @@
 {
   "environment": "DEV",
-  "auth0_domain": "auth-dev.mozilla.auth0.com",
+  "auth0_domain": "dev.mozilla-dev.auth0.com",
   "cdn_domain": "localhost:3000",
   "LDAP_connection_name": "Mozilla-LDAP-Dev",
   "iam_api_domain": "iam.api.dev.sso.allizom.org",
-  "logout_url": "https://auth-dev.mozilla.auth0.com/v2/logout?returnTo=https://sso.allizom.org/signout.html",
+  "logout_url": "https://dev.mozilla-dev.auth0.com/v2/logout?returnTo=https://sso.allizom.org/signout.html",
   "sso_dashboard_url": "https://sso.allizom.org",
   "GTM_ID": "GTM-T2N2BRW",
-  "client_ID": "CIynn5wTPyYZQcA1FJx1Io9z4t7QWDaE",
+  "client_ID": "ePsG2xvde5KFkUviYJ0I7VtpiR7fGo0i",
   "features": {
     "autologin": "true",
     "iam_api_lookup": "true",

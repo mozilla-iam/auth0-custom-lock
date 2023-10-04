@@ -1,0 +1,75 @@
+.banner-branding {
+  background: linear-gradient(88.76deg, #E4EAF6 3.37%, #DBEEF8 39.93%, #DAF3F4 65.09%, #E3F6ED 102.21%);
+  color: $black;
+  padding: 0.5em;
+  text-align: start;
+  margin: -3em -1.5em 5em;
+  display: flex;
+  flex-direction: column;
+
+  @media ( max-width: 50em ) {
+    margin: 0em 0em 0em;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    width: 100%;
+  }
+
+  .cta {
+    max-width: 32em;
+    margin: auto;
+  }
+
+  a {
+    color: $black;
+    text-decoration: underline;
+  }
+
+  .font-bold {
+    font-weight: bold;
+  }
+
+  .text-l {
+    font-size: 14px;
+  }
+
+  .text-s {
+    font-size: 10px;
+  }
+
+  .mozilla-logo {
+    float: left;
+    margin: {
+      top: 0rem;
+      right: 1rem;
+      bottom: 1rem;
+    }
+  }
+
+  p {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media ( min-width: 40em ) {
+      display: block;
+    }
+  }
+
+  .order-last {
+    margin {
+      top: -0.5em;
+      left: 2em;
+    }
+  }
+
+  .order-last button {
+    float: right;
+    background-color: transparent;
+    border-style: none;
+    box-shadow: none;
+    cursor: pointer;
+  }
+}

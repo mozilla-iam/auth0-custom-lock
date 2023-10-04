@@ -6,7 +6,7 @@ env:
   NODE_ENV: 'development'
   nodeVersion: '14.x'
   pythonVersion: '3.x'
-  AUTH0_DOMAIN: 'auth-dev.mozilla.auth0.com'
+  AUTH0_DOMAIN: 'dev.mozilla-dev.auth0.com'
   AUTH0_CLIENT_ID: ${{ secrets.DEVELOPMENT_AUTH0_CLIENT_ID }}
   AUTH0_CLIENT_SECRET: ${{ secrets.DEVELOPMENT_AUTH0_CLIENT_SECRET }}
   AWS_CDN_BUCKET_NAME: ${{ secrets.DEVELOPMENT_AWS_CDN_BUCKET_NAME }}

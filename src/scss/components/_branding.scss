@@ -21,6 +21,11 @@
     margin: auto;
   }
 
+  .cta-post {
+    max-width: 75em;
+    margin: auto;
+  }
+
   a {
     color: $black;
     text-decoration: underline;
@@ -32,6 +37,10 @@
 
   .text-l {
     font-size: 14px;
+  }
+
+  .text-m {
+    font-size: 11px;
   }
 
   .text-s {

@@ -8,6 +8,7 @@
 
 module.exports = {
   'mozilla-accounts-pre': require( 'handlers/mozilla-accounts-pre' ),
+  'mozilla-accounts-post': require( 'handlers/mozilla-accounts-post' ),
   'enter': require( 'handlers/enter' ),
   'go-to-initial-page': require( 'handlers/go-to-initial-page' ),
   'authorise-ldap': require( 'handlers/authorise-ldap' ),

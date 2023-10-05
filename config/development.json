@@ -12,8 +12,8 @@
     "autologin": "true",
     "iam_api_lookup": "true",
     "maintenance_mode": "false",
-    "mozilla_accounts_banner_pre": "true",
-    "mozilla_accounts_banner_post": "false"
+    "mozilla_accounts_banner_pre": "false",
+    "mozilla_accounts_banner_post": "true"
   },
   "supportedLoginMethods": [ "github", "google-oauth2", "firefoxaccounts", "email" ],
   "csp": "default-src 'none'; connect-src 'self' https://iam.api.test.sso.allizom.org; script-src 'self' https://cdn.sso.allizom.org https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' https://cdn.sso.allizom.org; font-src 'self' https://cdn.sso.allizom.org; img-src 'self' https://cdn.sso.allizom.org https://www.google-analytics.com",

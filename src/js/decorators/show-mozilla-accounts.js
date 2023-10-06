@@ -6,6 +6,6 @@ module.exports = function showMozillaAccounts( accounts ) {
 
   if ( mozilla_accounts_banner_post  === 'true') {
     ui.show( accounts );
-    ui.hide( firefox_accounts );
+    firefox_accounts.remove();
   }
 };

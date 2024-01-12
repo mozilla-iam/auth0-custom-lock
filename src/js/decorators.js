@@ -4,8 +4,6 @@
 
 var decorators = {
   'check-if-maintenance-mode': require( 'decorators/check-if-maintenance-mode' ),
-  'check-if-accounts-banner-pre': require( 'decorators/check-if-accounts-banner-pre' ),
-  'check-if-accounts-banner-post': require( 'decorators/check-if-accounts-banner-post' ),
   'check-keyboard': require( 'decorators/check-keyboard' ),
   'decide-screen': require( 'decorators/decide-screen' ),
   'display-rp-name': require( 'decorators/display-rp-name' ),
@@ -17,7 +15,6 @@ var decorators = {
   'load-ga': require( 'decorators/load-ga' ),
   'prevent-clickjack': require( 'decorators/prevent-clickjack' ),
   'track-password-manager-usage': require( 'decorators/track-password-manager-usage' ),
-  'show-mozilla-accounts': require( 'decorators/show-mozilla-accounts' ),
   'set-autologin-preference': require( 'decorators/set-autologin-preference' ),
   'submit-with-enter': require( 'decorators/submit-with-enter' ),
   'tooltip': require( 'decorators/tooltip' ),

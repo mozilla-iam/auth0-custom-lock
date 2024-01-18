@@ -34,8 +34,6 @@ These are the variables we are using:
    iam_api_lookup: {{{ features.iam_api_lookup }}}
    supportedLoginMethods: {{{ supportedLoginMethods }}}
    maintenance_mode: "{{{ features.maintenance_mode }}}"
-   mozilla_accounts_banner_pre: "{{{ features.mozilla_accounts_banner_pre }}}"
-   mozilla_accounts_banner_post: "{{{ features.mozilla_accounts_banner_post }}}"
   Display names:
     github: {{{ displayNames.github }}}
     google-oauth2: {{{ displayNames.google-oauth2 }}}
@@ -62,74 +60,6 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
         <p>We are currently experiencing an issue &amp; working hard to resolve it. Please try to login again in a few minutes.  Request help via <a href="mailto:moc@mozilla.com">moc@mozilla.com</a>, IRC #moc or Slack #mozsm-all.</p>
       </div>
     </div>
-    <div data-decorator="check-if-accounts-banner-pre" hidden>
-      <div class="banner-branding" id="accounts-banner-pre">
-        <div class="flex">
-          <div class="cta flex">
-            <div class="flex-none order-last">
-                  <button
-                      class="close-brand-banner"
-                      aria-label="Close Banner"
-                      type=button
-                      data-handler="mozilla-accounts-pre"
-                      >
-                      <img
-                          src="{{{ cdn }}}/images/x.svg"
-                          class="cursor-pointer"
-                          alt="Close Banner"
-                      />
-                  </button>
-              </div>
-
-                <div class="flex-none relative">
-                    <img
-                        class="mozilla-logo"
-                        src="{{{ cdn }}}/images/m.svg"
-                        alt="Mozilla m logo"
-                    />
-                </div>
-                <div class="flex-initial max-w-md">
-                    <p class="text-l font-bold">
-                        Firefox accounts will be renamed Mozilla accounts on Nov 1
-                    </p>
-                    <p class="text-s">
-                        You’ll still sign in with the same username and password, and there are no other changes to the products that you use.
-                        <a href="https://support.mozilla.org/kb/firefox-accounts-renamed-mozilla-accounts">Learn more</a>
-                    </p>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div data-decorator="check-if-accounts-banner-post" hidden>
-      <div class="banner-branding" id="accounts-banner-post">
-        <div class="flex">
-          <div class="cta-post flex">
-            <div class="flex-none order-last">
-                  <button
-                      class="close-brand-banner"
-                      aria-label="Close Banner"
-                      type=button
-                      data-handler="mozilla-accounts-post"
-                      >
-                      <img
-                          src="{{{ cdn }}}/images/x.svg"
-                          class="cursor-pointer"
-                          alt="Close Banner"
-
-                      />
-                  </button>
-              </div>
-                <div class="flex-initial max-w-md">
-                    <p class="text-m">
-                        We’ve renamed Firefox accounts to Mozilla accounts. You’ll still sign in with the same username and password, and there are no other changes to the products that you use.
-                        <a href="https://support.mozilla.org/kb/firefox-accounts-renamed-mozilla-accounts">Learn more</a>
-                    </p>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
     <div class="card">
       <a href="https://mozilla.org" class="logo" target="_blank"><img alt="Mozilla" src="{{{ cdn }}}/images/mozilla.svg" /></a>
@@ -150,13 +80,7 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <input type="submit" class="button button--full-width" id="enter-initial" value="Enter" />
             <hr>
             <ul class="login-options list list--plain">
-              <li data-optional-login-method="firefoxaccounts" id="firefoxaccounts">
-                <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-firefoxaccounts">
-                  <img class="icon" src="{{{ cdn }}}/images/firefox.svg" alt="">
-                  <span>Log in with Firefox</span>
-                </button>
-              </li>
-              <li data-optional-login-method="firefoxaccounts" id="mozillaaccounts" data-decorator="show-mozilla-accounts" hidden>
+              <li data-optional-login-method="firefoxaccounts" id="mozillaaccounts">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-firefoxaccounts">
                   <img class="icon" src="{{{ cdn }}}/images/m.svg" alt="">
                   <span>Sign in with Mozilla</span>
@@ -195,12 +119,7 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <input type="submit" class="button button--full-width" id="enter-initial-signup" value="Enter" />
             <hr>
             <ul class="login-options list list--plain">
-              <li data-optional-login-method="firefoxaccounts" id="firefoxaccounts">
-                <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-firefoxaccounts">
-                  <img class="icon" src="{{{ cdn }}}/images/firefox.svg" alt="">
-                  <span>Continue with Firefox</span>
-                </button>
-                <li data-optional-login-method="firefoxaccounts" id="mozillaaccounts" data-decorator="show-mozilla-accounts">
+              <li data-optional-login-method="firefoxaccounts" id="mozillaaccounts">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-firefoxaccounts">
                   <img class="icon" src="{{{ cdn }}}/images/m.svg" alt="">
                   <span>Continue with Mozilla</span>
@@ -249,13 +168,7 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
             <a href="https://wiki.mozilla.org/IAM/Frequently_asked_questions#Q:_Why_do_you_support_email_login_.28.22passwordless.22.29_if_it.27s_less_safe_than_other_methods.3F" class="button button--text-only button--unpadded" target="_blank">Why an email?</a>
             <hr>
             <ul class="login-options list list--plain">
-              <li data-optional-login-method="firefoxaccounts" id="firefoxaccounts">
-                <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-firefoxaccounts">
-                  <img class="icon" src="{{{ cdn }}}/images/firefox.svg" alt="">
-                  <span>Continue with Firefox</span>
-                </button>
-              </li>
-              <li data-optional-login-method="firefoxaccounts" id="mozillaccounts" data-decorator="show-mozilla-accounts">
+              <li data-optional-login-method="firefoxaccounts" id="mozillaccounts">
                 <button class="button button--full-width button--social button--secondary" type="button" data-handler="authorise-firefoxaccounts">
                   <img class="icon" src="{{{ cdn }}}/images/m.svg" alt="">
                   <span>Continue with Mozilla</span>
@@ -351,9 +264,7 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
       "features" : {
         "autologin": "{{{ features.autologin }}}",
         "iam_api_lookup": "{{{ features.iam_api_lookup }}}",
-        "maintenance_mode": "{{{ features.maintenance_mode }}}",
-        "mozilla_accounts_banner_pre": "{{{ features.mozilla_accounts_banner_pre }}}",
-        "mozilla_accounts_banner_post": "{{{ features.mozilla_accounts_banner_post }}}"
+        "maintenance_mode": "{{{ features.maintenance_mode }}}"
       },
       "supportedLoginMethods": "{{{ supportedLoginMethods }}}",
       "logout_url": "{{{ logout_url }}}",

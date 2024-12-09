@@ -39,6 +39,22 @@ To build for development or production, simply tag the repo with `_version_-pre`
 should build and deploy. You can also build directly with `NODE_ENV=development npm run build` or
 `NODE_ENV=production npm run build`, although this should generally not be necessary.
 
+#### Running on Apple Silicon
+
+If you're using a newer Mac laptop, run these commands instead:
+
+```bash
+# Install dependencies
+docker run -v "$(PWD):/src" -w /src --entrypoint npm -it node:14 install
+
+# Develop locally
+docker run -v "$(PWD):/src" -w /src -p 3000:3000 --entrypoint npm -it node:14 run watch
+# Open your browser and go to http://localhost:3000/
+
+# Build
+docker run -v "$(PWD):/src" -w /src -p 3000:3000 --entrypoint npm -it node:14 run build
+```
+
 ### Deploying code automatically
 
 The long-term plan is to have both development and production code deployed automatically via GitHub Actions. The

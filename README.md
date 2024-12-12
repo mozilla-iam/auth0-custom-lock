@@ -69,11 +69,20 @@ to rebuild.
 
 If you do need to deploy manually (as is currently required for production), you can install
 [act](https://github.com/nektos/act) on a local machine, and run:
-`act --secret-file config/secrets -j dev-build-and-deploy` or
-`act --secret-file config/secrets -j prod-build-and-deploy`.
+
+```
+# Development:
+act --secret-file config/secrets -j dev-build-and-deploy
+
+# Production
+act  --secret-file config/secrets -j prod-build-and-deploy
+```
 
 Note that to run `act`, you may need to add the following to your `~/.actrc` for the build to properly function:
-`-P ubuntu-latest=nektos/act-environments-ubuntu:18.04`.
+```
+-P ubuntu-latest=nektos/act-environments-ubuntu:18.04
+--container-architecture linux/amd64
+```
 
 You'll also need to set your secrets file to contain the following environmental variables:
 

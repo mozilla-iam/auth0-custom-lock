@@ -45,14 +45,14 @@ If you're using a newer Mac laptop, run these commands instead:
 
 ```bash
 # Install dependencies
-docker run -v "$(PWD):/src" -w /src --entrypoint npm -it node:14 install
+docker run --platform linux/amd64 -v "$(PWD):/src" -w /src --entrypoint npm -it node:14 install
 
 # Develop locally
-docker run -v "$(PWD):/src" -w /src -p 3000:3000 --entrypoint npm -it node:14 run watch
+docker run --platform linux/amd64 -v "$(PWD):/src" -w /src -p 3000:3000 --entrypoint npm -it node:14 run watch
 # Open your browser and go to http://localhost:3000/
 
 # Build
-docker run -v "$(PWD):/src" -w /src -p 3000:3000 --entrypoint npm -it node:14 run build
+docker run --platform linux/amd64 -v "$(PWD):/src" -w /src -p 3000:3000 --entrypoint npm -it node:14 run build
 ```
 
 ### Deploying code automatically

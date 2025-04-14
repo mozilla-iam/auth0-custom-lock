@@ -12,7 +12,7 @@
   "license": "MPL-2.0",
   "devDependencies": {
     "auth0-deploy-cli": "^4.3.1",
-    "browser-sync": "^2.24.7",
+    "browser-sync": "^2.27.10",
     "browserify": "^14.3.0",
     "cached-path-relative": "^1.0.2",
     "del": "^2.2.2",

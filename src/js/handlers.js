@@ -7,6 +7,7 @@
 // no component, they are in the general 'handlers' folder (src/assets/js/handlers).
 
 module.exports = {
+  'header-banner-pre': require( 'handlers/header-banner-pre' ),
   'enter': require( 'handlers/enter' ),
   'go-to-initial-page': require( 'handlers/go-to-initial-page' ),
   'authorise-ldap': require( 'handlers/authorise-ldap' ),

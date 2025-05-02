@@ -34,6 +34,7 @@ These are the variables we are using:
    iam_api_lookup: {{{ features.iam_api_lookup }}}
    supportedLoginMethods: {{{ supportedLoginMethods }}}
    maintenance_mode: "{{{ features.maintenance_mode }}}"
+   header_banner_pre: "{{{ features.header_banner_pre }}}"
   Display names:
     github: {{{ displayNames.github }}}
     google-oauth2: {{{ displayNames.google-oauth2 }}}
@@ -60,6 +61,44 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
         <p>We are currently experiencing an issue &amp; working hard to resolve it. Please try to login again in a few minutes.  Request help via <a href="mailto:moc@mozilla.com">moc@mozilla.com</a>, IRC #moc or Slack #mozsm-all.</p>
       </div>
     </div>
+    <div data-decorator="check-if-header-banner-pre" hidden>
+      <div class="banner-branding" id="header-banner-pre">
+        <div class="flex">
+          <div class="cta flex">
+            <div class="flex-none order-last">
+                  <button
+                      class="close-brand-banner"
+                      aria-label="Close Banner"
+                      type=button
+                      >
+                      <img
+                          src="{{{ cdn }}}/images/x.svg"
+                          class="cursor-pointer"
+                          data-handler="header-banner-pre"
+                          alt="Close Banner"
+                      />
+                  </button>
+              </div>
+
+                <div class="flex-none relative">
+                    <img
+                        class="mozilla-logo"
+                        src="{{{ cdn }}}/images/m.svg"
+                        alt="Mozilla m logo"
+                    />
+                </div>
+                <div class="flex-initial max-w-md">
+                    <p class="text-l font-bold">
+                        <a href="{{{ sso_dashboard_url }}}/images/mozilla-new-login-prompt.png">This login page will have a new look after June 1, 2025.</a>
+                    </p>
+                    <p class="text-s">
+                        You’ll still sign in with the same username and password, and there are no other changes to the products that you use.
+                    </p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <div class="card">
       <a href="https://mozilla.org" class="logo" target="_blank"><img alt="Mozilla" src="{{{ cdn }}}/images/mozilla.svg" /></a>
@@ -264,7 +303,8 @@ on GitHub: https://github.com/mozilla-iam/auth0-custom-lock
       "features" : {
         "autologin": "{{{ features.autologin }}}",
         "iam_api_lookup": "{{{ features.iam_api_lookup }}}",
-        "maintenance_mode": "{{{ features.maintenance_mode }}}"
+        "maintenance_mode": "{{{ features.maintenance_mode }}}",
+        "header_banner_pre": "{{{ features.header_banner_pre }}}"
       },
       "supportedLoginMethods": "{{{ supportedLoginMethods }}}",
       "logout_url": "{{{ logout_url }}}",
